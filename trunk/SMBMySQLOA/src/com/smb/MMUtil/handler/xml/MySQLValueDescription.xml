@@ -1,0 +1,1885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+<MySQLVariableDescription>
+	<variable_name>auto_increment_increment</variable_name>
+	<description>
+	服务器变量auto_increment_increment 
+	可以帮助协调多主服务器复制和AUTO_INCREMENT列。
+	每个变量有一个默认的(并且是最小的)值1，最大值为65,535 </description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>auto_increment_offset</variable_name>
+	<description>服务器变量 auto_increment_offset可以帮助协调多主服务器复制和AUTO_INCREMENT列。
+每个变量有一个默认的(并且是最小的)值1，最大值为65,535 , auto_increment_offset确定AUTO_INCREMENT列值的起点。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>autocommit</variable_name>
+	<description>每个客户端开始时默认启用autocommit模式</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>automatic_sp_privileges</variable_name>
+	<description>是否拥有   auto_increment_increment 的权限</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>back_log</variable_name>
+	<description>
+	MySQL有的主要连接请求的数量。当主MySQL线程在短时间内得到许多连接请求时发挥作用。
+	主线程需要花一些时间(尽管很少)来检查连接并启动一个新线程。back_log值说明MySQL临时停止响应新请求前在短时间内可以堆起多少请求。
+	如果你需要在短时间内允许大量连接，可以增加该数值。换句话说，该值为“进”TCP/IP连接帧听队列的大小。操作系统有该队列自己的限制值。
+	本手册中Unix listen()系统调用页应有更详细的信息。该变量最大值请查阅OS文档。企图将back_log设置为高于你的操作系统限值是徒劳无益的。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>basedir</variable_name>
+	<description>mysql运行程序的主目录</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>big_tables</variable_name>
+	<description>该参数一般无需设置</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>binlog_cache_size</variable_name>
+	<description>二进制缓存日志大小，默认值为32K，有点小，一般建议服务器设置为2M，
+	使用临时二进制日志缓存但超过binlog_cache_size值并使用临时文件来保存事务中的语句的事务数量。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>binlog_format</variable_name>
+	<description>表示二进制日志的复制格式是什么样子的，如果服务器上被打开了同步的功能此处建议被设置成MIX</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>bulk_insert_buffer_size</variable_name>
+	<description>这个参数设置的是 bulk insert 的缓存大小，默认是 8M ，可以调整这个参数来提高数据插入的效率。
+	MyISAM  使用专用树状缓存来使INSERT ... SELECT、INSERT ... VALUES (...)、(...)、 ...和LOAD DATA INFILE的大块插入更快。
+	该变量用每线程的字节数限制缓存树的大小。将它设置为0禁用优化。注释：只有向非空表添加数据时才使用该缓存。 默认值是8MB</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_client</variable_name>
+	<description>来自客户端的语句的字符集。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_connection</variable_name>
+	<description>用于没有字符集导入符的文字和数字－字符串转换。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_database</variable_name>
+	<description>默认数据库使用的字符集。当默认数据库更改时，服务器则设置该变量。如果没有默认数据库，变量的值同character_set_server</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_filesystem</variable_name>
+	<description>MySQL服务器文件系统的字符集类型</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_results</variable_name>
+	<description>MySQL服务器查询结果的字符集类型</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_server</variable_name>
+	<description>服务器的默认字符集。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_set_system</variable_name>
+	<description>服务器用来保存识别符的字符集。该值一定是utf8。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>character_sets_dir</variable_name>
+	<description>字符集安装目录。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>collation_connection</variable_name>
+	<description>连接字符集的校对规则</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>collation_database</variable_name>
+	<description>默认数据库使用的校对规则。当默认数据库改变时服务器则设置该变量。如果没有默认数据库，变量的值同collation_server。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>collation_server</variable_name>	
+	<description>服务器的默认校对规则。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>completion_type</variable_name>	<description>事务结束类型：
+
+o        如果该值为0(默认)，COMMIT和ROLLBACK不受影响。
+
+o        如果该值为1，COMMIT和ROLLBACK分别等同于COMMIT AND CHAIN和ROLLBACK AND CHAIN。(新事务用刚刚结束的事务相同的间隔等级立即启动）。
+
+o        如果该值为2，COMMIT和ROLLBACK分别等同于COMM它RELEASE和ROLLBACK RELEASE。(事务终止后，服务器断开）。 </description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>concurrent_insert</variable_name>	
+	<description>如果为ON(默认值)，MySQL允许INSERT和SELECT语句在中间没有空数据块的MyISAM表中并行运行。
+	你可以用--safe或--skip-new启动mysqld关闭该选项。  0  关，1(默认)在没有空数据块的MyISAM表中启用并行插入，2为所有MyISAM表启用并行插入。
+	如果表有空记录或正被另一线程使用，新行将插入到表的最后。如果表未使用，MySQL将进行普通读锁定并将新行插入空记录。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>connect_timeout</variable_name>	
+	<description>mysqld服务器用Bad handshake响应前等待连接包的秒数。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>datadir</variable_name>	
+	<description>数据存放的目录</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>date_format</variable_name>	
+	<description>数据库默认的日期格式</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>datetime_format</variable_name>	
+	<description>数据库默认的时间格式</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>default_week_format</variable_name>
+	<description> WEEK()  函数使用的默认模式</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>delay_key_write</variable_name>
+	<description>该选项只适用MyISAM表。它具有下述值可以影响CREATE TABLE语句使用的DELAY_KEY_WRITE表选项的处理。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>delayed_insert_limit</variable_name>
+	<description> 插入delayed_insert_limit  延迟行后，INSERT DELAYED 处理器线程检查是否有挂起的SELECT语句。如果有，在继续插入延迟的行之前，允许它们先执行。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>delayed_insert_timeout</variable_name>
+	<description>INSERT DELAYED处理器线程终止前应等待INSERT语句的时间。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>delayed_queue_size</variable_name>
+	<description> 这是各个表中处理INSERT DELAYED语句时队列中行的数量限制。如果队列满了，执行INSERT DELAYED语句的客户端应等待直到队列内再有空间。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>div_precision_increment</variable_name>
+	<description>该变量说明用/操作符执行除操作的结果可增加的精确度的位数。 默认值是4。最小和最大值分别为0和30。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>engine_condition_pushdown</variable_name>
+	<description>该变量适用于NDB。默认值为0(OFF)：如果你执行类似查询SELECT * FROM t WHERE mycol = 42，
+	其中mycol为没有索引的列，当满了的表扫描每个NDB节点时，执行该查询。每个节点使用WHERE条件将每一行发送给MySQL服务器。
+	如果engine_condition_pushdown被设置为1(ON)，	该条件“pushed down”给存储引擎并发送给NDB节点。
+	每个节点都执行扫描，并只向MySQL服务器发送回匹配条件的行。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>error_count</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>event_scheduler</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>expire_logs_days</variable_name>
+	<description>二进制日志自动删除的天数。默认值为0,表示“没有自动删除”。启动时和二进制日志循环时可能删除。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>flush</variable_name>
+	<description>如果用--flush选项启动mysqld该值为ON。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>flush_time</variable_name>
+	<description> 如果设为非零值，每隔flush_time秒则关闭所有表以释放硬盘资源并同步未清空的数据。我们建议只在Windows 9x或Me，或有最小资源的系统中使用该选项。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>foreign_key_checks</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>ft_boolean_syntax</variable_name>
+	<description>
+	<![CDATA[ 使用IN BOOLEAN MODE执行的布尔全文搜索支持的操作符系列。参见12.7.1节，“布尔全文搜索”。默认变量值为 '+ -><()~*:""&|'。
+	更改这些值的规则是：
+	o        操作符函数由其在字符串内的位置决定。
+	o        替换值必须是14个字符。
+	o        每个字符必须为ASCII码非文字数字字符。
+	o        第1个或第2个字符必须为空格。
+	o        除非语句在第11个字符和第12个字符处引用了操作符，否则不允许复制。	这两个字符可以不相同，但这是唯一可能的两个。
+	o        位置10、13和14(默认设置为‘:’、‘&’和‘|’)保留用于将来扩展。   ]]>
+ 
+	</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>ft_max_word_len</variable_name>
+	<description>FULLTEXT索引中所包含的字的最大长度。注释：更改该变量后必须重建FULLTEXT索引。应使用REPAIR TABLE tbl_name QUICK。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ft_min_word_len</variable_name>
+	<description> FULLTEXT索引中所包含的字的最小长度。
+注释：更改该变量后必须重建FULLTEXT索引。应使用REPAIR TABLE tbl_name QUICK。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ft_query_expansion_limit</variable_name>
+	<description> 使用WITH QUERY EXPANSION进行全文搜索的最大匹配数。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>ft_stopword_file</variable_name>
+	<description>用于读取全文搜索的停止字清单的文件。该文件中的所有字都会用到；注释不重要。默认情况下，使用内嵌式停止字清单(如myisam/ft_static.c文件中所定义)。将该变量设置为空字符串('')则禁用停止字过滤。
+	注释：更改该变量或停止字文件的内容后必须重建FULLTEXT索引。应使用REPAIR TABLE tbl_name QUICK。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>general_log</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>general_log_file</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>group_concat_max_len</variable_name>
+	<description>允许的GROUP_CONCAT()函数结果的最大长度。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>have_community_features</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_compress</variable_name>
+	<description>是否zlib压缩库适合该服务器。如果不适合，不能使用COMPRESS()和UNCOMPRESS()函数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_crypt</variable_name>
+	<description>是否crypt()系统调用适合该服务器。如果不适合，不能使用CRYPT()函数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_csv</variable_name>
+	<description> 如果mysqld支持ARCHIVE表则为YES，否则为NO。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_example_engine</variable_name>
+	<description>如果mysqld支持EXAMPLE表则为YES，否则为NO。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_federated_engine</variable_name>
+	<description> 如果mysqld支持FEDERATED表则为YES，否则为NO。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_archive</variable_name>
+	<description>如果mysqld支持ARCHIVE表则为YES，否则为NO。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_bdb</variable_name>
+	<description>  如果mysqld支持BDB表则为YES。如果使用--skip-bdb则为DISABLED。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_blackhole_engine</variable_name>
+	<description>如果mysqld支持BLACKHOLE表则为YES，否则为NO。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_dynamic_loading</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_geometry</variable_name>
+	<description>是否服务器支持空间数据类型。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_innodb</variable_name>
+	<description>如果mysqld支持InnoDB表则为YES。如果使用--skip-innodb则为DISABLED。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>have_isam</variable_name>
+	<description>在MySQL 5.1中,只是为了向后兼容显示该值，并且总是NO，将会不再支持ISAM表。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_raid</variable_name>
+	<description>如果mysqld支持RAID选项则为YES。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_ndbcluster</variable_name>
+	<description>如果mysqld支持NDB CLUSTER表则为YES。如果使用了--skip-ndbcluster则为DISABLED。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>have_openssl</variable_name>
+	<description>如果mysqld支持客户端/服务器协议的SSL(加密)则为YES。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_partitioning</variable_name>
+	<description>MySQL 是否支持表分区.在MySQL 5.1.1中加入。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_query_cache</variable_name>
+	<description> 如果mysqld支持查询缓存则为YES。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_rtree_keys</variable_name>
+	<description> RTREE索引是否可用。(用于MyISAM表的空间索引）。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_openssl</variable_name>
+	<description>如果mysqld支持客户端/服务器协议的SSL(加密)则为YES。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_ssl</variable_name>
+	<description>如果mysqld支持客户端/服务器协议的SSL(加密)则为YES。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>have_symlink</variable_name>
+	<description>是否启用符号链接支持。在Unix中需要用于支持DATA DIRECTORY和INDEX DIRECTORY表选项。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>hostname</variable_name>
+	<description>数据库的主机名</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>identity</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ignore_builtin_innodb</variable_name>
+	<description>忽然创建 innodb 的数据表</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>init_connect</variable_name>
+	<description>服务器为每个连接的客户端执行的字符串。字符串由一个或多个SQL语句组成。
+	要想指定多个语句，用分号间隔开。例如，每个客户端开始时默认启用autocommit模式。
+	没有全局服务器变量可以规定autocommit默认情况下应禁用，
+	但可以用init_connect来获得相同的效果：SET GLOBAL init_connect='SET AUTOCOMMIT=0';还可以在命令行或选项文件中设置该变量。
+	要想使用选项文件设置变量，应包括下述行：[mysqld]   init_connect='SET AUTOCOMMIT=0'  
+	请注意init_connect的内容并不为拥有SUPER权限的用户执行；实际是内容设置错误(包含错误查询，例如语法错误)，
+	这样使所有连接失败。不为SUPER用户执行，使SUPER用户可以打开连接并固定init_connect。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>init_file</variable_name>
+	<description>启动服务器时用--init-file选项指定的文件名。文件中包含服务器启动时要执行的SQL语句。每个语句必须在同一行中并且不能包括注释。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>init_slave</variable_name>
+	<description>该变量类似init_connect，但是每次SQL线程启动时从服务器应执行该字符串。该字符串的格式与init_connect变量相同。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_adaptive_hash_index</variable_name>
+	<description>这个参数默认是被打开的，他表示 表几乎完全适合在主内存中，最快的方法来执行它的使用散列索引查询。
+	 MySQL的有监视索引搜索向为表定义的索引机制。如果MySQL的告示，查询可受益于建立一个散列索引，它自动。 
+哈希指数始终是建立在现有的基础上B -树的表的索引。 MySQL的可以建立在任何的B -树，取决于搜索模式，
+MySQL的为B -树索引观察定义的密钥长度前缀散列索引。散列索引可以是局部的：它不是必需的，整个B树索引是在缓冲池中缓存。 M
+ySQL的基础上为那些经常访问这些网页的需求指数散列索引。 
+从某种意义上说，InnoDB也裁缝通过自适应散列索引机制，以充分的主记忆体本身，越来越接近我们的主内存数据库的架构。 
+（http://dev.mysql.com/doc/refman/5.0/en/innodb-adaptive-hash.html）</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_additional_mem_pool_size</variable_name>
+	<description> InnoDB 用来存储数据字典(data dictionary)信息和其它内部数据结构(internal data structures)的存储器组合(memory pool)大小。
+	理想的值为 2M，如果有更多的表你就需要在这里重新分配。如果 InnoDB 用尽这个池中的所有内存，
+	它将从操作系统中分配内存，并将错误信息写入 MySQL 的错误日志中。在 my.cnf 中以数字格式设置。设置日志文件的大小约为  缓冲池(buffer pool)  大小的 25 %</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_autoextend_increment</variable_name>
+	<description>当自动扩展表空间被填满之时，每次扩展空间的大小，默认值是8(单位MB)。该参数可以动态修改</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_autoinc_lock_mode</variable_name>
+	<description>
+	innodb_autoinc_lock_mode，它是专门用来在使用auto_increment的情况下调整锁策略的，目前有三种选择：
+		innodb_autoinc_lock_mode = 0 (“traditional” lock mode)
+		innodb_autoinc_lock_mode = 1 (“consecutive” lock mode)
+		innodb_autoinc_lock_mode = 2 (“interleaved” lock mode)
+	官方文档已经给出了很好的描述，就不多说了。需要提醒的是MySQL5.1现在还没有Stable，要谨慎使用。
+	详见：http://dev.mysql.com/doc/refman/5.1/en/innodb-auto-increment-handling.html
+	</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>innodb_buffer_pool_awe_mem_mb</variable_name>
+	<description>如果缓冲池被放在32位Windows的AWE内存里，这个参数就是缓冲池的大小（MB为单位）。
+	(仅在32位Windows上相关）如果你的32位Windows操作系统使用所谓的“地址窗口扩展（AWE)”支持超过4GB内存，你可以用这个参数把InnoDB缓冲池分配进AWE物理内存。
+	这个参数最大的可能值是64000。如果这个参数被指定了，innodb_buffer_pool_size是在32位地址空间的mysqld内的窗口，
+	InnoDB把那个AWE内存映射上去。对innodb_buffer_pool_size参数，一个比较好的值是500MB。 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_buffer_pool_size</variable_name>
+	<description> InnoDB 用来高速缓冲数据和索引内存缓冲大小。 更大的设置可以使访问数据时减少磁盘 I/O。在一个专用的数据库服务器上可以将它设置为物理内存的 80 %。 
+	不要将它设置太大，因为物理内存的使用竞争可能会影响操作系统的页面调用。 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_checksums</variable_name>
+	<description> InnoDB在所有对磁盘的页面读取上使用校验和验证以确保额外容错防止硬件损坏或数据文件。尽管如此，
+	在一些少见的情况下（比如运行标准检查之时）这个额外的安全特征是不必要的。在这些情况下，这个选项（默认是允许的）可以用--skip-innodb-checksums来关闭。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_commit_concurrency</variable_name>
+	<description>mysql 在 innodb数据库存储引擎下使用的线程数</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_concurrency_tickets</variable_name>
+	<description>暂未找到合理的介绍。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_data_file_path</variable_name>
+	<description>设置的示例：/ibdata/ibdata1:2000M;/dr2/ibdata/ibdata2:2000M:autoextend  
+	设置缓冲池的大小为   你的主内存大小的 50 - 80 %，但是在 Linux x86 总内存 使用必须小于 2 GB，单独指定数据文件的路径与大小。
+	数据文件的完整路径由 innodb_data_home_dir 与这里所设定值的组合。 文件大小以 MB 单位指定。因此在文件大小指定后必有“M”。
+	 InnoDB 也支持缩写“G”， 1G = 1024M。从 3.23.44 开始，在那些支持大文件的操作系统上可以设置数据文件大小大于 4 GB。
+	而在另一些操作系统上数据文件必须小于 2 GB。数据文件大小总和至少要达到 10 MB。在 MySQL-3.23 中这个参数必须在 my.cnf 中明确指定。
+	在 MySQL-4.0.2 以及更新版本中则不需如此，系统会默认在 MySQL 的 datadir 目录下创建一个 16 MB 自扩充(auto-extending)的数据文件 ibdata1。
+	你同样可以使用一个 原生磁盘分区(RAW raw disk partitions(raw devices)) 作为数据文件， 如何在 my.cnf 中详细指定它们请查看第 12.1 节。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_data_home_dir</variable_name>
+	<description>这是InnoDB表的目录共用设置。
+	如果没有在 my.cnf 进行设置，InnoDB 将使用MySQL的 datadir 目录为缺省目录。如果设定一个空字串,可以在 innodb_data_file_path 中设定绝对路径。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_doublewrite</variable_name>
+	<description>默认地，InnoDB存储所有数据两次，第一次存储到doublewrite缓冲，然后存储到确实的数据文件。这个选项可以被用来禁止这个功能。
+	类似于innodb_checksums，这个选项默认是允许的；因为标准检查或在对顶级性能的需要超过对数据完整性或可能故障的关注之时，这个选项用--skip-innodb-doublewrite来关闭。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_fast_shutdown</variable_name>
+	<description> InnoDB 缺少在关闭之前清空插入缓冲。这个操作可能需要几分钟，在极端的情况下可以需要几个小时。
+	如果这个参数据设置为 1 ，InnoDB 将跳过这个过程而直接关闭。如果你把这个参数设置为0，InnoDB在关闭之前做一个完全净化和一个插入缓冲合并。
+	这些操作要花几分钟时间，设置在极端情况下要几个小时。如果你设置这个参数为1，InnoDB在关闭之时跳过这些操作。
+	默认值为1。如果你设置这个值为2 (在Netware无此值)， InnoDB将刷新它的日志然后冷关机，仿佛MySQL崩溃一样。
+	已提交的事务不会被丢失，但在下一次启动之时会做一个崩溃恢复。 从 3.23.44 和 4.0.1 开始，此参数可用。从 3.23.50 开始，此参数的默认值为 1。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_file_io_threads</variable_name>
+	<description> InnoDB 中的文件 I/O 线程。 通常设置为 4，但是在 Windows 下可以设定一个更大的值以提高磁盘 I/O。在 my.cnf 中以数字格式设置。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_file_per_table</variable_name>
+	<description>【可以看到配置了innodb_file_per_table 参数后，每个创建的innodb表 都会生成2个数据文件，一个是扩展名为frm保存表定义，一个是ibd扩展名保存表数据。
+	#这里让INNODB存储方式不再存到ibdata1里面，而是单独存到每个.idb文件中，你可以存储每个InnoDB表和它的索引在它自己的文件在中，这个特征被称为“多表空间” ，因为实际上每个表有它自己的表空间。 
+	对那些想把特定表格移到分离物理磁盘的用户，或者那些希望快速恢复单个表的备份而无须打断其余InnoDB表的使用的用户，使用多表空间会是有益的。
+重启服务器之后，InnoDB存储每个新创建的表到表格所属于的数据库目录下它自己的文件tbl_name.ibd里。这类似于MyISAM存储引擎所做的，但MyISAM 把表分成数据文件tbl_name.MYD和索引文件tbl_name.MYI。对于InnoDB，数据和所以被一起存到.ibd文件。
+tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_file_per_table行，并重启服务器，InnoDB在共享的表空间文件里再次创建表。 innodb_file_per_table只影响表的创建。
+如果你用这个选项启动服务器，新表被用.ibd文件来创建，但是你仍旧能访问在共享表空间里的表。如果你删掉这个选项，新表在共享表空间内创建，但你仍旧可以访问任何用多表空间创建的表。 nnoDB总是需要共享标空间。
+.ibd文件对InnoDB不足以去运行，共享表空间包含熟悉的ibdata文件，InnoDB把内部数据词典和未作日志放在这个文件中。 
+注释：你不能像对MyISAM一样，在数据目录之间随意地移动.ibd文件。这是因为表定义被存在InnoDB共享表空间内，而且InnoDB必须保持事务ID和日志顺序号的一致性。】</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_flush_log_at_trx_commit</variable_name>
+	<description> 通常设置为 1，意味着在事务提交前日志已被写入磁盘， 事务可以运行更长以及服务崩溃后的修复能力。如果你愿意减弱这个安全，或你运行的是比较小的事务处理，可以将它设置为 0 ，以减少写日志文件的磁盘 I/O。这个选项默认设置为 0。
+	当innodb_flush_log_at_trx_commit被 设置为0，日志缓冲每秒一次地被写到日志文件，并且对日志文件做到磁盘操作的刷新，但是在一个事务提交不做任何操作。当这个值为1（默认值）之时，在每个事务提交时，日志缓冲被写到日志文件，对日志文件做到磁盘操作的刷新。
+	当设置为2之时，在每个提交，日志缓冲被写到文件，但不对日志文件做到磁盘操作的刷新。尽管如此，在对日志文件的刷新在值为2的情况也每秒发生一次。我们必须注意到，因为进程安排问题，每秒一次的刷新不是100%保证每秒都发生。
+	你可以通过设置这个值不为1来获得较好的性能，但随之你会在一次崩溃中损失二分之一价值的事务。
+	如果你设置这个值为0，那么任何mysqld进程的崩溃会删除崩溃前最后一秒的事务，如果你设置这个值为2，那么只有操作系统崩溃或掉电才会删除最后一秒的事务。尽管如此，InnoDB的崩溃恢复不受影响，而且因为这样崩溃恢复开始作用而不考虑这个值。
+	注意，许多操作系统和一些磁盘硬件会欺骗刷新到磁盘操作。尽管刷新没有进行，你可以告诉mysqld刷新已经进行。即使设置这个值为1，事务的持久程度不被保证，且在最坏情况下掉电甚至会破坏InnoDB数据库。
+	在SCSI磁盘控制器中，或在磁盘自身中，使用有后备电池的磁盘缓存会加速文件刷新并且使得操作更安全。
+	你也可以试着使用Unix命令hdparm来在硬件缓存中禁止磁盘写缓存，或使用其它一些对硬件提供商专用的命令。这个选项的默认值是1。 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_flush_method</variable_name>
+	<description> 这个参数仅仅与 Unix 相关。这个参数默认值为 fdatasync。 另一个设置项为 O_DSYNC。这仅仅影响日志文件的转储，在 Unix 下以 fsync 转储数据。InnoDB 版本从 3.23.40b 开始，
+	在 Unix 下指定 fdatasync 为使用 fsync 方式、指定 O_DSYNC 为使用 O_SYNC 方式。由于这在某些 Unix 环境下还有些问题所以在 'data' versions 并没有被使用。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_force_recovery</variable_name>
+	<description> 警告：此参数只能在你希望从一个被损坏的数据库中转储(dump)数据的紧急情况下使用！ 可能设置的值范围为 1 - 6。
+	查看下面的章节 'Forcing recovery' 以了解这个参数的具体含义。
+	参数设置大于 0 的值代表着 InnoDB 防止用户修改数据的安全度。从 3.23.44 开始，这个参数可用。在 my.cnf 中以数字格式设置。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_lock_wait_timeout</variable_name>
+	<description>在回滚(rooled back)之前，InnoDB 事务将等待超时的时间(单位 秒)。InnoDB 会自动检查自身在锁定表与事务回滚时的事务死锁。
+	如果使用 LOCK TABLES 命令，或在同一个事务中使用其它事务安全型表处理器(transaction safe table handlers than InnoDB)，那么可能会发生一个 InnoDB 无法注意到的死锁。在这种情况下超时将用来解决这个问题。这个参数的默认值为 50 秒。
+	在 my.cnf 中以数字格式设置。 MySQL可以自动地监测行锁导致的死锁并进行相应的处理，
+	但是对于表锁导致的死锁不能自动的监测，所以该参数主要被用于在出现类似情况的时候等待指定的时间后回滚。系统默认值是50秒，用户可以根据应用的需要进行调整。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_locks_unsafe_for_binlog</variable_name>
+	<description>这个选项在InnoDB搜索和索引扫描中关闭下一键锁定。这个选项的默认值是假（false）。 
+		正常地，InnoDB使用一个被称为next-key locking的算法。当搜索或扫描一个表索引之时，
+		InnoDB以这样一种方式实行行级锁定，它对任何遇到的索引记录设置共享的或独占的锁定。
+		因此，行级锁定实际是索引记录锁定。InnoDB对索引记录设置的锁定也影响被锁定索引记录之前的“gap”。
+		如果一个用户对某一索引内的记录R又共享的或独占的锁定，另一个用户不能立即在R之前以索引的顺序插入一个新的索引记录。
+		这个选项导致InnoDB不在搜索或索引扫描中使用下一键锁定。下一键锁定仍然被用来确保外键强制及重复键核查。
+		注意，使用这个选项可能会导致一些诡异的问题：假设你想要用值大于100的标识符从子表里读取并锁定所有的子记录，
+		同时向随后在选定的行更新一些列：SELECT * FROM child WHERE id > 100 FOR UPDATE;假设在id列有一个索引。
+		查询从id大于100的第一个记录开始扫描索引。如果在索引记录上的锁定不把在间隙处生成的插入排除锁定，
+		同时一个新行被插进表中。如果你在同一个事务之内执行同样的SELECT，你会在查询返回的结果包里看到一个新行。
+		这也意味着，如果新条目被加进数据库，InnoDB不保证连续性；尽管如此，对应连续性仍被保证。
+		因此，如果这个选项被使用，InnoDB在大多数孤立级别保证READ COMMITTED。 这个选项甚至更不安全。
+		InnoDB在一个UPDATE或DELETE中只锁定它更新或删除的行。这大大减少了死锁的可能性，但是可以发生死锁。
+</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_log_arch_dir</variable_name>
+	<description> 这里设置的参数必须与 innodb_log_group_home_dir 相同。 从 4.0.6 开始，可以忽略这个参数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_log_archive</variable_name>
+	<description>这个值通常设为 0。 既然从备份中恢复(recovery)适合于 MySQL 使用它自己的 log files，
+	因而通常不再需要 archive InnoDB log files。这个选项默认设置为 0。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_log_buffer_size</variable_name>
+	<description>InnoDB 将日志写入日志磁盘文件前的缓冲大小。理想值为 1M 至 8M。大的日志缓冲允许事务运行时不需要将日志保存入磁盘而只到事务被提交(commit)。 
+	因此，如果有大的事务处理，设置大的日志缓冲可以减少磁盘I/O。 在 my.cnf 中以数字格式设置。推荐大小为1MB~8MB</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_log_file_size</variable_name>
+	<description>日志组中的每个日志文件的大小(单位 MB)。如果 n 是日志组中日志文件的数目，那么理想的数值为 1M 至下面设置的缓冲池(buffer pool)大小的 1/n。
+	较大的值，可以减少刷新缓冲池的次数，从而减少磁盘 I/O。但是大的日志文件意味着在崩溃时需要更长的时间来恢复数据。 
+	日志文件总和必须小于 2 GB，3.23.55 和 4.0.9 以上为小于 4 GB。在 my.cnf 中以数字格式设置。
+	说明：这个值分配的大小和数据库的写入速度，事务大小，异常重启后的恢复有很大的关系。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_log_files_in_group</variable_name>
+	<description>innodb_log_files_in_group=3  设置日志文件的大小约为  缓冲池(buffer pool)   大小的 15 % 日志组中的日志文件数目。
+	InnoDB 以环型方式(circular fashion)写入文件。数值 3 被推荐使用。在 my.cnf 中以数字格式设置。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_log_group_home_dir</variable_name>
+	<description>InnoDB 日志文件的路径。必须与 innodb_log_arch_dir 设置相同值。
+	 如果没有明确指定将默认在 MySQL 的 datadir 目录下建立两个 5 MB 大小的 ib_logfile... 文件。到InnoDB日志文件的目录路径。
+	 它必须有和innodb_log_arch_dir一样的值。
+	如果你不指定任何InnoDB日志参数，默认的是在MySQL数据目录里创建两个5MB大小名为ib_logfile0和ib_logfile1的文件。 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_max_dirty_pages_pct</variable_name>
+	<description>这是一个范围从0到100的整数。默认是90。InnoDB中的主线程试着从缓冲池写页面，使得脏页（没有被写的页面）的百分比不超过这个值。
+	如果你有SUPER权限，这个百分比可以在服务器运行时按下面来改变： SET GLOBAL innodb_max_dirty_pages_pct = value;</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_max_purge_lag</variable_name>
+	<description>这个选项控制在净化操作被滞后之时，如何延迟INSERT, UPDATE和DELETE操作。（请参阅15.2.12节，“多版本的实施”）。
+	这个参数的默认值是零，意为无延迟。这个选项可以在运行时作为全局系统变量而被改变。 
+	这个选项控制在净化操作被滞后之时，InnoDB事务系统维持一个事务列表，一个删除也被内部处理为一个更新，其中行中一个特殊的位被设置来标注该行为已删除。
+	每一行也包含一个称为滚动指针的7字节域。滚动指针指向一个被写到回滚片断的撤销日志记录。如果该行被更新，
+	撤销日志记录包含在该行被更新之前重建该行的内容必需的的信息。
+	 InnoDB使用在回滚片断中的信息来执行在事务回滚中需要的撤销操作。	它也使用这个信息来为一个持续读构建更早版本的行。
+	  在回滚片断中的撤销日志被分为插入和更新撤销日志。插入撤销日志仅在事务回滚中需要，且只要事务一提交就可以被丢弃。
+	更新撤销日志也被用在持续读中，而且它们仅在当前没有被InnoDB分配给一个快照的事务之后被丢弃，
+	这个快照在持续读中可能会需要更新撤销日志的信息来建立一个数据库行的早期版本。
+	 你必须记得规律地提交你的事务，包括那些只发布持续读的事务。否则, InnoDB不能从更新撤销日志丢弃数据，并且回滚片断可能变得太大，填满你的表空间。
+	 InnoDB事务系统维持一个事务列表，该列表有被UPDATE或DELETE操作标志为删除的索引记录。让这个列表的长度为purge_lag。
+	 当purge_lag超过innodb_max_purge_lag之时，每个INSERT, UPDATE和DELETE操作延迟 ((purge_lag/innodb_max_purge_lag)*10)-5毫秒。
+	 在净化批处理的开始，延迟每隔10秒计算。如果因为一个旧的可以看到行被净化的一致的读查看，删除操作不被延迟。
+	  如果这个值设置不正确那么将会导致有无事务将会没有任何区别
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_mirrored_log_groups</variable_name>
+	<description>为了保护数据而设置的日志文件组的拷贝数目，默认设置为 1。在 my.cnf 中以数字格式设置。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_open_files</variable_name>
+	<description> 限制Innodb能打开的表的数据。
+	分配原则：如果库里的表特别多的情况，请增加这个。这个值默认是300，请适当的增加table_cache ，2G以上的机器，建议设置到 800。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_rollback_on_timeout</variable_name>
+	<description>设置数据回滚超时时间</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_stats_on_metadata</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_support_xa</variable_name>
+	<description>  innodb_support_xa参数设置是否支持分布式事务，默认值是ON或者1，表示支持分布式事务。
+	如果确认应用中不需要使用分布式事务，则可以关闭这个参数，减少磁盘刷新的次数并获得更好的InnoDB性能。 
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_sync_spin_loops</variable_name>
+	<description>当你使用自旋锁时，他是低成本的等待；不过它是一个活跃的等待，会浪费一些cpu资源。
+	因此如果看到大量的自旋等待和自旋轮转，则很显然它浪费了很多cpu资源。
+	浪费cpu时间和无谓的上下文切换之间可以用 innodb_sync_spin_loops 来平衡。如果你要设置这个参数，请参照 10 *CPU 的数量 这样的方法。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_table_locks</variable_name>
+	<description> InnoDB重视LOCK TABLES，直到所有其它线程已经释放他们所有对表的锁定，MySQL才从LOCK TABLE .. WRITE返回。
+	默认值是1，这意为LOCK TABLES让InnoDB内部锁定一个表。在使用AUTOCOMMIT=1的应用里，InnoDB的内部表锁定会导致死锁。
+	你可以在my.cnf文件（Windows上是my.ini文件）里设置innodb_table_locks=0 来消除这个问题。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_thread_concurrency</variable_name>
+	<description>该参数取值为服务器逻辑CPU数量×2，在本例中，服务器有2颗物理CPU，而每颗物理CPU又支持H.T超线程，所以实际取值为4 × 2 ＝ 8    InnoDB 会试图将 InnoDB 服务的使用的操作系统进程小于或等于这里所设定的数值。
+	此参数默认值为 8。如果计算机系统性能较低或 innodb_monitor 显示有很多线程等侍信号，应该将这个值设小一点。
+	如果你的计算机系统有很我的处理器与磁盘系统，则可以将这个值设高一点以充分利用你的系统资源。建议设值为处理器数目+ 磁盘数目。 
+	InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个参数给出的限制。如果有性能问题，并且SHOW INNODB STATUS显示许多线程在等待信号，可以让线程“thrashing” ，并且设置这个参数更小或更大。
+	如果你的计算机有多个处理器和磁盘，你可以试着这个值更大以更好地利用计算机的资源。一个推荐的值是系统上处理器和磁盘的个数之和。
+	值为500或比500大会禁止调用并发检查。默认值是20，并且如果设置大于或等于20，并发检查将被禁止。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_thread_sleep_delay</variable_name>
+	<description>当你遇到 ”Can't create a new thread (errno 12)“ 的错误时候，可以尝试innodb_thread_sleep_delay=40 ，wait_timeout=100，重启mysql，问题解决。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>innodb_use_legacy_cardinality_algorithm</variable_name>
+	<description>用来控制使用哪种算法。变量的默认值为1（打开），用于与现有应用兼容原来的算法。该变量可以设置为0（关闭）的使用改进后的新算法随机性。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>insert_id</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>interactive_timeout</variable_name>
+	<description>设置当一个连接在多长时间没有和数据库交互时就断开这个链接，建议将该值设置超过48小时，当前默认的是8小时。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>join_buffer_size</variable_name>
+	<description> 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享。
+	用于完全联接的缓冲区的大小(当不使用索引的时候使用联接操作)。一般情况获得快速联接的最好方法是添加索引。
+	当增加索引时不可能通过增加join_buffer_size值来获得快速完全联接。
+	将为两个表之间的每个完全联接分配联接缓冲区。对于多个表之间不使用索引的复杂联接，需要多联接缓冲区。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>keep_files_on_create</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>key_buffer_size</variable_name>
+	<description>key_buffer_size指定用于索引的缓冲区大小，增加它可得到更好的索引处理性能。对于内存在4GB左右的服务器该参数可设置为256M或384M。
+	注意：该参数值设置的过大反而会是服务器整体效率降低！key_buffer_sizeO表示索引缓冲区的大小，严格说是它决定了数据库索引处理的速度，尤其是索引读的速度。
+	根据网络一些高手写的文章表示可以检查状态值Key_read_requests和Key_reads，即可知道key_buffer_size设置是否合理。
+	比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好，虽然我还没有找到理论的依据，
+	但是，我在自己维护的几台实际运行良好的库做过的测试后表明，这个比值接近1：20000，这从结果证明了他们说这话的正确性。索引块是缓冲的并且被所有的线程共享。
+	key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。
+	如果你使它太大，系统将开始换页并且真的变慢了。默认数值是8388600(8M)，我的 MySQL主机有2GB内存，所以我把它改为402649088(400MB)</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>key_cache_age_threshold</variable_name>
+	<description>这个参数的意义如下：一个索引缓存包含了 N 个区块，热子链开头的区块在低于 N*key_cache_age_threshold/100 次访问后就被移动到温子链的开头位置。
+	它又首先成为被删除的候选对象，因为要被替换的区块还是从温子链的开头位置开始的。中点插入策略就能在缓存中总能保持更有价值的区块。
+	如果更喜欢采用LRU策略，只需让 key_cache_division_limit 的值低于默认值 100。中点插入策略能帮助改善在执行需要有效扫描索引，
+	它会将所有对应到B树中高级别的有价值的节点推出的查询时的性能。	为了避免这样，就必须设定 key_cache_division_limit 远远低于100以采用中点插入策略。
+	则在扫描索引操作时那些有价值的频繁点击的节点就会保留在热子链中了。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>key_cache_block_size</variable_name>
+	<description> MySQL 4.1引进了对每个索引缓存的新变量key_cache_block_size。这个变量可以指定每个索引缓存的区块大小。
+	用它就可以来调整索引文件I/O操作的性能。当读缓冲的大小和本地操作系统的I/O缓冲大小一样时，就达到了I/O操作的最高性能了。
+	但是设置索引节点的大小和I/O缓冲大小一样未必能达到最好的总体性能。读比较大的叶子节点时，服务器会读进来很多不必要的数据，这大大阻碍了读其他叶子节点。
+	目前，还不能控制数据表的索引区块大小。这个大小在服务器创建索引文件`.MYI'时已经设定好了，它根据数据表的索引大小的定义而定。
+	在很多时候，它设置成和I/O缓冲大小一样。在将来，可以改变它的值，并且会全面采用变量key_cache_block_size。键值缓存内块的字节大小。
+	默认值是1024    键值缓存内块的字节大小。默认值是1024。参见7.4.6节，“MyISAM键高速缓冲”。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>key_cache_division_limit</variable_name>
+	<description>键值缓存缓冲区链热子链和温子链的划分点。该值为缓冲区链用于温子链的百分比。
+	允许的值的范围为1到100。 默认值是100。参见7.4.6节，“MyISAM键高速缓冲”。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>language</variable_name>
+	<description>错误消息所用使用什么语言，可以进制指定一般默认值是 x:\mysql\share\english\</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>large_files_support</variable_name>
+	<description> 在mysqld编译时是否使用了大文件支持选项。是否支持大文件操作，一般这个参数，我们不去设置，使用默认的No</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>large_page_size</variable_name>
+	<description>说明是否启用了大页面支持。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>large_pages</variable_name>
+	<description>说明是否启用了大页面支持。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>last_insert_id</variable_name>
+	<description>设置的值就是 LAST_INSERT_ID() 得到的值。当数据表被更新是它的值会存放在 binary log 中，
+	可以执行 LAST_INSERT_ID() 语句来取得它的值。设置它的值不会改变 C API 函数 mysql_insert_id() 返回的结果值。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>lc_time_names</variable_name>
+	<description>世界上各个国家的时区名称</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>license</variable_name>
+	<description>数据库的开源协议 许可类型。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>local_infile</variable_name>
+	<description>表示服务器端是否允许使用 LOCAL 文本文件 ，在发生  ”load   data   local   infile   "you.sql"   into   table   sales_rep  
+  The   used   command   is   not   allowed   with   this   MySQL   version “ 错误时，你可以设置为该值，一般我们不需要进行设置。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>locked_in_memory</variable_name>
+	<description>是否用–memlock将mysqld锁在内存中。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log</variable_name>
+	<description>是否启用将所有查询记录到常规查询日志中。如果你想要知道mysqld内部发生了什么，你应该用--log[=file_name]或-l [file_name]选项启动它。
+	如果没有给定file_name的值， 默认名是host_name.log。所有连接和语句被记录到日志文件。	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_bin</variable_name>
+	<description> 如果你正使用事务，必须使用MySQL二进制日志进行备份，而不能使用旧的更新日志。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_bin_trust_function_creators</variable_name>
+	<description> 这个参数在生产中，只要有开启binlog和用到存储过程，这两个参数都需要set TRUE。不过这两个参数会影响复制一致性（复制模式可设MIX）。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_bin_trust_routine_creators</variable_name>
+	<description> 若启用了二进制记录，则该变量适用。它控制是否可以信任保存的程序的作者不会创建向二进制日志写入不安全事件的程序。
+	如果设置为0(默认情况)，不允许用户创建或修改保存的程序，除非他们不仅拥有CREATE ROUTINE或ALTER ROUTINE权限还拥有SUPER权限。
+设置为0还强制限制，程序必须用DETERMINISTIC 特征或用READS SQL DATA或NO SQL特征声明。如果变量设置为1,MySQL不对保存程序的创建强加限制。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_error</variable_name>
+	<description> mysql   服务器错误日志生成目录</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_output</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_queries_not_using_indexes</variable_name>
+	<description>使服务器记录没有使用索引的语句。而不管它们的执行时间。
+	虽然开启了slow log会增加一些时间的消耗，导致语句执行速度减慢，但是没有使用索引的语句还是可以经常和非常快速的执行。
+	（比如一些查询一些数据量小的表）这样会使降低服务器的速度，以及使用大量的硬盘空间保存日志。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_slave_updates</variable_name>
+	<description>是否从服务器从主服务器收到的更新应记入从服务器自己的二进制日志。要想生效，必须启用从服务器的二进制记录。参见6.8节，“复制启动选项”。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_slow_queries</variable_name>
+	<description>是否记录慢查询。用long_query_time变量的值来确定“慢查询”。参见5.11.4节，“慢速查询日志”。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>log_warnings</variable_name>
+	<description>是否产生其它警告消息。默认情况下启用。放弃的连接不记入错误日志，除非值大于1。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>long_query_time</variable_name>
+	<description> 如果查询时间超过该值，则增加Slow_queries状态变量。如果你正使用--log-slow-queries选项，则查询记入慢查询日志文件。
+	用实际时间测量该值，而不是CPU时间，因此低于轻负载系统阈值的查询可能超过重负载系统的阈值。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>low_priority_updates</variable_name>
+	<description>如果设置为1，所有INSERT、UPDATE、DELETE和LOCK TABLE WRITE语句将等待直到受影响的表没有挂起的SELECT或LOCK TABLE READ。
+	该变量以前叫做sql_low_priority_updates。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>lower_case_file_system</variable_name>
+	<description>该变量说明是否数据目录所在的文件系统对文件名的大小写敏感。ON说明对文件名的大小写不敏感，OFF表示敏感。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>lower_case_table_names</variable_name>
+	<description>如果设置为1,表名用小写保存到硬盘上，并且表名比较时不对大小写敏感。如果设置为2，按照指定的保存表名，但按照小写来比较。
+	数据库中的每个表至少对应数据库目录中的一个文件(也可能是多个，取决于存储引擎)。因此，所使用操作系统的大小写敏感性决定了数据库名和表名的大小写敏感性。
+	这说明在大多数Unix中数据库名和表名对大小写敏感，而在Windows中对大小写不敏感。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_allowed_packet</variable_name>
+	<description> 包或任何生成的/中间字符串的最大大小。包消息缓冲区初始化为net_buffer_length字节，但需要时可以增长到max_allowed_packet字节。
+	该值默认很小，以捕获大的(可能是错误的)数据包。
+	如果你使用大的BLOB 列或长字符串，你必须增加该值。应同你想要使用的最大的BLOB一样大。max_allowed_packet的协议限制为1GB。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>max_binlog_cache_size</variable_name>
+	<description>如果多语句事务需要更大的内存，你会得到错误Multi-statement transaction required more than 'max_binlog_cache_size' bytes of storage。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_binlog_size</variable_name>
+	<description>如果二进制日志写入的内容超出给定值，日志就会发生滚动。你不能将该变量设置为大于1GB或小于4096字节。 默认值是1GB。
+	 如果你正使用事务：事务以一个块写入二进制日志，因此不不能被几个二进制日志拆分。因此，如果你有大的事务，二进制日志可能会大于max_binlog_size。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_connect_errors</variable_name>
+	<description>如果中断的与主机的连接超过该数目，该主机则阻塞后面的连接。你可以用 FLUSH HOSTS语句解锁锁定的主机。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_connections</variable_name>
+	<description>允许的并行客户端连接数目。不建议这个值设置的过大，因为达到一定的瓶颈以后将会导致整个主机down机。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_delayed_threads</variable_name>
+	<description> 不要启动大于该数目的线程来处理INSERT DELAYED语句。如果所有INSERT DELAYED线程已经在使用，你想在新表中插入数据，行 插入时好像未指定DELAYED属性。
+	如果你将该值设置为0,MySQL不会创建线程来处理DELAYED行；其结果是完全禁用了DELAYED</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_error_count</variable_name>
+	<description>保存由SHOW ERRORS或SHOW WARNINGS显示的错误、警告和注解的最大数目。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_heap_table_size</variable_name>
+	<description>该变量设置MEMORY (HEAP)表可以增长到的最大空间大小。该变量用来计算MEMORY表的MAX_ROWS值。
+	在已有的MEMORY表上设置该变量没有效果，除非用CREATE TABLE或TRUNCATE TABLE等语句重新创建表。 该变量设置MEMORY (HEAP)表可以增长到的最大空间大小。
+	该变量用来计算MEMORY表的MAX_ROWS值。在已有的MEMORY表上设置该变量没有效果，除非用CREATE TABLE或TRUNCATE TABLE等语句重新创建表</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_insert_delayed_threads</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_join_size</variable_name>
+	<description>该变量为max_delayed_threads的同义词</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_length_for_sort_data</variable_name>
+	<description>确定使用的filesort算法的索引值大小的限值。
+	详见：http://dev.mysql.com/doc/refman/5.1/zh/optimization.html#order-by-optimization</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_prepared_stmt_count</variable_name>
+	<description>xxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_relay_log_size</variable_name>
+	<description>如果复制从服务器写入中继日志时超出给定值，则滚动中继日志。通过该变量你可以对中继日志和二进制日志设置不同的限制。
+	但是，将该变量设置为0，MySQL可以对二进制日志和中继日志使用max_binlog_size。max_relay_log_size必须设置在4096字节和1GB(包括)之间，或为0。 默认值是0。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_seeks_for_key</variable_name>
+	<description> 限制根据键值寻找行时的最大搜索数。MySQL优化器假定当用扫描键在表内搜索匹配的行时，
+	不需要超过该数量的键值搜索，而不管键的实际基数是什么。将该值设置为较低的值(100?)，你可以强制MySQL选择键值而不选择表扫描。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_sort_length</variable_name>
+	<description>当排序BLOB或TEXT值时使用的字节数。只使用每个值的前max_sort_length字节；其它的被忽略。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_sp_recursion_depth</variable_name>
+	<description>depth 为深度，这样可以在程序进行一些显示上的格式化处理。类似于oracle中的 level 伪列。
+	sno 仅供排序控制。这样你还可以通过临时表tmpLst与数据库中其它表进行联接查询。
+	MySQL中你可以利用系统参数 max_sp_recursion_depth 来控制递归调用的层数上限</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_tmp_tables</variable_name>
+	<description> 客户端可以同时打开的临时表的最大数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_user_connections</variable_name>
+	<description>任何给定的MySQL账户允许的最大同时连接数。0值表示“没有限制”。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>max_write_lock_count</variable_name>
+	<description>超过写锁定限制后，允许部分读锁定。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>min_examined_row_limit</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>multi_range_count</variable_name>
+	<description>范围最大数量一次发送到一个表处理程序的范围内选择。默认值为256。发送多个范围的处理程序一次可以改善某些性能选择急剧增加。
+	这是尤为如此NDBCLUSTER表处理程序，它需要范围请求发送到所有节点。
+	发送的那些人的一批请求一次大大减少了通信成本。 该值在mysql集群中设置有效。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_data_pointer_size</variable_name>
+	<description>默认指针大小，单位是字节，当未指定MAX_ROWS选项时，CREATE TABLE使用该变量创建MyISAM表。
+	该变量不能小于2或大于7。 默认值是6。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_max_sort_file_size</variable_name>
+	<description>当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_recover_options</variable_name>
+	<description> --myisam-recover选项的值</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_repair_threads</variable_name>
+	<description> 如果该值大于1，在Repair by sorting过程中并行创建MyISAM表索引(每个索引在自己的线程内)。
+	 默认值是1。注释：多线程维护仍然是alpha  编码。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_sort_buffer_size</variable_name>
+	<description>当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_stats_method</variable_name>
+	<description>当为MyISAM表搜集关于索引值分发的统计信息时服务器如何处理NULL值。
+	该变量有两个可能的值，nulls_equal和nulls_unequal。对于nulls_equal，认为所有NULL索引值时相等的，并形成一个数值组，其空间大小等于NULL值的数。
+	对于nulls_unequal，NULL值认为是不相等的，每个NULL形成一个数值组，大小为1。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>myisam_use_mmap</variable_name>
+	<description>可以用来使表数据读写采用内存映射方式，这可以减少syscall的数量以提高性能</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>multi_read_range</variable_name>
+	<description>指定范围选择过程中发送到存储引擎的范围的最大值。默认值是256。
+	向引擎发送多个范围可以大大改进某些选择的性能，特别是对NDBCLUSTER。
+	该引擎需要向所有节点发送范围请求，同时发送许多请求可以大大降低通信成本</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>named_pipe</variable_name>
+	<description>(只适用Windows)说明服务器是否支持命名管道连接。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_autoincrement_prefetch_sz</variable_name>
+	<description>xxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_batch_size</variable_name>
+	<description>xxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_cache_check_time</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_connectstring</variable_name>
+	<description>xxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_extra_logging</variable_name>
+	<description>xxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_force_send</variable_name>
+	<description>xxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_index_stat_cache_entries</variable_name>
+	<description>xxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_index_stat_enable</variable_name>
+	<description>xxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_index_stat_update_freq</variable_name>
+	<description>xxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_log_binlog_index</variable_name>
+	<description>xxxxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_log_update_as_write</variable_name>
+	<description>xxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_log_updated_only</variable_name>
+	<description>xxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_optimization_delay</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_optimized_node_selection</variable_name>
+	<description>xxxxxxxxxxxxxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_report_thresh_binlog_epoch_slip</variable_name>
+	<description>xxxxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_report_thresh_binlog_mem_usage</variable_name>
+	<description>xxxxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_table_no_logging</variable_name>
+	<description>xxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_table_temporary</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_use_copying_alter_table</variable_name>
+	<description>xxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_use_exact_count</variable_name>
+	<description>xxxxxxxxxxxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ndb_use_transactions</variable_name>
+	<description>xxxxxxxxxxxxxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>net_buffer_length</variable_name>
+	<description>在查询之间将通信缓冲区重设为该值。一般情况不应改变，但如果很小，可以将它设置为期望的客户端发送的SQL语句的长度。
+	如果语句超出该长度，缓冲区自动扩大，直到max_allowed_packet字节</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>net_read_timeout</variable_name>
+	<description> 中断读前等待连接的其它数据的秒数。当服务器从客户端读数时，net_read_timeout指控制何时中断的超时值。
+	当服务器向客户端写时，net_write_timeout指控制何时中断的超时值。又见slave_net_timeout。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>net_retry_count</variable_name>
+	<description>如果某个通信端口的读操作中断了，在放弃前重试多次。在FreeBSD中该值应设得很高，因为内部中断将发送至所有线程</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>net_write_timeout</variable_name>
+	<description>中断写之前等待块写入连接的秒数。又见net_read_timeout。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>new</variable_name>
+	<description> 在MySQL 4.0中使用该变量来打开4.1中的一些行为，并用于向后兼容性。在MySQL 5.1中,它的值一直是OFF.</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>old</variable_name>
+	<description>该参数一般无需设置</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>old_alter_table</variable_name>
+	<description>该参数一般无需设置</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>old_passwords</variable_name>
+	<description>是否服务器应为MySQL用户账户使用pre-4.1-style密码。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>open_files_limit</variable_name>
+	<description>限制mysqld打开文件的最大个数，只要不超过系统能打开文件的数量就可以了。
+	open_files_limit 取值最好参考 table_cache数量 * 2。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>optimizer_prune_level</variable_name>
+	<description>变量 optimizer_prune_level 告诉优化程序在估算要访问的每个表的记录数基础上忽略一定数量的方法。
+	我们的经验表明，这种"学习猜测"方法很少会错过最佳方法，因为它可能戏剧性地减少编译时间。
+	这就是为什么这个选项默认是打开的(optimizer_prune_level=1)。不过，如果确信优化程序会错过更好的方法，
+	这个选项可以关上(optimizer_prune_level=0)，不过要注意编译查询的时间可能会更长了。
+	要注意尽管是用了这种试探方法，优化程序仍会调查指数级的方法。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>optimizer_search_depth</variable_name>
+	<description>变量 optimizer_search_depth告诉优化程序"将来"的每次顺序调查不完全的方法是否需要扩充的更远的深度。
+	optimizer_search_depth 的值越小，可能会导致查询编译时间的越少。
+	例如，有一个12-13或更多表的查询很容易就需要几小时甚至几天的时间来编译，如果 optimizer_search_depth 的值和表数量相近的话。
+	同样，如果 optimizer_search_depth 的值等于3或4，则编译器可能至需要花不到几分钟的时间就完成编译了。
+	如果不能确定 optimizer_search_depth 的值多少才合适，就把它设置为0，让优化程序来自动决定。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>optimizer_switch</variable_name>
+		<description>该参数一般无需设置</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>pid_file</variable_name>
+	<description>pid_file进程文件路径</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>plugin_dir</variable_name>
+	<description> 插件目录的路径。在MySQL 5.1.2中加入了该变量。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>port</variable_name>
+	<description>服务器当然使用的端口</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>preload_buffer_size</variable_name>
+	<description> 这里仅支持MyISAM.  重载索引时分配的缓冲区大小</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>profiling</variable_name>
+	<description>该参数一般无需设置</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>profiling_history_size</variable_name>
+	<description>记录多少次查询. 可以用命令查看 mysql> show profiles; 默认值是15，一般最大值是100 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>protocol_version</variable_name>
+	<description> MySQL服务器使用的客户端/服务器协议的版本。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>pseudo_thread_id</variable_name>
+		<description>该参数一般无需设置，并且官方没有给出明确的说明</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_alloc_block_size</variable_name>
+	<description>是在缓存中的对象分配的块分配大小。 建议设置为 query_alloc_block_size = 131072</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_cache_limit</variable_name>
+	<description>指定单个查询能够使用的缓冲区大小，缺省为1M。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_cache_min_res_unit</variable_name>
+	<description> 在4.1版本以后引入的，它指定分配缓冲区空间的最小单位，缺省为4K。
+	检查状态值Qcache_free_blocks，如果该值非常大，则表明缓冲区中碎片很多，这就表明查询结果都比较小，此时需要减小 query_cache_min_res_unit，
+	该配置是一柄”双刃剑”，默认是4KB，设置值大对大数据查询有好处，但如果你的查询都是小数据查询，就容易造成内存碎片和浪费。
+	查询缓存碎片率 = Qcache_free_blocks / Qcache_total_blocks * 100%如果查询缓存碎片率超过20%，可以用FLUSH QUERY CACHE整理缓存碎片，
+	或者试试减小query_cache_min_res_unit，如果你的查询都是小数据量的话。
+	查询缓存利用率 = (query_cache_size - Qcache_free_memory) / query_cache_size * 100%查询缓存利用率在25%以下的话说明query_cache_size设置的过大，
+	可适当减小;查询缓存利用率在80%以上而且Qcache_lowmem_prunes > 50的话说明query_cache_size可能有点小，
+	要不就是碎片太多。查询缓存命中率 = (Qcache_hits - Qcache_inserts) / Qcache_hits * 100% 关于query_cache_min_res_unit大小的调优
+，书中给出了一个计算公式，可以供调优设置参考：query_cache_min_res_unit = (query_cache_size - Qcache_free_memory) / Qcache_queries_in_cache   
+查询缓存分配的最小块的大小(字节)。 默认值是4096(4KB)。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_cache_size</variable_name>
+	<description> 在官方文档上介绍说这个值被设置到256m已经是足够了，默认值是1，一般保守的值是32m</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_cache_type</variable_name>
+	<description> 指定是否使用查询缓冲，可以设置为0、1、2，该变量是SESSION级的变量。query_cache_type设置查询缓存类型。
+	该变量默认设为ON。0或OFF 不要缓存或查询结果。请注意这样不会取消分配的查询缓存区。要想取消，你应将query_cache_size设置为0。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_cache_wlock_invalidate</variable_name>
+	<description>一般情况，当客户端对MyISAM表进行WRITE锁定时，如果查询结果位于查询缓存中，则其它客户端未被锁定可以对该表进行查询。
+	将该变量设置为1，则可以对表进行WRITE锁定，使查询缓存内所有对该表进行的查询变得非法。
+	这样当锁定生效时，可以强制其它试图访问表的客户端来等待。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>query_prealloc_size</variable_name>
+	<description> 用于查询分析和执行的固定缓冲区的大小。在查询之间该缓冲区不释放。
+	如果你执行复杂查询，分配更大的值可以帮助提高性能，因为它可以降低查询过程中服务器分配内存的需求。
+	建议设置为 query_prealloc_size = 65536</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>rand_seed1</variable_name>
+	<description>MySQL同步的过程中如果你的SQL语句中有随机数的变量，将需要对此值进行设置，在rand_seed1和rand_seed2变数存在，
+			会话变量只，可确定，但不读。他们不是显示在展示变量输出。
+		这些变量的目的是支持复制的RAND（）函数。对于语句调用RAND（）的，主机通过两个值的奴隶，他们被用于种子的随机数发生器。
+		奴隶使用这些值来设置会话变量rand_seed1和rand_seed2因此，RAND（）的奴隶产生于主相同的值。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>rand_seed2</variable_name>
+	<description>同上</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>range_alloc_block_size</variable_name>
+	<description>范围优化时分配的块的大小，系统1G内存设置1024， 系统2G内存设置 2048 ，以此类推。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>read_buffer_size</variable_name>
+	<description> 每个线程连续扫描时为扫描的每个表分配的缓冲区的大小(字节)。如果进行多次连续扫描，可能需要增加该值， 默认值为131072。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>read_only</variable_name>
+	<description>当变量对复制从服务器设置为ON时，从服务器不允许更新，除非通过从服务器的线程或用户拥有SUPER权限。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>read_rnd_buffer_size</variable_name>
+	<description>当排序后按排序后的顺序读取行时，则通过该缓冲区读取行，避免搜索硬盘。将该变量设置为较大的值可以大大改进ORDER BY的性能。
+	但是，这是为每个客户端分配的缓冲区，因此你不应将全局变量设置为较大的值。相反，只为需要运行大查询的客户端更改会话变量。
+	每个线程连续扫描时为扫描的每个表分配的缓冲区的大小(字节)。如果进行多次连续扫描，可能需要增加该值， 默认值为131072。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>relay_log</variable_name>
+	<description>不需要设置任何参数，暂时也没有找到合适的介绍。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>relay_log_index</variable_name>
+	<description>不需要设置任何参数，暂时也没有找到合适的介绍。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>relay_log_info_file</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>relay_log_purge</variable_name>
+	<description>当不再需要中继日志时禁用或启用自动清空中继日志。默认值是1(启用)。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>relay_log_space_limit</variable_name>
+	<description>中继日志的大小</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>report_host</variable_name>
+	<description>从服务器注册过程中报告给主服务器的主机名或IP地址。
+	该值出现在主服务器上SHOW SLAVE HOSTS的输出中。如果不想让从服务器自己在主服务器上注册，则不设置该值。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>report_password</variable_name>
+	<description>连接从服务器的密码，从服务器注册过程中报告给主服务器。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>report_port</variable_name>
+	<description>连接从服务器的TCP/IP端口号，从服务器注册过程中报告给主服务器。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>report_user</variable_name>
+	<description>连接从服务器的用户名，从服务器注册过程中报告给主服务器。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>rpl_recovery_rank</variable_name>
+	<description>不需要设置任何参数，暂时也没有找到合适的介绍。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>secure_auth</variable_name>
+	<description>如果用--secure-auth选项启动了MySQL服务器，它将阻塞有旧格式(4.1之前)密码的所有账户所发起的连接。
+	在这种情况下，该变量的值为ON，否则为OFF。如果你想要防止使用旧格式的密码(致使网络通信不安全)，你应启用该选项。
+	如果启用该选项并且授权表为pre-4.1格式，服务器启动失败并且会出现错误。
+	参见A.2.3节，“客户端不支持鉴定协议”。当用于客户端选项时，如果服务器需要该客户端账户的旧格式的密码，则客户端拒绝连接该服务器。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>secure_file_priv</variable_name>
+	<description>不需要设置任何参数，暂时也没有找到合适的介绍。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>server_id</variable_name>
+	<description>选项值用于主复制服务器和从复制服务器。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>shared_memory</variable_name>
+	<description>(只用于Windows)服务器是否允许共享内存连接。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>shared_memory_base_name</variable_name>
+	<description>(只用于Windows)说明服务器是否允许共享内存连接，并为共享内存设置识别符。当在单台机器上运行多个MySQL实例时很有用。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>skip_external_locking</variable_name>
+	<description>如果mysqld使用外部锁定，该值为OFF。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>skip_networking</variable_name>
+	<description> 如果服务器只允许本地(非TCP/IP)连接，该值为ON。在Unix中，本地连接使用Unix套接字文件。
+	在Windows中，本地连接使用命名管道或共享内存。在NetWare中，只支持TCP/IP连接，因此不要将该变量设置为ON。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>skip_show_database</variable_name>
+	<description>防止不具有SHOW DATABASES权限的人们使用SHOW DATABASES语句。如果你担心用户能够看见属于其它用户的数据库，这样设置可以提高安全性。
+	其效果取决于SHOW DATABASES权限：如果变量值为ON，只允许具有SHOW DATABASES权限的人们使用SHOW DATABASES 语句，并且该语句将显示所有数据库名。
+	如果值为OFF，允许所有用户执行SHOW DATABASES，但只显示用户具有SHOW DATABASES或其它权限的数据库的名称。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_allow_batching</variable_name>
+	<description>如果主、从服务器均支持，确定是否使用从/主批量操作</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_compressed_protocol</variable_name>
+	<description> 如果主、从服务器均支持，确定是否使用从/主压缩协议</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_exec_mode</variable_name>
+	<description>从服务器容错方式，一般有 IDEMPOTENT 和 STRICT 参数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_load_tmpdir</variable_name>
+	<description>从服务器为复制LOAD DATA INFILE语句创建临时文件的目录名。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_net_timeout</variable_name>
+	<description>放弃读操作前等待主/从连接的更多数据的等待秒数</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_skip_errors</variable_name>
+	<description> 在mysql同步复制的过程中，
+	比如会出现：Error 'Duplicate entry 'PRIMARY KEY' for key 1' on query. Default database: 'DB_NAME'. Query: 'INSERT INTO TABLE_NAME xxx 
+	VALUE( 'xxxx' )的错误，
+	你可以设置 SET GLOBAL SQL_SLAVE_SKIP_COUNTER = N; (N  要跳过第几笔 (1~ ...)) 也可以设置   slave_skip_errors=all ，
+	忽略同步过程中的所有错误信息，当然我们不建议这样设置。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slave_transaction_retries</variable_name>
+	<description> 简单来说这个值就是在数据库同步(集群中)，发生错误每次重试的次数，
+	在5.0里面(从5.0.3开始),有一个全局系统变量slave_transaction_retries.如果复制过程中从上的SQL线程执行一个事务时失败(由于an InnoDB deadlock,
+	或者它超过了下列值InnoDB innodb_lock_wait_timeout,或者 NDBCluster的 TransactionDeadlockDetectionTimeout 或者TransactionInactiveTimeout ),
+	事务会自动重试slave_transaction_retries定义的次数然后停止产生一个错误.默认的值是10.从5.0.4开始。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slow_launch_time</variable_name>
+	<description>如果创建线程的时间超过这个值（秒），该台将Slow_launch_threads递增。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slow_query_log</variable_name>
+	<description>慢查询记录日志，如果开起慢查询,还要查看当前慢查询记录是否记录到表里面,运行
+				SHOW VARIABLES LIKE '%log_output%'
+				如果不是table,则运行
+				SET GLOBAL log_output = 'TABLE';
+				现在慢查询记录到table了,无需重启服务器
+</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>slow_query_log_file</variable_name>
+	<description>慢查询日志存放路径</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>socket</variable_name>
+	<description> Unix平台：用于本地客户端连接的套接字文件。默认为/var/lib/mysql/mysql.sock。
+		Windows：用于本地客户端连接的命名管道名。默认为mysql。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sort_buffer_size</variable_name>
+	<description>每个排序线程分配的缓冲区的大小。增加该值可以加快ORDER BY或GROUP BY操作。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_auto_is_null</variable_name>
+	<description>如果被设置为 1 ( 默认值 ) ，则可以通过以下语句来获得某个包含 AUTO_INCREMENT 类型字段的表的最后一个插入语句：
+　　WHERE auto_increment_column IS NULL
+　　这种做法在某些 ODBC 程序中会被用到，例如 Access 。 SQL_AUTO_IS_NULL 变量是在 MySQL 3.23.52 中新增的。
+</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_big_selects</variable_name>
+	<description>该参数和你建立的联合查询和视图查询有关，如果将SQL_BIG_SELECTS的值重设为0。该参数无效，
+		如果你重新设置SQL_BIG_SELECTS值，max_join_size变量被忽略。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_big_tables</variable_name>
+	<description>如果被设置为 1，则所有的临时表将存放在磁盘里而非内存。这会使速度变得稍微慢了点，
+	但是在执行 SELECT 操作时需要一个大临时表的情况下就不再会报告 The table tbl_name is full 错误了。新的连接时，它的默认值是 0（在内存中存放临时表） 。
+	从 MySQL 4.0 起，你无需设置这个变量，因为 MySQL 会自动在必须的情况下将内存（存储）表转换为硬盘（存储）表。
+ </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_buffer_result</variable_name>
+	<description>SQL_BUFFER_RESULT 强制将 SELECT 语句查询的结果放在临时表中。
+	这可以让 MySQL 尽快释放加载表上的锁，同时还有助于改善需要较长时间向客户端发送结果的情况。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_log_bin</variable_name>
+	<description>具有SUPER权限的客户端可以通过SET SQL_LOG_BIN=off 语句禁止将自己的语句记入二进制记录。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_log_off</variable_name>
+	<description>是否将SQL log关闭</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_log_update</variable_name>
+	<description>是否支持 SQL log更新</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_low_priority_updates</variable_name>
+	<description>可以从一个特定的线程指定所有的更改应该由较低的优先级完成 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_max_join_size</variable_name>
+	<description>以前 max_join_size 的配置参数</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_mode</variable_name>
+	<description> 更改SQL模式。设置 GLOBAL变量时需要拥有SUPER权限，并且会影响从那时起连接的所有客户端的操作。
+	设置SESSION变量只影响当前的客户端。任何客户端可以随时更改自己的会话 sql_mode值。
+	主要重要sql_mode值为： ANSI， STRICT_TRANS_TABLES，  TRADITIONAL  一般我们不去设置这个参数</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_notes</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_quote_show_create</variable_name>
+	<description>如果设置为 1 ，则在执行 SHOW CREATE TABLE 时就会把数据表名和字段用引号引起来；
+	如果设置为 0 ，就不再引用了。这个选项默认是打开的，因为在数据库复制时需要所有的表名和字段名都必须引用起来才行。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_safe_updates</variable_name>
+	<description>如果设置为 1 ，则 MySQL 会放弃那些在 WHERE 或 LIMIT 分句中没有使用键的 UPDATE 或 DELETE 语句。
+	这就可能会捕获那些没有正确使用键并且可能会删除很多记录的 UPDATE 或 DELETE 语句。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_select_limit</variable_name>
+	<description>它决定了执行 SELECT 语句时返回的最大记录数。新连接的默认设置值是“ unlimited （无限）”。
+	如果它被改变了，可以设定重新设 SQL_SELECT_LIMIT 的值定为 DEFAULT 以将它恢复为默认值。
+	当 SELECT 语句中有 LIMIT 分句时， LIMIT 优先级高于 SQL_SELECT_LIMIT 的值。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_slave_skip_counter</variable_name>
+	<description>从服务器应跳过的来自主服务器的事件数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sql_warnings</variable_name>
+	<description> 它决定了在执行单行   INSERT、Delete、Update   语句发生错误的情况下，是否要报告错误信息。
+	它的默认值是   0   ，如果设置为   1   ，则会在发生错误时报告错误信息</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ssl_ca</variable_name>
+	<description>  mysql在连接时是否采用 SSL 的CA认证</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ssl_capath</variable_name>
+	<description>设置 mysql连接时使用CA认证的路径</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ssl_cert</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ssl_cipher</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>ssl_key</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>storage_engine</variable_name>
+	<description>表示Mysql在创建表的时候 使用哪种默认的表的存储数据引擎。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sync_binlog</variable_name>
+	<description> 如果为正，当每个sync_binlog'th写入该二进制日志后，MySQL服务器将它的二进制日志同步到硬盘上(fdatasync())。
+	请注意如果在autocommit模式，每执行一个语句向二进制日志写入一次，否则每个事务写入一次。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>sync_frm</variable_name>
+	<description> 如果该变量设为1,当创建非临时表时它的.frm文件被同步到硬盘上(fdatasync())；
+	这样较慢但出现崩溃时较安全。 默认值为1。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>system_time_zone</variable_name>
+	<description>  服务器系统时区。当 服务器开始执行时，它继承机器默认时区设置值，可以由运行服务器的账户或在启动脚本中进行修改。
+	该值用来设置system_time_zone。典型情况用TZ环境变量来指定时区。还可以用mysqld_safe脚本的--timez选项来指定。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>table_definition_cache</variable_name>
+	<description>表定义信息缓存是从 MySQL5.1.3 版本才开始引入的一个新的缓存区，用来存放表定义信息。
+	当我们的 MySQL 中使用了较多的表的时候，此缓存无疑会提高对表定义信息的访问效率。
+	MySQL 提供了 table_definition_cache 参数给我们设置可以缓存的表的数量。在 MySQL5.1.25 之前的版本中，默认值为128，从 MySQL5.1.25 版本开始，
+	则将默认值调整为 256 了，最大设置值为524288。注意，这里设置的是可以缓存的表定义信息的数目，而不是内存空间的大小。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>table_lock_wait_timeout</variable_name>
+	<description>表示在Mysql服务器锁表的时候需要等待的时间长度。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>table_open_cache</variable_name>
+	<description>table_cache (新版本改成了table_open_cache)</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>table_type</variable_name>
+	<description>mysql数据库默认的表类型 </description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>table_cache</variable_name>
+	<description>这个参数在mysql中相当重要，table_cache指示表高速缓存的大小。当Mysql访问一个表时，如果在Mysql表缓冲区中还有空间，
+	那么这个表就被打开并放入表缓冲区，这样做的好处是可以更快速地访问表中的内容。
+	一般来说，可以通过查看数据库运行峰值时间的状态值Open_tables和Opened_tables，用以判断是否需要增加table_cache的值，
+	即如果open_tables接近table_cache的时候，并且Opened_tables这个值在逐步增加，那就要考虑增加这个值的大小了。
+	  在mysql默认安装情况下，table_cache的值在2G内存以下的机器中的值默认时256到512，
+	  如果机器有4G内存,则默认这个值是2048，但这决意味着机器内存越大，
+	  这个值应该越大，因为table_cache加大后，使得mysql对SQL响应的速度更快了，不可避免的会产生更多的死锁（dead lock），
+	  这样反而使得数据库整个一套操作慢了下来，严重影响性能。
+	  所以平时维护中还是要根据库的实际情况去作出判断，找到最适合你维护的库的table_cache值，有人说：“性能优化是一门艺术”，这话一点没错。
+	  大凡艺术品，大都是经过千锤百炼，精雕细琢而成。   这里还要说明一个问题，就是table_cache加大后碰到文件描述符不够用的问题，
+	  在mysql的配置文件中有这么一段提示：Quotation “The number of open tables for all threads. Increasing this value increases the number of file 
+	  descriptors that mysqld requires.Therefore you have to make sure to set the amount of open files allowed to at 
+	  least 4096 in the variable "open-files-limit" in” section [mysqld_safe]” 说的就是要注意这个问题，一想到这里，部分兄弟可能会用ulimit -n 作出调整，
+	  但是这个调整实际是不对的，换个终端后，这个值又会回到原始值，所以最好用sysctl或者修改/etc/sysctl.conf文件，同时还要在配置文件中把open_files_limit这个参数增大，
+	  对于4G内存服务器，相信现在购买的服务器都差不多用4G的了，那这个这个open_files_limit至少要增大到4096，
+	如果没有什么特殊情况，设置成8192就可以了。（table_cache设大的副作用 http://blog.chinaunix.net/u/25477/showart_246745.html ）
+	</description>
+</MySQLVariableDescription>
+
+
+
+
+<MySQLVariableDescription>
+	<variable_name>thread_cache_size</variable_name>
+	<description> 这个值表示可以重新利用保存在缓存中线程的数量,当断开连接时如果缓存中还有空间,那么客户端的线程将被放到缓存中,如果线程重新被请求，
+	那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，增加这个值可以改善系统性能.
+	通过比较 Connections 和 Threads_created 状态的变量，可以看到这个变量的作用。(–>表示要调整的值) 
+	根据物理内存设置规则如下： 1G —> 8 2G —> 16 3G —> 32 >3G —> 64 。
+	 服务器应缓存多少线程以便重新使用。当客户端断开连接时，如果线程少于thread_cache_size，则客户端的线程被放入缓存。
+	 当请求线程时如果允许可以从缓存中重新利用线程，并且只有当缓存空了时才会创建新线程。如果新连接很多，可以增加该变量以提高性能。
+	(一般情况，如果线程执行得很好，性能提高不明显)。检查Connections和Threads_created状态变量的差,可以看见线程缓存的效率。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>thread_handling</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>thread_stack</variable_name>
+	<description>每个线程的堆栈大小。用crash-me测试检测出的许多限制取决于该值。 默认值足够大，可以满足普通操作</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>time_format</variable_name>
+	<description>该变量尚未使用。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>time_zone</variable_name>
+	<description>数据库时区 当前的时区。初使值是'SYSTEM'(使用system_time_zone的值)，
+	但可以用--default-time-zone选项在服务器启动时显式指定。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>timed_mutexes</variable_name>
+	<description>显示mutexes的统计信息, 默认关闭OFF</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>timestamp</variable_name>
+	<description>此项设置是表示恢复的数据和相关MySQL日志将反应事务执行的原时间。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>tmp_table_size</variable_name>
+	<description>临时表的大小,在未超过大小之前进行的操作是在内存中的, 当超过后,mysql会自动转换到硬盘上.</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>tmpdir</variable_name>
+	<description> 保存临时文件和临时表的目录。该变量可以设置为几个路径，按round-robin模式使用。
+	在Unix中应该用冒号(‘:’)间隔开路径，在Windows、NetWare和OS/2中用分号(‘；’)。用来将负荷分散到几个物理硬盘上。
+	如果MySQL服务器为复制从服务器，你不应将tmpdir设置为指向基于内存的文件系统上的目录或当服务器主机重启时声明的目录。
+	复制从服务器需要部分临时文件来在机器重启后仍可用，以便它可以复制临时表或执行LOAD DATA INFILE操作。
+	如果服务器重启时临时文件夹中的文件丢失了，则复制失败。但是，如果你使用MySQL 4.0.0或更新版本，
+	你可以使用 slave_load_tmpdir变量设置从服务器的临时目录。
+	在这种情况下，从服务器不再使用常规tmpdir，说明你可以将tmpdir设置到一个非固定位置。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>transaction_alloc_block_size</variable_name>
+	<description>为保存将保存到二进制日志中的事务的查询而分配的内存块的大小(字节)。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>transaction_allow_batching</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>transaction_prealloc_size</variable_name>
+	<description> 为 transaction_alloc_block 分配的固定缓冲区的大小（字节），在两次查询之间不会释放。
+	使该值足够大，将所有查询固定到一个事务中，可以避免多次malloc()调用。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>tx_isolation</variable_name>
+	<description>默认事务隔离级别。默认值为REPEATABLE-READ。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>unique_checks</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>updatable_views_with_limit</variable_name>
+	<description>该变量控制如果更新包含LIMIT子句，是否可以在当前表中使用不包含主关键字的视图进行更新。(通常用GUI工具生成这类更新)。
+	更新指UPDATE或DELETE语句。这儿主关键字指PRIMARY KEY，或一个UNIQUE索引，其中任何列不可以包含NULL。
+	该变量有两个值： 1或YES：只发出警告(没有错误消息)。这是 默认值。  0或NO：禁止更新</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>version</variable_name>
+	<description>当前数据使用的版本</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>version_comment</variable_name>
+	<description>当前数据使用的版本注释</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>version_compile_machine</variable_name>
+	<description>当前数据使用的版本架构 32 还是 64位</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>version_compile_os</variable_name>
+	<description>当前运行在什么操作系统下面</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>wait_timeout</variable_name>
+	<description> 服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait_timeout值或全局interactive_timeout值初始化会话wait_timeout值，
+	取决于客户端类型(由mysql_real_connect()的连接选项CLIENT_INTERACTIVE定义)。又见interactive_timeout。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>warning_count</variable_name>
+	<description></description>
+</MySQLVariableDescription>
+</list>
