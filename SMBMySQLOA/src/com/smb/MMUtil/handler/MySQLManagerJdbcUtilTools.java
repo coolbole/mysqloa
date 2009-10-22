@@ -19,6 +19,7 @@ import org.apache.commons.logging.LogFactory;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
+import com.smb.MMUtil.pojo.ReplicationStatusPojo;
 
 
 /**
@@ -55,10 +56,6 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				
 				result.add( variable  );
 			}
-			
-//			QueryRunner run = new QueryRunner(  );
-//			ResultSetHandler resultSetHandler = new BeanListHandler(MySQLShowProcessList.class );
-//			result =  (List) run.query(connection,"show processlist",   resultSetHandler);
 		}
 		catch ( Exception e){
 			logger.error(e);
@@ -73,7 +70,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		logger.info( "showStatusCommand ......................." );
 		Connection connection=null;
 		connection=UtilBaseTools.getConnection();
-		List <MySQLVariableObject>  result = null;
+		List <MySQLVariableObject>  result = new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show status"  ).executeQuery();
 			while (rs.next() ){
@@ -81,9 +78,6 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				variable.setVariable_name( rs.getString(1)   );variable.setValue(rs.getString(2));
 				result.add( variable  );
 			}
-//			QueryRunner run = new QueryRunner(   );
-//			ResultSetHandler resultSetHandler =new BeanListHandler( MySQLVariableObject.class );
-//			result =  (List) run.query(connection,"show status",   resultSetHandler);
 		}
 		catch ( Exception e){
 			logger.error(e);
@@ -128,9 +122,6 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				variable.setVariable_name( rs.getString(1)   );variable.setValue(rs.getString(2));
 				result.add( variable  );
 			}
-//			QueryRunner run = new QueryRunner(  );
-//			ResultSetHandler resultSetHandler = new BeanListHandler( MySQLVariableObject.class );
-//			result =  (List) run.query(connection,"show status like '%"+category+"%' ",   resultSetHandler);
 		}
 		catch ( Exception e){
 			logger.error(e);
@@ -202,24 +193,99 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		}
 		return variable;
 	}
-	
-	/*public void runCommand (){
-		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools();
-		try {
-			
-			mmu.setVariblesCommandByCategory("wait_timeout", "20000");
-			List <MySQLVariableObject>  list=mmu.
-					 showVariblesCommandByCategory("wait_timeout");
-			
-			for (int i=0;i<list.size();i++){
- 					System.out.println( list .get(i).getVariable_name() +"    "+ list .get(i).getValue() );	
-				}
-			
-			list=mmu.showVariblesCommand();
-			System.out.println( list.size() );
-			} 
-		catch (Exception e) {
-			e.printStackTrace();
+
+	public List showVariblesCommandByLetter(String letter) throws Exception {
+		logger.info( "showVariblesCommandByLetter ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List <MySQLVariableObject>  result = new ArrayList();
+		try{
+			ResultSet rs=connection.prepareStatement( "show variables like '"+letter+"%' "  ).executeQuery();
+			while (rs.next() ){
+				MySQLVariableObject  variable= new MySQLVariableObject();	
+				variable.setVariable_name( rs.getString(1)   );variable.setValue(rs.getString(2));
+				result.add( variable  );
+			}
 		}
-	}*/
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return result;
+	}
+
+	public ReplicationStatusPojo showSlaveReplicationStatus() throws Exception {
+		logger.info( "showSlaveReplicationStatus ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		ReplicationStatusPojo  variable=null;
+		try{
+			ResultSet rs=connection.prepareStatement("show slave status" ).executeQuery();
+			while (rs.next() ){
+				variable= new ReplicationStatusPojo();	
+				variable.setSlave_IO_State( rs.getString("Slave_IO_State")   );
+				variable.setConnect_Retry(rs.getString("connect_Retry"));
+				variable.setExec_Master_Log_Pos( rs.getString("Exec_Master_Log_Pos"));
+				variable.setLast_Errno(  rs.getString("last_Errno"));
+				variable.setLast_Error(  rs.getString("last_Error"));
+				variable.setLast_IO_Errno(  rs.getString("last_IO_Errno"));
+				variable.setLast_IO_Error(  rs.getString("last_IO_Error"));
+				variable.setMaster_Bind(  rs.getString("master_Bind"));
+				variable.setMaster_Host(  rs.getString("master_Host"));
+				variable.setMaster_Log_File(  rs.getString("master_Log_File"));
+				variable.setMaster_Port( rs.getString("master_Port"));
+				variable.setMaster_SSL_Allowed(  rs.getString("master_SSL_Allowed"));
+				variable.setMaster_SSL_CA_File(  rs.getString("Master_SSL_CA_File"));
+				variable.setMaster_SSL_CA_Path(  rs.getString("Master_SSL_CA_Path"));
+				variable.setMaster_SSL_Cert(  rs.getString("Master_SSL_Cert"));
+				variable.setMaster_SSL_Cipher(  rs.getString("Master_SSL_Cipher"));
+				variable.setMaster_SSL_Key(  rs.getString("Master_SSL_Key"));
+				variable.setMaster_SSL_Verify_Server_Cert(  rs.getString("Master_SSL_Verify_Server_Cert"));
+				variable.setMaster_User(  rs.getString("Master_User"));
+				variable.setMasterBinlog_Do_DB(  rs.getString("MasterBinlog_Do_DB"));
+				variable.setReplicate_Do_Table(rs.getString("Replicate_Do_Table"));
+				variable.setMasterBinlog_Ignore_DB(  rs.getString("MasterBinlog_Ignore_DB"));
+				variable.setSeconds_Behind_Master(  rs.getString("Seconds_Behind_Master"));
+				variable.setMasterFile(  rs.getString("MasterFile"));
+				variable.setMasterPosition(  rs.getString("MasterPosition"));
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return variable;
+	
+	}
+	
+	public ReplicationStatusPojo showMasterReplicationStatus() throws Exception {
+		logger.info( "showMasterReplicationStatus ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		ReplicationStatusPojo  variable=null;
+		try{
+			ResultSet rs=connection.prepareStatement("show master status" ).executeQuery();
+			while (rs.next() ){
+				variable= new ReplicationStatusPojo();	
+				variable.setMasterFile( rs.getString("masterFile")   );
+				variable.setMasterBinlog_Do_DB(rs.getString("masterBinlog_Do_DB"));
+				variable.setMasterBinlog_Ignore_DB( rs.getString("masterBinlog_Ignore_DB"));
+				variable.setMasterPosition(rs.getString("masterPosition"));
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return variable;
+	
+	}
+	
+	 
 }
