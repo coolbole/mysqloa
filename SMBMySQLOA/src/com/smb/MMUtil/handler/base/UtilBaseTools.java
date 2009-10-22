@@ -73,7 +73,7 @@ public class  UtilBaseTools  {
 		logger.info("getConnection .................... ");
 		try{
 			Class.forName("com.mysql.jdbc.Driver" );    
-			Connection connection = DriverManager.getConnection("jdbc:mysql://"+host+"/test",user,passwd);  
+			Connection connection = DriverManager.getConnection("jdbc:mysql://"+host+"",user,passwd);  
 			return connection;
 		}
 		catch (Exception e){
