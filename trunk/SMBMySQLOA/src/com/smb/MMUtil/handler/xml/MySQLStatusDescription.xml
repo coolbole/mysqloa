@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_read_ahead_seq</variable_name>
+	<description>InnoDB初始化的顺序read-aheads数。当InnoDB执行顺序全表扫描时发生。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_read_requests</variable_name>
+	<description>InnoDB已经完成的逻辑读请求数。</description>
+</MySQLVariableDescription>
+ 
+ <MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_reads</variable_name>
+	<description>不能满足InnoDB必须单页读取的缓冲池中的逻辑读数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_wait_free</variable_name>
+	<description>一般情况，通过后台向InnoDB缓冲池写。但是，如果需要读或创建页，并且没有干净的页可用，则它还需要先等待页面清空。
+该计数器对等待实例进行记数。如果已经适当设置缓冲池大小，该值应小。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_total</variable_name>
+	<description>缓冲池总大小（页数）。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_misc</variable_name>
+	<description>忙的页数，因为它们已经被分配优先用作管理，例如行锁定或适用的哈希索引。
+	该值还可以计算为 Innodb_buffer_pool_pages_total - Innodb_buffer_pool_pages_free - Innodb_buffer_pool_pages_data。
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_latched</variable_name>
+	<description>在InnoDB缓冲池中锁定的页数。这是当前正读或写或由于其它原因不能清空或删除的页数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_free</variable_name>
+	<description>缓存池中空的页数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_flushed</variable_name>
+	<description>要求清空的缓冲池页数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_dirty</variable_name>
+	<description>当前的脏页数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_pages_data</variable_name>
+	<description>包含数据的页数(脏或干净)。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_read_ahead_rnd</variable_name>
+	<description>InnoDB初始化的“随机”read-aheads数。当查询以随机顺序扫描表的一大部分时发生。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_row_lock_time_avg</variable_name>
+	<description>行锁定的平均时间，单位毫秒。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_rows_updated</variable_name>
+	<description>InnoDB表内更新的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_buffer_pool_write_requests</variable_name>
+	<description>向InnoDB缓冲池的写数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_reads</variable_name>
+	<description>数据读总数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_read</variable_name>
+	<description>至此已经读取的数据数量（字节）。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_pending_writes</variable_name>
+	<description>当前挂起的写数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_pending_reads</variable_name>
+	<description>当前挂起的读数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_pending_fsyncs</variable_name>
+	<description>xxxxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_dblwr_writes</variable_name>
+	<description>已经执行的双写操作数量和为此目的已经写好的页数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_row_lock_time</variable_name>
+	<description>行锁定花费的总时间，单位毫秒。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_os_log_written</variable_name>
+	<description>写入日志文件的字节数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_os_log_pending_writes</variable_name>
+	<description>挂起的日志文件写操作。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_os_log_pending_fsyncs</variable_name>
+	<description>挂起的日志文件fsync()操作数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_os_log_fsyncs</variable_name>
+	<description>向日志文件完成的fsync()写数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_log_waits</variable_name>
+	<description>我们必须等待的时间，因为日志缓冲区太小，我们在继续前必须先等待对它清空。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_log_writes</variable_name>
+	<description>向日志文件的物理写数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_log_write_requests</variable_name>
+	<description>日志写请求数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_dblwr_pages_written</variable_name>
+	<description>已经执行的双写操作数量和为此目的已经写好的页数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_written</variable_name>
+	<description>至此已经写入的数据量（字节）。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_data_writes</variable_name>
+	<description>数据写总数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_row_lock_time_max</variable_name>
+	<description>行锁定的最长时间，单位毫秒。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_row_lock_time_avg</variable_name>
+	<description>行锁定的平均时间，单位毫秒。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_pages_written</variable_name>
+	<description>写入的页数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_pages_read</variable_name>
+	<description>读取的页数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_pages_created</variable_name>
+	<description>创建的页数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_page_size</variable_name>
+	<description>编译的InnoDB页大小(默认16KB)。许多值用页来记数；页的大小很容易转换为字节。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_row_lock_current_waits</variable_name>
+	<description>当前等待的待锁定的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_row_lock_waits</variable_name>
+	<description>一行锁定必须等待的时间数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_rows_inserted</variable_name>
+	<description>插入到InnoDB表的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_rows_read</variable_name>
+	<description>从InnoDB表读取的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Innodb_rows_deleted</variable_name>
+	<description>从InnoDB表删除的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Aborted_clients</variable_name>
+	<description>（放弃客户端）状态变量。指出由于某种原因客户程序不能正常关闭连接而导致失败的连接的数量。
+	如果客户不在退出之前调整mysql_close()函数，wait_timeout或interactive_timeout的限制已经被超出，或者是客户端程序在传输的过程中被关闭，则这种情况会发生</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Binlog_cache_disk_use</variable_name>
+	<description>所使用的二进制日志缓存溢出到磁盘上的文件大小 </description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Binlog_cache_use</variable_name>
+	<description>使用的二进制日志缓存大小</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Bytes_received</variable_name>
+	<description>服务器收到的字节数量</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Bytes_sent</variable_name>
+	<description>服务器发送的字节数量</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Qcache_free_blocks</variable_name>
+	<description>缓存中相邻内存块的个数。数目大说明可能有碎片。FLUSH QUERY CACHE会对缓存中的碎片进行整理，从而得到一个空闲块。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Qcache_free_memory</variable_name>
+	<description> 表示缓存中的空闲内存。</description>
+</MySQLVariableDescription>
+
+
+ <MySQLVariableDescription>
+	<variable_name>Qcache_hits</variable_name>
+	<description> 表示每次查询在缓存中命中时就增大</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Qcache_inserts</variable_name>
+	<description>每次插入一个查询时就增大。命中次数除以插入次数就是不中比率。</description>
+</MySQLVariableDescription>
+
+　　
+ <MySQLVariableDescription>
+	<variable_name>Qcache_lowmem_prunes</variable_name>
+	<description>缓存出现内存不足并且必须要进行清理以便为更多查询提供空间的次数。
+	这个数字最好长时间来看；如果这个数字在不断增长，就表示可能碎片非常严重，或者内存很少。（上面的 free_blocks和free_memory可以告诉您属于哪种情况）</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Qcache_not_cached</variable_name>
+	<description> 不适合进行缓存的查询的数量，通常是由于这些查询不是 SELECT 语句或者用了now()之类的函数。</description>
+</MySQLVariableDescription>
+　　
+<MySQLVariableDescription>
+	<variable_name>Qcache_queries_in_cache</variable_name>
+	<description>当前缓存的查询（和响应）的数量。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Qcache_total_blocks</variable_name>
+	<description> 缓存中块的数量。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Open_tables</variable_name>
+	<description>表示打开表的数量</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Opened_tables</variable_name>
+	<description>Opened_tables表示打开过的表数量，如果Opened_tables数量过大，说明配置中table_cache(5.1.3之后这个值叫做table_open_cache)值可能太小，
+	比较合适的值为：
+		Open_tables / Opened_tables * 100% >= 85%
+		Open_tables / table_cache * 100% = 95%
+	</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Rpl_status</variable_name>
+	<description>失败状态的安全复制  （这个变量只在MYSQL 4之后版本使用）</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Aborted_connects</variable_name>
+	<description>指出试图连接到MYSQL的失败的次数。这种情况在客户尝试用错误的密码进行连接时，
+没有权限进行连接时，为获得连接的数据包所花费的时间超过了connect_timeout限制的秒数，或数据包中没有包含正确的信息时，都会发生。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Connections</variable_name>
+	<description>试图连接到MYSQL服务器的次数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Key_read_requests</variable_name>
+	<description>引起从键的缓存读取键的数据块的请求的数量。Key_reads与Key_read_requests的比率不应该高于1：100（也就是，1：10很糟糕）</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>Key_reads</variable_name>
+	<description> 引起从磁盘读取键的数据块的物理读取操作的数量。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Key_write_requests</variable_name>
+	<description> 引起键的数据块被写入缓存的请求的数量</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Key_writes</variable_name>
+	<description>向磁盘写入键的数据块的物理写操作的次数</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Max_used_connections</variable_name>
+	<description> 在任意时刻，正在使用的连接的最大数量</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>Not_flushed_key_blocks</variable_name>
+	<description> 在键的缓存中，已经发生了改变但还没有被刷新到磁盘上的键的数据块的数量</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Not_flushed_delayed_rows</variable_name>
+	<description>当前在INSERT DELAY队列中，等待被写入的记录的个数</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Created_tmp_tables</variable_name>
+	<description> 执行语句时，内存中生成的隐含临时表的数量</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Created_tmp_files</variable_name>
+	<description> 由mysqld生成的临时文件的数量</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Created_tmp_disk_tables</variable_name>
+	<description>  执行语句时，磁盘上生成的隐含临时表的数量</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Uptime</variable_name>
+	<description>  数据库服务器一共运行了多少时间</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Uptime_since_flush_status</variable_name>
+	<description> 自最近FLUSH STATUS声明的秒数。MySQL only Community 5.0.35 这个版本中添加了这个 变量。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Prepared_stmt_count</variable_name>
+	<description>在事先准备好的执行SQL的数目。  （设定这个值的变量是max_prepared_stmt_count，MySQL 5.0.32版本中加入的。）</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Slave_running</variable_name>
+	<description>这是ON如果此服务器是一个复制主/从复制的主，并且表示都在运行I / O和SQL线程 ，否则，它是OFF。</description>
+</MySQLVariableDescription>
+ 
+  <MySQLVariableDescription>
+	<variable_name>Key_blocks_not_flushed</variable_name>
+	<description>关键的缓存已经发生的变化数字，但关键块尚未刷新到磁盘。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Key_blocks_unused</variable_name>
+	<description>在一些关键的未使用的缓存块。  您可以使用此值来确定如何关键缓存大量使用的;</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Key_blocks_used</variable_name>
+	<description>在关键的缓存使用的块数。 此值是一个高水位标记，表明该使用过一次了块的最大数目。</description>
+</MySQLVariableDescription>
+ 
+<MySQLVariableDescription>
+	<variable_name>Questions</variable_name>
+	<description>该服务器所执行的语句数目， 这仅包括报表发送到服务器的客户和不包括在存储程序执行的语句，
+	但是包含系统内部自己检测时说调用过的SQL次数在MySQL 5.0.72后的版本中添加。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Compression</variable_name>
+	<description>无论客户端连接使用压缩在客户端/服务器协议 这个值都将能告诉你。使用表示ON，未使用表示OFF。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Select_full_join</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+ 
+ <MySQLVariableDescription>
+	<variable_name>Select_range</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Select_range_check</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Select_scan</variable_name>
+	<description>xxxxxxxxxxxx</description>
+</MySQLVariableDescription>
+
+
+<!-- -
+Com_backup_table
+Com_begin
+Com_call_procedure
+Com_change_db
+Com_change_master
+Com_check
+Com_checksum
+Com_commit
+Com_create_db
+Com_create_function
+Com_create_index
+Com_create_table
+Com_create_user
+Com_dealloc_sql
+Com_delete
+Com_delete_multi
+Com_do
+Com_drop_db
+Com_drop_function
+Com_drop_index
+Com_drop_table
+Com_drop_user
+Com_execute_sql
+Com_flush
+Com_grant
+Com_ha_close
+Com_ha_open
+Com_ha_read
+Com_help
+Com_insert
+Com_insert_select
+Com_kill
+Com_load
+Com_load_master_data
+Com_load_master_table
+Com_lock_tables
+Com_optimize
+Com_preload_keys
+Com_prepare_sql
+Com_purge
+Com_purge_before_date
+Com_rename_table
+Com_repair
+Com_replace
+Com_replace_select
+Com_reset
+Com_restore_table
+Com_revoke
+Com_revoke_all
+Com_rollback
+Com_savepoint
+Com_select
+Com_set_option
+Com_show_binlog_events
+Com_show_binlogs
+Com_show_charsets
+Com_show_collations
+Com_show_column_types
+Com_show_create_db
+Com_show_create_table
+Com_show_databases
+Com_show_errors
+Com_show_fields
+Com_show_grants
+Com_show_keys
+Com_show_logs
+Com_show_master_status
+Com_show_ndb_status
+Com_show_new_master
+Com_show_open_tables
+Com_show_privileges
+Com_show_processlist
+Com_show_slave_hosts
+Com_show_slave_status
+Com_show_status
+Com_show_storage_engines
+Com_show_tables
+Com_show_triggers
+Com_show_variables
+Com_show_warnings
+Com_slave_start
+Com_slave_stop
+Com_stmt_close
+Com_stmt_execute
+Com_stmt_fetch
+Com_stmt_prepare
+Com_stmt_reset
+Com_stmt_send_long_data
+Com_truncate
+Com_unlock_tables
+Com_update
+Com_update_multi
+Com_xa_commit
+Com_xa_end
+Com_xa_prepare
+Com_xa_recover
+Com_xa_rollback
+Com_xa_start
+Delayed_errors
+Delayed_insert_threads
+Delayed_writes
+Flush_commands
+Handler_commit
+Handler_delete
+Handler_discover
+Handler_prepare
+Handler_read_first
+Handler_read_key
+Handler_read_next
+Handler_read_prev
+Handler_read_rnd
+Handler_read_rnd_next
+Handler_rollback
+Handler_savepoint
+Handler_savepoint_rollback
+Handler_update
+Handler_write
+Last_query_cost
+Open_files
+Open_streams
+
+
+Slave_open_temp_tables
+Slave_retried_transactions
+ 
+Slow_launch_threads
+Slow_queries
+Sort_merge_passes
+Sort_range
+Sort_rows
+Sort_scan
+ 
+Table_locks_immediate
+Table_locks_waited
+Tc_log_max_pages_used
+Tc_log_page_size
+Tc_log_page_waits
+
+Threads_connected
+Threads_created
+Threads_running
+
+ -->
+
+
+</list>

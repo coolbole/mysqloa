@@ -2,10 +2,8 @@
 <list>
 <MySQLVariableDescription>
 	<variable_name>auto_increment_increment</variable_name>
-	<description>
-	服务器变量auto_increment_increment 
-	可以帮助协调多主服务器复制和AUTO_INCREMENT列。
-	每个变量有一个默认的(并且是最小的)值1，最大值为65,535 </description>
+	<description>服务器变量auto_increment_increment 可以帮助协调多主服务器复制和AUTO_INCREMENT列。
+每个变量有一个默认的(并且是最小的)值1，最大值为65,535 </description>
 </MySQLVariableDescription>
 
 
@@ -352,6 +350,7 @@ o        如果该值为2，COMMIT和ROLLBACK分别等同于COMM它RELEASE和ROL
 <MySQLVariableDescription>
 	<variable_name>have_innodb</variable_name>
 	<description>如果mysqld支持InnoDB表则为YES。如果使用--skip-innodb则为DISABLED。</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 
@@ -419,6 +418,7 @@ o        如果该值为2，COMMIT和ROLLBACK分别等同于COMM它RELEASE和ROL
 <MySQLVariableDescription>
 	<variable_name>ignore_builtin_innodb</variable_name>
 	<description>忽然创建 innodb 的数据表</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -458,6 +458,7 @@ ySQL的基础上为那些经常访问这些网页的需求指数散列索引。
 	<description> InnoDB 用来存储数据字典(data dictionary)信息和其它内部数据结构(internal data structures)的存储器组合(memory pool)大小。
 	理想的值为 2M，如果有更多的表你就需要在这里重新分配。如果 InnoDB 用尽这个池中的所有内存，
 	它将从操作系统中分配内存，并将错误信息写入 MySQL 的错误日志中。在 my.cnf 中以数字格式设置。设置日志文件的大小约为  缓冲池(buffer pool)  大小的 25 %</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -530,6 +531,8 @@ ySQL的基础上为那些经常访问这些网页的需求指数散列索引。
 	<variable_name>innodb_doublewrite</variable_name>
 	<description>默认地，InnoDB存储所有数据两次，第一次存储到doublewrite缓冲，然后存储到确实的数据文件。这个选项可以被用来禁止这个功能。
 	类似于innodb_checksums，这个选项默认是允许的；因为标准检查或在对顶级性能的需要超过对数据完整性或可能故障的关注之时，这个选项用--skip-innodb-doublewrite来关闭。</description>
+<isEdit>-1</isEdit>
+
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -684,6 +687,7 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 	<variable_name>innodb_open_files</variable_name>
 	<description> 限制Innodb能打开的表的数据。
 	分配原则：如果库里的表特别多的情况，请增加这个。这个值默认是300，请适当的增加table_cache ，2G以上的机器，建议设置到 800。</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1712,6 +1716,7 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 	<variable_name>system_time_zone</variable_name>
 	<description>  服务器系统时区。当 服务器开始执行时，它继承机器默认时区设置值，可以由运行服务器的账户或在启动脚本中进行修改。
 	该值用来设置system_time_zone。典型情况用TZ环境变量来指定时区。还可以用mysqld_safe脚本的--timez选项来指定。</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

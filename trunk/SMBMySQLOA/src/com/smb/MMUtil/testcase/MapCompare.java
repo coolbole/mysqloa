@@ -13,12 +13,25 @@ import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
+import com.smb.MMUtil.pojo.ReplicationStatusPojo;
 
 /**
  * @author huangyi
  *
  */
 public class MapCompare {
+	
+//	@Test
+	public void showMasterReplicationStatus () throws Exception{
+		UtilBaseTools orm= new UtilBaseTools("192.168.12.78","root","123456");
+		
+		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+		ReplicationStatusPojo  listS=mmu.showMasterReplicationStatus();
+		
+		System.out.print (listS); 
+		
+	}
+	
 		@Test
 		public void fileAndshowTestCase () throws Exception{
 			UtilBaseTools orm= new UtilBaseTools("192.168.12.212","root","123456");

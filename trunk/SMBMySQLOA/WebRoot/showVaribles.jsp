@@ -2,26 +2,17 @@
 <%@page import="com.smb.MMUtil.handler.base.UtilBaseTools"%>
 <%@page import="com.smb.MMUtil.handler.*"%>
 <%@page import="com.smb.MMUtil.handler.xml.*"%>
- <%@page import="com.smb.MMUtil.pojo.*"%>
+<%@page import="com.smb.MMUtil.pojo.*"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title> processlist.jsp  starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+     <title>Mysql Optimize Analysis</title>
   </head>
 
   <body>
     <% 
+    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
     
     String host=session.getAttribute("host").toString() ;
     String username=session.getAttribute("username").toString();
@@ -35,17 +26,16 @@
 	
 	List <MySQLVariableObject> listS=mmu.showVariblesCommand();
 	
-			for (int i=0;i<listS.size();i++){
+		for (int i=0;i<listS.size();i++){
 				
-				for (int h=0;h<listF.size();h++){
-				if(	listS.get(i).getVariable_name().equals(listF.get(h).getVariable_name() ) ){
-					 out.print (listS.get(i).getVariable_name()+"   "  ); 
-					 out.print ("<b>"+listS.get(i).getValue()+"</b>   "  ); 
-					 out.print ("<FONT SIZE='2' COLOR='#006666'> "+listF.get(h).getDescription() +" </FONT>  <br><br>"  ); 
-				}
-				}
-				 
-			}
+		for (int h=0;h<listF.size();h++){
+		if(	listS.get(i).getVariable_name().equals(listF.get(h).getVariable_name() ) ){
+			 out.print (listS.get(i).getVariable_name()+"   "  ); 
+			 out.print ("<b>"+listS.get(i).getValue()+"</b>   "  ); 
+			 out.print ("<FONT SIZE='2' COLOR='#006666'> "+listF.get(h).getDescription() +" </FONT>  <br><br>"  ); 
+		}
+		}
+	}
     %>
     
      <br>
