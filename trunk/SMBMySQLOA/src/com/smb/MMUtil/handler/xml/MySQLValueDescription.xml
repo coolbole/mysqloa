@@ -991,7 +991,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>max_prepared_stmt_count</variable_name>
-	<description>xxxxx</description>
+	<description>预编译SQL语句执行数量</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1037,7 +1037,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>min_examined_row_limit</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>官方未给出该参数的介绍</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1101,107 +1101,108 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>ndb_autoincrement_prefetch_sz</variable_name>
-	<description>xxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_batch_size</variable_name>
-	<description>xxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_cache_check_time</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>MySQL簇之间的SQL节点检查逝去的MySQL查询缓存。含义是验证查询缓存会检查每个查询。
+这意味着检查每秒执行一次。一个较大的值意味着进行检查，并可能对无效由于不同的SQL节点，以更新较少。一般不宜设置为一个值大于2000。 </description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_connectstring</variable_name>
-	<description>xxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_extra_logging</variable_name>
-	<description>xxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_force_send</variable_name>
-	<description>xxxxxxxxxx</description>
+	<description>NDB集群节点发送缓冲区，ON默认。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_index_stat_cache_entries</variable_name>
-	<description>xxxxxxxx</description>
+	<description>设置通过确定开始和结束键存储在内存中缓存数据的统计数粒度。 零意味着没有缓存的发生，在这种情况下，数据节点总是直接查询。默认值32</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_index_stat_enable</variable_name>
-	<description>xxxxxxxxx</description>
+	<description>利用NDB在查询优化索引统计信息。 默认ON。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_index_stat_update_freq</variable_name>
-	<description>xxxxxxxxxxxxxxx</description>
+	<description>经常查询数据的节点，而不是统计数据缓存。 例如，在20值（默认）指直接每20 次查询的数据节点。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_log_binlog_index</variable_name>
-	<description>xxxxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_log_update_as_write</variable_name>
-	<description>xxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_log_updated_only</variable_name>
-	<description>xxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_optimization_delay</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_optimized_node_selection</variable_name>
-	<description>xxxxxxxxxxxxxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_report_thresh_binlog_epoch_slip</variable_name>
-	<description>xxxxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_report_thresh_binlog_mem_usage</variable_name>
-	<description>xxxxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_table_no_logging</variable_name>
-	<description>xxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_table_temporary</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_use_copying_alter_table</variable_name>
-	<description>xxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_use_exact_count</variable_name>
-	<description>xxxxxxxxxxxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ndb_use_transactions</variable_name>
-	<description>xxxxxxxxxxxxxxxxxxxxxxxxx</description>
+	<description>MySQL集群配置参数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
