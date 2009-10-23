@@ -101,7 +101,7 @@
 
  <MySQLVariableDescription>
 	<variable_name>Innodb_data_pending_fsyncs</variable_name>
-	<description>xxxxxxxxxxxxxx</description>
+	<description>待审fsync()数目fsync()操作。 Added in MySQL 5.0.2.新增在MySQL 5.0.2。</description>
 </MySQLVariableDescription>
 
  <MySQLVariableDescription>
@@ -320,9 +320,9 @@
 
 <MySQLVariableDescription>
 	<variable_name>Key_read_requests</variable_name>
-	<description>引起从键的缓存读取键的数据块的请求的数量。Key_reads与Key_read_requests的比率不应该高于1：100（也就是，1：10很糟糕）</description>
+	<description>引起从键的缓存读取键的数据块的请求的数量。Key_reads与Key_read_requests的比率不应该高于1：100（也就是，1：10很糟糕）
+	请求在内存中没有找到直接从硬盘读取索引，计算索引未命中缓存的概率：key_cache_miss_rate=Key_reads / Key_read_requests * 100%</description>
 </MySQLVariableDescription>
-
 
 <MySQLVariableDescription>
 	<variable_name>Key_reads</variable_name>
@@ -357,7 +357,8 @@
 
 <MySQLVariableDescription>
 	<variable_name>Created_tmp_tables</variable_name>
-	<description> 执行语句时，内存中生成的隐含临时表的数量</description>
+	<description> 执行语句时，内存中生成的隐含临时表的数量，服务器执行语句时自动创建的内存中的临时表的数量。
+如果Created_tmp_disk_tables较大，你可能要增加tmp_table_size值使临时 表基于内存而不基于硬盘。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -418,22 +419,261 @@
 
 <MySQLVariableDescription>
 	<variable_name>Select_full_join</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>执行join语句联接表扫描数，因为它们不使用索引。 如果该值不为0，你应该仔细检查你的表的索引。和 Select_scan 差不多，区别是 Select_full_join 代表的是第二张及之后的表。
+	explain 中的类型也是 ALL，原因是表联接所用的字段上没有索引。它对性能有更为严重的影响，绝对要避免，所以用于联接的字段上一般都要加索引。</description>
 </MySQLVariableDescription>
  
  <MySQLVariableDescription>
 	<variable_name>Select_range</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>代表需要从硬盘读表在一段范围内的行。在 explain 中显示为 range，说明使用了索引查找记录在硬盘上的位置。
+	关于第一个表使用范围。 这通常不是一个严重的问题，即使是相当大的价值也不必去关心。</description>
 </MySQLVariableDescription>
 
  <MySQLVariableDescription>
 	<variable_name>Select_range_check</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>表示在执行JOIN 语句时没有使用过索引或者主键，如果这不是0，你应该仔细检查你的表的索引。</description>
 </MySQLVariableDescription>
 
  <MySQLVariableDescription>
 	<variable_name>Select_scan</variable_name>
-	<description>xxxxxxxxxxxx</description>
+	<description>做了多少次全表扫描</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Threads_running</variable_name>
+	<description> 该线程数目是当前正在运行的线程数，不是休眠状态的。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Threads_cached</variable_name>
+	<description>在线程缓存线程数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Threads_connected</variable_name>
+	<description>在当前打开的连接数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Threads_created</variable_name>
+	<description>在创建的处理连接的线程数。  如果Threads_created过大，可能要增加thread_cache_size价值。 </description>
+</MySQLVariableDescription>
+ 
+ <MySQLVariableDescription>
+	<variable_name>Tc_log_page_waits</variable_name>
+	<description>For the memory-mapped implementation of the recovery log, this variable increments each time the server was not able to
+ commit a transaction and had to wait for a free page in the log.
+ 对于内存映射的恢复日志的实施策略，这每一次的服务器变量的增量无法提交事务，并为自由等待页在日志中。
+  If this value is large, you might want to increase the log size (with the --log-tc-size option).
+  如果该值很大，您可能希望增加日志的大小（与--log-tc-size选项）。
+   For binary log-based recovery, this variable increments each time the binary log cannot be closed because there are two-phase
+   commits in progress.
+    对于二进制日志的复苏，这个变量递增每次二进制日志不能被关闭，因为有两个阶段提交的进展情况。 
+ (The close operation waits until all such transactions are finished.) Added in MySQL 5.0.3. 
+（在关闭操作等待，直到所有这类交易完成。）新增在MySQL 5.0.3。  </description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Table_locks_waited</variable_name>
+	<description>这个次数表锁请求的等待值是必要的，如果这是高，可能会有性能问题，您应该首先优化查询，然后去分析您的表或表或使用数据同步的机制。  </description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_commit</variable_name>
+	<description>内部COMMIT语句数目。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_delete</variable_name>
+	<description>记录有多少条记录被删除过 。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_discover</variable_name>
+	<description>MySQL服务器可以问NDB CLUSTER存储引擎是否知道某一名字的表。这被称作发现。Handler_discover说明通过该方法发现的次数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_prepare</variable_name>
+	<description> 一个准备阶段的两阶段提交业务柜台。 Added in MySQL 5.0.3.新增在MySQL 5.0.3。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_read_first</variable_name>
+	<description>在时代的第一个条目索引人数为阅读。 如果该值为高，它表明该服务器是做了充分的索引扫描很多，例如， SELECT col1 FROM foo假设col1的索引。
+	</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_read_key</variable_name>
+	<description> 请求数来读取一个关键的一排。 如果该值为高，这是一个好迹象表明，你的表是正确的您的查询索引。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_read_next</variable_name>
+	<description>按照键顺序读下一行的请求数。如果你用范围约束或如果执行索引扫描来查询索引列，该值增加。
+请求数来读取主键以便下一行。  此值递增，如果您要查询的范围约束的列或索引，如果你正在做一个索引扫描。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_read_prev</variable_name>
+	<description> 请求数来读取键顺序前一行。读法，这主要是用于优化ORDER BY ... DESC ORDER BY ... DESC . ORDER BY ... DESC 。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_read_rnd</variable_name>
+	<description> 请求数来读取一个固定位置的一排。 如果此值高，如果你正在做的查询，需要很多的结果排序。 
+说明你可能有很多质疑的要求MySQL扫描整个表或您已加入不使用钥匙正确,根据固定位置读一行的请求数。如果你正执行大量查询并需要对结果进行排序该值较高。
+你可能使用了大量需要MySQL扫描整个表的查询或你的连接没有正确使用键。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_read_rnd_next</variable_name>
+	<description>请求数来读取数据文件的下一行。这个值高，如果你是做了很多表扫描。一般来说这表明您的表不正确索引或者您的查询不写入利用优势索引你。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_rollback</variable_name>
+	<description> 请求存储引擎执行回滚的操作数 。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_savepoint</variable_name>
+	<description>存储引擎放置一个保存点的请求数量。 新增在MySQL 5.0.3。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_savepoint_rollback</variable_name>
+	<description> 为存储引擎请求回滚到保存点数量。 Added in MySQL 5.0.3.新增在MySQL 5.0.3。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_update</variable_name>
+	<description> 记录请求更新表中的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Handler_write</variable_name>
+	<description>请求插入表中的行数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Last_query_cost</variable_name>
+	<description>用查询优化器计算的最后编译的查询的总成本。用于对比同一查询的不同查询方案的成本。默认值0表示还没有编译查询。 默认值是0。Last_query_cost具有会话范围。
+  在默认值0表示没有查询已编制尚未。加入这个变量是在MySQL 5.0.1，其默认值为-1。在MySQL 5.0.7，默认已更改为0;  不是全局性的。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Open_files</variable_name>
+	<description>默认是开启的。这一数字只包括由服务器打开普通文件。 它不包括诸如套接字或管道其他类型的文件。
+此外，数不包括文件的存储引擎公开使用自己的内部职能，而不是要在服务器级别这样做。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Table_locks_immediate</variable_name>
+	<description>表锁请求获得批准的次数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Delayed_errors</variable_name>
+	<description>与INSERT DELAYED一些错误的发生（可能是duplicate key ）写入的记录数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Delayed_insert_threads</variable_name>
+	<description>使用数INSERT DELAYED处理线程。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Delayed_writes</variable_name>
+	<description>在INSERT DELAYED写入的记录数。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Flush_commands</variable_name>
+	<description>在执行FLUSH声明数目。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Sort_rows</variable_name>
+	<description>排序的记录数。这代表了在第二步中被排序的记录的总数。
+因为 Sort_range 和 Sort_scan 是一样的，所以这个值只是说明了有多少记录被排序，意思不大。 </description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Sort_scan</variable_name>
+	<description>记录 排序表扫描的记录数。</description>
+</MySQLVariableDescription>
+  
+ <MySQLVariableDescription>
+	<variable_name>Tc_log_max_pages_used</variable_name>
+	<description>对于内存映射认为是mysqld使用时，作为内部XA事务的恢复事务的协调员日志的落实，这个变量表示为日志使用的页面数量最多因为服务器启动。
+ 如果Tc_log_max_pages_used产品和Tc_log_page_size总是大大低于日志大小少，规模大于必需的，可以减少。
+ 大小则是由--log-tc-size选项。目前，这个变量是未使用的：这是不必要的二进制日志的复苏，内存映射方法恢复日志，
+否则不得使用的存储引擎的数目可两阶段提交大于InnoDB是只适用于引擎。）在MySQL 5.0.3新增。</description>
+</MySQLVariableDescription>
+
+ <MySQLVariableDescription>
+	<variable_name>Tc_log_page_size</variable_name>
+	<description>页面大小的内存使用映射的执行情况的XA恢复日志。默认值取决于使用。
+目前，这个变量是未使用的为同样的原因描述的Tc_log_max_pages_used Added in MySQL 5.0.3.新增在MySQL 5.0.3。。</description>
+</MySQLVariableDescription>
+   
+ <MySQLVariableDescription>
+	<variable_name>Slow_queries</variable_name>
+	<description>记录查询过程中是否有超过long_query_time设置的秒数的数量。执行时间超过2秒的即为慢查询，你可以分析慢查询日志，
+找出有问题的SQL语句，慢查询时间不宜设置过长，否则意义不大，最好在5秒以内，
+如果你需要微秒级别的慢查询，可以考虑给MySQL打补丁：http://www.percona.com /docs/wiki/release:start，记得找对应的版本。
+</description>
+</MySQLVariableDescription>
+
+
+ <MySQLVariableDescription>
+	<variable_name>Sort_range</variable_name>
+	<description>查询做排序，不论是因为 order by 还是 group by（除了使用了 order by NULL 的 group by），主要都是下面的三步：
+1. 通过 where 条件找到记录
+2. 排序
+3. 按排好的顺序读取记录
+如果第二步不被跳过，那么第三步中就会有 Sort_scan 或 Sort_range。如果第一步是 Select_scan，那么第三步将是 Sort_scan，如果第一步是 Select_range，
+那么第三步会是 Sort_range。
+但 Sort_scan 和 Sort_range 其实没有功能上的区别，都是将需要的记录按顺序读出来，所以性能也是一样的。</description>
+</MySQLVariableDescription>
+
+
+ <MySQLVariableDescription>
+	<variable_name>Select_full_range_join</variable_name>
+	<description>和 Select_range_check 类似，不过 MySQL 可以肯定它能够使用范围查找。这时 explain 中的类型是 range。这也可能是有一些性能问题的。</description>
+</MySQLVariableDescription>
+
+
+ <MySQLVariableDescription>
+	<variable_name>Sort_merge_passes</variable_name>
+	<description>排序算法已经执行的合并的数量。如果这个变量值较大，应考虑增加sort_buffer_size系统变量的值。Sort_merge_passes 包括两步。MySQL 首先会尝试在内存中做排序，使用的内存大小由系统变量 Sort_buffer_size 决定，如果它的大小不够把所有的记录都读到内存中，
+MySQL 就会把每次在内存中排序的结果存到临时文件中，等 MySQL 找到所有记录之后，再把临时文件中的记录做一次排序。
+这再次排序就会增加 Sort_merge_passes。实际上，MySQL 会用另一个临时文件来存再次排序的结果，所以通常会看到 Sort_merge_passes 增加的数值是建临时文件数的两倍。
+因为用到了临时文件，所以速度可能会比较慢，增加 Sort_buffer_size 会减少 Sort_merge_passes 和 创建临时文件的次数。
+但盲目的增加 Sort_buffer_size 并不一定能提高速度</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Slow_launch_threads</variable_name>
+	<description>记录是否有否超过slow_launch_time秒创建线程的数目。</description>
+</MySQLVariableDescription>
+
+
+<MySQLVariableDescription>
+	<variable_name>Slave_retried_transactions</variable_name>
+	<description>启动后复制从服务器SQL线程尝试事务的总次数。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Slave_open_temp_tables</variable_name>
+	<description>当前由从SQL线程打开的临时表的数量。</description>
+</MySQLVariableDescription>
+
+<MySQLVariableDescription>
+	<variable_name>Open_streams</variable_name>
+	<description>打开的流的数量(主要用于记录)。。</description>
 </MySQLVariableDescription>
 
 
@@ -536,51 +776,25 @@ Com_xa_prepare
 Com_xa_recover
 Com_xa_rollback
 Com_xa_start
-Delayed_errors
-Delayed_insert_threads
-Delayed_writes
-Flush_commands
-Handler_commit
-Handler_delete
-Handler_discover
-Handler_prepare
-Handler_read_first
-Handler_read_key
-Handler_read_next
-Handler_read_prev
-Handler_read_rnd
-Handler_read_rnd_next
-Handler_rollback
-Handler_savepoint
-Handler_savepoint_rollback
-Handler_update
-Handler_write
-Last_query_cost
-Open_files
-Open_streams
+-->
 
 
-Slave_open_temp_tables
-Slave_retried_transactions
+<!--
  
-Slow_launch_threads
-Slow_queries
-Sort_merge_passes
-Sort_range
-Sort_rows
-Sort_scan
  
-Table_locks_immediate
-Table_locks_waited
-Tc_log_max_pages_used
-Tc_log_page_size
-Tc_log_page_waits
 
-Threads_connected
-Threads_created
-Threads_running
+
+
+
+
+
+
+
 
  -->
+
+
+
 
 
 </list>

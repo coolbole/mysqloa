@@ -8,9 +8,9 @@
   <body>
      <br>
     <FORM METHOD="POST" ACTION="processlist.jsp">
-	host:<INPUT TYPE="text" NAME="host" value="<%=request.getServerName()%>"><br>
-	username:<INPUT TYPE="text" NAME="username" value="root"><br>
-	password:<INPUT TYPE="text" NAME="password" value="123456"><br>
+	host:<INPUT TYPE="text" NAME="host" value="<%=request.getServerName()%>">(mysql主机地址)<br>
+	username:<INPUT TYPE="text" NAME="username" value="root">(用户名)<br>
+	password:<INPUT TYPE="text" NAME="password" value="123456">(密码)<br>
 	<INPUT TYPE="submit">
  </FORM>
     

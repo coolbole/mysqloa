@@ -61,10 +61,11 @@ public class  UtilBaseTools  {
 	
 	private static Log logger = LogFactory.getLog(UtilBaseTools.class);
 	
-	public UtilBaseTools(String Host, String User, String Passwd ){
-		 		host=Host;	user=User;	passwd=Passwd;
+	public UtilBaseTools(String Host, String Db,String User, String Passwd ){
+		 		host=Host;	user=User;	passwd=Passwd;  db=Db;
 	}
 	
+	private static String db;
 	private static String host;
 	private static String user;
 	private static String passwd;
@@ -72,8 +73,11 @@ public class  UtilBaseTools  {
 	public Connection getConnection() throws  Exception{
 		logger.info("getConnection .................... ");
 		try{
+			if (db==null){ 
+				db="";
+			}
 			Class.forName("com.mysql.jdbc.Driver" );    
-			Connection connection = DriverManager.getConnection("jdbc:mysql://"+host+"",user,passwd);  
+			Connection connection = DriverManager.getConnection("jdbc:mysql://"+host+"/"+db,user,passwd);  
 			return connection;
 		}
 		catch (Exception e){

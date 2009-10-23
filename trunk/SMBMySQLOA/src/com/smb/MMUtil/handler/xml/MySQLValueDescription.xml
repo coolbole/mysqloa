@@ -723,12 +723,11 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 
 <MySQLVariableDescription>
 	<variable_name>innodb_thread_concurrency</variable_name>
-	<description>该参数取值为服务器逻辑CPU数量×2，在本例中，服务器有2颗物理CPU，而每颗物理CPU又支持H.T超线程，所以实际取值为4 × 2 ＝ 8    InnoDB 会试图将 InnoDB 服务的使用的操作系统进程小于或等于这里所设定的数值。
-	此参数默认值为 8。如果计算机系统性能较低或 innodb_monitor 显示有很多线程等侍信号，应该将这个值设小一点。
-	如果你的计算机系统有很我的处理器与磁盘系统，则可以将这个值设高一点以充分利用你的系统资源。建议设值为处理器数目+ 磁盘数目。 
-	InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个参数给出的限制。如果有性能问题，并且SHOW INNODB STATUS显示许多线程在等待信号，可以让线程“thrashing” ，并且设置这个参数更小或更大。
-	如果你的计算机有多个处理器和磁盘，你可以试着这个值更大以更好地利用计算机的资源。一个推荐的值是系统上处理器和磁盘的个数之和。
-	值为500或比500大会禁止调用并发检查。默认值是20，并且如果设置大于或等于20，并发检查将被禁止。</description>
+	<description>该参数取值为服务器逻辑CPU数量×2，在本例中，服务器有2颗物理CPU，而每颗物理CPU又支持H.T超线程，所以实际取值为4 × 2 ＝ 8  InnoDB 会试图将 InnoDB 服务的使用的操作系统进程小于或等于这里所设定的数值。
+此参数默认值为 8。如果计算机系统性能较低或 innodb_monitor 显示有很多线程等侍信号，应该将这个值设小一点。如果你的计算机系统有很我的处理器与磁盘系统，则可以将这个值设高一点以充分利用你的系统资源。建议设值为处理器数目+ 磁盘数目。 
+InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个参数给出的限制。如果有性能问题，并且SHOW INNODB STATUS显示许多线程在等待信号，可以让线程“thrashing” ，并且设置这个参数更小或更大。
+如果你的计算机有多个处理器和磁盘，你可以试着这个值更大以更好地利用计算机的资源。一个推荐的值是系统上处理器和磁盘的个数之和。
+值为500或比500大会禁止调用并发检查。默认值是20，并且如果设置大于或等于20，并发检查将被禁止。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1794,8 +1793,8 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 
 <MySQLVariableDescription>
 	<variable_name>time_zone</variable_name>
-	<description>数据库时区 当前的时区。初使值是'SYSTEM'(使用system_time_zone的值)，
-	但可以用--default-time-zone选项在服务器启动时显式指定。</description>
+	<description>数据库时区 当前的时区。初使值是'SYSTEM'(使用system_time_zone的值)，但可以用--default-time-zone选项在服务器启动时显式指定。</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

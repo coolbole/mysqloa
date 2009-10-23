@@ -11,6 +11,7 @@
   </head>
 
   <body>
+  <a href="javascript:history.back(-1)">返回上一页</a> <br>
     <% 
     if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
     
@@ -18,7 +19,7 @@
     String username=session.getAttribute("username").toString();
     String password=session.getAttribute("password").toString();
     
-    UtilBaseTools orm= new UtilBaseTools(host,username,password);
+    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 	IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 	
 	ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
@@ -32,7 +33,12 @@
 	}
 	else{
 		listS=mmu.showStatusCommandByCategory(category);
+		if(category.equals("cache")){
+		out.print ("<b> 提示：如果该页面出现的 “0” 值 比较多的话，说明您的MySQL数据库基本没有很好的优化，如果具有非“0”的值请检查是否被合理使用。</b><br>  "  ); 
+		}
 	}
+	
+	
 		for (int i=0;i<listS.size();i++){
 				
 		 for (int h=0;h<listF.size();h++){
@@ -43,8 +49,10 @@
 		 }
 		 }
 	}
+	 
     %>
-    
+     <a href="javascript:history.back(-1)"></>返回上一页</a> <br>
+     
      <br>
   </body>
 </html>
