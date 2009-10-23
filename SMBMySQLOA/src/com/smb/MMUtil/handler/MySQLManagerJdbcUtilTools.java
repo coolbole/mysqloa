@@ -20,6 +20,7 @@ import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
+import com.smb.MMUtil.pojo.TableStatusPojo;
 
 
 /**
@@ -285,6 +286,102 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		}
 		return variable;
 	
+	}
+
+	public String showUptime() throws Exception {
+		logger.info( "showUptime ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		String  variable="这台MySQL运行了 ";
+		try{
+			long uptime=0;
+			ResultSet rs=connection.prepareStatement(" show   status  like 'uptime' " ).executeQuery();
+			while (rs.next() ){
+				uptime= rs.getLong(2)/60;
+			}
+			
+			 if (uptime<60){
+				 variable=variable+ uptime +" 分钟  " ;
+			 }
+			 
+			 else if (uptime>60 ) {
+				 variable=variable+ uptime/60 +" 小时  " ;
+				 
+				 if (uptime/60>60 ){
+					 variable=variable+ "("+uptime/60/24 +"天)" ;
+				 }
+			 }
+			 
+			 System.out.println(    );
+		
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return variable;
+	
+	}
+
+	public List showDataBases() throws Exception {
+		logger.info( "showDataBases ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List   result = new ArrayList();
+		try{
+			ResultSet rs=connection.prepareStatement( "show  databases"  ).executeQuery();
+			while (rs.next() ){
+				result.add( rs.getString(1)  );
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return result;
+	}
+
+	public List showTableStatus() throws Exception {
+		logger.info( "showDataBases ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List    result = new ArrayList();
+		try{
+			ResultSet rs=connection.prepareStatement( "show table status"  ).executeQuery();
+			while (rs.next() ){
+				TableStatusPojo table=new TableStatusPojo();
+				table.setAuto_increment( rs.getString("auto_increment") );
+				table.setAvg_row_length(rs.getString("avg_row_length")  );
+				table.setCreate_options( rs.getString("create_options")  );
+				table.setCheck_time(rs.getString("check_time"));
+				table.setChecksum(rs.getString("checksum"));
+				table.setCollation(rs.getString("collation"));
+				table.setComment(rs.getString("comment"));
+				table.setCreate_time(rs.getString("create_time"));
+				table.setData_length(rs.getString("data_length"));
+				table.setEngine(rs.getString("engine"));
+				table.setIndex_length(rs.getString("index_length"));
+				table.setMax_data_length(rs.getString("max_data_length"));
+				table.setName(rs.getString("name"));
+				table.setRow_format(rs.getString("row_format"));
+				table.setRows(rs.getString("rows"));
+				table.setUpdate_time(rs.getString("update_time"));
+				table.setVersion(rs.getString("version"));
+				
+				result.add( table   );
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return result;
 	}
 	
 	 

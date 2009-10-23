@@ -10,7 +10,7 @@
      <title>Mysql Optimize Analysis</title>
   </head>
 
-  <body>
+  <body> <a href="javascript:history.back(-1)">返回上一页</a> <br>
     <% 
     if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
     
@@ -18,7 +18,7 @@
     String username=session.getAttribute("username").toString();
     String password=session.getAttribute("password").toString();
     
-    UtilBaseTools orm= new UtilBaseTools(host,username,password);
+    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 	IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 	
 	ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
@@ -37,7 +37,7 @@
 		}
 	}
     %>
-    
+     <a href="javascript:history.back(-1)">返回上一页</a> <br>
      <br>
   </body>
 </html>

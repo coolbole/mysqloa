@@ -21,20 +21,20 @@ import com.smb.MMUtil.pojo.ReplicationStatusPojo;
  */
 public class MapCompare {
 	
-//	@Test
+	@Test
 	public void showMasterReplicationStatus () throws Exception{
-		UtilBaseTools orm= new UtilBaseTools("192.168.12.78","root","123456");
+		UtilBaseTools orm= new UtilBaseTools("192.168.12.78",null,"root","123456");
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-		ReplicationStatusPojo  listS=mmu.showMasterReplicationStatus();
+		String  listS=mmu.showUptime();
 		
 		System.out.print (listS); 
 		
 	}
 	
-		@Test
+//		@Test
 		public void fileAndshowTestCase () throws Exception{
-			UtilBaseTools orm= new UtilBaseTools("192.168.12.212","root","123456");
+			UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
 			
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 			List <MySQLVariableObject> listS=mmu.showVariblesCommand();

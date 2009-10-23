@@ -34,5 +34,9 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public ReplicationStatusPojo  showSlaveReplicationStatus(  ) throws  Exception;
 	
+	public String  showUptime (  ) throws  Exception;
 	
+	public List  showDataBases(  ) throws  Exception;
+	
+	public List  showTableStatus(  ) throws  Exception;
 }
