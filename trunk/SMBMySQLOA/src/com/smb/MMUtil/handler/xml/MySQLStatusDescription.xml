@@ -363,12 +363,12 @@
 
 <MySQLVariableDescription>
 	<variable_name>Created_tmp_files</variable_name>
-	<description> 由mysqld生成的临时文件的数量</description>
+	<description> 由mysqld生成的临时文件的数量,要注意该变量的数值，越小越好，最好为零</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>Created_tmp_disk_tables</variable_name>
-	<description>  执行语句时，磁盘上生成的隐含临时表的数量</description>
+	<description>  执行语句时，磁盘上生成的隐含临时表的数量,要注意该变量的数值，越小越好，最好为零</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
