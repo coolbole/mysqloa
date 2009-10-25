@@ -3,15 +3,27 @@
  */
 package com.smb.MMUtil.handler.xml;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
+import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -26,6 +38,8 @@ public class ReadMySQLValueDescriptionXMLFile {
 	private static String mySQLValueDescriptionXMLFile = ReadMySQLValueDescriptionXMLFile.class.
 							 getResource ("MySQLValueDescription.xml").getFile();
 	
+	private static String mySQLOptimizeCaseXMLFile = ReadMySQLValueDescriptionXMLFile.class.
+	 getResource ("MySQLOptimizeCase.xml").getFile();
 	
 	private static String mySQLStatusDescriptionXMLFile = ReadMySQLValueDescriptionXMLFile.class.
 	 getResource ("MySQLStatusDescription.xml").getFile();
@@ -35,6 +49,7 @@ public class ReadMySQLValueDescriptionXMLFile {
 	private static  Map cache= new HashMap ();
 	private static String CacheVariableDescription="cacheVariableDescription";
 	private static String CacheStatusDescription="cacheStatusDescription";
+	private static String CacheOptimizeCase="cacheOptimizeCase";
 	
 	public List getMySQLVariableDescription()  throws  Exception {
 		logger.info( "get MySQLVariableDescription ....................." );
@@ -84,17 +99,48 @@ public class ReadMySQLValueDescriptionXMLFile {
 		return list;
 	}
 	
-	
+	public List getMySQLOptimizeCase()  throws  Exception {
+		logger.info( "get MySQLVariableDescription ....................." );
+		List   list=new ArrayList();
+		
+		try {
+			if (cache.get(CacheOptimizeCase)!=null){
+				logger.info("Cache MySQL Optimize XML File  ....................");
+				list=(List<MySQLVariableDescription>) cache.get(CacheOptimizeCase);
+			}
+			else{
+				logger.info(" Read  MySQLOptimize Case ConfigFile XML File ....................");
+				File f=new File(mySQLOptimizeCaseXMLFile); 
+				DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance(); 
+				DocumentBuilder builder=factory.newDocumentBuilder(); 
+				Document doc = builder.parse(f); 
+				 
+				NodeList nodelist = doc.getElementsByTagName("case");
+				int size = nodelist.getLength();
+				for(int i=0; i<size; i++){
+					MySQLOptimizeCase  optimizeCase= new MySQLOptimizeCase();
+					Node node = nodelist.item(i);
+					String content = node.getTextContent() ;
+					optimizeCase.setName(node.getAttributes().getNamedItem("name").getNodeValue());
+					optimizeCase.setAlias(node.getAttributes().getNamedItem("alias").getNodeValue());
+ 					optimizeCase.setSetCommands(content);
+					list.add(  optimizeCase );
+				}
+			
+				cache.put(CacheOptimizeCase,  list );
+			}
+			
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return list;
+	}
 	
 	@Test
 	public void runCase() throws  Exception{
-		FileInputStream input= new FileInputStream(mySQLStatusDescriptionXMLFile);
-		xstream.alias("MySQLVariableDescription",  MySQLVariableDescription.class);
-		
-		List <MySQLVariableDescription> list=(List<MySQLVariableDescription>) xstream.fromXML(input,description) ;
-		
-		System.out.println (list.get(1).getVariable_name() );
-		System.out.println (list.get(1).getDescription() );
+		ReadMySQLValueDescriptionXMLFile  read= new ReadMySQLValueDescriptionXMLFile();
+		read.getMySQLOptimizeCase();
 	}
 
 }

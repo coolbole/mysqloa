@@ -23,12 +23,12 @@ public class MapCompare {
 	
 	@Test
 	public void showMasterReplicationStatus () throws Exception{
-		UtilBaseTools orm= new UtilBaseTools("192.168.12.78",null,"root","123456");
+		UtilBaseTools orm= new UtilBaseTools("192.168.1.2",null,"root","123456");
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-		String  listS=mmu.showUptime();
+		 mmu.MySQLOptimize("2g") ;
 		
-		System.out.print (listS); 
+		 
 		
 	}
 	
