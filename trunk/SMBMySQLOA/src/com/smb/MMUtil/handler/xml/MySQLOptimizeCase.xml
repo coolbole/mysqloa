@@ -3,14 +3,8 @@
 <MySQLOptimizeCase>
 	<case name="2G内存优化方案"  alias="2g" >
 		<setting_value>max_connections=1500</setting_value>
-	 	<!-- 
-	 	<setting_value>thread_concurrency=8</setting_value>
-	 	<setting_value>record_buffer=200000</setting_value>
-	 	<setting_value>write_buffer=2000000</setting_value>
-	 	-->
-		
 		<setting_value>max_allowed_packet=4000000000</setting_value>
-		<setting_value>table_cache=512</setting_value>
+		<setting_value>table_cache=52428800</setting_value>
 		<setting_value>connect_timeout=5</setting_value>
 		<setting_value>wait_timeout=5</setting_value>
 		<setting_value>key_buffer_size=402649088</setting_value> 
@@ -27,28 +21,33 @@
 		<setting_value>read_buffer_size=400000</setting_value>
 		<setting_value>join_buffer_size=3200000</setting_value>
 		<setting_value>long_query_time=1</setting_value>
-	 
+		<setting_value>binlog_cache_size=2097152</setting_value>
+		<setting_value>query_cache_size=268435456</setting_value>
+		<setting_value>key_cache_block_size=2048</setting_value>
 	</case>
 
 	<case name="4G内存优化方案" alias="4g">
-		<setting_value>key_buffer=512m</setting_value>
-		<setting_value>max_allowed_packet=4M</setting_value>
-		<setting_value>table_cache=1024</setting_value>
-		<setting_value>thread_cache=64</setting_value>
-		<setting_value>max_heap_table_size=256M</setting_value>
-		<setting_value>myisam_sort_buffer_size=128M</setting_value>
-		<setting_value>sort_buffer=128M</setting_value>
-		<setting_value>thread_concurrency=8</setting_value>
-		<setting_value>record_buffer=2M</setting_value>
+		<setting_value>max_allowed_packet=10000000000</setting_value>
+		<setting_value>table_cache=52428800</setting_value>
 		<setting_value>connect_timeout=5</setting_value>
-		<setting_value>write_buffer=2M</setting_value>
-		<setting_value>read_buffer=2M</setting_value>
-		<setting_value>interactive_timeout=120</setting_value>
-		<setting_value>wait_timeout=120</setting_value>
-		<setting_value>max_connections=512</setting_value>
-		<setting_value>record_buffer=32M</setting_value>
+		<setting_value>wait_timeout=10</setting_value>
+		<setting_value>key_buffer_size=402649088</setting_value> 
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>myisam_sort_buffer_size=640000000</setting_value>
+		<setting_value>thread_cache_size=16</setting_value> 
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>innodb_thread_concurrency=8</setting_value>
+		<setting_value>max_binlog_cache_size=6294963200</setting_value>
+		<setting_value>query_cache_min_res_unit=63200</setting_value>
+		<setting_value>query_alloc_block_size=131072</setting_value>
+		<setting_value>profiling_history_size=100</setting_value>
+		<setting_value>table_cache=4096</setting_value>
+		<setting_value>read_buffer_size=400000</setting_value>
+		<setting_value>join_buffer_size=3200000</setting_value>
 		<setting_value>long_query_time=1</setting_value>
-		<setting_value>join_buffer_size=32M</setting_value>
+		<setting_value>binlog_cache_size=2097152</setting_value>
+		<setting_value>query_cache_size=268435456</setting_value>
+		<setting_value>key_cache_block_size=4096</setting_value>
 	</case>
 
 

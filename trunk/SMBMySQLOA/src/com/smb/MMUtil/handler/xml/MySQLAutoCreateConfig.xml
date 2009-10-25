@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MySQLAutoCreateConfig>
+	<config>
+		<value>[client]</value>
+		<value>port</value>
+		<value>[mysql]</value>
+		<value>default-character-set</value>
+		<value>[mysqld]</value>
+		<value>bind-address</value>
+		<value>basedir</value>
+		<value>datadir</value>
+		<value>default-character-set</value>
+		<value>sql-mode</value>
+		<value>max_connections</value>
+		<value>query_cache_size</value>
+		<value>table_cache</value>
+		<value>tmp_table_size</value>
+		<value>thread_cache_size</value>
+		<value>myisam_max_sort_file_size</value>
+		<value>myisam_sort_buffer_size</value>
+		<value>key_buffer_size</value>
+		<value>read_buffer_size</value>
+		<value>read_rnd_buffer_size</value>
+		<value>sort_buffer_size</value>
+		<value>innodb_additional_mem_pool_size</value>
+		<value>innodb_flush_log_at_trx_commit</value>
+		<value>innodb_log_buffer_size</value>
+		<value>innodb_buffer_pool_size</value>
+		<value>innodb_doublewrite</value>
+		<value>innodb_log_file_size</value>
+		<value>innodb_thread_concurrency</value>
+		<value>wait_timeout</value>
+	</config>
+</MySQLAutoCreateConfig>
+
