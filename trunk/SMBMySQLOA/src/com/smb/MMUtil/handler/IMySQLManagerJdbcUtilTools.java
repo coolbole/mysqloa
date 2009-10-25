@@ -41,4 +41,6 @@ public interface IMySQLManagerJdbcUtilTools {
 	public List  showTableStatus(  ) throws  Exception;
 	
 	public void MySQLOptimize (String Optimize) throws Exception ;
+	
+	public String showVersion(  ) throws  Exception;
 }
