@@ -39,4 +39,6 @@ public interface IMySQLManagerJdbcUtilTools {
 	public List  showDataBases(  ) throws  Exception;
 	
 	public List  showTableStatus(  ) throws  Exception;
+	
+	public void MySQLOptimize (String Optimize) throws Exception ;
 }

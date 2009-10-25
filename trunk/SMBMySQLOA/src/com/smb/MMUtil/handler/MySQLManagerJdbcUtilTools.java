@@ -17,6 +17,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
+import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
@@ -382,6 +384,35 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			connection.close();
 		}
 		return result;
+	}
+
+	
+	static ReadMySQLValueDescriptionXMLFile  read= new ReadMySQLValueDescriptionXMLFile();
+	public void MySQLOptimize(String Optimize) throws Exception {
+		logger.info(Optimize);
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List list=read.getMySQLOptimizeCase();
+		for (int i=0;i<list.size();i++){
+			MySQLOptimizeCase optimizeCase=(MySQLOptimizeCase) list.get(i);
+			if (Optimize.equals(optimizeCase.getAlias() )  ){
+				
+				System.out.println( optimizeCase.getName()  );
+				
+				String commands[]=optimizeCase.getSetCommands().split("\n");
+				for (int h=0;h<commands.length;h++){
+					if (commands[h].length()>4){
+						String SQL="set global " +commands[h].replaceAll("\t", "");
+						System.out.println(" exec SQL SET commands :  "+SQL);
+					
+					 connection.prepareStatement( SQL  ).execute();
+				}
+					}
+					 
+					}
+			
+		}
+		
 	}
 	
 	 
