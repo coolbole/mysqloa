@@ -975,7 +975,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>max_insert_delayed_threads</variable_name>
-	<description></description>
+	<description>同时插入延时的线程数</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
