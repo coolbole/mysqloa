@@ -27,7 +27,7 @@
 		mmu.MySQLOptimize( optimizeCase);
 	
     %>
-	 
+	   <a href="javascript:history.back(-1)">返回上一页</a> <br>
 	您优化了系统了里面的如下配置信息：<br><br>
 		   set global max_connections=1500 <br>
 		   set global max_allowed_packet=4000000000<br>

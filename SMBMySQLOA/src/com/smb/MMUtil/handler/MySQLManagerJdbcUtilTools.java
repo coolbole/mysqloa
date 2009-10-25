@@ -414,6 +414,26 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		}
 		
 	}
+
+	public String showVersion() throws Exception {
+		logger.info( "showProcesslist ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		String  version=  null;
+		try{
+			ResultSet rs=connection.prepareStatement( "SELECT VERSION()"  ).executeQuery();
+			while (rs.next() ){ 
+				version=rs.getString(1);
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return version;
+	}
 	
 	 
 }

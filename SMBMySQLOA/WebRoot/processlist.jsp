@@ -49,11 +49,15 @@
 		    String username=session.getAttribute("username").toString();
 		    String password=session.getAttribute("password").toString();
 		    
-		    out.println("您当前查看的主机是: "+host+" ");
-		    
-		    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
+		     UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 			List proList=mmu.showProcesslistCommand();
+		    
+		    
+		    out.println("这台机器的MySQL版本是: "+mmu.showVersion()+" <br>");
+		    out.println("您当前查看的主机是: "+host+" ");
+		    
+		   
 			
 			int size=proList.size();
 			out.println(mmu.showUptime()+"<br> 当前一共有: "+size+"  个连接 <br><p>");

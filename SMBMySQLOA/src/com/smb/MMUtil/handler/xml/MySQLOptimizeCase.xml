@@ -4,11 +4,9 @@
 	<case name="2G内存优化方案"  alias="2g" >
 		<setting_value>max_connections=1500</setting_value>
 	 	<!-- 
-	 	
 	 	<setting_value>thread_concurrency=8</setting_value>
 	 	<setting_value>record_buffer=200000</setting_value>
 	 	<setting_value>write_buffer=2000000</setting_value>
-	 	<setting_value>read_buffer=2000000</setting_value>
 	 	-->
 		
 		<setting_value>max_allowed_packet=4000000000</setting_value>
@@ -26,6 +24,10 @@
 		<setting_value>query_alloc_block_size=131072</setting_value>
 		<setting_value>profiling_history_size=100</setting_value>
 		<setting_value>table_cache=1024</setting_value>
+		<setting_value>read_buffer_size=400000</setting_value>
+		<setting_value>join_buffer_size=3200000</setting_value>
+		<setting_value>long_query_time=1</setting_value>
+	 
 	</case>
 
 	<case name="4G内存优化方案" alias="4g">
