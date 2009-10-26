@@ -29,9 +29,7 @@
 
 <MySQLVariableDescription>
 	<variable_name>Innodb_buffer_pool_pages_misc</variable_name>
-	<description>忙的页数，因为它们已经被分配优先用作管理，例如行锁定或适用的哈希索引。
-	该值还可以计算为 Innodb_buffer_pool_pages_total - Innodb_buffer_pool_pages_free - Innodb_buffer_pool_pages_data。
-	</description>
+	<description>忙的页数，因为它们已经被分配优先用作管理，例如行锁定或适用的哈希索引。	该值还可以计算为 Innodb_buffer_pool_pages_total - Innodb_buffer_pool_pages_free - Innodb_buffer_pool_pages_data</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

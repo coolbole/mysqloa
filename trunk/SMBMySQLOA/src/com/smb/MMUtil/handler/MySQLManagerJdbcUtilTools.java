@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
+import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
@@ -30,6 +31,8 @@ import com.smb.MMUtil.pojo.TableStatusPojo;
  *
  */
 public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
+	
+	private static ReadMySQLValueDescriptionXMLFile  readXMLFile= new ReadMySQLValueDescriptionXMLFile();
 	
 	private static Log logger = LogFactory.getLog(MySQLManagerJdbcUtilTools.class);
 	
@@ -386,33 +389,47 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
-	
-	static ReadMySQLValueDescriptionXMLFile  read= new ReadMySQLValueDescriptionXMLFile();
-	public void MySQLOptimize(String Optimize) throws Exception {
+	public List MySQLOptimize(String Optimize) throws Exception {
 		logger.info(Optimize);
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
-		List list=read.getMySQLOptimizeCase();
-		for (int i=0;i<list.size();i++){
-			MySQLOptimizeCase optimizeCase=(MySQLOptimizeCase) list.get(i);
-			if (Optimize.equals(optimizeCase.getAlias() )  ){
-				
-				System.out.println( optimizeCase.getName()  );
-				
-				String commands[]=optimizeCase.getSetCommands().split("\n");
-				for (int h=0;h<commands.length;h++){
-					if (commands[h].length()>4){
-						String SQL="set global " +commands[h].replaceAll("\t", "");
-						System.out.println(" exec SQL SET commands :  "+SQL);
-					
-					 connection.prepareStatement( SQL  ).execute();
-				}
-					}
-					 
-					}
-			
-		}
+		List optimizedList= new ArrayList();
 		
+		try{
+			connection=UtilBaseTools.getConnection();
+			List list=readXMLFile.getMySQLOptimizeCase();
+			for (int i=0;i<list.size();i++){
+				MySQLOptimizeCase optimizeCase=(MySQLOptimizeCase) list.get(i);
+				if (Optimize.equals(optimizeCase.getAlias() )  ){
+					
+					System.out.println( optimizeCase.getName()  );
+					
+					String commands[]=optimizeCase.getSetCommands().split("\n");
+					for (int h=0;h<commands.length;h++){
+						String value=commands[h].replaceAll("\t", "").split("=")[0] ;
+						
+						if (commands[h].length()>4){
+							String SQL="set global " +commands[h].replaceAll("\t", "");
+							
+							MySQLVariableObject table_cache= showDetailVaribles(value)  ;
+							if (table_cache !=null  ){
+								logger.info(SQL);
+								connection.prepareStatement( SQL  ).execute();
+								optimizedList.add(commands[h].replaceAll("\t", ""));
+								}   // if table_cache
+						}  //if 
+						}  // for
+						 
+						}   //if  Optimize.equals
+				
+			}
+			}
+		catch(Exception e) {
+			e.printStackTrace();
+			}
+		finally {
+			connection.close();
+		}
+		return optimizedList;
 	}
 
 	public String showVersion() throws Exception {
@@ -433,6 +450,43 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			connection.close();
 		}
 		return version;
+	}
+	
+	private static String MySQLDataDirPATH="datadir=";
+	private static String _MySQLDataDirPATH="datadir";
+	
+	
+	private static String MySQLBaseDirPATH="basedir=";
+	private static String _MySQLBaseDirPATH="basedir";
+	
+	public String CreateAutoCreateConfig(String Config) throws Exception {
+		logger.info( "CreateAutoCreateConfig ......................." );
+		List <MySQLAutoConfigCase> list=readXMLFile.getMySQLAutoConfigCase();
+		String configFile=null;
+			for (int i=0;i<list.size();i++){
+				if (Config.equals(list.get(i).getAlias() )  ) {
+				
+ 				  configFile=list.get(i).getConfigs() ;
+				  
+				  configFile=configFile.split("basedir")[0]+
+				  MySQLBaseDirPATH+ showDetailVaribles(_MySQLBaseDirPATH).getValue()+
+				  configFile.split("basedir")[1].substring(1) ;
+				
+				 configFile=configFile.split("datadir")[0] +
+				  MySQLDataDirPATH+ showDetailVaribles(_MySQLDataDirPATH).getValue() +
+				 configFile.split("datadir")[1].substring(1) ;
+				 
+				 
+				 if (showDetailVaribles("table_cache")==null){
+					 configFile=configFile.replaceAll("table_cache=256M", "");
+				 }
+				 if (showDetailVaribles("table_open_cache")==null){
+					 configFile=configFile.replaceAll("table_open_cache=256M", "");
+				 }
+				
+				}
+			}
+		return configFile;
 	}
 	
 	 

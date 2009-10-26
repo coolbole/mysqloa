@@ -23,11 +23,11 @@ public class MapCompare {
 	
 	@Test
 	public void showMasterReplicationStatus () throws Exception{
-		UtilBaseTools orm= new UtilBaseTools("192.168.1.2",null,"root","123456");
+		UtilBaseTools orm= new UtilBaseTools("192.168.12.78",null,"root","123456");
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-		 mmu.MySQLOptimize("2g") ;
-		
+		String list= mmu.CreateAutoCreateConfig("4g");
+		System.out.println (list);
 		 
 		
 	}
