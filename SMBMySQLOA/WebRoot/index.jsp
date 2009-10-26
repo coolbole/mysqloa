@@ -7,7 +7,7 @@
   
   <body>
      <br>
-    <FORM METHOD="POST" ACTION="processlist.jsp">
+    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/showProcessListAction.action">
 	host:<INPUT TYPE="text" NAME="host" value="<%=request.getServerName()%>">(mysql主机地址)<br>
 	username:<INPUT TYPE="text" NAME="username" value="root">(用户名)<br>
 	password:<INPUT TYPE="text" NAME="password" value="123456">(密码)<br>

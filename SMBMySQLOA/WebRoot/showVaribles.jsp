@@ -10,22 +10,17 @@
      <title>Mysql Optimize Analysis</title>
   </head>
 
-  <body> <a href="javascript:history.back(-1)">返回上一页</a> <br>
+  <body> 
+ <CENTER>
+    <b><FONT SIZE="6" COLOR="#993333">查看 MySQL数据库 当前所有配置参数  </FONT></b>
+  </CENTER>
+  
+  <a href="javascript:history.back(-1)">返回上一页</a> <br>
     <% 
-    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
-    
-    String host=session.getAttribute("host").toString() ;
-    String username=session.getAttribute("username").toString();
-    String password=session.getAttribute("password").toString();
-    
-    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-	IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 	
-	ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
-	List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
-	
-	List <MySQLVariableObject> listS=mmu.showVariblesCommand();
-	
+	List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
+	List <MySQLVariableDescription> listF=(List)request.getAttribute("listF");
+		
 		for (int i=0;i<listS.size();i++){
 				
 		for (int h=0;h<listF.size();h++){

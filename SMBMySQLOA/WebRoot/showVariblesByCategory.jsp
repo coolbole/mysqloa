@@ -11,25 +11,21 @@
   </head>
 
   <body> 
-  <a href="javascript:history.back(-1)">返回上一页</a> <br>
+  
     <% 
     String category=request.getParameter("category");
-    
-    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
-    
-    String host=session.getAttribute("host").toString() ;
-    String username=session.getAttribute("username").toString();
-    String password=session.getAttribute("password").toString();
+    %>
     
     
-    
-    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-	IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+    <CENTER>
+    <b><FONT SIZE="6" COLOR="#993333">查看 MySQL数据库 当前<%=category%>配置参数  </FONT></b>
+    </CENTER>
+    <br>
+    <a href="javascript:history.back(-1)">返回上一页</a> <br>
+    <%
 	
-	ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
-	List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
-	
-	List <MySQLVariableObject> listS=mmu.showVariblesCommandByCategory(category);
+	List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
+	List <MySQLVariableDescription> listF=(List)request.getAttribute("listF");
 	
 			for (int i=0;i<listS.size();i++){
 				

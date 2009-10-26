@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	 
+ 
+<servlet>  
+	  <servlet-name>ShowProcessListAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.ShowProcessListAction</servlet-class>  
+  </servlet>  
+  <servlet>  
+	  <servlet-name>ShowSatusAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.ShowSatusAction</servlet-class>  
+  </servlet>  
+  
+   <servlet>  
+	  <servlet-name>ShowVariblesAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.ShowVariblesAction</servlet-class>  
+  </servlet> 
+  
+   <servlet>  
+	  <servlet-name>ShowVariblesByCategoryAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.ShowVariblesByCategoryAction</servlet-class>  
+  </servlet> 
+  
+   
+  <servlet-mapping>  
+	  <servlet-name>ShowProcessListAction</servlet-name>  
+	  <url-pattern>/showProcessListAction.action</url-pattern>  
+  </servlet-mapping>  
+  
+  <servlet-mapping>  
+	  <servlet-name>ShowSatusAction</servlet-name>  
+	  <url-pattern>/showSatusAction.action</url-pattern>  
+  </servlet-mapping>
+     
+ <servlet-mapping>  
+	  <servlet-name>ShowVariblesAction</servlet-name>  
+	  <url-pattern>/showVariblesAction.action</url-pattern>  
+  </servlet-mapping>  
+
+  <servlet-mapping>  
+	  <servlet-name>ShowVariblesByCategoryAction</servlet-name>  
+	  <url-pattern>/showVariblesByCategoryAction.action</url-pattern>  
+  </servlet-mapping>  
+
+
+
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
 </web-app>

@@ -1,36 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <MySQLAutoCreateConfig>
-	<config>
+	 <case name="2G内存配置文件设置方案"  alias="2g" >
 		<value>[client]</value>
-		<value>port</value>
+		<value>port=3306</value>
+		
 		<value>[mysql]</value>
-		<value>default-character-set</value>
+		<value>default-character-set=utf8</value>
+		
 		<value>[mysqld]</value>
-		<value>bind-address</value>
-		<value>basedir</value>
-		<value>datadir</value>
-		<value>default-character-set</value>
-		<value>sql-mode</value>
-		<value>max_connections</value>
-		<value>query_cache_size</value>
-		<value>table_cache</value>
-		<value>tmp_table_size</value>
-		<value>thread_cache_size</value>
-		<value>myisam_max_sort_file_size</value>
-		<value>myisam_sort_buffer_size</value>
-		<value>key_buffer_size</value>
-		<value>read_buffer_size</value>
-		<value>read_rnd_buffer_size</value>
-		<value>sort_buffer_size</value>
-		<value>innodb_additional_mem_pool_size</value>
-		<value>innodb_flush_log_at_trx_commit</value>
-		<value>innodb_log_buffer_size</value>
-		<value>innodb_buffer_pool_size</value>
-		<value>innodb_doublewrite</value>
-		<value>innodb_log_file_size</value>
-		<value>innodb_thread_concurrency</value>
-		<value>wait_timeout</value>
-	</config>
+		<value>bind-address=0.0.0.0</value>
+		<value>basedir=</value>
+		<value>datadir=</value>
+		<value>default-character-set=utf8</value>
+		<value>max_connections=1000</value>
+		<value>query_cache_size=64M</value>
+		<value>query_cache_min_res_unit=6</value>
+		<value>query_alloc_block_size=1128M</value>
+		<value>key_cache_block_size=2048</value>
+		<value>tmp_table_size=32M</value>
+		<value>thread_cache_size=8</value>
+		<value>key_buffer_size=512M</value>
+		<value>read_buffer_size=4096K</value>
+		<value>sort_buffer_size=64M</value>
+		<value>innodb_additional_mem_pool_size=256M</value>
+		<value>innodb_flush_log_at_trx_commit=1</value>
+		<value>innodb_log_buffer_size=4M</value>
+		<value>innodb_buffer_pool_size=500M</value>
+		<value>innodb_doublewrite=0</value>
+		<value>innodb_log_file_size=100M</value>
+		<value>innodb_thread_concurrency=8</value>
+ 		<value>innodb_lock_wait_timeout=10</value>
+		<value>wait_timeout=10</value>
+		<value>back_log=80</value>
+		<value>table_cache=256M</value>
+		<value>table_open_cache=128M</value>
+		<value>binlog_cache_size=20M</value>
+		
+		<value>[mysqldump]</value>
+		<value>quick</value>
+		<value>max_allowed_packet=256M</value>
+	</case>
+	
+	 <case name="4G内存配置文件设置方案"  alias="4g" >
+		<value>[client]</value>
+		<value>port=3306</value>
+		
+		<value>[mysql]</value>
+		<value>default-character-set=utf8</value>
+		
+		<value>[mysqld]</value>
+		<value>bind-address=0.0.0.0</value>
+		<value>basedir=</value>
+		<value>datadir=</value>
+		<value>default-character-set=utf8</value>
+		<value>max_connections=2000</value>
+		<value>query_cache_size=128M</value>
+		<value>query_cache_min_res_unit=12</value>
+		<value>query_alloc_block_size=256M</value>
+		<value>key_cache_block_size=2048</value>
+		<value>tmp_table_size=64M</value>
+		<value>thread_cache_size=8</value>
+		<value>key_buffer_size=512M</value>
+		<value>read_buffer_size=4096K</value>
+		<value>sort_buffer_size=128M</value>
+		<value>innodb_additional_mem_pool_size=256M</value>
+		<value>innodb_flush_log_at_trx_commit=1</value>
+		<value>innodb_log_buffer_size=4M</value>
+		<value>innodb_buffer_pool_size=800M</value>
+		<value>innodb_doublewrite=0</value>
+		<value>innodb_log_file_size=200M</value>
+		<value>innodb_thread_concurrency=8</value>
+ 		<value>innodb_lock_wait_timeout=10</value>
+		<value>wait_timeout=10</value>
+		<value>back_log=80</value>
+		<value>table_cache=256M</value>
+		<value>table_open_cache=256M</value>
+		<value>binlog_cache_size=20M</value>
+		
+		<value>[mysqldump]</value>
+		<value>quick</value>
+		<value>max_allowed_packet=256M</value>
+	</case>
+	
 </MySQLAutoCreateConfig>
-
+ 
+		 

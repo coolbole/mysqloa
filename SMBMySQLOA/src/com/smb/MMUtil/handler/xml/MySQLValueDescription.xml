@@ -28,11 +28,11 @@
 
 <MySQLVariableDescription>
 	<variable_name>back_log</variable_name>
-	<description>
-	MySQL有的主要连接请求的数量。当主MySQL线程在短时间内得到许多连接请求时发挥作用。
-	主线程需要花一些时间(尽管很少)来检查连接并启动一个新线程。back_log值说明MySQL临时停止响应新请求前在短时间内可以堆起多少请求。
-	如果你需要在短时间内允许大量连接，可以增加该数值。换句话说，该值为“进”TCP/IP连接帧听队列的大小。操作系统有该队列自己的限制值。
-	本手册中Unix listen()系统调用页应有更详细的信息。该变量最大值请查阅OS文档。企图将back_log设置为高于你的操作系统限值是徒劳无益的。</description>
+	<description>指定到来的TCP/IP连接的侦听队列大小 因操作系统不同而不同，LINUX系统推荐小于512的整数，一般设置成300 50 
+MySQL有的主要连接请求的数量。当主MySQL线程在短时间内得到许多连接请求时发挥作用。
+主线程需要花一些时间(尽管很少)来检查连接并启动一个新线程。back_log值说明MySQL临时停止响应新请求前在短时间内可以堆起多少请求。
+如果你需要在短时间内允许大量连接，可以增加该数值。换句话说，该值为“进”TCP/IP连接帧听队列的大小。操作系统有该队列自己的限制值。
+本手册中Unix listen()系统调用页应有更详细的信息。该变量最大值请查阅OS文档。企图将back_log设置为高于你的操作系统限值是徒劳无益的。</description>
 </MySQLVariableDescription>
 
 
@@ -455,7 +455,7 @@ ySQL的基础上为那些经常访问这些网页的需求指数散列索引。
 
 <MySQLVariableDescription>
 	<variable_name>innodb_additional_mem_pool_size</variable_name>
-	<description> InnoDB 用来存储数据字典(data dictionary)信息和其它内部数据结构(internal data structures)的存储器组合(memory pool)大小。
+	<description>INNODB附加内存缓存池大小 用于存放数据目录信息和其他内部数据结构 20M左右 1048576 （1M） ,InnoDB 用来存储数据字典(data dictionary)信息和其它内部数据结构(internal data structures)的存储器组合(memory pool)大小。
 	理想的值为 2M，如果有更多的表你就需要在这里重新分配。如果 InnoDB 用尽这个池中的所有内存，
 	它将从操作系统中分配内存，并将错误信息写入 MySQL 的错误日志中。在 my.cnf 中以数字格式设置。设置日志文件的大小约为  缓冲池(buffer pool)  大小的 25 %</description>
 	<isEdit>-1</isEdit>
@@ -489,7 +489,7 @@ ySQL的基础上为那些经常访问这些网页的需求指数散列索引。
 
 <MySQLVariableDescription>
 	<variable_name>innodb_buffer_pool_size</variable_name>
-	<description> InnoDB 用来高速缓冲数据和索引内存缓冲大小。 更大的设置可以使访问数据时减少磁盘 I/O。在一个专用的数据库服务器上可以将它设置为物理内存的 80 %。 
+	<description>INNODB缓冲池大小 用于缓存表的数据与索引 内存的80%  8388608 （8M） ,InnoDB 用来高速缓冲数据和索引内存缓冲大小。 更大的设置可以使访问数据时减少磁盘 I/O。在一个专用的数据库服务器上可以将它设置为物理内存的 80 %。 
 	不要将它设置太大，因为物理内存的使用竞争可能会影响操作系统的页面调用。 </description>
 </MySQLVariableDescription>
 
@@ -563,7 +563,7 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 
 <MySQLVariableDescription>
 	<variable_name>innodb_flush_log_at_trx_commit</variable_name>
-	<description> 通常设置为 1，意味着在事务提交前日志已被写入磁盘， 事务可以运行更长以及服务崩溃后的修复能力。如果你愿意减弱这个安全，或你运行的是比较小的事务处理，可以将它设置为 0 ，以减少写日志文件的磁盘 I/O。这个选项默认设置为 0。
+	<description> 提交事务日志刷新方式 0.不刷新事务提交1.刷新到磁盘2.刷新到操作系统缓存 2.刷新到操作系统缓存.后果：除非操作系统崩溃或停电会损失1秒的事务提交记录 　,通常设置为 1，意味着在事务提交前日志已被写入磁盘， 事务可以运行更长以及服务崩溃后的修复能力。如果你愿意减弱这个安全，或你运行的是比较小的事务处理，可以将它设置为 0 ，以减少写日志文件的磁盘 I/O。这个选项默认设置为 0。
 	当innodb_flush_log_at_trx_commit被 设置为0，日志缓冲每秒一次地被写到日志文件，并且对日志文件做到磁盘操作的刷新，但是在一个事务提交不做任何操作。当这个值为1（默认值）之时，在每个事务提交时，日志缓冲被写到日志文件，对日志文件做到磁盘操作的刷新。
 	当设置为2之时，在每个提交，日志缓冲被写到文件，但不对日志文件做到磁盘操作的刷新。尽管如此，在对日志文件的刷新在值为2的情况也每秒发生一次。我们必须注意到，因为进程安排问题，每秒一次的刷新不是100%保证每秒都发生。
 	你可以通过设置这个值不为1来获得较好的性能，但随之你会在一次崩溃中损失二分之一价值的事务。
@@ -625,13 +625,13 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 
 <MySQLVariableDescription>
 	<variable_name>innodb_log_buffer_size</variable_name>
-	<description>InnoDB 将日志写入日志磁盘文件前的缓冲大小。理想值为 1M 至 8M。大的日志缓冲允许事务运行时不需要将日志保存入磁盘而只到事务被提交(commit)。 
+	<description>每个日志文件缓存大小 优化高强度写入与短事务处理能力 8-16M 1048576 （1M） ,InnoDB 将日志写入日志磁盘文件前的缓冲大小。理想值为 1M 至 8M。大的日志缓冲允许事务运行时不需要将日志保存入磁盘而只到事务被提交(commit)。 
 	因此，如果有大的事务处理，设置大的日志缓冲可以减少磁盘I/O。 在 my.cnf 中以数字格式设置。推荐大小为1MB~8MB</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>innodb_log_file_size</variable_name>
-	<description>日志组中的每个日志文件的大小(单位 MB)。如果 n 是日志组中日志文件的数目，那么理想的数值为 1M 至下面设置的缓冲池(buffer pool)大小的 1/n。
+	<description>每个日志文件大小 用于存放日志 64-512M 5242880  （5M）32位机器小于4G ,日志组中的每个日志文件的大小(单位 MB)。如果 n 是日志组中日志文件的数目，那么理想的数值为 1M 至下面设置的缓冲池(buffer pool)大小的 1/n。
 	较大的值，可以减少刷新缓冲池的次数，从而减少磁盘 I/O。但是大的日志文件意味着在崩溃时需要更长的时间来恢复数据。 
 	日志文件总和必须小于 2 GB，3.23.55 和 4.0.9 以上为小于 4 GB。在 my.cnf 中以数字格式设置。
 	说明：这个值分配的大小和数据库的写入速度，事务大小，异常重启后的恢复有很大的关系。
@@ -752,10 +752,8 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>join_buffer_size</variable_name>
-	<description> 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享。
-	用于完全联接的缓冲区的大小(当不使用索引的时候使用联接操作)。一般情况获得快速联接的最好方法是添加索引。
-	当增加索引时不可能通过增加join_buffer_size值来获得快速完全联接。
-	将为两个表之间的每个完全联接分配联接缓冲区。对于多个表之间不使用索引的复杂联接，需要多联接缓冲区。</description>
+	<description>联合查询操作缓存大小 优化联合查询操作缓存空间 8M 130K ,联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享。用于完全联接的缓冲区的大小(当不使用索引的时候使用联接操作)。
+一般情况获得快速联接的最好方法是添加索引。当增加索引时不可能通过增加join_buffer_size值来获得快速完全联接。将为两个表之间的每个完全联接分配联接缓冲区。对于多个表之间不使用索引的复杂联接，需要多联接缓冲区。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -765,13 +763,11 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>key_buffer_size</variable_name>
-	<description>key_buffer_size指定用于索引的缓冲区大小，增加它可得到更好的索引处理性能。对于内存在4GB左右的服务器该参数可设置为256M或384M。
+	<description>索引缓存大小 优化索引的缓冲区大小 根据*.MYI的文件大小进行设置，没有MYISAM表的情况下保留16-32M提供磁盘临时表索引用 . key_buffer_size指定用于索引的缓冲区大小，增加它可得到更好的索引处理性能。对于内存在4GB左右的服务器该参数可设置为256M或384M。
 	注意：该参数值设置的过大反而会是服务器整体效率降低！key_buffer_sizeO表示索引缓冲区的大小，严格说是它决定了数据库索引处理的速度，尤其是索引读的速度。
-	根据网络一些高手写的文章表示可以检查状态值Key_read_requests和Key_reads，即可知道key_buffer_size设置是否合理。
-	比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好，虽然我还没有找到理论的依据，
-	但是，我在自己维护的几台实际运行良好的库做过的测试后表明，这个比值接近1：20000，这从结果证明了他们说这话的正确性。索引块是缓冲的并且被所有的线程共享。
-	key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。
-	如果你使它太大，系统将开始换页并且真的变慢了。默认数值是8388600(8M)，我的 MySQL主机有2GB内存，所以我把它改为402649088(400MB)</description>
+根据网络一些高手写的文章表示可以检查状态值Key_read_requests和Key_reads，即可知道key_buffer_size设置是否合理。比例key_reads / key_read_requests应该尽可能的低，至少是1:100，1:1000更好，虽然我还没有找到理论的依据，
+但是，我在自己维护的几台实际运行良好的库做过的测试后表明，这个比值接近1：20000，这从结果证明了他们说这话的正确性。索引块是缓冲的并且被所有的线程共享。
+key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。如果你使它太大，系统将开始换页并且真的变慢了。默认数值是8388600(8M)，我的 MySQL主机有2GB内存，所以我把它改为402649088(400MB)</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1071,7 +1067,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>myisam_sort_buffer_size</variable_name>
-	<description>当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区。</description>
+	<description>查询排序缓存大小 优化排序缓存空间 6M 2M ,当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1343,7 +1339,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>query_cache_size</variable_name>
-	<description> 在官方文档上介绍说这个值被设置到256m已经是足够了，默认值是1，一般保守的值是32m</description>
+	<description>查询缓存大小 提高缓存命中率 32-512M 0 ,在官方文档上介绍说这个值被设置到256m已经是足够了，默认值是1，一般保守的值是32m</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1387,7 +1383,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>read_buffer_size</variable_name>
-	<description> 每个线程连续扫描时为扫描的每个表分配的缓冲区的大小(字节)。如果进行多次连续扫描，可能需要增加该值， 默认值为131072。</description>
+	<description> 读查询缓存大小 优化读查询操作缓存空间 4M 130K ,每个线程连续扫描时为扫描的每个表分配的缓冲区的大小(字节)。如果进行多次连续扫描，可能需要增加该值， 默认值为131072。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1734,7 +1730,7 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 
 <MySQLVariableDescription>
 	<variable_name>table_open_cache</variable_name>
-	<description>table_cache (新版本改成了table_open_cache)</description>
+	<description>表缓存 缓存已打开的表 1024 64 ,table_cache (新版本改成了table_open_cache)</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1763,18 +1759,12 @@ InnoDB试着在InnoDB内保持操作系统线程的数量少于或等于这个�
 	</description>
 </MySQLVariableDescription>
 
-
-
-
 <MySQLVariableDescription>
 	<variable_name>thread_cache_size</variable_name>
-	<description> 这个值表示可以重新利用保存在缓存中线程的数量,当断开连接时如果缓存中还有空间,那么客户端的线程将被放到缓存中,如果线程重新被请求，
-	那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，增加这个值可以改善系统性能.
-	通过比较 Connections 和 Threads_created 状态的变量，可以看到这个变量的作用。(–>表示要调整的值) 
-	根据物理内存设置规则如下： 1G —> 8 2G —> 16 3G —> 32 >3G —> 64 。
-	 服务器应缓存多少线程以便重新使用。当客户端断开连接时，如果线程少于thread_cache_size，则客户端的线程被放入缓存。
-	 当请求线程时如果允许可以从缓存中重新利用线程，并且只有当缓存空了时才会创建新线程。如果新连接很多，可以增加该变量以提高性能。
-	(一般情况，如果线程执行得很好，性能提高不明显)。检查Connections和Threads_created状态变量的差,可以看见线程缓存的效率。</description>
+	<description> 线程缓存大小 它的目的是在通常的操作中无需创建新线程。 至少16 0 ,这个值表示可以重新利用保存在缓存中线程的数量,当断开连接时如果缓存中还有空间,那么客户端的线程将被放到缓存中,如果线程重新被请求，
+那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，增加这个值可以改善系统性能.通过比较 Connections 和 Threads_created 状态的变量，可以看到这个变量的作用。(–>表示要调整的值) 
+根据物理内存设置规则如下： 1G —> 8 2G —> 16 3G —> 32 >3G —> 64 。服务器应缓存多少线程以便重新使用。当客户端断开连接时，如果线程少于thread_cache_size，则客户端的线程被放入缓存。当请求线程时如果允许可以从缓存中重新利用线程，并且只有当缓存空了时才会创建新线程。如果新连接很多，可以增加该变量以提高性能。
+(一般情况，如果线程执行得很好，性能提高不明显)。检查Connections和Threads_created状态变量的差,可以看见线程缓存的效率。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

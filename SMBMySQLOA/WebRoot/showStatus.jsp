@@ -10,34 +10,19 @@
      <title>Mysql Optimize Analysis</title>
   </head>
 
-  <body>
+  <body> 
+  <CENTER>
+    <b><FONT SIZE="6" COLOR="#336600">查看 MySQL数据库 当前使用 状态 </FONT></b>
+  </CENTER>
+  <%=request.getAttribute("warn")%>
+  <br>
   <a href="javascript:history.back(-1)">返回上一页</a> <br>
+  	
     <% 
-    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
-    
-    String host=session.getAttribute("host").toString() ;
-    String username=session.getAttribute("username").toString();
-    String password=session.getAttribute("password").toString();
-    
-    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-	IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 	
-	ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
-	List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLStatusDescription();
-	
-	List <MySQLVariableObject> listS=null;
-	String category=request.getParameter("category");
-	
-	if(category==null){
-		listS=mmu.showStatusCommand( );
-	}
-	else{
-		listS=mmu.showStatusCommandByCategory(category);
-		if(category.equals("cache")){
-		out.print ("<b> 提示：如果该页面出现的 “0” 值 比较多的话，说明您的MySQL数据库基本没有很好的优化，如果具有非“0”的值请检查是否被合理使用。</b><br>  "  ); 
-		}
-	}
-	
+		List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
+		List <MySQLVariableDescription> listF=(List)request.getAttribute("listF");
+		 
 	
 		for (int i=0;i<listS.size();i++){
 				
@@ -50,7 +35,7 @@
 		 }
 	}
 	 
-    %>
+   %>
      <a href="javascript:history.back(-1)"></>返回上一页</a> <br>
      
      <br>

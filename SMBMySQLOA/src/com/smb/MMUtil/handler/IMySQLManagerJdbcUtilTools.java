@@ -40,7 +40,10 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public List  showTableStatus(  ) throws  Exception;
 	
-	public void MySQLOptimize (String Optimize) throws Exception ;
+	public List MySQLOptimize (String Optimize) throws Exception ;
 	
-	public String showVersion(  ) throws  Exception;
+	public String showVersion (  ) throws  Exception;
+	
+	public  String CreateAutoCreateConfig ( String Config ) throws  Exception;
+	
 }

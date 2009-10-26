@@ -12,19 +12,19 @@
   <body>
   <A HREF="index.jsp">退出</A> <br><br>
   
-  <A HREF="showVaribles.jsp">查看系统当前所有配置参数</A>    <br>
-  <A HREF="showVariblesByCategory.jsp?category=innodb">查看系统当前 Innodb 属性的所有配置参数</A><br>
-  <A HREF="showVariblesByCategory.jsp?category=time">查看系统当前 Time 属性的所有配置参数</A><br>
-  <A HREF="showVariblesByCategory.jsp?category=cache">查看系统当前  缓存 属性的所有配置参数</A><br>
+  <A HREF="showVariblesAction.action">查看系统当前所有配置参数</A>    <br>
+  <A HREF="showVariblesByCategoryAction.action?category=innodb">查看系统当前 Innodb 属性的所有配置参数</A><br>
+  <A HREF="showVariblesByCategoryAction.action?category=time">查看系统当前 Time 属性的所有配置参数</A><br>
+  <A HREF="showVariblesByCategoryAction.action?category=cache">查看系统当前  缓存 属性的所有配置参数</A><br>
    
    
    <br><br><br>
-   <A HREF="showStatus.jsp">查看系统当前所有状态</A>  <br> 
-   <A HREF="showStatus.jsp?category=innodb">查看系统当前 Innodb 状态</A> <br>
-   <A HREF="showStatus.jsp?category=select">查看系统当前 select查询语句使用的状态</A> <br>
-   <A HREF="showStatus.jsp?category=sort">查看系统当前sort排序语句使用的状态</A> <br>
-   <A HREF="showStatus.jsp?category=cache">查看系统当前 缓存 使用的状态</A> <br>
-   <A HREF="showStatus.jsp?category=buffer">查看系统当前buffer 使用的状态</A> <br>
+   <A HREF="showSatusAction.action">查看系统当前所有状态</A>  <br> 
+   <A HREF="showSatusAction.action?category=innodb">查看系统当前 Innodb 状态</A> <br>
+   <A HREF="showSatusAction.action?category=select">查看系统当前 select查询语句使用的状态</A> <br>
+   <A HREF="showSatusAction.action?category=sort">查看系统当前sort排序语句使用的状态</A> <br>
+   <A HREF="showSatusAction.action?category=cache">查看系统当前 缓存 使用的状态</A> <br>
+   <A HREF="showSatusAction.action?category=buffer">查看系统当前buffer 使用的状态</A> <br>
    <br><br>
    
    <A HREF="showDataBase.jsp">查看系统每个表使用的状况</A><br><br>
@@ -35,33 +35,11 @@
    
     <% 
     	try{
-	    String Rhost=request.getParameter("host");
-	    String Rusername=request.getParameter("username");
-	    String Rpassword=request.getParameter("password");
-	    
-	    
-	    session.setMaxInactiveInterval(-1);
-	    session.setAttribute("host",Rhost);
-	    session.setAttribute("username",Rusername); 
-	    session.setAttribute("password",Rpassword); 
-	    
-	    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
-		    String host=session.getAttribute("host").toString() ;
-		    String username=session.getAttribute("username").toString();
-		    String password=session.getAttribute("password").toString();
-		    
-		     UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-			List proList=mmu.showProcesslistCommand();
-		    
-		    
-		    out.println("这台机器的MySQL版本是: "+mmu.showVersion()+" <br>");
-		    out.println("您当前查看的主机是: "+host+" ");
-		    
-		   
-			
+		    out.println("这台机器的MySQL版本是: "+request.getAttribute("version")+" <br>");
+		    out.println("您当前查看的主机是: "+request.getAttribute("host")+" ");
+			List proList=(List)request.getAttribute("proList");
 			int size=proList.size();
-			out.println(mmu.showUptime()+"<br> 当前一共有: "+size+"  个连接 <br><p>");
+			out.println(request.getAttribute("uptime")+"<br> 当前一共有: "+size+"  个连接 <br><p>");
 		%>
 		
 		<table width="78%" border="1" cellpadding="0" bordercolorlight="#999999" bordercolordark="#FFFFFF" cellspacing="0"  > 

@@ -10,7 +10,6 @@
 		<setting_value>key_buffer_size=402649088</setting_value> 
 		<setting_value>sort_buffer_size=1280000</setting_value>
 		<setting_value>myisam_sort_buffer_size=640000000</setting_value>
-		<setting_value>thread_cache_size=16</setting_value> 
 		<setting_value>sort_buffer_size=1280000</setting_value>
 		<setting_value>innodb_thread_concurrency=8</setting_value>
 		<setting_value>max_binlog_cache_size=6294963200</setting_value>
@@ -24,6 +23,9 @@
 		<setting_value>binlog_cache_size=2097152</setting_value>
 		<setting_value>query_cache_size=268435456</setting_value>
 		<setting_value>key_cache_block_size=2048</setting_value>
+		<setting_value>thread_cache_size=8</setting_value>
+		<setting_value>table_open_cache=21214400</setting_value>
+		
 	</case>
 
 	<case name="4G内存优化方案" alias="4g">
@@ -34,7 +36,6 @@
 		<setting_value>key_buffer_size=402649088</setting_value> 
 		<setting_value>sort_buffer_size=1280000</setting_value>
 		<setting_value>myisam_sort_buffer_size=640000000</setting_value>
-		<setting_value>thread_cache_size=16</setting_value> 
 		<setting_value>sort_buffer_size=1280000</setting_value>
 		<setting_value>innodb_thread_concurrency=8</setting_value>
 		<setting_value>max_binlog_cache_size=6294963200</setting_value>
@@ -48,6 +49,8 @@
 		<setting_value>binlog_cache_size=2097152</setting_value>
 		<setting_value>query_cache_size=268435456</setting_value>
 		<setting_value>key_cache_block_size=4096</setting_value>
+		<setting_value>thread_cache_size=8</setting_value>
+		<setting_value>table_open_cache=52428800</setting_value>
 	</case>
 
 

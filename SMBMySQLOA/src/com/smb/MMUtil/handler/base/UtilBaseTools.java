@@ -71,7 +71,7 @@ public class  UtilBaseTools  {
 	private static String passwd;
 	
 	public Connection getConnection() throws  Exception{
-		logger.info("getConnection .................... ");
+		logger.info("getConnection .................... \n");
 		try{
 			if (db==null){ 
 				db="";

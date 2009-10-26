@@ -23,6 +23,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.thoughtworks.xstream.XStream;
@@ -35,6 +36,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class ReadMySQLValueDescriptionXMLFile {
 	
 	private static Log logger = LogFactory.getLog(ReadMySQLValueDescriptionXMLFile.class);
+	
 	private static String mySQLValueDescriptionXMLFile = ReadMySQLValueDescriptionXMLFile.class.
 							 getResource ("MySQLValueDescription.xml").getFile();
 	
@@ -44,12 +46,18 @@ public class ReadMySQLValueDescriptionXMLFile {
 	private static String mySQLStatusDescriptionXMLFile = ReadMySQLValueDescriptionXMLFile.class.
 	 getResource ("MySQLStatusDescription.xml").getFile();
 	
+	private static String mySQLAutoCreateConfigXMLFile = ReadMySQLValueDescriptionXMLFile.class.
+	 getResource ("MySQLAutoCreateConfig.xml").getFile();
+	
+	
 	private static XStream xstream = new XStream(new DomDriver());
 	private static MySQLVariableDescription   description= new MySQLVariableDescription();
 	private static  Map cache= new HashMap ();
 	private static String CacheVariableDescription="cacheVariableDescription";
 	private static String CacheStatusDescription="cacheStatusDescription";
 	private static String CacheOptimizeCase="cacheOptimizeCase";
+	private static String CacheAutoConfigCase="cacheAutoConfigCase";
+	
 	
 	public List getMySQLVariableDescription()  throws  Exception {
 		logger.info( "get MySQLVariableDescription ....................." );
@@ -99,6 +107,47 @@ public class ReadMySQLValueDescriptionXMLFile {
 		return list;
 	}
 	
+	
+	public List getMySQLAutoConfigCase()  throws  Exception {
+		logger.info( "get getMySQLAutoConfigCase ....................." );
+		List   list=new ArrayList();
+		
+		try {
+			if (cache.get(CacheAutoConfigCase)!=null){
+				logger.info("Cache MySQL AutoCreateConfig XML File  ....................");
+				list=(List<MySQLAutoConfigCase>) cache.get(CacheAutoConfigCase);
+			}
+			else{
+				logger.info(" Read  mySQL AutoCreateConfig XML File   ....................");
+				File f=new File(mySQLAutoCreateConfigXMLFile); 
+				DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance(); 
+				DocumentBuilder builder=factory.newDocumentBuilder(); 
+				Document doc = builder.parse(f); 
+				 
+				NodeList nodelist = doc.getElementsByTagName("case");
+				int size = nodelist.getLength();
+				for(int i=0; i<size; i++){
+					MySQLAutoConfigCase  autoConfigCase= new MySQLAutoConfigCase();
+					Node node = nodelist.item(i);
+					String content = node.getTextContent() ;
+					autoConfigCase.setName(node.getAttributes().getNamedItem("name").getNodeValue());
+					autoConfigCase.setAlias(node.getAttributes().getNamedItem("alias").getNodeValue());
+					autoConfigCase.setConfigs(content);
+					list.add(  autoConfigCase );
+				}
+			
+				cache.put(CacheAutoConfigCase,  list );
+			}
+			
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return list;
+	}
+	
+	
+	
 	public List getMySQLOptimizeCase()  throws  Exception {
 		logger.info( "get MySQLVariableDescription ....................." );
 		List   list=new ArrayList();
@@ -140,7 +189,11 @@ public class ReadMySQLValueDescriptionXMLFile {
 	@Test
 	public void runCase() throws  Exception{
 		ReadMySQLValueDescriptionXMLFile  read= new ReadMySQLValueDescriptionXMLFile();
-		read.getMySQLOptimizeCase();
+		List <MySQLAutoConfigCase> list=read.getMySQLAutoConfigCase();
+		
+		System.out.println (list.get(0).getConfigs().replaceAll("datadir=", "datadir=xxxxxx") 
+				.replaceAll("basedir=", "basedir=yyyyyyyyyy"));
+		
 	}
 
 }
