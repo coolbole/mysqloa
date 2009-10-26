@@ -10,7 +10,7 @@
    </head>
   
   <body> 
-  <a href="javascript:history.back(-2)">返回上一页</a> <br>
+  <a href="showProcessListAction.action">返回上一页</a> <br>
     您的这台机器是：<br>
    <FORM METHOD=POST ACTION="autoCreateConfig.jsp">
    <INPUT TYPE='radio' checked NAME='config' value="2g"/>2G内存<br>

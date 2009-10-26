@@ -11,7 +11,7 @@
       <title>Mysql Optimize Analysis</title>
   </head>
   
-  <body>  <a href="javascript:history.back(-2)">返回上一页</a> <br>
+  <body>  <a href="showProcessListAction.action">返回上一页</a> <br>
   <FORM METHOD="POST" ACTION="optimizeCase.jsp">
     <% 
     ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();

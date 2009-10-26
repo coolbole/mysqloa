@@ -16,7 +16,7 @@
   </CENTER>
   <%=request.getAttribute("warn")%>
   <br>
-  <a href="javascript:history.back(-1)">返回上一页</a> <br>
+  <A HREF="showProcessListAction.action">返回</A> <br>
   	
     <% 
 	
@@ -36,7 +36,7 @@
 	}
 	 
    %>
-     <a href="javascript:history.back(-1)"></>返回上一页</a> <br>
+     <A HREF="showProcessListAction.action">返回</A> <br>
      
      <br>
   </body>
