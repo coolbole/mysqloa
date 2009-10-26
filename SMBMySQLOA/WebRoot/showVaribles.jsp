@@ -15,7 +15,7 @@
     <b><FONT SIZE="6" COLOR="#993333">查看 MySQL数据库 当前所有配置参数  </FONT></b>
   </CENTER>
   
-  <a href="javascript:history.back(-1)">返回上一页</a> <br>
+  <a href="showProcessListAction.action">返回</a> <br>
     <% 
 	
 	List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
@@ -32,7 +32,7 @@
 		}
 	}
     %>
-     <a href="javascript:history.back(-1)">返回上一页</a> <br>
+     <a href="showProcessListAction.action">返回</a> <br>
      <br>
   </body>
 </html>

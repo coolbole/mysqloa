@@ -55,11 +55,12 @@ public class ShowProcessListAction extends HttpServlet {
 			    String Rhost=request.getParameter("host");
 			    String Rusername=request.getParameter("username");
 			    String Rpassword=request.getParameter("password");
-			    request.getSession().setMaxInactiveInterval(-1);
-			    request.getSession().setAttribute("host",Rhost);
-			    request.getSession().setAttribute("username",Rusername); 
-			    request.getSession().setAttribute("password",Rpassword); 
-		
+			    if(Rhost!=null&& Rusername!=null && Rpassword!=null){
+					    request.getSession().setMaxInactiveInterval(-1);
+					    request.getSession().setAttribute("host",Rhost);
+					    request.getSession().setAttribute("username",Rusername); 
+					    request.getSession().setAttribute("password",Rpassword); 
+			    }
 			    if(request.getSession().getAttribute("host")==null){response.sendRedirect("index.jsp");}
 				    String host=request.getSession().getAttribute("host").toString() ;
 				    String username=request.getSession().getAttribute("username").toString();
