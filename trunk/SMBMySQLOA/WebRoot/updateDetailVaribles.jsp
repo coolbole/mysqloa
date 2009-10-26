@@ -29,7 +29,7 @@
     %>
     
        <%
-        String url="showVariblesByCategory.jsp?category="+request.getParameter("category");
+        String url="showVariblesByCategoryAction.action?category="+request.getParameter("category");
        	response.sendRedirect(   url  );
         %>
      <br>

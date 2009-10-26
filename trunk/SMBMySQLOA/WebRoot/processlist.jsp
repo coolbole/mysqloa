@@ -11,20 +11,20 @@
 
   <body>
   <A HREF="index.jsp">退出</A> <br><br>
-  
-  <A HREF="showVariblesAction.action">查看系统当前所有配置参数</A>    <br>
-  <A HREF="showVariblesByCategoryAction.action?category=innodb">查看系统当前 Innodb 属性的所有配置参数</A><br>
-  <A HREF="showVariblesByCategoryAction.action?category=time">查看系统当前 Time 属性的所有配置参数</A><br>
-  <A HREF="showVariblesByCategoryAction.action?category=cache">查看系统当前  缓存 属性的所有配置参数</A><br>
+  <span style='color: blue;'>
+  <A HREF="showVariblesAction.action"><span style='color: blue;'>查看系统当前所有配置参数</span></A>    <br>
+  <A HREF="showVariblesByCategoryAction.action?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesByCategoryAction.action?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesByCategoryAction.action?category=cache"><span style='color: blue;'>查看系统当前  缓存 属性的所有配置参数</span></A><br>
    
    
    <br><br><br>
-   <A HREF="showSatusAction.action">查看系统当前所有状态</A>  <br> 
-   <A HREF="showSatusAction.action?category=innodb">查看系统当前 Innodb 状态</A> <br>
-   <A HREF="showSatusAction.action?category=select">查看系统当前 select查询语句使用的状态</A> <br>
-   <A HREF="showSatusAction.action?category=sort">查看系统当前sort排序语句使用的状态</A> <br>
-   <A HREF="showSatusAction.action?category=cache">查看系统当前 缓存 使用的状态</A> <br>
-   <A HREF="showSatusAction.action?category=buffer">查看系统当前buffer 使用的状态</A> <br>
+   <A HREF="showSatusAction.action"><span style='color:green;'>查看系统当前所有状态</span></A>  <br> 
+   <A HREF="showSatusAction.action?category=innodb"><span style='color:green;'>查看系统当前 Innodb 状态</span></A> <br>
+   <A HREF="showSatusAction.action?category=select"><span style='color:green;'>查看系统当前 select查询语句使用的状态</span></A> <br>
+   <A HREF="showSatusAction.action?category=sort"><span style='color:green;'>查看系统当前sort排序语句使用的状态</span></A> <br>
+   <A HREF="showSatusAction.action?category=cache"><span style='color:green;'>查看系统当前 缓存 使用的状态</span></A> <br>
+   <A HREF="showSatusAction.action?category=buffer"><span style='color:green;'>查看系统当前buffer 使用的状态</span></A> <br>
    <br><br>
    
    <A HREF="showDataBase.jsp">查看系统每个表使用的状况</A><br><br>
