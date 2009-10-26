@@ -21,7 +21,7 @@
     <b><FONT SIZE="6" COLOR="#993333">查看 MySQL数据库 当前<%=category%>配置参数  </FONT></b>
     </CENTER>
     <br>
-    <a href="javascript:history.back(-1)">返回上一页</a> <br>
+    <a href="javascript:history.back(-2)">返回上一页</a> <br>
     <%
 	
 	List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
