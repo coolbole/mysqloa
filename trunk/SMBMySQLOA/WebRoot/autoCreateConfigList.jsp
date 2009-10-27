@@ -12,7 +12,7 @@
   <body> 
   <a href="showProcessListAction.action">返回上一页</a> <br>
     您的这台机器是：<br>
-   <FORM METHOD=POST ACTION="autoCreateConfig.jsp">
+   <FORM METHOD=POST ACTION="autoCreateConfig.action">
    <INPUT TYPE='radio' checked NAME='config' value="2g"/>2G内存<br>
    <INPUT TYPE='radio'  NAME='config' value="4g"/>4G内存<br>
    <INPUT TYPE="submit">

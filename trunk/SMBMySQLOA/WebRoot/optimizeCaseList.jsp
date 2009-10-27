@@ -11,8 +11,9 @@
       <title>Mysql Optimize Analysis</title>
   </head>
   
-  <body>  <a href="showProcessListAction.action">返回上一页</a> <br>
-  <FORM METHOD="POST" ACTION="optimizeCase.jsp">
+  <body>  
+  <a href="showProcessListAction.action">返回上一页</a> <br>
+  <FORM METHOD="POST" ACTION="optimizeCase.action">
     <% 
     ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
 	List <MySQLOptimizeCase>listF=DescriptionXMLFile.getMySQLOptimizeCase();

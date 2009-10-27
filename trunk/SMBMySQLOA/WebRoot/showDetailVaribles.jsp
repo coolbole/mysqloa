@@ -12,7 +12,7 @@
 
   <body> 
   
-  <FORM METHOD="POST" ACTION="updateDetailVaribles.jsp?category=<%=request.getParameter("category")%>">
+  <FORM METHOD="POST" ACTION="updateDetailVaribles.action?category=<%=request.getParameter("category")%>">
 	
 
     <% 
@@ -37,7 +37,6 @@
 					out.print ( listS.getVariable_name()+"  "  ); 
 					 out.print (" <INPUT TYPE='hidden' NAME='variable_name'  value='"+listS.getVariable_name()+"'   >   "  ); 
 					 out.print (" <INPUT TYPE='text' NAME='value'  value='"+listS.getValue()+"'   >   "  ); 
-					 
 					 
 					 out.print ("<br>"  ); 
 					 out.print ("<FONT SIZE='2' COLOR='#006666'> "+listF.get(h).getDescription() +" </FONT>   "  ); 

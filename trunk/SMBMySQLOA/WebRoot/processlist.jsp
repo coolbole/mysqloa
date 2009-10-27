@@ -27,7 +27,7 @@
    <A HREF="showSatusAction.action?category=buffer"><span style='color:green;'>查看系统当前buffer 使用的状态</span></A> <br>
    <br><br>
    
-   <A HREF="showDataBase.jsp">查看系统每个表使用的状况</A><br><br>
+   <A HREF="showDataBaseAction.action">查看系统每个表使用的状况</A><br><br>
   
    <A HREF="optimizeCaseList.jsp"><span style='color: blue;'><b>一键优化</b> </span></A>&nbsp;&nbsp;
    <A HREF="autoCreateConfigList.jsp"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;

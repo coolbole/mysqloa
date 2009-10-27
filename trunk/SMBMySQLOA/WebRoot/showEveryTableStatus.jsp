@@ -10,24 +10,14 @@
   </head>
 
   <body>
-  <A HREF="showDataBase.jsp">返回</A> <br><br>
+  <A HREF="showDataBaseAction.action">返回</A> <br><br>
   
     <% 
-    	String DBName=request.getParameter("DBName");
-    	try{
-	    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
-		    String host=session.getAttribute("host").toString() ;
-		    String username=session.getAttribute("username").toString();
-		    String password=session.getAttribute("password").toString();
-		    
-		    out.println("您当前查看的主机是: "+host+" ");
-		    
-		    UtilBaseTools orm= new UtilBaseTools(host,DBName,username,password);
-			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-			List <TableStatusPojo> proList=mmu.showTableStatus();
-			
+    	 try{
+		    out.println("您当前查看的主机是: "+request.getAttribute("host")+" ");
+			List <TableStatusPojo> proList=(List)request.getAttribute("proList");
 			int size=proList.size();
-			out.println(mmu.showUptime()+"<br><br>"  );
+			out.println(request.getAttribute("uptime")+"<br><br>"  );
 		%>
 		
 		<TR>
@@ -45,9 +35,6 @@
  			<TD><b>创建日期</b></TD>
  			<TD><b>最后更新日期 </b></TD>
  			<TD><b>字符集</b></TD>
- 		 
- 		 
-			
 		</TR>
 
 		<% 
@@ -80,7 +67,7 @@
     
     
     <br><br>
-      <A HREF="showDataBase.jsp">返回</A> <br><br>
+      <A HREF="showDataBaseAction.action">返回</A> <br><br>
      <br>
   </body>
 </html>
