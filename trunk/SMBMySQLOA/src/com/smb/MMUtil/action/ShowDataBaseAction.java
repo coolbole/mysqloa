@@ -42,13 +42,14 @@ public class ShowDataBaseAction extends HttpServlet {
 		PrintWriter out = response.getWriter();
 	 
 		try{
-			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
 			if( session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
 			   String host= session.getAttribute("host").toString() ;
 			   String username= session.getAttribute("username").toString();
 			   String password= session.getAttribute("password").toString();
-			    
+			   
+			    String type=request.getParameter("type");
+			   
 			    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 				List dataBasesList=mmu.showDataBases();
@@ -56,10 +57,17 @@ public class ShowDataBaseAction extends HttpServlet {
 			 	request.setAttribute("dataBasesList",dataBasesList);      
 			 	request.setAttribute("host",host);  
 			 	
-			 
+			 	if (type!=null){
+			 		logger.info(type+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
+			 		RequestDispatcher   requestDispatcher=request.getRequestDispatcher("queryAnalyzer.jsp");   
+				    requestDispatcher.forward(request,response);
+			 	}
+			   
+			 	else{
+			 	logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showDataBase.jsp");   
 			    requestDispatcher.forward(request,response);
-			
+			 	}
 			
 			
 		}

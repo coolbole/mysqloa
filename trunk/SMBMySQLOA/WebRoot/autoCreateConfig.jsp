@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.smb.MMUtil.handler.base.UtilBaseTools"%>
 <%@page import="com.smb.MMUtil.handler.*"%>
 <%@page import="com.smb.MMUtil.pojo.*"%>
