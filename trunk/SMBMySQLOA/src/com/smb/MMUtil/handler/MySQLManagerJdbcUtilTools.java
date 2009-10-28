@@ -312,7 +312,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			 else if (uptime>60 ) {
 				 variable=variable+ uptime/60 +" 小时  " ;
 				 
-				 if (uptime/60>60 ){
+				 if (uptime/60>24 ){
 					 variable=variable+ "("+uptime/60/24 +"天)" ;
 				 }
 			 }
