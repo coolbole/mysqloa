@@ -17,8 +17,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.base.UtilBaseTools;
-import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
+import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
+import com.smb.MMUtil.pojo.MySQLOpenTables;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
@@ -32,7 +33,7 @@ import com.smb.MMUtil.pojo.TableStatusPojo;
  */
 public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
-	private static ReadMySQLValueDescriptionXMLFile  readXMLFile= new ReadMySQLValueDescriptionXMLFile();
+	private static ReadMySQLConfigXMLFile  readXMLFile= new ReadMySQLConfigXMLFile();
 	
 	private static Log logger = LogFactory.getLog(MySQLManagerJdbcUtilTools.class);
 	
@@ -48,7 +49,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		connection=UtilBaseTools.getConnection();
 		List <MySQLShowProcessList> result =  new ArrayList();
 		try{
-			ResultSet rs=connection.prepareStatement( "show processlist"  ).executeQuery();
+			ResultSet rs=connection.prepareStatement( "Show full processlist"  ).executeQuery();
 			while (rs.next() ){
 				MySQLShowProcessList  variable= new MySQLShowProcessList();	
 				variable.setId( rs.getInt(1)   );
@@ -487,6 +488,53 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				}
 			}
 		return configFile;
+	}
+
+	public String showCreateTable(String tablename) throws Exception {
+		logger.info( "showCreateTable ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		String  version=  null;
+		try{
+			ResultSet rs=connection.prepareStatement("SHOW CREATE TABLE  "+tablename  ).executeQuery();
+			while (rs.next() ){ 
+				version=rs.getString(2).replaceAll("\n", "\n<br>");
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return version;
+	}
+
+	public List showOpentables() throws Exception {
+		logger.info( "showOpentables ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List  opentablesList=  new ArrayList();
+		
+		try{
+			ResultSet rs=connection.prepareStatement("SHOW OPEN TABLES"  ).executeQuery();
+			while ( rs.next() ){ 
+				MySQLOpenTables openTables =new MySQLOpenTables();
+				openTables.setDatabase( rs.getString("database") );
+				openTables.setTable( rs.getString("table")  );
+				openTables.setIn_use( rs.getString("in_use")  ) ;
+				openTables.setName_locked( rs.getString("name_locked") ) ;
+				opentablesList.add( openTables   );
+			}
+//			connection.prepareStatement("flush  table"  ).execute();
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return opentablesList;
 	}
 	
 	 

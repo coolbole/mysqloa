@@ -51,6 +51,20 @@
 	  <servlet-class>com.smb.MMUtil.action.QueryAnalyzerAction</servlet-class>  
   </servlet> 
   
+  <servlet>  
+	  <servlet-name>ShowOpenTablesAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.ShowOpenTablesAction</servlet-class>  
+  </servlet> 
+  
+    <servlet>  
+	  <servlet-name>MySQLMonitorHostListAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.monitor.MySQLMonitorHostListAction</servlet-class>  
+  </servlet> 
+   
+   <servlet>  
+	  <servlet-name>MySQLMonitorHostCUDAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.monitor.MySQLMonitorHostCUDAction</servlet-class>  
+  </servlet> 
    
    <!-- ############################################################################ -->
    
@@ -104,6 +118,17 @@
 	  <url-pattern>/queryAnalyzer.action</url-pattern>  
   </servlet-mapping>
 
+  <servlet-mapping>  
+	  <servlet-name>MySQLMonitorHostListAction</servlet-name>  
+	  <url-pattern>/monitorHostList.action</url-pattern>  
+  </servlet-mapping>
+
+  <servlet-mapping>  
+	  <servlet-name>MySQLMonitorHostCUDAction</servlet-name>  
+	  <url-pattern>/monitorHostCUD.action</url-pattern>  
+  </servlet-mapping>  
+  
+  
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<MySQLMonitorHost>
+		<id>123455</id>
+		<host>127.0.0.1</host>
+		<port>3306</port>
+		<user>root</user>
+		<pswd>123456</pswd>
+	</MySQLMonitorHost> 
+
+	<MySQLMonitorHost>
+		<id>123456</id>
+		<host>127.0.0.1</host>
+		<port>3306</port> 
+		<user>root</user>
+		<pswd>password</pswd>
+	</MySQLMonitorHost>
+
+
+	<MySQLMonitorHost>
+		<id>123457</id>
+		<host>127.0.0.1</host>
+		<port>3306</port>
+		<user>root</user>
+		<pswd>password</pswd>
+	</MySQLMonitorHost>
+</list>

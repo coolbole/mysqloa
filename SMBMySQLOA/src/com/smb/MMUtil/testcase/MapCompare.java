@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
-import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
+import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
@@ -20,6 +20,8 @@ import com.smb.MMUtil.pojo.ReplicationStatusPojo;
  *
  */
 public class MapCompare {
+	
+	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
 	@Test
 	public void showMasterReplicationStatus () throws Exception{
@@ -39,7 +41,6 @@ public class MapCompare {
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 			List <MySQLVariableObject> listS=mmu.showVariblesCommand();
 			
-			ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
 			
 				for (int i=0;i<listS.size();i++){

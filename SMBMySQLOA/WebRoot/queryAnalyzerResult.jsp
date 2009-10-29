@@ -12,19 +12,21 @@
 
 	<body>
 		
-	  <A HREF="showProcessListAction.action">返回</A>
-		 
-		您执行的SQL语句是：<b><%=request.getAttribute("sql")%></b><br><br>
-
-
-		<% 
+	  <a href="javascript:history.back(-1)">返回</A><br><br>
+		 <% 
 		try{
-		if (request.getAttribute("count")!=null)
-			out.print ("您查询的记录一共有"+request.getAttribute("count")+"条");
-		%><br> 
+		if (! request.getAttribute("sql").equals("")){
+		out.print ("您执行的SQL语句是：<b>"+request.getAttribute("sql")+"</b><br><br>");
+		 	}
+		 	
+		if (!request.getAttribute("count").equals("")){
+			out.print ("您查询的记录一共有"+request.getAttribute("count")+"条 <br>");
+			}
+		
+		if (request.getAttribute("columns")!=null){
 		
 		
-		<% if (request.getAttribute("columns")!=null){	%>
+			%>
 		<table width="98%" border="1" cellpadding="0" bordercolorlight="#999999" bordercolordark="#FFFFFF" cellspacing="0" style="font-size: 13px" > 
 		<%
 			List list =(List)request.getAttribute("columns");
@@ -33,8 +35,7 @@
 				out.println (value );
 			}
 			}
-		%> 
-		<% 
+		 
 		if (request.getAttribute("values")!=null){
 			List list =(List)request.getAttribute("values");
 			for (int i=0;i<list.size();i++){
@@ -42,11 +43,12 @@
 				out.println (value );
 			}
 			}
-		
-		
 		}
 		catch (Exception e){
-			out.println("请注意，您执行了一条错误的SQL语句 ： "+ request.getAttribute("err")  );
+			out.println("<br><br>请注意，您执行了一条错误的SQL语句 ,导致系统出现如下信息 ： "+ request.getAttribute("err")  );
+			
+			out.println("<br><br><a href='javascript:history.back(-1)'>返回</A>");
+			
 			e.printStackTrace();
 			
 			}

@@ -19,7 +19,7 @@ import org.apache.commons.logging.LogFactory;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
-import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
+import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.thoughtworks.xstream.XStream;
@@ -33,6 +33,7 @@ public class ShowSatusAction extends HttpServlet {
 	
 	private static final long serialVersionUID = 2551449111136325075L;
 	private static Log logger = LogFactory.getLog(ShowSatusAction.class);
+	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
 	public ShowSatusAction() {super();	}
 	
@@ -63,8 +64,6 @@ public class ShowSatusAction extends HttpServlet {
 		    
 		    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-			
-			ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLStatusDescription();
 			
 			List <MySQLVariableObject> listS=null;
@@ -95,10 +94,7 @@ public class ShowSatusAction extends HttpServlet {
 		}
 		
 		catch(Exception e ) {
-			StringBuffer HeaderBuffer = new StringBuffer();
-			HeaderBuffer.append("\n<SMBML><Header><Error><RequestItem>");
-			HeaderBuffer.append(e );
-			HeaderBuffer.append( "</RequestItem></Error></Header></SMBML>");
+			 logger.error(e);
 		}
 		 
 		out.flush();

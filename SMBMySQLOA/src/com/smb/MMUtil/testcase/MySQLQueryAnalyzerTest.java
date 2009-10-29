@@ -1,12 +1,14 @@
 package com.smb.MMUtil.testcase;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
 
 import com.smb.MMUtil.queryAnalyzer.MySQLQueryAnalyzer;
 import com.smb.MMUtil.queryAnalyzer.QueryAnalyzerFactory;
+import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 
 public class MySQLQueryAnalyzerTest {
@@ -16,15 +18,14 @@ public class MySQLQueryAnalyzerTest {
 	private String SQL1="Select * from customer_businesshistory";
 	private String SQL="Select password,username,id ,email,ROLE from crm_users";
 	@Test
-	public void runCase () throws SQLException{
+	public void runCase () throws  Exception{
 		
 		UtilBaseTools  orm= new UtilBaseTools("192.168.12.78", "smbcrm", "root", "123456");
-		QueryAnalyzerFactory  MQA= new QueryAnalyzerFactory(orm);
-		Map map=MQA.execResult( SQL1 );
-		 java.util.Iterator  iter=map.keySet().iterator();
-		 while (iter.hasNext() ){
-			 System.out.println ( iter.next()  );
-		 }
+		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
+		String list=mmu.showCreateTable("crm_users") ;
+		System.out.println  (list);
+		
+		
 	}
 
 }

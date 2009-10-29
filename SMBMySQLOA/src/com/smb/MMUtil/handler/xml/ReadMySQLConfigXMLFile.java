@@ -5,6 +5,8 @@ package com.smb.MMUtil.handler.xml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +14,6 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,11 +21,11 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
+import com.smb.MMUtil.pojo.monitor.MySQLMonitorHost;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -33,25 +33,28 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * @author huangyi
  *
  */
-public class ReadMySQLValueDescriptionXMLFile {
+public class ReadMySQLConfigXMLFile {
 	
-	private static Log logger = LogFactory.getLog(ReadMySQLValueDescriptionXMLFile.class);
+	private static Log logger = LogFactory.getLog(ReadMySQLConfigXMLFile.class);
 	
-	private static String mySQLValueDescriptionXMLFile = ReadMySQLValueDescriptionXMLFile.class.
+	private static String mySQLValueDescriptionXMLFile = ReadMySQLConfigXMLFile.class.
 							 getResource ("MySQLValueDescription.xml").getFile();
 	
-	private static String mySQLOptimizeCaseXMLFile = ReadMySQLValueDescriptionXMLFile.class.
-	 getResource ("MySQLOptimizeCase.xml").getFile();
+	private static String mySQLOptimizeCaseXMLFile = ReadMySQLConfigXMLFile.class.
+							getResource ("MySQLOptimizeCase.xml").getFile();
 	
-	private static String mySQLStatusDescriptionXMLFile = ReadMySQLValueDescriptionXMLFile.class.
-	 getResource ("MySQLStatusDescription.xml").getFile();
+	private static String mySQLStatusDescriptionXMLFile = ReadMySQLConfigXMLFile.class.
+							getResource ("MySQLStatusDescription.xml").getFile();
 	
-	private static String mySQLAutoCreateConfigXMLFile = ReadMySQLValueDescriptionXMLFile.class.
-	 getResource ("MySQLAutoCreateConfig.xml").getFile();
+	private static String mySQLAutoCreateConfigXMLFile = ReadMySQLConfigXMLFile.class.
+							getResource ("MySQLAutoCreateConfig.xml").getFile();
 	
+	private static String mySQLMonitorHostConfigXMLFile = ReadMySQLConfigXMLFile.class.
+	 						getResource ("MySQLMonitorHostConfig.xml").getFile();
 	
-	private static XStream xstream = new XStream(new DomDriver());
-	private static MySQLVariableDescription   description= new MySQLVariableDescription();
+	private static  XStream xstream = new XStream(new DomDriver());
+	private static  MySQLVariableDescription   description= new MySQLVariableDescription();
+	private static  MySQLMonitorHost  monitorHost=new MySQLMonitorHost();
 	private static  Map cache= new HashMap ();
 	private static String CacheVariableDescription="cacheVariableDescription";
 	private static String CacheStatusDescription="cacheStatusDescription";
@@ -186,13 +189,84 @@ public class ReadMySQLValueDescriptionXMLFile {
 		return list;
 	}
 	
+	public List getMySQLMonitorHost()  throws  Exception {
+		logger.info( "get MySQLMonitorHost ....................." );
+		FileInputStream input; 
+		List<MySQLMonitorHost> list=null;
+		try {
+				input = new FileInputStream(mySQLMonitorHostConfigXMLFile);
+				xstream.alias("MySQLMonitorHost",  MySQLMonitorHost.class);
+				list=  (List<MySQLMonitorHost>) xstream.fromXML(input,monitorHost) ;
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return list;
+	}
+	
+	public void delMySQLMonitorHost(String ID) throws Exception{
+		logger.info( " delMySQLMonitorHost ......................." );
+ 		List   list=null;
+		List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
+		try {
+		for (int i=0;i<hostList.size();i++){
+			if (hostList.get(i).getId().equals(ID) 	){
+				hostList.remove(i);
+			}
+		}
+		String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(hostList);
+		
+		logger.info(xml);
+		
+		FileWriter resultFile = new FileWriter(mySQLMonitorHostConfigXMLFile);
+		PrintWriter myFile = new PrintWriter(resultFile);
+		myFile.println(xml);
+		resultFile.close(); 
+		} 
+		
+		/**
+		
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		    Document doc = factory.newDocumentBuilder().parse(new File(mySQLMonitorHostConfigXMLFile));
+		    Element root=doc.getDocumentElement();   
+		    
+		    NodeList element=root.getElementsByTagName("MySQLMonitorHost");   
+		    int nodeCount=element.getLength();
+		    String context=null;
+		    int removeNumber=0;
+		    for (int i=0;i<nodeCount;i++){
+		    	context=element.item(i).getTextContent().trim();
+		    	 System.out.println (context );
+		    	if (context.startsWith(ID)==true){
+		    		removeNumber=i;
+		    	}
+		    }
+		    root.removeChild(element.item(removeNumber) );   
+		  
+            TransformerFactory tff=TransformerFactory.newInstance();   
+ 
+            Transformer tf=tff.newTransformer();   
+      
+            DOMSource source=new DOMSource(doc);   
+            logger.info(mySQLMonitorHostConfigXMLFile);
+            StreamResult result=new StreamResult(new File(mySQLMonitorHostConfigXMLFile));   
+            tf.transform(source,result);   
+			*/
+			
+		catch ( Exception e) {
+			e.printStackTrace();
+			logger.error(e);
+		}
+		 
+	}
+	
+	
 	@Test
 	public void runCase() throws  Exception{
-		ReadMySQLValueDescriptionXMLFile  read= new ReadMySQLValueDescriptionXMLFile();
-		List <MySQLAutoConfigCase> list=read.getMySQLAutoConfigCase();
+		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
+		 read.delMySQLMonitorHost("123456");
 		
-		System.out.println (list.get(0).getConfigs().replaceAll("datadir=", "datadir=xxxxxx") 
-				.replaceAll("basedir=", "basedir=yyyyyyyyyy"));
+		 
 		
 	}
 

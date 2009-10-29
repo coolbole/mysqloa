@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.smb.MMUtil.handler.base.UtilBaseTools"%>
 <%@page import="com.smb.MMUtil.handler.*"%>
- <%@page import="com.smb.MMUtil.pojo.*"%>
+<%@page import="com.smb.MMUtil.pojo.*"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -28,11 +28,13 @@
    
    <b><A HREF="showDataBaseAction.action?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
    <A HREF="showDataBaseAction.action">查看系统每个表使用的状况</A><br><br>
+   <b><A HREF="showOpenTables.action">最近被使用过的表</A></b><br><br>
   
    <A HREF="optimizeCaseList.jsp"><span style='color: blue;'><b>一键优化</b> </span></A>&nbsp;&nbsp;
    <A HREF="autoCreateConfigList.jsp"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;
    <A HREF="#">查看同步数据状态(后续开发)</A><br><br>
    
+   <A HREF="monitorHostList.action">查看当前被监控的MySQL服务器</A><br><br>
     <% 
     	try{
 		    out.println("这台机器的MySQL版本是: "+request.getAttribute("version")+" <br>");
@@ -42,14 +44,16 @@
 			out.println(request.getAttribute("uptime")+"<br> 当前一共有: "+size+"  个连接 <br><p>");
 		%>
 		
-		<table width="78%" border="1" cellpadding="0" bordercolorlight="#999999" bordercolordark="#FFFFFF" cellspacing="0"  > 
+		<table width="85%" border="1" cellpadding="0" bordercolorlight="#999999" bordercolordark="#FFFFFF" cellspacing="0"  > 
 		<TR>
 			<TD>连接编号</TD>
+			<TD>连接用户</TD>
 			<TD>连接主机名称(ip地址)</TD>
 			<TD>连接的数据库</TD>
 			<TD>连接所用时间</TD>
 			<TD>连接信息</TD>
 			<TD>连接执行命令</TD> 
+			<TD>连接状态</TD> 
 		</TR>
 
 		<% 
@@ -58,11 +62,13 @@
 		%>
 			<TR>
 			<TD><%=plist.getId()%></TD>
+			<TD><%=plist.getUser()%></TD>
 			<TD><%=plist.getHost()%> &nbsp;</TD>
 			<TD><%=plist.getDb()%></TD>
 			<TD><%=plist.getTime()%></TD>
 			<TD><%=plist.getInfo()%></TD>
 			<TD><%=plist.getCommand()%></TD>
+			<TD><%=plist.getState()%></TD>
 			</TR>
 		
 		<% 
