@@ -44,9 +44,9 @@ public class QueryAnalyzerAction  extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");  
 		response.setCharacterEncoding("UTF-8");  
-		
+		Map map=null; String SQL="";
 		PrintWriter out = response.getWriter();
-	 
+		
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
@@ -56,11 +56,16 @@ public class QueryAnalyzerAction  extends HttpServlet {
 		    String username=session.getAttribute("username").toString();
 		    String password=session.getAttribute("password").toString();
 		    
-		     String SQL=request.getParameter("SQL");
+		     SQL=request.getParameter("SQL");
 		     String DBName=request.getParameter("DBName");
+		     System.out.println(DBName );
+		      if (DBName.indexOf("#")!=-1 ){
+		    	  response.sendRedirect("showDataBaseAction.action?type=queryAnalyzer");
+		      }
+		     
 		     UtilBaseTools orm= new UtilBaseTools(host,DBName,username,password);
 		     QueryAnalyzerFactory  MQA= new QueryAnalyzerFactory(orm);
-		     Map map=MQA.execResult(SQL);
+		     map=MQA.execResult(SQL);
 		     
 		 
 		     if ( map.get("SQLCount")!=null){
@@ -104,7 +109,7 @@ public class QueryAnalyzerAction  extends HttpServlet {
 			 requestDispatcher.forward(request,response);
 		}
 		
-		catch(Exception e ) {
+		catch(Exception e ) { 
 			 logger.error(e);
 		}
 		 

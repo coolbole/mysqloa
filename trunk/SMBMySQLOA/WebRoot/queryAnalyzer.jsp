@@ -11,9 +11,12 @@
    </head>
   
   <body>
+  
+   <a href="showProcessListAction.action">返回</A><br><br>
+   
 		<FORM METHOD="post" ACTION="queryAnalyzer.action">
 		 <SELECT NAME="DBName">
-			<OPTION>--请选择一个数据库--</OPTION>
+			<OPTION value="#">--请选择一个数据库--</OPTION>
 			<% 
 			List proList=(List)request.getAttribute("dataBasesList");
 			int size=proList.size();

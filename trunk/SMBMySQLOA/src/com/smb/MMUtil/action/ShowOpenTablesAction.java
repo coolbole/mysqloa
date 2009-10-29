@@ -2,6 +2,8 @@ package com.smb.MMUtil.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,13 +17,14 @@ import org.apache.commons.logging.LogFactory;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.pojo.MySQLOpenTables;
 
-public class AutoCreateConfigAction extends HttpServlet {
+public class ShowOpenTablesAction extends HttpServlet {
 	
 	private static final long serialVersionUID = 2551449111136325075L;
-	private static Log logger = LogFactory.getLog(AutoCreateConfigAction.class);
+	private static Log logger = LogFactory.getLog(ShowOpenTablesAction.class);
 	
-	public AutoCreateConfigAction() {super();	}
+	public ShowOpenTablesAction() {super();	}
 	
 	public void destroy() {	super.destroy(); }
 
@@ -42,24 +45,25 @@ public class AutoCreateConfigAction extends HttpServlet {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
- 	
-			if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
-		    String host=session.getAttribute("host").toString() ;
-		    String username=session.getAttribute("username").toString();
-		    String password=session.getAttribute("password").toString();
-		    
-		     String configs=request.getParameter("config");
-		     UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-			 IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+			
+		    if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
+			    String host=session.getAttribute("host").toString() ;
+			    String username=session.getAttribute("username").toString();
+			    String password=session.getAttribute("password").toString();
+			    
+			    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
+				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+				List <MySQLOpenTables> proList=mmu.showOpentables();
+			    
+				
+			 	request.setAttribute("proList",proList);      
+			 	request.setAttribute("host",host);  
+			 	request.setAttribute("uptime",mmu.showUptime() );  
 			 
-			 String myConfig=mmu.CreateAutoCreateConfig(configs);
-			 myConfig=myConfig.replaceAll("\n","<br>");
-			 
-			 request.setAttribute("myConfig",myConfig);  
-			 request.setAttribute("host",host);  
-			 
-			 RequestDispatcher   requestDispatcher=request.getRequestDispatcher("autoCreateConfig.jsp");   
-			 requestDispatcher.forward(request,response);
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showOpenTables.jsp");   
+			    requestDispatcher.forward(request,response);
+			
+		 
 		}
 		
 		catch(Exception e ) {

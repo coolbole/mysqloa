@@ -46,4 +46,9 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public  String CreateAutoCreateConfig ( String Config ) throws  Exception;
 	
+	public  String showCreateTable ( String tablename ) throws  Exception; 
+	
+	public  List showOpentables (   ) throws  Exception; 
+	
+	
 }

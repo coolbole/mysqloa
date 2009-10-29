@@ -90,7 +90,7 @@ public class MySQLQueryAnalyzer implements IMySQLQueryAnalyzer {
 			while (rs.next()){
 				count=count +1;
 				 for (int i=0;i<MetaDataSize;i++){
-					 values.add("<td>"+rs.getString(i+1)+"</td>"  );
+					 values.add("<td>"+rs.getString(i+1)+"&nbsp;</td>"  );
 				 }
 				 values.add( "</tr>"  );
  			}

@@ -17,9 +17,6 @@ import org.apache.commons.logging.LogFactory;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
-import com.smb.MMUtil.handler.xml.ReadMySQLValueDescriptionXMLFile;
-import com.smb.MMUtil.pojo.MySQLVariableDescription;
-import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.TableStatusPojo;
 
 public class ShowEveryTableStatusAction extends HttpServlet {
@@ -72,10 +69,7 @@ public class ShowEveryTableStatusAction extends HttpServlet {
 		}
 		
 		catch(Exception e ) {
-			StringBuffer HeaderBuffer = new StringBuffer();
-			HeaderBuffer.append("\n<SMBML><Header><Error><RequestItem>");
-			HeaderBuffer.append(e );
-			HeaderBuffer.append( "</RequestItem></Error></Header></SMBML>");
+			 logger.error(e);
 		}
 		 
 		out.flush();
