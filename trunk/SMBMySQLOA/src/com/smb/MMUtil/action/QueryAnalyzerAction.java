@@ -105,7 +105,7 @@ public class QueryAnalyzerAction  extends HttpServlet {
 		    
 		     request.setAttribute("err",map.get("err")  );
 		     
-			 RequestDispatcher   requestDispatcher=request.getRequestDispatcher("queryAnalyzerResult.jsp");   
+			 RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/queryAnaly/queryAnalyzerResult.jsp");   
 			 requestDispatcher.forward(request,response);
 		}
 		

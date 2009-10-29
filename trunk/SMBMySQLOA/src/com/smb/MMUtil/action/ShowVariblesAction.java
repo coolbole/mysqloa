@@ -73,7 +73,7 @@ public class ShowVariblesAction extends HttpServlet {
 			 	request.setAttribute("listF",listF);      
 				request.setAttribute("listS",listS);      
 			 
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showVaribles.jsp");   
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showVaribles.jsp");   
 			    requestDispatcher.forward(request,response);
 			
 			

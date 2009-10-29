@@ -86,7 +86,7 @@ public class ShowSatusAction extends HttpServlet {
 			 	request.setAttribute("listF",listF);      
 				request.setAttribute("listS",listS);      
 			 
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showStatus.jsp");   
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showStatus.jsp");   
 			    requestDispatcher.forward(request,response);
 			
 			
