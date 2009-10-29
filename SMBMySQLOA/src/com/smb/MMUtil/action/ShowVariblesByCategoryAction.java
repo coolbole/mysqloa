@@ -71,7 +71,7 @@ public class ShowVariblesByCategoryAction extends HttpServlet {
 			 	request.setAttribute("listF",listF);      
 				request.setAttribute("listS",listS);      
 			 
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showVariblesByCategory.jsp");   
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showVariblesByCategory.jsp");   
 			    requestDispatcher.forward(request,response);
 			
 			

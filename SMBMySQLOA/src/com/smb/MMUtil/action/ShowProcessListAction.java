@@ -74,7 +74,7 @@ public class ShowProcessListAction extends HttpServlet {
 				    request.setAttribute("version",mmu.showVersion() );   
 				    
 				    
-				    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("processlist.jsp");   
+				    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/processlist.jsp");   
 				    requestDispatcher.forward(request,response);
 			    
 		

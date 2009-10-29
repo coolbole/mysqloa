@@ -62,7 +62,7 @@ public class ShowEveryTableStatusAction extends HttpServlet {
 			 	request.setAttribute("host",host);  
 			 	request.setAttribute("uptime",mmu.showUptime() );  
 			 
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showEveryTableStatus.jsp");   
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showEveryTableStatus.jsp");   
 			    requestDispatcher.forward(request,response);
 			
 		 

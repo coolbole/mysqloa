@@ -60,7 +60,7 @@ public class ShowOpenTablesAction extends HttpServlet {
 			 	request.setAttribute("host",host);  
 			 	request.setAttribute("uptime",mmu.showUptime() );  
 			 
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showOpenTables.jsp");   
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showOpenTables.jsp");   
 			    requestDispatcher.forward(request,response);
 			
 		 

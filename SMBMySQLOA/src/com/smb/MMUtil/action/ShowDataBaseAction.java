@@ -59,13 +59,13 @@ public class ShowDataBaseAction extends HttpServlet {
 			 	
 			 	if (type!=null){
 			 		logger.info(type+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-			 		RequestDispatcher   requestDispatcher=request.getRequestDispatcher("queryAnalyzer.jsp");   
+			 		RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/queryAnaly/queryAnalyzer.jsp");   
 				    requestDispatcher.forward(request,response);
 			 	}
 			   
 			 	else{
 			 	logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("showDataBase.jsp");   
+			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showDataBase.jsp");   
 			    requestDispatcher.forward(request,response);
 			 	}
 			

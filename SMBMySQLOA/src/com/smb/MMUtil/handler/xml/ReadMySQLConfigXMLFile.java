@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -190,7 +191,7 @@ public class ReadMySQLConfigXMLFile {
 	}
 	
 	public List getMySQLMonitorHost()  throws  Exception {
-		logger.info( "get MySQLMonitorHost ....................." );
+		logger.info( "get MySQLMonitorHost .....................\n" +mySQLMonitorHostConfigXMLFile);
 		FileInputStream input; 
 		List<MySQLMonitorHost> list=null;
 		try {
@@ -206,7 +207,6 @@ public class ReadMySQLConfigXMLFile {
 	
 	public void delMySQLMonitorHost(String ID) throws Exception{
 		logger.info( " delMySQLMonitorHost ......................." );
- 		List   list=null;
 		List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
 		try {
 		for (int i=0;i<hostList.size();i++){
@@ -215,58 +215,97 @@ public class ReadMySQLConfigXMLFile {
 			}
 		}
 		String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(hostList);
-		
 		logger.info(xml);
-		
 		FileWriter resultFile = new FileWriter(mySQLMonitorHostConfigXMLFile);
 		PrintWriter myFile = new PrintWriter(resultFile);
 		myFile.println(xml);
 		resultFile.close(); 
 		} 
-		
-		/**
-		
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		    Document doc = factory.newDocumentBuilder().parse(new File(mySQLMonitorHostConfigXMLFile));
-		    Element root=doc.getDocumentElement();   
-		    
-		    NodeList element=root.getElementsByTagName("MySQLMonitorHost");   
-		    int nodeCount=element.getLength();
-		    String context=null;
-		    int removeNumber=0;
-		    for (int i=0;i<nodeCount;i++){
-		    	context=element.item(i).getTextContent().trim();
-		    	 System.out.println (context );
-		    	if (context.startsWith(ID)==true){
-		    		removeNumber=i;
-		    	}
-		    }
-		    root.removeChild(element.item(removeNumber) );   
-		  
-            TransformerFactory tff=TransformerFactory.newInstance();   
- 
-            Transformer tf=tff.newTransformer();   
-      
-            DOMSource source=new DOMSource(doc);   
-            logger.info(mySQLMonitorHostConfigXMLFile);
-            StreamResult result=new StreamResult(new File(mySQLMonitorHostConfigXMLFile));   
-            tf.transform(source,result);   
-			*/
-			
 		catch ( Exception e) {
 			e.printStackTrace();
 			logger.error(e);
 		}
-		 
+	}
+	
+	public void upDataMySQLMonitorHost(MySQLMonitorHost  MonitorHost) throws Exception{
+		logger.info( " upDataMySQLMonitorHost ......................." );
+		try{
+			List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
+			for (int i=0;i<hostList.size();i++){
+				if (hostList.get(i).getId().equals(MonitorHost.getId() ) 	){
+					hostList.remove(i);
+				}
+			}
+			hostList.add( MonitorHost );
+			
+			String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(hostList);
+			logger.info(xml);
+			
+			FileWriter resultFile = new FileWriter(mySQLMonitorHostConfigXMLFile);
+			PrintWriter myFile = new PrintWriter(resultFile);
+			myFile.println(xml);
+			resultFile.close(); 
+		} 
+		catch ( Exception e) {
+			e.printStackTrace();
+			logger.error(e);
+		}
+	}
+	
+	
+	public void addMySQLMonitorHost(MySQLMonitorHost  MonitorHost) throws Exception{
+		logger.info( " addMySQLMonitorHost ......................." );
+		try{
+			List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
+			UUID uuid = UUID.randomUUID(); 
+			MonitorHost.setId( uuid.toString()  );
+			hostList.add( MonitorHost );
+			String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(hostList);
+			logger.info(xml);
+			
+			FileWriter resultFile = new FileWriter(mySQLMonitorHostConfigXMLFile);
+			PrintWriter myFile = new PrintWriter(resultFile);
+			myFile.println(xml);
+			resultFile.close(); 
+		} 
+		catch ( Exception e) {
+			e.printStackTrace();
+			logger.error(e);
+		}
+	}
+	
+	public MySQLMonitorHost getMySQLMonitorHostInfo(String  ID) throws Exception{
+		logger.info( " get MySQL Monitor Host Info ......................." );
+		MySQLMonitorHost  monitorHost=null;
+		try{
+			List <MySQLMonitorHost> hostList=this.getMySQLMonitorHost();
+			for (int i=0;i<hostList.size();i++){
+				if (hostList.get(i).getId().equals(ID) 	){
+					monitorHost=hostList.get(i);
+				}
+			}
+		} 
+		catch ( Exception e) {
+			e.printStackTrace();
+			logger.error(e);
+		}
+		return monitorHost;
 	}
 	
 	
 	@Test
 	public void runCase() throws  Exception{
 		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
-		 read.delMySQLMonitorHost("123456");
+		MySQLMonitorHost host= new MySQLMonitorHost();
+		host.setHost("23213213123");
+		host.setPort("3306");
+		host.setUser("rooe");
+		host.setPswd("pswdwddddddwwwwwwwww");
+		host.setId("123455");
 		
-		 
+		MySQLMonitorHost info=read.getMySQLMonitorHostInfo("123456");
+		
+		logger.info("\n"+ info.getPswd());
 		
 	}
 

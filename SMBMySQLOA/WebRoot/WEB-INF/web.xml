@@ -122,7 +122,13 @@
 	  <servlet-name>MySQLMonitorHostListAction</servlet-name>  
 	  <url-pattern>/monitorHostList.action</url-pattern>  
   </servlet-mapping>
-
+  
+ 
+  <servlet-mapping>  
+	  <servlet-name>ShowOpenTablesAction</servlet-name>  
+	  <url-pattern>/showOpenTables.action</url-pattern>  
+  </servlet-mapping>
+  
   <servlet-mapping>  
 	  <servlet-name>MySQLMonitorHostCUDAction</servlet-name>  
 	  <url-pattern>/monitorHostCUD.action</url-pattern>  
