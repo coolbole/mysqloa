@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
+import com.smb.MMUtil.handler.monitor.ISetUpMySQLMonitorHost;
+import com.smb.MMUtil.handler.monitor.SetUpMySQLMonitorHost;
 import com.smb.MMUtil.pojo.monitor.MySQLMonitorHost;
  
 
@@ -21,7 +22,7 @@ public class MySQLMonitorHostListAction  extends HttpServlet {
 	
 	private static final long serialVersionUID = 2551449111136325075L;
 	private static Log logger = LogFactory.getLog(MySQLMonitorHostListAction.class);
-	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
+	private static ISetUpMySQLMonitorHost  setUpMySQLMonitorHost= new SetUpMySQLMonitorHost();
 	
 	public MySQLMonitorHostListAction() {super();	}
 	
@@ -46,7 +47,7 @@ public class MySQLMonitorHostListAction  extends HttpServlet {
 		
 			if( request.getSession().getAttribute("host")==null){response.sendRedirect("index.jsp");}
 		    
-			List <MySQLMonitorHost> listF=DescriptionXMLFile.getMySQLMonitorHost ();
+			List <MySQLMonitorHost> listF=setUpMySQLMonitorHost.getMySQLMonitorHostList ();
 			
 			request.setAttribute("listF",listF);      
 			 
