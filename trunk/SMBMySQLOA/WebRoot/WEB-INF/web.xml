@@ -62,8 +62,8 @@
   </servlet> 
    
    <servlet>  
-	  <servlet-name>MySQLMonitorHostCUDAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.monitor.MySQLMonitorHostCUDAction</servlet-class>  
+	  <servlet-name>MySQLMonitorHostCRUDAction</servlet-name>  
+	  <servlet-class>com.smb.MMUtil.action.monitor.MySQLMonitorHostCRUDAction</servlet-class>  
   </servlet> 
    
    <!-- ############################################################################ -->
@@ -130,8 +130,8 @@
   </servlet-mapping>
   
   <servlet-mapping>  
-	  <servlet-name>MySQLMonitorHostCUDAction</servlet-name>  
-	  <url-pattern>/monitorHostCUD.action</url-pattern>  
+	  <servlet-name>MySQLMonitorHostCRUDAction</servlet-name>  
+	  <url-pattern>/monitorHostCRUD.action</url-pattern>  
   </servlet-mapping>  
   
   

@@ -2,6 +2,7 @@
 <%@page import="com.smb.MMUtil.handler.base.UtilBaseTools"%>
 <%@page import="com.smb.MMUtil.handler.*"%>
 <%@page import="com.smb.MMUtil.pojo.*"%>
+<%@page import="com.smb.MMUtil.pojo.monitor.*"%>
 <%@page import="com.smb.MMUtil.handler.monitor.*"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -12,11 +13,24 @@
   
   <body>
      
-     <% 
-     
-     
-     
-     %>
+     <FORM METHOD="POST" ACTION="monitorHostCRUD.action?type=edit">
+		<%MySQLMonitorHost hostInfo=(MySQLMonitorHost)request.getAttribute("hostInfo");%>
+		<br>
+		host:<INPUT TYPE="hidden" NAME="id" value=<%=hostInfo.getId()%>><br>
+		host:<INPUT TYPE="text" NAME="host" value="<%=hostInfo.getHost()%>">
+		<BR>
+		port:<INPUT TYPE="text" NAME="port" value="<%=hostInfo.getPort()%>">
+		<BR>
+		user:<INPUT TYPE="text" NAME="user" value="<%=hostInfo.getUser()%>">
+		<BR>
+		pswd:<INPUT TYPE="text" NAME="pswd" value="<%=hostInfo.getPswd()%>">
+		<BR>
+	 
+		<BR>
+		<INPUT TYPE="submit">
+		<br>
+		
+		</FORM>
      <br>
   </body>
 </html>

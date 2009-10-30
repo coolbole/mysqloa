@@ -232,11 +232,14 @@ public class ReadMySQLConfigXMLFile {
 		try{
 			List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
 			for (int i=0;i<hostList.size();i++){
+				System.out.println("removed ...."+MonitorHost.getId()+"    "+hostList.get(i).getId() );
 				if (hostList.get(i).getId().equals(MonitorHost.getId() ) 	){
+					
 					hostList.remove(i);
+					MonitorHost.setId(System.currentTimeMillis()+"" );
+					hostList.add( MonitorHost );
 				}
 			}
-			hostList.add( MonitorHost );
 			
 			String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(hostList);
 			logger.info(xml);
@@ -257,8 +260,7 @@ public class ReadMySQLConfigXMLFile {
 		logger.info( " addMySQLMonitorHost ......................." );
 		try{
 			List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
-			UUID uuid = UUID.randomUUID(); 
-			MonitorHost.setId( uuid.toString()  );
+			MonitorHost.setId(System.currentTimeMillis()+"" );
 			hostList.add( MonitorHost );
 			String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(hostList);
 			logger.info(xml);

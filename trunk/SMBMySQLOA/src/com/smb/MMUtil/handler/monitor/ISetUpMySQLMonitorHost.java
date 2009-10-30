@@ -19,7 +19,9 @@ public interface ISetUpMySQLMonitorHost {
 		
 	public void delMySQLMonitorHostList(String ID)  throws Exception ; 
 	
-	public void upDataMySQLMonitorHostList(String ID)  throws Exception ; 
+	public void upDataMySQLMonitorHostList(MySQLMonitorHost MonitorHost)  throws Exception ; 
+	
+	public void addMySQLMonitorHost(MySQLMonitorHost monitorHost)  throws Exception ; 
 	
 	public MySQLMonitorHost getMySQLMonitorHost(String ID)  throws Exception ; 
 	

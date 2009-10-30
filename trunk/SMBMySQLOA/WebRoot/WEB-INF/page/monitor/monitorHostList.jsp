@@ -12,7 +12,7 @@
   <body>
      <A HREF="showProcessListAction.action">返回</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      
-  	 <A HREF="addMonitorHost.action">添加被监控主机</A><br><br><br>
+  	 <A HREF="monitorHostCRUD.action?type=addView">添加被监控主机</A><br><br><br>
   	  
     <%
    		 List <MySQLMonitorHost> list=(List)request.getAttribute("listF");
@@ -21,15 +21,17 @@
    		  	 out.println (" 您还没有指定被监控的MySQL服务器<br>" );
    		 }
    		 else{
-   		 
 	   		 for (int i=0;i<list.size();i++){
-	   		 out.println ( "<A HREF='viewDetailHost.action?HostID="
-	   		 +list.get(i).getId()+"'>" +list.get(i).getHost()+" </A>&nbsp;&nbsp;&nbsp;" );
-	   		 
-	   		 
-	   		 out.println ( "<A HREF='monitorHostCUD.action?type=delete&HostID="
-	   		 +list.get(i).getId()+"'>删除</A><br>" );
-	   		 
+	   		 if (list.get(i).getId()!=null){
+		   		 out.println ( "<A HREF='viewDetailHost.action?HostID="
+		   		 +list.get(i).getId()+"'>" +list.get(i).getHost()+" </A>&nbsp;&nbsp;&nbsp;" );
+		   		 
+		   		 out.println ( "<A HREF='monitorHostCRUD.action?type=editView&HostID="
+		   		 +list.get(i).getId()+"'>修改</A>&nbsp;&nbsp;" );
+		   		 
+		   		 out.println ( "<A HREF='monitorHostCRUD.action?type=delete&HostID="
+		   		 +list.get(i).getId()+"'>删除</A><br>" );
+	   		 	}
 	   		 }
    		 }
      %>
