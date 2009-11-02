@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MailHost>
+	<mailServer>127.0.0.1</mailServer>
+	<port>25</port>
+	<recipient>root</recipient>
+	<emailAccount>123456</emailAccount>
+	<username>123456</username>
+	<password>123456</password>
+</MailHost> 

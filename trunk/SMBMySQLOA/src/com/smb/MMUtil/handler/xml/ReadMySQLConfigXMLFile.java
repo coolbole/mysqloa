@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,6 +25,7 @@ import org.w3c.dom.NodeList;
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
+import com.smb.MMUtil.pojo.email.Email;
 import com.smb.MMUtil.pojo.monitor.MySQLMonitorHost;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -53,9 +53,14 @@ public class ReadMySQLConfigXMLFile {
 	private static String mySQLMonitorHostConfigXMLFile = ReadMySQLConfigXMLFile.class.
 	 						getResource ("MySQLMonitorHostConfig.xml").getFile();
 	
+	private static String mailHostConfigXMLFile = ReadMySQLConfigXMLFile.class.
+							getResource ("MailHost.xml").getFile();
+	
+	
 	private static  XStream xstream = new XStream(new DomDriver());
 	private static  MySQLVariableDescription   description= new MySQLVariableDescription();
 	private static  MySQLMonitorHost  monitorHost=new MySQLMonitorHost();
+	private static  Email  email=new Email();
 	private static  Map cache= new HashMap ();
 	private static String CacheVariableDescription="cacheVariableDescription";
 	private static String CacheStatusDescription="cacheStatusDescription";
@@ -190,6 +195,48 @@ public class ReadMySQLConfigXMLFile {
 		return list;
 	}
 	
+	
+	
+	public Email getMailHostConfigXMLFile()  throws  Exception {
+		logger.info( "get  MailHostConfigXMLFile .....................\n" +mailHostConfigXMLFile);
+		FileInputStream input; 
+		Email  email=null;
+		try {
+				input = new FileInputStream(mailHostConfigXMLFile);
+				 xstream.alias("MailHost",  Email.class);
+				 email = (Email) xstream.fromXML(input,email) ;
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return email;
+	}
+	
+	public Email updateMailHostConfigXMLFile(Email emailInfo)  throws  Exception {
+		logger.info( "update  MailHostConfigXMLFile .....................\n" +mailHostConfigXMLFile);
+		FileInputStream input; 
+		Email  email=null;
+		try {
+				String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(emailInfo);
+				logger.info(xml);
+					
+				FileWriter resultFile = new FileWriter(mailHostConfigXMLFile);
+				PrintWriter myFile = new PrintWriter(resultFile);
+				myFile.println(xml);
+				resultFile.close(); 
+				
+//				input = new FileInputStream(mailHostConfigXMLFile);
+// 				xstream.alias("MailHost",  Email.class);
+// 				email = (Email) xstream.fromXML(input,email) ;
+		} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return email;
+	}
+	
+	
+	
 	public List getMySQLMonitorHost()  throws  Exception {
 		logger.info( "get MySQLMonitorHost .....................\n" +mySQLMonitorHostConfigXMLFile);
 		FileInputStream input; 
@@ -298,16 +345,19 @@ public class ReadMySQLConfigXMLFile {
 	@Test
 	public void runCase() throws  Exception{
 		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
-		MySQLMonitorHost host= new MySQLMonitorHost();
-		host.setHost("23213213123");
-		host.setPort("3306");
-		host.setUser("rooe");
-		host.setPswd("pswdwddddddwwwwwwwww");
-		host.setId("123455");
+//		MySQLMonitorHost host= new MySQLMonitorHost();
+//		host.setHost("23213213123");
+//		host.setPort("3306");
+//		host.setUser("rooe");
+//		host.setPswd("pswdwddddddwwwwwwwww");
+//		host.setId("123455");
 		
-		MySQLMonitorHost info=read.getMySQLMonitorHostInfo("123456");
 		
-		logger.info("\n"+ info.getPswd());
+		
+		
+		Email info=read.getMailHostConfigXMLFile();
+		
+		logger.info("\n"+ info.getEmailAccount() );
 		
 	}
 

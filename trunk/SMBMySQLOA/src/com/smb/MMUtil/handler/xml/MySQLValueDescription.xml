@@ -383,6 +383,7 @@ o        如果该值为2，COMMIT和ROLLBACK分别等同于COMM它RELEASE和ROL
 <MySQLVariableDescription>
 	<variable_name>have_query_cache</variable_name>
 	<description> 如果mysqld支持查询缓存则为YES。</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -485,12 +486,15 @@ ySQL的基础上为那些经常访问这些网页的需求指数散列索引。
 	(仅在32位Windows上相关）如果你的32位Windows操作系统使用所谓的“地址窗口扩展（AWE)”支持超过4GB内存，你可以用这个参数把InnoDB缓冲池分配进AWE物理内存。
 	这个参数最大的可能值是64000。如果这个参数被指定了，innodb_buffer_pool_size是在32位地址空间的mysqld内的窗口，
 	InnoDB把那个AWE内存映射上去。对innodb_buffer_pool_size参数，一个比较好的值是500MB。 </description>
+<isEdit>-1</isEdit>
+
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>innodb_buffer_pool_size</variable_name>
 	<description>INNODB缓冲池大小 用于缓存表的数据与索引 内存的80%  8388608 （8M） ,InnoDB 用来高速缓冲数据和索引内存缓冲大小。 更大的设置可以使访问数据时减少磁盘 I/O。在一个专用的数据库服务器上可以将它设置为物理内存的 80 %。 
 	不要将它设置太大，因为物理内存的使用竞争可能会影响操作系统的页面调用。 </description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

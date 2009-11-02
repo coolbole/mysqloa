@@ -3,13 +3,8 @@
  */
 package com.smb.MMUtil.action;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,41 +17,20 @@ import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.smb.framework.web.action.ControllerAction;
+import com.smb.framework.web.action.ModelAndPage;
 
-/**
- * @author huangyi
- *
- */
-public class ShowSatusAction extends HttpServlet {
+
+public class ShowSatusAction   implements ControllerAction  {
 	
-	private static final long serialVersionUID = 2551449111136325075L;
 	private static Log logger = LogFactory.getLog(ShowSatusAction.class);
 	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
-	public ShowSatusAction() {super();	}
-	
-	public void destroy() {	super.destroy(); }
-
- 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		    doPost(request, response);
-	}
- 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println( );
-		
-		request.setCharacterEncoding("UTF-8");  
-		response.setCharacterEncoding("UTF-8");  
-		
-		PrintWriter out = response.getWriter();
-	 
+	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-			 if( request.getSession().getAttribute("host")==null){response.sendRedirect("index.jsp");}
+			if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		    
 		    String host= request.getSession().getAttribute("host").toString() ;
 		    String username= request.getSession().getAttribute("username").toString();
@@ -86,21 +60,13 @@ public class ShowSatusAction extends HttpServlet {
 			 	request.setAttribute("listF",listF);      
 				request.setAttribute("listS",listS);      
 			 
-			    RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/show/showStatus.jsp");   
-			    requestDispatcher.forward(request,response);
-			
-			
-			
+			    return new ModelAndPage( request ,"/WEB-INF/page/show/showStatus.jsp" );
 		}
 		
 		catch(Exception e ) {
 			 logger.error(e);
 		}
-		 
-		out.flush();
-		out.close();
+		return null;
 	}
- 
-	public void init() throws ServletException {	}
-
 }
+ 

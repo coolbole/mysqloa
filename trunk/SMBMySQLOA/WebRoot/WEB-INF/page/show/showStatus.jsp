@@ -16,7 +16,7 @@
   </CENTER>
   <%=request.getAttribute("warn")%>
   <br>
-  <A HREF="showProcessListAction.action">返回</A> <br>
+  <A HREF="showProcessListAction.do">返回</A> <br>
   	
     <% 
 	
@@ -36,7 +36,7 @@
 	}
 	 
    %>
-     <A HREF="showProcessListAction.action">返回</A> <br>
+     <A HREF="showProcessListAction.do">返回</A> <br>
      
      <br>
   </body>

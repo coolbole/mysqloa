@@ -12,8 +12,8 @@
   </head>
   
   <body>  
-  <a href="showProcessListAction.action">返回上一页</a> <br>
-  <FORM METHOD="POST" ACTION="optimizeCase.action">
+  <a href="showProcessListAction.do">返回上一页</a> <br>
+  <FORM METHOD="POST" ACTION="optimizeCaseAction.do">
     <% 
       ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	List <MySQLOptimizeCase>listF=DescriptionXMLFile.getMySQLOptimizeCase();

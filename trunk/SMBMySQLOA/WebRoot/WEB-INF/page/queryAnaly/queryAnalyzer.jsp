@@ -12,9 +12,9 @@
   
   <body>
   
-   <a href="showProcessListAction.action">返回</A><br><br>
+   <a href="showProcessListAction.do">返回</A><br><br>
    
-		<FORM METHOD="post" ACTION="queryAnalyzer.action">
+		<FORM METHOD="post" ACTION="queryAnalyzerAction.do">
 		 <SELECT NAME="DBName">
 			<OPTION value="#">--请选择一个数据库--</OPTION>
 			<% 

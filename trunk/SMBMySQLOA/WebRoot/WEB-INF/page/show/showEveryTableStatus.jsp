@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <A HREF="showDataBaseAction.action">返回</A> <br><br>
+  <A HREF="showDataBaseAction.do">返回</A> <br><br>
   
     <% 
     	 try{
@@ -67,7 +67,7 @@
     
     
     <br><br>
-      <A HREF="showDataBaseAction.action">返回</A> <br><br>
+      <A HREF="showDataBaseAction.do">返回</A> <br><br>
      <br>
   </body>
 </html>

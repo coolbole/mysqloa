@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.smb.MMUtil.handler.base.UtilBaseTools"%>
 <%@page import="com.smb.MMUtil.handler.*"%>
 <%@page import="com.smb.MMUtil.pojo.*"%>
@@ -11,30 +11,34 @@
 
   <body>
   <A HREF="index.jsp">退出</A> <br><br>
-  <A HREF="showVariblesAction.action"><span style='color: blue;'>查看系统当前所有配置参数</span></A>    <br>
-  <A HREF="showVariblesByCategoryAction.action?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.action?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.action?category=cache"><span style='color: blue;'>查看系统当前  缓存 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesAction.do"><span style='color: blue;'>查看系统当前所有配置参数</span></A>    <br>
+  <A HREF="showVariblesByCategoryAction.do?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesByCategoryAction.do?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesByCategoryAction.do?category=cache"><span style='color: blue;'>查看系统当前  缓存 属性的所有配置参数</span></A><br>
    
    
    <br><br><br>
-   <A HREF="showSatusAction.action"><span style='color:green;'>查看系统当前所有状态</span></A>  <br> 
-   <A HREF="showSatusAction.action?category=innodb"><span style='color:green;'>查看系统当前 Innodb 状态</span></A> <br>
-   <A HREF="showSatusAction.action?category=select"><span style='color:green;'>查看系统当前 select查询语句使用的状态</span></A> <br>
-   <A HREF="showSatusAction.action?category=sort"><span style='color:green;'>查看系统当前sort排序语句使用的状态</span></A> <br>
-   <A HREF="showSatusAction.action?category=cache"><span style='color:green;'>查看系统当前 缓存 使用的状态</span></A> <br>
-   <A HREF="showSatusAction.action?category=buffer"><span style='color:green;'>查看系统当前buffer 使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do"><span style='color:green;'>查看系统当前所有状态</span></A>  <br> 
+   <A HREF="showSatusAction.do?category=innodb"><span style='color:green;'>查看系统当前 Innodb 状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=select"><span style='color:green;'>查看系统当前 select查询语句使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=sort"><span style='color:green;'>查看系统当前sort排序语句使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=cache"><span style='color:green;'>查看系统当前 缓存 使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=buffer"><span style='color:green;'>查看系统当前buffer 使用的状态</span></A> <br>
    <br><br>
    
-   <b><A HREF="showDataBaseAction.action?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
-   <A HREF="showDataBaseAction.action">查看系统每个表使用的状况</A><br><br>
-   <b><A HREF="showOpenTables.action">最近被使用过的表</A></b><br><br>
+   <b><A HREF="showDataBaseAction.do?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
+   <A HREF="showDataBaseAction.do">查看系统每个表使用的状况</A><br><br>
+   <b><A HREF="showOpenTablesAction.do">最近被使用过的表</A></b><br><br>
   
-   <A HREF="optimizeCaseList.jsp"><span style='color: blue;'><b>一键优化</b> </span></A>&nbsp;&nbsp;
-   <A HREF="autoCreateConfigList.jsp"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;
+   <A HREF="optimizeCaseListAction.do"><span style='color: blue;'><b>一键优化</b> </span></A>&nbsp;&nbsp;
+   <A HREF="autoCreateConfigListAction.do"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;
    <A HREF="#">查看同步数据状态(后续开发)</A><br><br>
+   <A HREF="mailHostConfigViewAction.do">配置发送报告的邮件服务器</A>&nbsp;&nbsp;&nbsp;&nbsp;
+   <A HREF="timerStatusViewAction.do"><b><span style='color:green;'>配置系统定时器检测时间周期</span></b></A>&nbsp;&nbsp;&nbsp;&nbsp;
    
-   <A HREF="monitorHostList.action">查看当前被监控的MySQL服务器</A><br><br>
+   <A HREF="monitorHostListAction.do">查看当前被监控的MySQL服务器</A><br><br>
+   
+   
     <% 
     	try{
 		    out.println("这台机器的MySQL版本是: "+request.getAttribute("version")+" <br>");

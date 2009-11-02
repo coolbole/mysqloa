@@ -11,7 +11,7 @@ package com.smb.MMUtil.pojo.email;
 public class Email {
 	
 	private String mailServer;
-	private int port;
+	private String port;
 	private String recipient;
 	private String emailAccount;
 	private String username;
@@ -24,10 +24,10 @@ public class Email {
 	public void setMailServer(String mailServer) {
 		this.mailServer = mailServer;
 	}
-	public int getPort() {
+	public String getPort() {
 		return port;
 	}
-	public void setPort(int port) {
+	public void setPort(String port) {
 		this.port = port;
 	}
 	public String getRecipient() {

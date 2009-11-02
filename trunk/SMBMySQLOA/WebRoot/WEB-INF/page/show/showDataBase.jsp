@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <A HREF="showProcessListAction.action">返回</A> <br><br>
+  <A HREF="showProcessListAction.do">返回</A> <br><br>
   
    
     <% 
@@ -23,7 +23,7 @@
 	 		out.println("<b>请选择一个数据库：</b> <br><hr>");
 			for (int i=0;i<size;i++){
 			
-		 	 out.println("<A HREF='showEveryTableStatus.action?DBName="+ proList.get(i)+
+		 	 out.println("<A HREF='showEveryTableStatusAction.do?DBName="+ proList.get(i)+
 		 	 		"'><span style='color: blue;'><b>"+ proList.get(i)+"</span></A><br>");
 			 
 			} // for 
@@ -34,7 +34,7 @@
     
     
     <br><br>
-      <A HREF="showProcessListAction.action">返回</A> <br><br>
+      <A HREF="showProcessListAction.do">返回</A> <br><br>
      <br>
   </body>
 </html>

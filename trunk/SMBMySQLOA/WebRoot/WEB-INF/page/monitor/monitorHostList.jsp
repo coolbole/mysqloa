@@ -10,9 +10,11 @@
   </head>
   
   <body>
-     <A HREF="showProcessListAction.action">返回</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <A HREF="showProcessListAction.do">返回</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      
-  	 <A HREF="monitorHostCRUD.action?type=addView">添加被监控主机</A><br><br><br>
+  	 <A HREF="monitorHostCRUDAction.do?type=addView">添加被监控主机</A><br><br> 
+  	  
+  	
   	  
     <%
    		 List <MySQLMonitorHost> list=(List)request.getAttribute("listF");
@@ -23,13 +25,13 @@
    		 else{
 	   		 for (int i=0;i<list.size();i++){
 	   		 if (list.get(i).getId()!=null){
-		   		 out.println ( "<A HREF='viewDetailHost.action?HostID="
+		   		 out.println ( "<A HREF='viewDetailHost.do?HostID="
 		   		 +list.get(i).getId()+"'>" +list.get(i).getHost()+" </A>&nbsp;&nbsp;&nbsp;" );
 		   		 
-		   		 out.println ( "<A HREF='monitorHostCRUD.action?type=editView&HostID="
+		   		 out.println ( "<A HREF='monitorHostCRUDAction.do?type=editView&HostID="
 		   		 +list.get(i).getId()+"'>修改</A>&nbsp;&nbsp;" );
 		   		 
-		   		 out.println ( "<A HREF='monitorHostCRUD.action?type=delete&HostID="
+		   		 out.println ( "<A HREF='monitorHostCRUDAction.do?type=delete&HostID="
 		   		 +list.get(i).getId()+"'>删除</A><br>" );
 	   		 	}
 	   		 }

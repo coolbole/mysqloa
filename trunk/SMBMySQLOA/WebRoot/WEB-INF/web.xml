@@ -1,145 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app >
-	 
- 
-<servlet>  
-	  <servlet-name>ShowProcessListAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowProcessListAction</servlet-class>  
-  </servlet>  
-  <servlet>  
-	  <servlet-name>ShowSatusAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowSatusAction</servlet-class>  
-  </servlet>  
-  
-   <servlet>  
-	  <servlet-name>ShowVariblesAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowVariblesAction</servlet-class>  
-  </servlet> 
-  
-   <servlet>  
-	  <servlet-name>ShowVariblesByCategoryAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowVariblesByCategoryAction</servlet-class>  
-  </servlet> 
-  
-  <servlet>  
-	  <servlet-name>ShowDataBaseAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowDataBaseAction</servlet-class>  
-  </servlet> 
-  
-   <servlet>  
-	  <servlet-name>ShowEveryTableStatusAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowEveryTableStatusAction</servlet-class>  
-  </servlet> 
-  
-   <servlet>  
-	  <servlet-name>UpdateDetailVariblesAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.UpdateDetailVariblesAction</servlet-class>  
-  </servlet> 
-  
-    <servlet>  
-	  <servlet-name>AutoCreateConfigAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.AutoCreateConfigAction</servlet-class>  
-  </servlet> 
-  
-   <servlet>  
-	  <servlet-name>OptimizeCaseAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.OptimizeCaseAction</servlet-class>  
-  </servlet> 
-  
-   <servlet>  
-	  <servlet-name>QueryAnalyzerAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.QueryAnalyzerAction</servlet-class>  
-  </servlet> 
-  
-  <servlet>  
-	  <servlet-name>ShowOpenTablesAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.ShowOpenTablesAction</servlet-class>  
-  </servlet> 
-  
-    <servlet>  
-	  <servlet-name>MySQLMonitorHostListAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.monitor.MySQLMonitorHostListAction</servlet-class>  
-  </servlet> 
-   
-   <servlet>  
-	  <servlet-name>MySQLMonitorHostCRUDAction</servlet-name>  
-	  <servlet-class>com.smb.MMUtil.action.monitor.MySQLMonitorHostCRUDAction</servlet-class>  
-  </servlet> 
-   
-   <!-- ############################################################################ -->
-   
-  <servlet-mapping>  
-	  <servlet-name>ShowProcessListAction</servlet-name>  
-	  <url-pattern>/showProcessListAction.action</url-pattern>  
-  </servlet-mapping>  
-  
-  <servlet-mapping>  
-	  <servlet-name>ShowSatusAction</servlet-name>  
-	  <url-pattern>/showSatusAction.action</url-pattern>  
-  </servlet-mapping>
-     
- <servlet-mapping>  
-	  <servlet-name>ShowVariblesAction</servlet-name>  
-	  <url-pattern>/showVariblesAction.action</url-pattern>  
-  </servlet-mapping>  
+<web-app>
 
-  <servlet-mapping>  
-	  <servlet-name>ShowVariblesByCategoryAction</servlet-name>  
-	  <url-pattern>/showVariblesByCategoryAction.action</url-pattern>  
-  </servlet-mapping>  
-  
-  <servlet-mapping>  
-	  <servlet-name>ShowDataBaseAction</servlet-name>  
-	  <url-pattern>/showDataBaseAction.action</url-pattern>  
-  </servlet-mapping>  
+	<servlet>
+		<servlet-name>SMBServletDispatcher</servlet-name>
+		<servlet-class>
+			com.smb.framework.web.action.SMBServletDispatcher
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-	<servlet-mapping>  
-	  <servlet-name>ShowEveryTableStatusAction</servlet-name>  
-	  <url-pattern>/showEveryTableStatus.action</url-pattern>  
-  </servlet-mapping>  
+	<servlet-mapping>
+		<servlet-name>SMBServletDispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
 
-	<servlet-mapping>  
-	  <servlet-name>UpdateDetailVariblesAction</servlet-name>  
-	  <url-pattern>/updateDetailVaribles.action</url-pattern>  
-  </servlet-mapping>  
 
-	<servlet-mapping>  
-	  <servlet-name>AutoCreateConfigAction</servlet-name>  
-	  <url-pattern>/autoCreateConfig.action</url-pattern>  
-  </servlet-mapping>  
-
-   <servlet-mapping>  
-	  <servlet-name>OptimizeCaseAction</servlet-name>  
-	  <url-pattern>/optimizeCase.action</url-pattern>  
-  </servlet-mapping> 
-
-  <servlet-mapping>  
-	  <servlet-name>QueryAnalyzerAction</servlet-name>  
-	  <url-pattern>/queryAnalyzer.action</url-pattern>  
-  </servlet-mapping>
-
-  <servlet-mapping>  
-	  <servlet-name>MySQLMonitorHostListAction</servlet-name>  
-	  <url-pattern>/monitorHostList.action</url-pattern>  
-  </servlet-mapping>
-  
- 
-  <servlet-mapping>  
-	  <servlet-name>ShowOpenTablesAction</servlet-name>  
-	  <url-pattern>/showOpenTables.action</url-pattern>  
-  </servlet-mapping>
-  
-  <servlet-mapping>  
-	  <servlet-name>MySQLMonitorHostCRUDAction</servlet-name>  
-	  <url-pattern>/monitorHostCRUD.action</url-pattern>  
-  </servlet-mapping>  
-  
-  
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	<login-config>
-		<auth-method>BASIC</auth-method>
-	</login-config>
+	 
 </web-app>

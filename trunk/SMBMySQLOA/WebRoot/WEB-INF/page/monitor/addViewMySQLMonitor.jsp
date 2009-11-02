@@ -11,7 +11,7 @@
 	</head>
 
 	<body>
-	<FORM METHOD=POST ACTION="monitorHostCRUD.action?type=add">
+	<FORM METHOD=POST ACTION="monitorHostCRUDAction.do?type=add">
 
 		host:<INPUT TYPE="text" NAME="host" value="127.0.0.1">
 		<BR>

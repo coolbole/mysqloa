@@ -8,9 +8,7 @@ import java.net.Socket;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.smb.MMUtil.pojo.email.Email;
-import com.smb.MMUtil.tools.UtilTools;
  
 
 public class SendSMTPMailClient {
@@ -27,7 +25,7 @@ public class SendSMTPMailClient {
 		email.setEmailAccount(  "smbopensoft@sina.com" );
 		email.setUsername("smbopensoft"  );
 		email.setPassword( "config5566" );
-		email.setPort(25);
+		email.setPort("25");
 		email.setRecipient( "njthnet@gmail.com" );
 		email.setMailServer( "smtp.sina.com" );
 		new SendSMTPMailClient().sendMail(email);
@@ -39,7 +37,9 @@ public class SendSMTPMailClient {
 		logger.info( "sendMail .................................." );
 		try {
 			// 有Socket打开25端口
-			Socket socket = new Socket(email.getMailServer() , email.getPort());
+			Integer port= new Integer(email.getPort() );
+			
+			Socket socket = new Socket(email.getMailServer() , port.intValue() );
 			// 缓存输入和输出
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"));
@@ -47,8 +47,8 @@ public class SendSMTPMailClient {
 			send(in, out, "HELO "+email.getMailServer());
 			// 发出“AUTH LOGIN”命令，表示发出SMTP认证
 			send(in, out, "AUTH LOGIN");    
-			send(in, out, UtilTools.getBASE64(email.getUsername() ));   //用户名
-			send(in, out, UtilTools.getBASE64(email.getPassword() ));  // 密码
+			send(in, out,  email.getUsername());   //用户名
+			send(in, out, email.getPassword() );  // 密码
 			
 			// 告诉服务器我的邮件地址，有些服务器要校验这个地址
 			send(in, out, "MAIL FROM: <"+ email.getEmailAccount() +">");    
