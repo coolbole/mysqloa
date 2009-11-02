@@ -1,15 +1,7 @@
-/**
- * 
- */
 package com.smb.MMUtil.action;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,39 +11,20 @@ import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.queryAnalyzer.QueryAnalyzerFactory;
+import com.smb.framework.web.action.ControllerAction;
+import com.smb.framework.web.action.ModelAndPage;
 
-/**
- * @author huangyi
- *
- */
-public class QueryAnalyzerAction  extends HttpServlet {
-	
-	private static final long serialVersionUID = 2551449111136325075L;
+
+public class QueryAnalyzerAction implements ControllerAction {
 	private static Log logger = LogFactory.getLog(QueryAnalyzerAction.class);
 	
-	public QueryAnalyzerAction() {super();	}
-	
-	public void destroy() {	super.destroy(); }
-
- 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		    doPost(request, response);
-	}
- 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println( );
-		
-		request.setCharacterEncoding("UTF-8");  
-		response.setCharacterEncoding("UTF-8");  
+	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		Map map=null; String SQL="";
-		PrintWriter out = response.getWriter();
-		
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
  	
-			if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
+			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		    String host=session.getAttribute("host").toString() ;
 		    String username=session.getAttribute("username").toString();
 		    String password=session.getAttribute("password").toString();
@@ -102,22 +75,14 @@ public class QueryAnalyzerAction  extends HttpServlet {
 		     else{
 		    	 request.setAttribute("values","" );
 		     }
-		    
 		     request.setAttribute("err",map.get("err")  );
-		     
-			 RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/queryAnaly/queryAnalyzerResult.jsp");   
-			 requestDispatcher.forward(request,response);
 		}
 		
 		catch(Exception e ) { 
 			 logger.error(e);
 		}
-		 
-		out.flush();
-		out.close();
+		return new ModelAndPage( request ,"/WEB-INF/page/queryAnaly/queryAnalyzerResult.jsp" );
 	}
- 
-	public void init() throws ServletException {	}
-
+	
 }
-
+ 

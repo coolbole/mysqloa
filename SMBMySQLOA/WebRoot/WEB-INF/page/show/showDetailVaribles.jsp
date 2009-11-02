@@ -12,25 +12,27 @@
 
   <body> 
   
-  <FORM METHOD="POST" ACTION="updateDetailVaribles.action?category=<%=request.getParameter("category")%>">
+  <FORM METHOD="POST" ACTION="updateDetailVariblesAction.do?category=<%=request.getParameter("category")%>">
 	
 
     <% 
-    String variable_name=request.getParameter("variable_name");
+    //String variable_name=request.getParameter("variable_name");
     
-     if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
+   //  if(session.getAttribute("host")==null){response.sendRedirect("index.jsp");}
     
-    String host=session.getAttribute("host").toString() ;
-    String username=session.getAttribute("username").toString();
-    String password=session.getAttribute("password").toString();
+   // String host=session.getAttribute("host").toString() ;
+   // String username=session.getAttribute("username").toString();
+   // String password=session.getAttribute("password").toString();
     
-    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-	IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+   // UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
+	//IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 	
-	ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
-	List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
+	//ReadMySQLValueDescriptionXMLFile  DescriptionXMLFile= new ReadMySQLValueDescriptionXMLFile();
+//	List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
 	
-	MySQLVariableObject listS=mmu.showDetailVaribles(variable_name);
+	//MySQLVariableObject listS=mmu.showDetailVaribles(variable_name);
+	MySQLVariableObject listS=(MySQLVariableObject)request.getAttribute("listS");
+	List <MySQLVariableDescription> listF=(List)request.getAttribute("listF");
 	
 				for (int h=0;h<listF.size();h++){
 				if(	listS.getVariable_name().equals(listF.get(h).getVariable_name() ) ){

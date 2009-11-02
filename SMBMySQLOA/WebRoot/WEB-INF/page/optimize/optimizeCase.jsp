@@ -12,7 +12,7 @@
   </head>
   
   <body>
-   <a href="optimizeCaseList.jsp">返回上一页</a> <br><br>
+   <a href="optimizeCaseListAction.do">返回上一页</a> <br><br>
   您优化了系统了 [<%=request.getAttribute("host")%>] 里面的如下配置信息：<br><br>
     <% 
 		List listS=(List)request.getAttribute("listS");
@@ -23,6 +23,6 @@
 	  
 	  <br>
 	
- <br><a href="optimizeCaseList.jsp">返回上一页</a>
+ <br><a href="optimizeCaseListAction.do">返回上一页</a>
   </body>
 </html>

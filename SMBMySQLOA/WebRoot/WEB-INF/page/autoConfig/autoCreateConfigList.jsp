@@ -10,9 +10,9 @@
    </head>
   
   <body> 
-  <a href="showProcessListAction.action">返回上一页</a> <br>
+  <a href="showProcessListAction.do">返回上一页</a> <br>
     您的这台机器是：<br>
-   <FORM METHOD=POST ACTION="autoCreateConfig.action">
+   <FORM METHOD=POST ACTION="autoCreateConfigAction.do">
    <INPUT TYPE='radio' checked NAME='config' value="2g"/>2G内存<br>
    <INPUT TYPE='radio'  NAME='config' value="4g"/>4G内存<br>
    <INPUT TYPE="submit">

@@ -21,7 +21,7 @@
     <b><FONT SIZE="6" COLOR="#993333">查看 MySQL数据库 当前<%=category%>配置参数  </FONT></b>
     </CENTER>
     <br>
-    <a href="showProcessListAction.action">返回上一页</a> <br>
+    <a href="showProcessListAction.do">返回上一页</a> <br>
     <%
 	
 	List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
@@ -35,7 +35,7 @@
 					 out.print ("<b>"+listS.get(i).getValue()+"</b>   "  ); 
 					 out.print ("<FONT SIZE='2' COLOR='#006666'> "+listF.get(h).getDescription() +" </FONT>   "  ); 
 					 if (listF.get(h).getIsEdit()!=-1){
-						 out.print (" <b><A HREF=showDetailVaribles.jsp?category="+
+						 out.print (" <b><A HREF=showDetailVariblesAction.do?category="+
 						 category+"&variable_name="+listS.get(i).getVariable_name()+">Edit</A> </b>"  ); 
 					 }
 					 else{ out.print (" 此值不允许编辑 "); }
@@ -45,7 +45,7 @@
 				 
 			}
     %>
-     <a href="javascript:history.back(-1)">返回上一页</a> <br>
+     <a href="showProcessListAction.do">返回上一页</a> <br>
      <br>
   </body>
 </html>

@@ -13,7 +13,7 @@
   
   <body>
      
-     <FORM METHOD="POST" ACTION="monitorHostCRUD.action?type=edit">
+     <FORM METHOD="POST" ACTION="monitorHostCRUDAction.do?type=edit">
 		<%MySQLMonitorHost hostInfo=(MySQLMonitorHost)request.getAttribute("hostInfo");%>
 		<br>
 		host:<INPUT TYPE="hidden" NAME="id" value=<%=hostInfo.getId()%>><br>

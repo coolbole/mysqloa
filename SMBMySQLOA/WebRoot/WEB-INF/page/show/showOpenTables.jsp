@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <A HREF="showProcessListAction.action">返回</A> <br><br>
+  <A HREF="showProcessListAction.do">返回</A> <br><br>
   
    
     <% 
@@ -51,7 +51,7 @@
     
     
     <br><br>
-      <A HREF="showProcessListAction.action">返回</A> <br><br>
+      <A HREF="showProcessListAction.do">返回</A> <br><br>
      <br>
   </body>
 </html>

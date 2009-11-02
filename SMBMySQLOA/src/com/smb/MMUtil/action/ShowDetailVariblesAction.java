@@ -1,8 +1,7 @@
 package com.smb.MMUtil.action;
 
- 
 import java.util.List;
- 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,47 +17,39 @@ import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class ShowVariblesAction   implements ControllerAction  {
+public class ShowDetailVariblesAction    implements ControllerAction  {
 	
-	private static Log logger = LogFactory.getLog(ShowVariblesAction.class);
+	private static Log logger = LogFactory.getLog(ShowDetailVariblesAction.class);
 	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
 	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-	
+		 String variable_name=request.getParameter("variable_name");
+		    
 		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-	    
-	    String host= request.getSession().getAttribute("host").toString() ;
-	    String username= request.getSession().getAttribute("username").toString();
-	    String password= request.getSession().getAttribute("password").toString();
-	    
+		    String host=request.getSession().getAttribute("host").toString() ;
+		    String username=request.getSession().getAttribute("username").toString();
+		    String password=request.getSession().getAttribute("password").toString();
+		
 	    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 		
-		
 		List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
 		
-		List <MySQLVariableObject> listS=null;
-		String category=request.getParameter("category");
+		MySQLVariableObject listS=mmu.showDetailVaribles(variable_name);
+				 
+		  request.setAttribute("listS",listS);   
+		  request.setAttribute("listF",listF );   
+		    
+		return new ModelAndPage( request ,"/WEB-INF/page/show/showDetailVaribles.jsp" );
 		
-		String warn="";
-		if(category==null){
-			listS=mmu.showVariblesCommand( );
-		}
-		else{
-			listS=mmu.showVariblesCommandByCategory(category);
-		}
-			
-		 	request.setAttribute("listF",listF);      
-			request.setAttribute("listS",listS);      
-		if (category==null){
-			return new ModelAndPage( request ,"/WEB-INF/page/show/showVaribles.jsp" );
-		}
-		else{
-			return new ModelAndPage( request ,"/WEB-INF/page/show/showVariblesByCategory.jsp" );
-		}
+		
+	
+		
+		
+		
 		
 	}
 }
