@@ -21,7 +21,7 @@ public class ShowProcessListAction implements ControllerAction  {
 	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-		
+		try{
 	    String Rhost=request.getParameter("host");
 	    String Rusername=request.getParameter("username");
 	    String Rpassword=request.getParameter("password");
@@ -46,7 +46,11 @@ public class ShowProcessListAction implements ControllerAction  {
 		    request.setAttribute("host",host);   
 		    request.setAttribute("version",mmu.showVersion() );   
 		    
-		
+		}
+		catch(Exception e) {
+			 logger.error(e);
+			return new ModelAndPage("index.jsp",true);
+		}
 		
 		return new ModelAndPage( request ,"/WEB-INF/page/show/showProcessList.jsp" );
 	}

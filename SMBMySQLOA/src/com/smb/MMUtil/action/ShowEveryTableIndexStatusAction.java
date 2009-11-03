@@ -13,7 +13,6 @@ import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.pojo.MySQLTableIndex;
-import com.smb.MMUtil.pojo.TableStatusPojo;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
