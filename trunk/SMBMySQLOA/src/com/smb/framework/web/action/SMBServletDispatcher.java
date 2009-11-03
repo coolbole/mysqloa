@@ -18,7 +18,9 @@ public class SMBServletDispatcher extends HttpServlet   {
     }
 	
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        try {
+    	try {
+    		request.setCharacterEncoding("utf-8");
+        	response.setCharacterEncoding("utf-8");
         	String requestURL = request .getRequestURI() ;  // 对应配置文件里面的 url路径
  
         	ControllerAction action=DispatcherUtils.getControllerAction(requestURL);

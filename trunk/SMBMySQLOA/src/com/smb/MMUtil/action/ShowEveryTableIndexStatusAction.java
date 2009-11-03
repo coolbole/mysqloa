@@ -12,13 +12,14 @@ import org.apache.commons.logging.LogFactory;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.pojo.MySQLTableIndex;
 import com.smb.MMUtil.pojo.TableStatusPojo;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class ShowEveryTableStatusAction implements ControllerAction {
+public class ShowEveryTableIndexStatusAction implements ControllerAction {
 	
-	private static Log logger = LogFactory.getLog(ShowEveryTableStatusAction.class);
+	private static Log logger = LogFactory.getLog(ShowEveryTableIndexStatusAction.class);
 	
 	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -35,14 +36,12 @@ public class ShowEveryTableStatusAction implements ControllerAction {
 			    
 			    UtilBaseTools orm= new UtilBaseTools(host,DBName,username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-				List <TableStatusPojo> proList=(List<TableStatusPojo>) mmu.showTableStatus();
-				
-//				request.setAttribute("actionType", request.getParameter("actionType")  );
+				List <MySQLTableIndex> proList=(List<MySQLTableIndex>) mmu.showTableIndexs(DBName);
 				
 			 	request.setAttribute("proList",proList);      
 			 	request.setAttribute("host",host);  
 			 	request.setAttribute("uptime",mmu.showUptime() );  
-			 	return new ModelAndPage( request ,"/WEB-INF/page/show/showEveryTableStatus.jsp" );
+			 	return new ModelAndPage( request ,"/WEB-INF/page/show/showEveryTableIndexStatus.jsp" );
 		}
 		
 		catch(Exception e ) {

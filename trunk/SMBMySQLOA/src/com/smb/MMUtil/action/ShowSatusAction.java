@@ -16,7 +16,6 @@ import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
-import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
@@ -26,6 +25,7 @@ public class ShowSatusAction   implements ControllerAction  {
 	private static Log logger = LogFactory.getLog(ShowSatusAction.class);
 	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
@@ -40,12 +40,13 @@ public class ShowSatusAction   implements ControllerAction  {
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLStatusDescription();
 			
-			List <MySQLVariableObject> listS=null;
+			List<?> listS=null;
 			String category=request.getParameter("category");
 			
 			String warn="";
 			if(category==null){
 				request.setAttribute("warn",""); 
+				category="";
 				listS=mmu.showStatusCommand( );
 			}
 			else{
@@ -56,7 +57,7 @@ public class ShowSatusAction   implements ControllerAction  {
 					request.setAttribute("warn",warn);   
 				}
 			}
-				
+				request.setAttribute("category",category);      
 			 	request.setAttribute("listF",listF);      
 				request.setAttribute("listS",listS);      
 			 

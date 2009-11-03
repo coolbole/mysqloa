@@ -18,6 +18,7 @@ public class OptimizeCaseAction implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(OptimizeCaseAction.class);
 
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );

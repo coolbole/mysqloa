@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <A HREF="showDataBaseAction.do">返回</A> <br><br>
+  <A HREF="showDataBaseAction.do?type=everytable">返回</A> <br><br>
   
     <% 
     	 try{
@@ -18,6 +18,7 @@
 			List <TableStatusPojo> proList=(List)request.getAttribute("proList");
 			int size=proList.size();
 			out.println(request.getAttribute("uptime")+"<br><br>"  );
+			 
 		%>
 		
 		<TR>

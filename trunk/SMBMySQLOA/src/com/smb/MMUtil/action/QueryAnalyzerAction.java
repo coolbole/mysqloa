@@ -18,8 +18,11 @@ import com.smb.framework.web.action.ModelAndPage;
 public class QueryAnalyzerAction implements ControllerAction {
 	private static Log logger = LogFactory.getLog(QueryAnalyzerAction.class);
 	
+	 
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		Map map=null; String SQL="";
+		Map  map=null;
+		String SQL="";
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();

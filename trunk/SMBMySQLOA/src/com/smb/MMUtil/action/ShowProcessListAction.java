@@ -48,6 +48,6 @@ public class ShowProcessListAction implements ControllerAction  {
 		    
 		
 		
-		return new ModelAndPage( request ,"/WEB-INF/page/show/processlist.jsp" );
+		return new ModelAndPage( request ,"/WEB-INF/page/show/showProcessList.jsp" );
 	}
 }

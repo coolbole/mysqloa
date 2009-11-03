@@ -25,11 +25,11 @@ public class MapCompare {
 	
 	@Test
 	public void showMasterReplicationStatus () throws Exception{
-		UtilBaseTools orm= new UtilBaseTools("192.168.12.78",null,"root","123456");
+		UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-		String list= mmu.CreateAutoCreateConfig("4g");
-		System.out.println (list);
+		ReplicationStatusPojo list= mmu.showMasterReplicationStatus();
+ 		System.out.println (list.getMasterBinlog_Ignore_DB() );
 		 
 		
 	}
@@ -39,7 +39,7 @@ public class MapCompare {
 			UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
 			
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-			List <MySQLVariableObject> listS=mmu.showVariblesCommand();
+			List <MySQLVariableObject> listS=(List<MySQLVariableObject>) mmu.showVariblesCommand();
 			
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
 			

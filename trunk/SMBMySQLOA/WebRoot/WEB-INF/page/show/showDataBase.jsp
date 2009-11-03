@@ -16,15 +16,21 @@
     <% 
     	try{
 		 	String host=session.getAttribute("host").toString() ;
+		 	Object actionType=request.getAttribute("actionType")  ;
 		    out.println("您当前查看的主机是: "+host+" <br>");
 			List proList=(List)request.getAttribute("dataBasesList");
 			int size=proList.size();
-			 
+
 	 		out.println("<b>请选择一个数据库：</b> <br><hr>");
 			for (int i=0;i<size;i++){
-			
-		 	 out.println("<A HREF='showEveryTableStatusAction.do?DBName="+ proList.get(i)+
+			if (actionType.equals("index")){
+			out.println("<A HREF='showEveryTableIndexStatusAction.do?actionType=index&DBName="+ proList.get(i)+
 		 	 		"'><span style='color: blue;'><b>"+ proList.get(i)+"</span></A><br>");
+			}
+			else{
+		 	 out.println("<A HREF='showEveryTableStatusAction.do?actionType=everytable&DBName="+ proList.get(i)+
+		 	 		"'><span style='color: blue;'><b>"+ proList.get(i)+"</span></A><br>");
+			 }
 			 
 			} // for 
 		}  // try 

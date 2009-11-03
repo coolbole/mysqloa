@@ -9,10 +9,16 @@
   <head>
      <title>Mysql Optimize Analysis</title>
   </head>
+	<%
+	
+	
+	%>
+
+
 
   <body> 
   <CENTER>
-    <b><FONT SIZE="6" COLOR="#336600">查看 MySQL数据库 当前使用 状态 </FONT></b>
+    <b><FONT SIZE="6" COLOR="#336600">查看 MySQL数据库当前 <%=request.getAttribute("category")%>使用 状态 </FONT></b>
   </CENTER>
   <%=request.getAttribute("warn")%>
   <br>
