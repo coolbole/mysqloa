@@ -56,8 +56,6 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 				setUpMySQLMonitorHost.addMySQLMonitorHost(MonitorHost);
 				
 				return new ModelAndPage( "monitorHostListAction.do",true );
-//				RequestDispatcher   requestDispatcher=request.getRequestDispatcher("monitorHostList.action");   
-//				requestDispatcher.forward(request,response);
 				
 			}
 			
@@ -68,8 +66,6 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 				request.setAttribute("hostInfo", hostInfo);
 				
 				return new ModelAndPage( request ,"/WEB-INF/page/monitor/editViewMySQLMonitor.jsp" );
-//				RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/monitor/editViewMySQLMonitor.jsp");   
-//				requestDispatcher.forward(request,response);
 			}
 			
 			else if (reqType.equals("edit") ){
@@ -82,15 +78,11 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 				setUpMySQLMonitorHost.upDataMySQLMonitorHostList(MonitorHost);
 				return new ModelAndPage( "monitorHostListAction.do",true );
 				
-//				RequestDispatcher   requestDispatcher=request.getRequestDispatcher("monitorHostList.action");   
-//				requestDispatcher.forward(request,response);
 			}
 			
 			else{
 				List <MySQLMonitorHost> listF=setUpMySQLMonitorHost.getMySQLMonitorHostList();
 				request.setAttribute("listF",listF);      
-//				RequestDispatcher   requestDispatcher=request.getRequestDispatcher("");   
-//				requestDispatcher.forward(request,response);
 				return new ModelAndPage( request ,"/WEB-INF/page/monitor/monitorHostList.jsp" );
 			}
 		}

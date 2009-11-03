@@ -20,6 +20,7 @@ public class ShowDataBaseAction implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(ShowDataBaseAction.class);
 
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			HttpSession session=  request.getSession();
@@ -28,7 +29,7 @@ public class ShowDataBaseAction implements ControllerAction {
 			   String username= session.getAttribute("username").toString();
 			   String password= session.getAttribute("password").toString();
 			   
-			    String type=request.getParameter("type");
+			    String actionType=request.getParameter("type");
 			    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 				List dataBasesList=mmu.showDataBases();
@@ -36,16 +37,25 @@ public class ShowDataBaseAction implements ControllerAction {
 			 	request.setAttribute("dataBasesList",dataBasesList);      
 			 	request.setAttribute("host",host);  
 			 	
-			 	if (type!=null){
-			 		logger.info(type+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
+			 	if (actionType.equals("queryAnalyzer")){
+			 		
+			 		logger.info(actionType+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			 		return new ModelAndPage( request ,"/WEB-INF/page/queryAnaly/queryAnalyzer.jsp" );
 			 	}
+			 	
+			 	else if (actionType.equals("index")){
+			 		logger.info(actionType+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
+			 		request.setAttribute("actionType", actionType);
+			 		return new ModelAndPage( request ,"/WEB-INF/page/show/showDataBase.jsp" );
+			 	}
 			   
-			 	else{
+			 	else  if (actionType.equals("everytable")){
 			 	logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
+			 	
+			 	request.setAttribute("actionType", actionType);
 			 	return new ModelAndPage( request ,"/WEB-INF/page/show/showDataBase.jsp" );
 			 	}
-			
+			 	return null;
 		}
 		
 		catch(Exception e ) {

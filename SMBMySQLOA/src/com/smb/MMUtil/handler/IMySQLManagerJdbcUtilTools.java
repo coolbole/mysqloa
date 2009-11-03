@@ -14,21 +14,22 @@ import com.smb.MMUtil.pojo.ReplicationStatusPojo;
  */
 public interface IMySQLManagerJdbcUtilTools {
 	
+	@SuppressWarnings("unchecked")
 	public List  showProcesslistCommand( ) throws  Exception;
 	
-	public List  showVariblesCommand ( ) throws  Exception;
+	public List<MySQLVariableObject>  showVariblesCommand ( ) throws  Exception;
 	
-	public List  showVariblesCommandByCategory (String category ) throws  Exception;
+	public List<?>  showVariblesCommandByCategory (String category ) throws  Exception;
 	
-	public List  showStatusCommand ( ) throws  Exception;
+	public List<?>  showStatusCommand ( ) throws  Exception;
 
-	public List  showStatusCommandByCategory (String category) throws  Exception;
+	public List<?>  showStatusCommandByCategory (String category) throws  Exception;
 	
 	public void setVariblesCommandByCategory(String category,String value) throws Exception;
 	
 	public MySQLVariableObject  showDetailVaribles (String variable_name) throws  Exception;
 	
-	public List  showVariblesCommandByLetter(String letter ) throws  Exception;
+	public List<?>  showVariblesCommandByLetter(String letter ) throws  Exception;
 	
 	public ReplicationStatusPojo  showMasterReplicationStatus( ) throws  Exception;
 	
@@ -36,11 +37,11 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public String  showUptime (  ) throws  Exception;
 	
-	public List  showDataBases(  ) throws  Exception;
+	public List<?>  showDataBases(  ) throws  Exception;
 	
-	public List  showTableStatus(  ) throws  Exception;
+	public List<?>  showTableStatus(  ) throws  Exception;
 	
-	public List MySQLOptimize (String Optimize) throws Exception ;
+	public List<?>  MySQLOptimize (String Optimize) throws Exception ;
 	
 	public String showVersion (  ) throws  Exception;
 	
@@ -48,7 +49,9 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public  String showCreateTable ( String tablename ) throws  Exception; 
 	
-	public  List showOpentables (   ) throws  Exception; 
+	public  List<?>   showOpentables (   ) throws  Exception; 
 	
+	public List showTableIndexs(String DBName) throws Exception;
 	
+	public String CollectionMySQLogData () throws Exception;
 }

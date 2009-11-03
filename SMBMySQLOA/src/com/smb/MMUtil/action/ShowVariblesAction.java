@@ -43,12 +43,11 @@ public class ShowVariblesAction   implements ControllerAction  {
 		List <MySQLVariableObject> listS=null;
 		String category=request.getParameter("category");
 		
-		String warn="";
 		if(category==null){
-			listS=mmu.showVariblesCommand( );
+			listS=(List<MySQLVariableObject>) mmu.showVariblesCommand( );
 		}
 		else{
-			listS=mmu.showVariblesCommandByCategory(category);
+			listS=(List<MySQLVariableObject>) mmu.showVariblesCommandByCategory(category);
 		}
 			
 		 	request.setAttribute("listF",listF);      

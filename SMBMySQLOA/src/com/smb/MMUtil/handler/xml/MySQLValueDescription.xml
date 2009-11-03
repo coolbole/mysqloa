@@ -33,6 +33,7 @@ MySQL有的主要连接请求的数量。当主MySQL线程在短时间内得到�
 主线程需要花一些时间(尽管很少)来检查连接并启动一个新线程。back_log值说明MySQL临时停止响应新请求前在短时间内可以堆起多少请求。
 如果你需要在短时间内允许大量连接，可以增加该数值。换句话说，该值为“进”TCP/IP连接帧听队列的大小。操作系统有该队列自己的限制值。
 本手册中Unix listen()系统调用页应有更详细的信息。该变量最大值请查阅OS文档。企图将back_log设置为高于你的操作系统限值是徒劳无益的。</description>
+<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 
@@ -631,6 +632,7 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 	<variable_name>innodb_log_buffer_size</variable_name>
 	<description>每个日志文件缓存大小 优化高强度写入与短事务处理能力 8-16M 1048576 （1M） ,InnoDB 将日志写入日志磁盘文件前的缓冲大小。理想值为 1M 至 8M。大的日志缓冲允许事务运行时不需要将日志保存入磁盘而只到事务被提交(commit)。 
 	因此，如果有大的事务处理，设置大的日志缓冲可以减少磁盘I/O。 在 my.cnf 中以数字格式设置。推荐大小为1MB~8MB</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

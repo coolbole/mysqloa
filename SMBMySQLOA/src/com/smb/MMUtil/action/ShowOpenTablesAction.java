@@ -20,6 +20,7 @@ public class ShowOpenTablesAction implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(ShowOpenTablesAction.class);
 
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
@@ -32,7 +33,7 @@ public class ShowOpenTablesAction implements ControllerAction {
 			    
 			    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-				List <MySQLOpenTables> proList=mmu.showOpentables();
+				List <MySQLOpenTables> proList=(List<MySQLOpenTables>) mmu.showOpentables();
 			 	request.setAttribute("proList",proList);      
 			 	request.setAttribute("host",host);  
 			 	request.setAttribute("uptime",mmu.showUptime() );  

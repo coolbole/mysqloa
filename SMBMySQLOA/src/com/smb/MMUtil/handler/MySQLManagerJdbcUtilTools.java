@@ -5,7 +5,12 @@ package com.smb.MMUtil.handler;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,6 +27,7 @@ import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOpenTables;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
+import com.smb.MMUtil.pojo.MySQLTableIndex;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
 import com.smb.MMUtil.pojo.TableStatusPojo;
@@ -233,30 +239,26 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			while (rs.next() ){
 				variable= new ReplicationStatusPojo();	
 				variable.setSlave_IO_State( rs.getString("Slave_IO_State")   );
-				variable.setConnect_Retry(rs.getString("connect_Retry"));
+				variable.setConnect_Retry(rs.getString("Connect_Retry"));
 				variable.setExec_Master_Log_Pos( rs.getString("Exec_Master_Log_Pos"));
-				variable.setLast_Errno(  rs.getString("last_Errno"));
-				variable.setLast_Error(  rs.getString("last_Error"));
-				variable.setLast_IO_Errno(  rs.getString("last_IO_Errno"));
-				variable.setLast_IO_Error(  rs.getString("last_IO_Error"));
+				variable.setLast_Errno(  rs.getString("Last_Errno"));
+				variable.setLast_Error(  rs.getString("Last_Error"));
+				variable.setLast_IO_Errno(  rs.getString("Last_IO_Errno"));
+				variable.setLast_IO_Error(  rs.getString("Last_IO_Error"));
 				variable.setMaster_Bind(  rs.getString("master_Bind"));
 				variable.setMaster_Host(  rs.getString("master_Host"));
 				variable.setMaster_Log_File(  rs.getString("master_Log_File"));
 				variable.setMaster_Port( rs.getString("master_Port"));
-				variable.setMaster_SSL_Allowed(  rs.getString("master_SSL_Allowed"));
-				variable.setMaster_SSL_CA_File(  rs.getString("Master_SSL_CA_File"));
-				variable.setMaster_SSL_CA_Path(  rs.getString("Master_SSL_CA_Path"));
-				variable.setMaster_SSL_Cert(  rs.getString("Master_SSL_Cert"));
-				variable.setMaster_SSL_Cipher(  rs.getString("Master_SSL_Cipher"));
-				variable.setMaster_SSL_Key(  rs.getString("Master_SSL_Key"));
-				variable.setMaster_SSL_Verify_Server_Cert(  rs.getString("Master_SSL_Verify_Server_Cert"));
+//				variable.setMaster_SSL_Allowed(  rs.getString("master_SSL_Allowed"));
+//				variable.setMaster_SSL_CA_File(  rs.getString("Master_SSL_CA_File"));
+//				variable.setMaster_SSL_CA_Path(  rs.getString("Master_SSL_CA_Path"));
+//				variable.setMaster_SSL_Cert(  rs.getString("Master_SSL_Cert"));
+//				variable.setMaster_SSL_Cipher(  rs.getString("Master_SSL_Cipher"));
+//				variable.setMaster_SSL_Key(  rs.getString("Master_SSL_Key"));
+//				variable.setMaster_SSL_Verify_Server_Cert(  rs.getString("Master_SSL_Verify_Server_Cert"));
 				variable.setMaster_User(  rs.getString("Master_User"));
-				variable.setMasterBinlog_Do_DB(  rs.getString("MasterBinlog_Do_DB"));
 				variable.setReplicate_Do_Table(rs.getString("Replicate_Do_Table"));
-				variable.setMasterBinlog_Ignore_DB(  rs.getString("MasterBinlog_Ignore_DB"));
 				variable.setSeconds_Behind_Master(  rs.getString("Seconds_Behind_Master"));
-				variable.setMasterFile(  rs.getString("MasterFile"));
-				variable.setMasterPosition(  rs.getString("MasterPosition"));
 			}
 		}
 		catch ( Exception e){
@@ -278,11 +280,11 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			ResultSet rs=connection.prepareStatement("show master status" ).executeQuery();
 			while (rs.next() ){
 				variable= new ReplicationStatusPojo();	
-				variable.setMasterFile( rs.getString("masterFile")   );
-				variable.setMasterBinlog_Do_DB(rs.getString("masterBinlog_Do_DB"));
-				variable.setMasterBinlog_Ignore_DB( rs.getString("masterBinlog_Ignore_DB"));
-				variable.setMasterPosition(rs.getString("masterPosition"));
-			}
+				variable.setMasterFile( rs.getString("File")   );
+				variable.setMasterBinlog_Do_DB(rs.getString("Binlog_Do_DB"));
+				variable.setMasterBinlog_Ignore_DB( rs.getString("Binlog_Ignore_DB"));
+				variable.setMasterPosition(rs.getString("Position"));
+			} 
 		}
 		catch ( Exception e){
 			logger.error(e);
@@ -537,5 +539,73 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return opentablesList;
 	}
 	
+	
+	public List showTableIndexs(String DBName) throws Exception {
+		logger.info( "showTableIndexs ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List  opentablesList=  new ArrayList();
+		String SQL="SELECT information_schema.KEY_COLUMN_USAGE.CONSTRAINT_SCHEMA,information_schema.KEY_COLUMN_USAGE.CONSTRAINT_NAME,information_schema.KEY_COLUMN_USAGE.TABLE_NAME,information_schema.KEY_COLUMN_USAGE.COLUMN_NAME from information_schema.KEY_COLUMN_USAGE where   information_schema.KEY_COLUMN_USAGE.CONSTRAINT_SCHEMA ='"+DBName+"'";
+		try{
+			ResultSet rs=connection.prepareStatement(SQL).executeQuery();
+			while ( rs.next() ){ 
+				MySQLTableIndex tableIndex=new MySQLTableIndex(); 
+				
+				tableIndex.setCONSTRAINT_SCHEMA(  rs.getString("CONSTRAINT_SCHEMA") );
+				tableIndex.setCOLUMN_NAME(rs.getString("COLUMN_NAME"));
+				tableIndex.setCONSTRAINT_NAME(rs.getString("CONSTRAINT_NAME") );
+				tableIndex.setTABLE_NAME(rs.getString("TABLE_NAME") );
+ 
+				opentablesList.add( tableIndex   );
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return opentablesList;
+	}
+	
+	public String CollectionMySQLogData () throws Exception {
+		logger.info( "CollectionMySQLogData ......................." );
+		Connection connection=null;
+		String srt="";
+		StringBuffer sBuffer= new StringBuffer();
+		try{
+		connection=UtilBaseTools.getConnection();
+	    Statement statement =connection.createStatement();
+	   
+	    
+	    statement.execute("CREATE TEMPORARY TABLE log (loginfo LONGBLOB);");
+	    statement.execute("insert into log (loginfo) values (hex(load_file('c:/mysql/data/team3-012.err' )))") ;
+		ResultSet rs=statement.executeQuery("select unhex(loginfo) from log");
+		
+		while (rs.next() ){
+			srt= rs.getString(1) ;
+		 }
+		
+			Calendar   calendar   =    Calendar.getInstance();   
+			calendar.add(calendar.MONTH,-1);//得到上个月的时间  
+			Date   date   =   calendar.getTime();   
+			
+			DateFormat FORMAT_DT_yyyy_MM_dd__HH_mm_ss = new SimpleDateFormat("yyMM");
+			String bb=FORMAT_DT_yyyy_MM_dd__HH_mm_ss.format( date );
+			
+			for (int i=1;i<srt.split(bb).length;i++){
+				sBuffer.append(  srt.split(bb)[i] );
+			}
+			}
+		
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return sBuffer.toString();
+	}
 	 
+	
 }

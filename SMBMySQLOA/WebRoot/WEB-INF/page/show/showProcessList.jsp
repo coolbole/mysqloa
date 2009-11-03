@@ -15,7 +15,9 @@
   <A HREF="showVariblesByCategoryAction.do?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
   <A HREF="showVariblesByCategoryAction.do?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
   <A HREF="showVariblesByCategoryAction.do?category=cache"><span style='color: blue;'>查看系统当前  缓存 属性的所有配置参数</span></A><br>
-   
+  <A HREF="showVariblesByCategoryAction.do?category=log"><span style='color: blue;'>查看系统当前  日志 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesByCategoryAction.do?category=buffer"><span style='color: blue;'>查看系统当前  缓冲 属性的所有配置参数</span></A><br>
+  <A HREF="showVariblesByCategoryAction.do?category=max"><span style='color: blue;'>查看系统  Max状态 属性的所有配置参数</span></A><br>
    
    <br><br><br>
    <A HREF="showSatusAction.do"><span style='color:green;'>查看系统当前所有状态</span></A>  <br> 
@@ -24,20 +26,23 @@
    <A HREF="showSatusAction.do?category=sort"><span style='color:green;'>查看系统当前sort排序语句使用的状态</span></A> <br>
    <A HREF="showSatusAction.do?category=cache"><span style='color:green;'>查看系统当前 缓存 使用的状态</span></A> <br>
    <A HREF="showSatusAction.do?category=buffer"><span style='color:green;'>查看系统当前buffer 使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=log"><span style='color:green;'>查看系统当前日志 使用的状态</span></A> <br>
    <br><br>
    
    <b><A HREF="showDataBaseAction.do?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
-   <A HREF="showDataBaseAction.do">查看系统每个表使用的状况</A><br><br>
+   <A HREF="showDataBaseAction.do?type=everytable">查看系统每个表使用的状况</A><br><br>
+   <A HREF="showDataBaseAction.do?type=index">查看每个数据库的索引状态</A><br><br>
    <b><A HREF="showOpenTablesAction.do">最近被使用过的表</A></b><br><br>
   
    <A HREF="optimizeCaseListAction.do"><span style='color: blue;'><b>一键优化</b> </span></A>&nbsp;&nbsp;
    <A HREF="autoCreateConfigListAction.do"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;
-   <A HREF="#">查看同步数据状态(后续开发)</A><br><br>
+   <A HREF="showReplicationAction.do">查看同步数据状态 </A><br><br>
+   
+   <!-- 
    <A HREF="mailHostConfigViewAction.do">配置发送报告的邮件服务器</A>&nbsp;&nbsp;&nbsp;&nbsp;
    <A HREF="timerStatusViewAction.do"><b><span style='color:green;'>配置系统定时器检测时间周期</span></b></A>&nbsp;&nbsp;&nbsp;&nbsp;
-   
    <A HREF="monitorHostListAction.do">查看当前被监控的MySQL服务器</A><br><br>
-   
+    -->
    
     <% 
     	try{
@@ -72,7 +77,7 @@
 			<TD><%=plist.getTime()%></TD>
 			<TD><%=plist.getInfo()%></TD>
 			<TD><%=plist.getCommand()%></TD>
-			<TD><%=plist.getState()%></TD>
+			<TD><%=plist.getState()%>&nbsp;</TD>
 			</TR>
 		
 		<% 
