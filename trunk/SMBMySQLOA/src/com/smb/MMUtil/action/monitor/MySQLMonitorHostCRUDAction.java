@@ -24,6 +24,7 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String reqType=request.getParameter("type");
 		try{
+			MySQLMonitorHost MonitorHost= new MySQLMonitorHost();
 			
 			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			
@@ -33,8 +34,6 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 				setUpMySQLMonitorHost.delMySQLMonitorHostList(ID);
 				return new ModelAndPage( request ,"monitorHostListAction.do",true );
 				
-//				RequestDispatcher   requestDispatcher=request.getRequestDispatcher("monitorHostList.action");   
-//				requestDispatcher.forward(request,response);
 			}
 			
 			else if (reqType.equals("addView") ){
@@ -42,15 +41,13 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 				
 				return new ModelAndPage( request ,"/WEB-INF/page/monitor/addViewMySQLMonitor.jsp" );
 				
-//				RequestDispatcher   requestDispatcher=request.getRequestDispatcher("/WEB-INF/page/monitor/addViewMySQLMonitor.jsp");   
-//				requestDispatcher.forward(request,response);
 			}
 			
 			else if (reqType.equals("add") ){
 				logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 				String host=request.getParameter("host");String pswd=request.getParameter("pswd");
 				String user=request.getParameter("user");String port=request.getParameter("port");
-				MySQLMonitorHost MonitorHost= new MySQLMonitorHost();
+				
 				MonitorHost.setHost(host);MonitorHost.setUser(user);
 				MonitorHost.setPort(port);MonitorHost.setPswd(pswd);
 				setUpMySQLMonitorHost.addMySQLMonitorHost(MonitorHost);
@@ -72,7 +69,6 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 				logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 				String host=request.getParameter("host");String pswd=request.getParameter("pswd");String id=request.getParameter("id");
 				String user=request.getParameter("user");String port=request.getParameter("port");
-				MySQLMonitorHost MonitorHost= new MySQLMonitorHost();
 				MonitorHost.setHost(host);MonitorHost.setUser(user);MonitorHost.setId(id);
 				MonitorHost.setPort(port);MonitorHost.setPswd(pswd);
 				setUpMySQLMonitorHost.upDataMySQLMonitorHostList(MonitorHost);
