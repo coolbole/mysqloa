@@ -36,7 +36,7 @@ public class QueryAnalyzerAction implements ControllerAction {
 		     String DBName=request.getParameter("DBName");
 		     System.out.println(DBName );
 		      if (DBName.indexOf("#")!=-1 ){
-		    	  response.sendRedirect("showDataBaseAction.action?type=queryAnalyzer");
+		    	  response.sendRedirect("showDataBaseAction.do?type=queryAnalyzer");
 		      }
 		     
 		     UtilBaseTools orm= new UtilBaseTools(host,DBName,username,password);

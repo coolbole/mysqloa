@@ -82,7 +82,7 @@ public class  UtilBaseTools  {
 		}
 		catch (Exception e){
 			logger.error(e);	
-			return null;
+			throw  new Exception(e); 
 		}
 		
 	}

@@ -21,9 +21,10 @@
 			 
 		%>
 		
-		<TR>
+	
 		<table width="98%" border="1" cellpadding="0" bordercolorlight="#999999" 
 				bordercolordark="#FFFFFF" cellspacing="0" style="font-size: 13px" > 
+		<TR>
 			<TD><b>数据库名 </b></TD>
 			<TD><b>表名  </b></TD>
 			<TD><b>字段名</b></TD>

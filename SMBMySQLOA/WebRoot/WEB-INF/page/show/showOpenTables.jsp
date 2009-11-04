@@ -47,7 +47,6 @@
 		}  // try 
 		catch (Exception e){e.printStackTrace(); }
     %>
-    </TABLE>
     
     
     <br><br>

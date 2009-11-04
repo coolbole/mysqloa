@@ -29,7 +29,7 @@ public class MapCompare {
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 		ReplicationStatusPojo list= mmu.showMasterReplicationStatus();
- 		System.out.println (list.getMasterBinlog_Ignore_DB() );
+// 		System.out.println (list.getMasterBinlog_Ignore_DB() );
 		 
 		
 	}
