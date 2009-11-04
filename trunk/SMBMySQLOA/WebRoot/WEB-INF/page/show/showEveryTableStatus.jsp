@@ -21,8 +21,9 @@
 			 
 		%>
 		
-		<TR>
+		
 		<table width="98%" border="1" cellpadding="0" bordercolorlight="#999999" bordercolordark="#FFFFFF" cellspacing="0" style="font-size: 13px" > 
+		<TR>
 			<TD><b></>表名 </b></TD>
 			<TD><b>表引擎 </b></TD>
 			<TD><b>版本</b></TD>
@@ -68,7 +69,7 @@
     
     
     <br><br>
-      <A HREF="showDataBaseAction.do">返回</A> <br><br>
+      <A HREF="showDataBaseAction.do?type=everytable">返回</A> <br><br>
      <br>
   </body>
 </html>

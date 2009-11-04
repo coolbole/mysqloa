@@ -25,14 +25,18 @@ public class SMBServletDispatcher extends HttpServlet   {
  
         	ControllerAction action=DispatcherUtils.getControllerAction(requestURL);
         	
+        	////
+//        		request.getParameterMap();   //获取页面上传体过来的值.
+//        		Object  OOWM=DispatcherUtils.getModelDriven(action ,request );
+//        		request.setAttribute("modelValue", OOWM);
+        	////
+        	
         	ModelAndPage modelAndPage=action.handleModelAndPage(request,response); 
         	
         	if (modelAndPage.getRedirect()==true){
         		   response.sendRedirect(modelAndPage.getPageName() );
         		}
         	else{
-	        	//request.getParameterMap();   //获取页面上传体过来的值.
-	        	request.setAttribute("modelValue", modelAndPage.getModelValue()  );  // 
 	            RequestDispatcher   requestDispatcher=request.getRequestDispatcher( modelAndPage.getPageName() );   // �����jspҳ��
 				requestDispatcher.forward(request,response);
         	}

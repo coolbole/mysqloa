@@ -606,6 +606,22 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		}
 		return sBuffer.toString();
 	}
-	 
+
+	/**
+	public void killConnectionProcess(String ConnectionID) throws Exception {
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		try{
+			connection.prepareStatement( "kill "+ConnectionID).execute();
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		 
+	}
+	 */
 	
 }

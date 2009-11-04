@@ -830,7 +830,7 @@ key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好�
 
 <MySQLVariableDescription>
 	<variable_name>lc_time_names</variable_name>
-	<description>世界上各个国家的时区名称</description>
+	<description>表示世界上各个国家的时区名称，一般默认值是 en_US (美国) </description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

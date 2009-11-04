@@ -54,4 +54,7 @@ public interface IMySQLManagerJdbcUtilTools {
 	public List showTableIndexs(String DBName) throws Exception;
 	
 	public String CollectionMySQLogData () throws Exception;
+	
+//	public  void killConnectionProcess (String ConnectionID)    throws Exception;
+	
 }
