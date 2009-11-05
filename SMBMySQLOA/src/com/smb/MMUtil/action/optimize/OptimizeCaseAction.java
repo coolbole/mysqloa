@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.optimize;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

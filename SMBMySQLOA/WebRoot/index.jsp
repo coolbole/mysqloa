@@ -17,7 +17,7 @@
 		<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/showProcessListAction.do">
 			host:<INPUT TYPE="text" NAME="host" value="<%=request.getServerName()%>">   (mysql主机地址)
 			<br>
-			username:<INPUT TYPE="text" NAME="username" value="root">
+			username:<INPUT TYPE="text" NAME="username" value="root" > (需要root用户登录)
 			(用户名)
 			<br>
 			password:<INPUT TYPE="text" NAME="password" value="">

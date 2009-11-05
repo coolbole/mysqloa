@@ -34,7 +34,8 @@
    <A HREF="showDataBaseAction.do?type=index">查看每个数据库的索引状态</A><br><br>
    <b><A HREF="showOpenTablesAction.do">最近被使用过的表</A></b><br><br>
   
-   <A HREF="optimizeCaseListAction.do"><span style='color: blue;'><b>一键优化</b> </span></A>&nbsp;&nbsp;
+   <A HREF="deepOptimizeCaseListAction.do?step=1"><span style='color: blue;'><b>根据您的业务深度快速优化</b> </span></A>&nbsp;&nbsp;
+   <A HREF="optimizeCaseListAction.do"><span style='color: blue;'><b>快速一键优化</b> </span></A>&nbsp;&nbsp;
    <A HREF="autoCreateConfigListAction.do"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;
    <A HREF="showReplicationAction.do">查看同步数据状态 </A><br><br>
    
