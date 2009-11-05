@@ -3,8 +3,6 @@
  */
 package com.smb.MMUtil.pojo;
 
-import java.util.List;
-
 /**
  * @author ivan
  *

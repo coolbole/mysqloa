@@ -30,6 +30,7 @@ public class MySQLQueryAnalyzer implements IMySQLQueryAnalyzer {
 	
 	public MySQLQueryAnalyzer(UtilBaseTools utilBaseTools){UtilBaseTools=utilBaseTools;}
 	
+	@SuppressWarnings("unchecked")
 	public Map CUDSQLWildcard( String SQL ) throws SQLException{
 		logger.info(SQL);
 		Map result= new HashMap();
@@ -67,6 +68,7 @@ public class MySQLQueryAnalyzer implements IMySQLQueryAnalyzer {
 	 
 	
 	
+	@SuppressWarnings("unchecked")
 	public Map QueryWildcard( String SQL ) throws SQLException{ 
 		Map result= new HashMap();
 		List columns= new ArrayList ();

@@ -49,6 +49,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 	private UtilBaseTools  UtilBaseTools;
 	
+	@SuppressWarnings("unchecked")
 	public List  showProcesslistCommand( ) throws  Exception {
 		logger.info( "showProcesslist ......................." );
 		Connection connection=null;
@@ -79,6 +80,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showStatusCommand() throws Exception {
 		logger.info( "showStatusCommand ......................." );
 		Connection connection=null;
@@ -101,6 +103,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showVariblesCommand() throws Exception {
 		logger.info( "showVariblesCommand ......................." );
 		Connection connection=null;
@@ -123,6 +126,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showStatusCommandByCategory(String category) throws Exception {
 		logger.info( "showStatusCommandByCategory ......................." );
 		Connection connection=null;
@@ -145,6 +149,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showVariblesCommandByCategory(String category) throws Exception {
 		logger.info( "showVariblesCommandByCategory ......................." );
 		Connection connection=null;
@@ -207,6 +212,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return variable;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showVariblesCommandByLetter(String letter) throws Exception {
 		logger.info( "showVariblesCommandByLetter ......................." );
 		Connection connection=null;
@@ -333,6 +339,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showDataBases() throws Exception {
 		logger.info( "showDataBases ......................." );
 		Connection connection=null;
@@ -353,6 +360,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showTableStatus() throws Exception {
 		logger.info( "showDataBases ......................." );
 		Connection connection=null;
@@ -392,6 +400,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List MySQLOptimize(String Optimize) throws Exception {
 		logger.info(Optimize);
 		Connection connection=null;
@@ -462,6 +471,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	private static String MySQLBaseDirPATH="basedir=";
 	private static String _MySQLBaseDirPATH="basedir";
 	
+	@SuppressWarnings("unchecked")
 	public String CreateAutoCreateConfig(String Config) throws Exception {
 		logger.info( "CreateAutoCreateConfig ......................." );
 		List <MySQLAutoConfigCase> list=readXMLFile.getMySQLAutoConfigCase();
@@ -512,6 +522,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return version;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List showOpentables() throws Exception {
 		logger.info( "showOpentables ......................." );
 		Connection connection=null;
@@ -540,6 +551,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public List showTableIndexs(String DBName) throws Exception {
 		logger.info( "showTableIndexs ......................." );
 		Connection connection=null;
@@ -568,6 +580,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return opentablesList;
 	}
 	
+	@SuppressWarnings("static-access")
 	public String CollectionMySQLogData () throws Exception {
 		logger.info( "CollectionMySQLogData ......................." );
 		Connection connection=null;

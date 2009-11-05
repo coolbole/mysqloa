@@ -21,6 +21,7 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 	private static Log logger = LogFactory.getLog(MySQLMonitorHostCRUDAction.class);
 	private static ISetUpMySQLMonitorHost  setUpMySQLMonitorHost= new SetUpMySQLMonitorHost();
 	
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String reqType=request.getParameter("type");
 		try{

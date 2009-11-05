@@ -29,12 +29,13 @@ public class MapCompare {
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 		ReplicationStatusPojo list= mmu.showMasterReplicationStatus();
-// 		System.out.println (list.getMasterBinlog_Ignore_DB() );
+  		System.out.println (list.getMasterBinlog_Ignore_DB() );
 		 
 		
 	}
 	
 //		@Test
+		@SuppressWarnings("unchecked")
 		public void fileAndshowTestCase () throws Exception{
 			UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
 			
@@ -62,6 +63,7 @@ public class MapCompare {
 	
 	
 //		@Test
+		@SuppressWarnings("unchecked")
 		public void runTestCase() throws Exception{
 			
 			List<MySQLVariableObject> list1= new ArrayList ();

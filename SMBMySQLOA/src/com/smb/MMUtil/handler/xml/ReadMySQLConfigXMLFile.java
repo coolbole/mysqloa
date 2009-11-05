@@ -60,7 +60,9 @@ public class ReadMySQLConfigXMLFile {
 	private static  XStream xstream = new XStream(new DomDriver());
 	private static  MySQLVariableDescription   description= new MySQLVariableDescription();
 	private static  MySQLMonitorHost  monitorHost=new MySQLMonitorHost();
-	private static  Email  email=new Email();
+//	@SuppressWarnings("unused")
+//	private static  Email  email=new Email();
+	@SuppressWarnings("unchecked")
 	private static  Map cache= new HashMap ();
 	private static String CacheVariableDescription="cacheVariableDescription";
 	private static String CacheStatusDescription="cacheStatusDescription";
@@ -68,6 +70,7 @@ public class ReadMySQLConfigXMLFile {
 	private static String CacheAutoConfigCase="cacheAutoConfigCase";
 	
 	
+	@SuppressWarnings("unchecked")
 	public List getMySQLVariableDescription()  throws  Exception {
 		logger.info( "get MySQLVariableDescription ....................." );
 		FileInputStream input; 
@@ -92,6 +95,7 @@ public class ReadMySQLConfigXMLFile {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List getMySQLStatusDescription()  throws  Exception {
 		logger.info( "get MySQLVariableDescription ....................." );
 		FileInputStream input; 
@@ -117,6 +121,7 @@ public class ReadMySQLConfigXMLFile {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public List getMySQLAutoConfigCase()  throws  Exception {
 		logger.info( "get getMySQLAutoConfigCase ....................." );
 		List   list=new ArrayList();
@@ -157,6 +162,7 @@ public class ReadMySQLConfigXMLFile {
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public List getMySQLOptimizeCase()  throws  Exception {
 		logger.info( "get MySQLVariableDescription ....................." );
 		List   list=new ArrayList();
@@ -214,6 +220,7 @@ public class ReadMySQLConfigXMLFile {
 	
 	public Email updateMailHostConfigXMLFile(Email emailInfo)  throws  Exception {
 		logger.info( "update  MailHostConfigXMLFile .....................\n" +mailHostConfigXMLFile);
+		@SuppressWarnings("unused")
 		FileInputStream input; 
 		Email  email=null;
 		try {
@@ -237,6 +244,7 @@ public class ReadMySQLConfigXMLFile {
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public List getMySQLMonitorHost()  throws  Exception {
 		logger.info( "get MySQLMonitorHost .....................\n" +mySQLMonitorHostConfigXMLFile);
 		FileInputStream input; 
@@ -252,6 +260,7 @@ public class ReadMySQLConfigXMLFile {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void delMySQLMonitorHost(String ID) throws Exception{
 		logger.info( " delMySQLMonitorHost ......................." );
 		List <MySQLMonitorHost> hostList=getMySQLMonitorHost();
@@ -274,6 +283,7 @@ public class ReadMySQLConfigXMLFile {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void upDataMySQLMonitorHost(MySQLMonitorHost  MonitorHost) throws Exception{
 		logger.info( " upDataMySQLMonitorHost ......................." );
 		try{
@@ -303,6 +313,7 @@ public class ReadMySQLConfigXMLFile {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public void addMySQLMonitorHost(MySQLMonitorHost  MonitorHost) throws Exception{
 		logger.info( " addMySQLMonitorHost ......................." );
 		try{
@@ -323,6 +334,7 @@ public class ReadMySQLConfigXMLFile {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public MySQLMonitorHost getMySQLMonitorHostInfo(String  ID) throws Exception{
 		logger.info( " get MySQL Monitor Host Info ......................." );
 		MySQLMonitorHost  monitorHost=null;

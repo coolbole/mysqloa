@@ -17,6 +17,7 @@ public class QueryAnalyzerFactory {
 		
 	private UtilBaseTools  UtilBaseTools;
 	
+	@SuppressWarnings("unchecked")
 	public Map execResult (String SQL ) throws SQLException{
 		
 		MySQLQueryAnalyzer  MQA= new MySQLQueryAnalyzer(UtilBaseTools);
