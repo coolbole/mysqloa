@@ -51,6 +51,7 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public  List<?>   showOpentables (   ) throws  Exception; 
 	
+	@SuppressWarnings("unchecked")
 	public List showTableIndexs(String DBName) throws Exception;
 	
 	public String CollectionMySQLogData () throws Exception;

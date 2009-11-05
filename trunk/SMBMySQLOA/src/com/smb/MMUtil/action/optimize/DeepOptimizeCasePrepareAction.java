@@ -18,6 +18,7 @@ public class DeepOptimizeCasePrepareAction implements ControllerAction  {
 	
 	private static Log logger = LogFactory.getLog(DeepOptimizeCasePrepareAction.class);
 	
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		

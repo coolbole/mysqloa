@@ -14,7 +14,9 @@ import com.smb.framework.web.action.ModelAndPage;
 public class DeepOptimizeCaseListAction implements ControllerAction  {
 	
 	private static Log logger = LogFactory.getLog(OptimizeCaseListAction.class);
+	@SuppressWarnings("unchecked")
 	private static List list= new ArrayList ();
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			

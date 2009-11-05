@@ -19,6 +19,7 @@ public class MySQLMonitorHostListAction implements ControllerAction {
 	private static ISetUpMySQLMonitorHost  setUpMySQLMonitorHost= new SetUpMySQLMonitorHost();
 	private static Log logger = LogFactory.getLog(MySQLMonitorHostListAction.class);
 	
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
