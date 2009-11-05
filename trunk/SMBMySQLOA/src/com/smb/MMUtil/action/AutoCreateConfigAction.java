@@ -39,7 +39,8 @@ public class AutoCreateConfigAction implements ControllerAction  {
 		 
 		 request.setAttribute("myConfig",myConfig);  
 		 request.setAttribute("host",host);  
-		    
+		 request.setAttribute("config",configs);  
+		 
 		return new ModelAndPage( request ,"/WEB-INF/page/autoConfig/autoCreateConfig.jsp" );
 	}
 }

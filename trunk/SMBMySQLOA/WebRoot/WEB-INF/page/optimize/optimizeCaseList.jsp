@@ -12,21 +12,26 @@
   </head>
   
   <body>  
-  <a href="showProcessListAction.do">返回上一页</a> <br>
+  <a href="showProcessListAction.do">返回上一页</a> <br> <br>
   <FORM METHOD="POST" ACTION="optimizeCaseAction.do">
+    	
+    	
+    <INPUT TYPE='radio' checked NAME='OptimizeCaseAlias' value='2g' >2G内存优化方案<br>
+    	
     <% 
-      ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
-	List <MySQLOptimizeCase>listF=DescriptionXMLFile.getMySQLOptimizeCase();
-	
-		for (int i=0;i<listF.size();i++){
-			 out.println("<INPUT TYPE='radio' checked NAME='OptimizeCaseAlias' value='"
-			 		+listF.get(i).getAlias()+"' >"+listF.get(i).getName()+"<br>");
+    	List listF=(List)request.getAttribute("listF");
+		for (int i=1;i<listF.size();i++){
+		MySQLOptimizeCase  caselist=(MySQLOptimizeCase) listF.get(i);
+		
+		out.println("<INPUT TYPE='radio'  NAME='OptimizeCaseAlias' value='"
+			 		+caselist.getAlias()+"' >"+caselist.getName()+"<br>");
 		}
 	
     %> 	
     <INPUT TYPE="submit">
 </FORM>
 
+ <a href="showProcessListAction.do">返回上一页</a> <br>
  <br>
   </body>
 </html>

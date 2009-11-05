@@ -257,6 +257,7 @@ o        如果该值为2，COMMIT和ROLLBACK分别等同于COMM它RELEASE和ROL
 <MySQLVariableDescription>
 	<variable_name>ft_max_word_len</variable_name>
 	<description>FULLTEXT索引中所包含的字的最大长度。注释：更改该变量后必须重建FULLTEXT索引。应使用REPAIR TABLE tbl_name QUICK。</description>
+	<isEdit>-1</isEdit>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>

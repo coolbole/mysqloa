@@ -26,7 +26,6 @@
 		<setting_value>thread_cache_size=8</setting_value>
 		<setting_value>table_open_cache=524288</setting_value>
 		<setting_value>innodb_flush_log_at_trx_commit=0</setting_value>
-		
 	</case>
 
 	<case name="4G内存优化方案" alias="4g">
@@ -55,6 +54,88 @@
 		<setting_value>innodb_flush_log_at_trx_commit=0</setting_value>
 	</case>
 
+
+	<case name="5-6G内存优化方案"  alias="5g" >
+		<setting_value>max_connections=1500</setting_value>
+		<setting_value>max_allowed_packet=4000000000</setting_value>
+		<setting_value>table_cache=524288</setting_value>
+		<setting_value>connect_timeout=5</setting_value>
+		<setting_value>wait_timeout=5</setting_value>
+		<setting_value>key_buffer_size=402649088</setting_value> 
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>myisam_sort_buffer_size=640000000</setting_value>
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>innodb_thread_concurrency=8</setting_value>
+		<setting_value>max_binlog_cache_size=6294963200</setting_value>
+		<setting_value>query_cache_min_res_unit=63200</setting_value>
+		<setting_value>query_alloc_block_size=131072</setting_value>
+		<setting_value>profiling_history_size=100</setting_value>
+		<setting_value>table_cache=1024</setting_value>
+		<setting_value>read_buffer_size=400000</setting_value>
+		<setting_value>join_buffer_size=3200000</setting_value>
+		<setting_value>long_query_time=1</setting_value>
+		<setting_value>binlog_cache_size=2097152</setting_value>
+		<setting_value>query_cache_size=268435456</setting_value>
+		<setting_value>key_cache_block_size=2048</setting_value>
+		<setting_value>thread_cache_size=8</setting_value>
+		<setting_value>table_open_cache=524288</setting_value>
+		<setting_value>innodb_flush_log_at_trx_commit=0</setting_value>
+	</case>
+
+
+	<case name="7-8G内存优化方案"  alias="7g" >
+		<setting_value>max_connections=1500</setting_value>
+		<setting_value>max_allowed_packet=4000000000</setting_value>
+		<setting_value>table_cache=524288</setting_value>
+		<setting_value>connect_timeout=5</setting_value>
+		<setting_value>wait_timeout=5</setting_value>
+		<setting_value>key_buffer_size=402649088</setting_value> 
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>myisam_sort_buffer_size=640000000</setting_value>
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>innodb_thread_concurrency=8</setting_value>
+		<setting_value>max_binlog_cache_size=6294963200</setting_value>
+		<setting_value>query_cache_min_res_unit=63200</setting_value>
+		<setting_value>query_alloc_block_size=131072</setting_value>
+		<setting_value>profiling_history_size=100</setting_value>
+		<setting_value>table_cache=1024</setting_value>
+		<setting_value>read_buffer_size=400000</setting_value>
+		<setting_value>join_buffer_size=3200000</setting_value>
+		<setting_value>long_query_time=1</setting_value>
+		<setting_value>binlog_cache_size=2097152</setting_value>
+		<setting_value>query_cache_size=268435456</setting_value>
+		<setting_value>key_cache_block_size=2048</setting_value>
+		<setting_value>thread_cache_size=8</setting_value>
+		<setting_value>table_open_cache=524288</setting_value>
+		<setting_value>innodb_flush_log_at_trx_commit=0</setting_value>
+	</case>
+	
+	<case name="10G以上内存优化方案"  alias="10g" >
+		<setting_value>max_connections=1500</setting_value>
+		<setting_value>max_allowed_packet=4000000000</setting_value>
+		<setting_value>table_cache=524288</setting_value>
+		<setting_value>connect_timeout=5</setting_value>
+		<setting_value>wait_timeout=5</setting_value>
+		<setting_value>key_buffer_size=402649088</setting_value> 
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>myisam_sort_buffer_size=640000000</setting_value>
+		<setting_value>sort_buffer_size=1280000</setting_value>
+		<setting_value>innodb_thread_concurrency=8</setting_value>
+		<setting_value>max_binlog_cache_size=6294963200</setting_value>
+		<setting_value>query_cache_min_res_unit=63200</setting_value>
+		<setting_value>query_alloc_block_size=131072</setting_value>
+		<setting_value>profiling_history_size=100</setting_value>
+		<setting_value>table_cache=1024</setting_value>
+		<setting_value>read_buffer_size=400000</setting_value>
+		<setting_value>join_buffer_size=3200000</setting_value>
+		<setting_value>long_query_time=1</setting_value>
+		<setting_value>binlog_cache_size=2097152</setting_value>
+		<setting_value>query_cache_size=268435456</setting_value>
+		<setting_value>key_cache_block_size=2048</setting_value>
+		<setting_value>thread_cache_size=8</setting_value>
+		<setting_value>table_open_cache=524288</setting_value>
+		<setting_value>innodb_flush_log_at_trx_commit=0</setting_value>
+	</case>
 
 </MySQLOptimizeCase>
 
