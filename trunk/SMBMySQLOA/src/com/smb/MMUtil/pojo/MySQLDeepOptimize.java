@@ -14,14 +14,14 @@ public class MySQLDeepOptimize {
 	private String questionID;   //问题编号
 	private String questionTitle;   //问题标题
 	private String executeCommand;   //执行的命令、参数
-	private String singleSelect;
+//	private String singleSelect;
 	
-	public String getSingleSelect() {
-		return singleSelect;
-	}
-	public void setSingleSelect(String singleSelect) {
-		this.singleSelect = singleSelect;
-	}
+//	public String getSingleSelect() {
+//		return singleSelect;
+//	}
+//	public void setSingleSelect(String singleSelect) {
+//		this.singleSelect = singleSelect;
+//	}
 	public String getStepName() {
 		return stepName;
 	}

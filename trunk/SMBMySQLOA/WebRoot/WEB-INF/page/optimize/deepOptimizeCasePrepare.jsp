@@ -3,46 +3,38 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-     
-    
-    <title>My JSP 'deepOptimizeCasePrepare.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+ <head>
+      <title>Mysql Optimize Analysis</title>
   </head>
   
   <body>
-    This is my JSP page. <br> 
-    <a href="deepOptimizeCaseListAction.do?step=3">返回上一页</a> <br> <br>
+     <br> 
+    <a href="deepOptimizeCaseListAction.do?step=3">返回上一页</a> <br> 
    
     <br> <br> 
-    	请确认您需要优化的选项：<br>
+    	<b>请确认您需要优化的选项： </b>  <br><br><hr>
     	
     	<FORM METHOD="POST" ACTION="deepOptimizeCaseFinishAction.do">
    		 
-   		 ..................<br>
-   		 ..................<br>
-   		 ..................<br>
-   		 ..................<br>
-   		 ..................<br>
-   		 ..................<br>
-   		 ..................<br>
-    	<br> <br>
+   		 <% 
+   		 List list=(List)request.getAttribute("deepOptimizeTitle");
+   		 	
+   		 if (list.size()==0){
+				   out.print( "您尚未选中任何优化条件，请选择 “返回”<br><br> <INPUT TYPE='submit' name='back' value='返回'>   <br><br>");	
+   		 	}
+   		 	
+   		 else {
+   		 	for (int i=0;i<list.size();i++){
+   		 		out.print(list.get(i)+"<br><br>");
+   		 	}
+   		 %>
     
-    
-    <INPUT TYPE="text" NAME="optimizeName" value="<%=request.getAttribute("optimizeName")%>">
-			
-			<INPUT TYPE="submit"  name="yes" value="确定"> <br>
+    <INPUT TYPE="hidden" NAME="optimizeIDs" value="<%=request.getAttribute("optimizeIDs")%>">
+			<br>
+			<INPUT TYPE="submit"  name="yes" value="确定">   &nbsp;&nbsp;&nbsp;
 			<INPUT TYPE="submit"  name="cancel" value="取消"> <br>
-	
+		
+		<%} %>
  	  </FORM>
      
      

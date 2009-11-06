@@ -23,6 +23,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
+import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.email.Email;
@@ -56,10 +57,16 @@ public class ReadMySQLConfigXMLFile {
 	private static String mailHostConfigXMLFile = ReadMySQLConfigXMLFile.class.
 							getResource ("MailHost.xml").getFile();
 	
+	private static String mySQLDeepOptimizeCaseXMLFile = ReadMySQLConfigXMLFile.class.
+	getResource ("MySQLDeepOptimizeCase.xml").getFile();
+	
 	
 	private static  XStream xstream = new XStream(new DomDriver());
 	private static  MySQLVariableDescription   description= new MySQLVariableDescription();
 	private static  MySQLMonitorHost  monitorHost=new MySQLMonitorHost();
+	private static  MySQLDeepOptimize  deepOptimize=new MySQLDeepOptimize();
+	
+	
 //	@SuppressWarnings("unused")
 //	private static  Email  email=new Email();
 	@SuppressWarnings("unchecked")
@@ -68,7 +75,7 @@ public class ReadMySQLConfigXMLFile {
 	private static String CacheStatusDescription="cacheStatusDescription";
 	private static String CacheOptimizeCase="cacheOptimizeCase";
 	private static String CacheAutoConfigCase="cacheAutoConfigCase";
-	
+	private static String CachedeepOptimize="cachedeepOptimize";
 	
 	@SuppressWarnings("unchecked")
 	public List getMySQLVariableDescription()  throws  Exception {
@@ -354,6 +361,33 @@ public class ReadMySQLConfigXMLFile {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
+	public List getMySQLDeepOptimizeCase()  throws  Exception {
+		logger.info( "get MySQLDeepOptimizeCase ....................." );
+		FileInputStream input; 
+		List <MySQLDeepOptimize> list=null;
+		try {
+			if (cache.get(CachedeepOptimize)!=null){
+				logger.info("Cache MySQL  Deep Optimize Case XML File  ....................");
+				list=(List<MySQLDeepOptimize>) cache.get(CachedeepOptimize);
+			}
+			else{
+				logger.info(" Read description Status ConfigFile XML File ....................");
+				input = new FileInputStream(mySQLDeepOptimizeCaseXMLFile);
+				xstream.alias("MySQLDeepOptimize",  MySQLDeepOptimize.class);
+				list=(List<MySQLDeepOptimize>) xstream.fromXML(input,deepOptimize) ;
+				cache.put(CachedeepOptimize, list);
+			}
+		
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return list;
+	}
+	
+	
+	
 	@Test
 	public void runCase() throws  Exception{
 		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
@@ -363,13 +397,14 @@ public class ReadMySQLConfigXMLFile {
 //		host.setUser("rooe");
 //		host.setPswd("pswdwddddddwwwwwwwww");
 //		host.setId("123455");
+		List list=read.getMySQLDeepOptimizeCase();
+		System.out.println (  list );
 		
 		
 		
-		
-		Email info=read.getMailHostConfigXMLFile();
-		
-		logger.info("\n"+ info.getEmailAccount() );
+//		Email info=read.getMailHostConfigXMLFile();
+//		
+//		logger.info("\n"+ info.getEmailAccount() );
 		
 	}
 

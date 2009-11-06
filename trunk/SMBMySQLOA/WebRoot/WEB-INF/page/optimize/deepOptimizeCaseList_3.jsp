@@ -17,16 +17,14 @@
   	第3步
   <FORM METHOD="POST" ACTION="deepOptimizeCaseListAction.do?step=4">
     	
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='9'>阿斯达是大势？<br><br>
+    <% 
+    		List <MySQLDeepOptimize>list=(List)request.getAttribute("listF");
+    		for (int i=0;i<list.size();i++)  
+    	{%>
     	
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='10'>惹他了特瑞特<br><br>
-    
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='11'>维尔瓦②45<br><br>
-     
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='12'>我去恶气委屈委屈额次连接？
- 	<br><br>
-     
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='2'>委屈为我区<br><br>
+    <INPUT TYPE='checkbox' NAME='optimizeName' value='<%=list.get(i).getQuestionID()%>'>
+    <%=list.get(i).getQuestionTitle()%><br> <br> 
+    <%}%>
     
          
     <INPUT TYPE="submit" value="完成"   >
