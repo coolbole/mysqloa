@@ -4,6 +4,7 @@
 package com.smb.MMUtil.testcase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
@@ -11,6 +12,7 @@ import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
+import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
@@ -24,6 +26,35 @@ public class MapCompare {
 	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
 	@Test
+	public void DeepOptimizeCaseFinishAction () throws Exception{
+		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
+		 String optimizeIDs="1,,2,24";
+		 
+		 List list = new ArrayList ();
+		 String optimizeID[]=optimizeIDs.split(",");
+		 for (int i=0;i<optimizeID.length ;i++){
+			 list.add( optimizeID[i]  );
+		 }
+		 
+		 
+		 List <MySQLDeepOptimize> Optimizelist=read.getMySQLDeepOptimizeCase();
+ 
+		 
+		 List  deepOptimizeCommand= new ArrayList ();
+		 
+		 for (int i=0;i<Optimizelist.size() ;i++){
+			 for (int h=0;h<list.size() ;h++){
+				 if ( list.get(h).equals(  Optimizelist.get(i).getQuestionID()  )  ){
+					 deepOptimizeCommand.add(  Optimizelist.get(i) );
+				 }
+			 }
+		 }
+		 System.out.println ( deepOptimizeCommand );
+		 
+		
+	}
+	
+//	@Test
 	public void showMasterReplicationStatus () throws Exception{
 		UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
 		

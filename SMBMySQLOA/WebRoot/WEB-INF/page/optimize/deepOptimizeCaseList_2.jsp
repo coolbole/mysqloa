@@ -18,16 +18,14 @@
  
  	 <FORM METHOD="POST" ACTION="deepOptimizeCaseListAction.do?step=3">
     	
+      	<% 
+    		List <MySQLDeepOptimize>list=(List)request.getAttribute("listF");
+    		for (int i=0;i<list.size();i++)  
+    	{%>
     	
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='5'>您的业撒旦撒旦的入？<br><br>
-    	
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='6'>您的uoyuiyi<br><br>
-    
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='7'>您的百脑汇功能发给你<br><br>
-     
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='8'>您的 的事发生地方斯蒂芬<br><br>
-     
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='2'>您的系统5466456456时候 <br><br>
+    <INPUT TYPE='checkbox' NAME='optimizeName' value='<%=list.get(i).getQuestionID()%>'>
+    <%=list.get(i).getQuestionTitle()%><br> <br> 
+     <%}%>
     
      
     <INPUT TYPE="submit" value="下一步" name="下一步" >

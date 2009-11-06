@@ -15,7 +15,16 @@
   <a href="showProcessListAction.do">返回首页</a> <br> <br>
   
     完成，您优化了MySQL很多参数。。。。。。。<br>
-    详细内容如下： vvvxxxx
+    详细内容如下：<br><hr>
+
+	<%
+	
+	List <MySQLDeepOptimize> list=(List)request.getAttribute("deepOptimizeCommand");
+	
+		for (int i=0;i<list.size();i++){
+			out.println(list.get(i).getQuestionID()+"   "+list.get(i).getQuestionTitle()+"<br> 调用 "+list.get(i).getExecuteCommand()+" 命令<br><br>");
+		}
+	%>
     
     <br><br>
  <a href="showProcessListAction.do">返回首页</a> <br>
