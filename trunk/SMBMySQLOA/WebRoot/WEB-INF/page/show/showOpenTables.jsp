@@ -19,6 +19,8 @@
     	
 		 	String host=session.getAttribute("host").toString() ;
 		    out.println("您当前查看的主机是: "+host+"<br> <hr>");
+		    out.println(" <A HREF='flushTableAction.do'>清空记录</A> <br> <hr>");
+		    
 			List <MySQLOpenTables> proList=(List)request.getAttribute("proList");
 			int size=proList.size();
 	 		%>

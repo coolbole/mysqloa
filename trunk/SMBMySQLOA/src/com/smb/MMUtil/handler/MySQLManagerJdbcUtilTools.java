@@ -522,6 +522,25 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return version;
 	}
 
+	
+	public void  flushTable() throws Exception {
+		logger.info( "flushTable ......................." );
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		try{
+			connection.prepareStatement("flush  table"  ).execute();
+			}
+ 
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List showOpentables() throws Exception {
 		logger.info( "showOpentables ......................." );
@@ -620,7 +639,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return sBuffer.toString();
 	}
 
-	/**
+ 
 	public void killConnectionProcess(String ConnectionID) throws Exception {
 		Connection connection=null;
 		connection=UtilBaseTools.getConnection();
@@ -635,6 +654,6 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		}
 		 
 	}
-	 */
+	 
 	
 }

@@ -33,6 +33,10 @@
    		<span style='color:#FF0000;'><b>自动生成(Hibernate/iBATIS/Spring)配置文件</b></span>
    </A> <br> <br> <br>
    
+   <A HREF="#">
+   		<span style='color:#336600;'><b>压力测试</b></span>
+   </A> <br> <br> <br>
+   
    
    <b><A HREF="showDataBaseAction.do?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
    <A HREF="showDataBaseAction.do?type=everytable">查看系统每个表使用的状况</A><br><br>
@@ -68,7 +72,9 @@
 			<TD>连接所用时间</TD>
 			<TD>连接信息</TD>
 			<TD>连接执行命令</TD> 
-			<TD>连接状态</TD> 
+			<TD>连接状态</TD>
+			<TD>Kill进程</TD>
+			 
 		</TR>
 
 		<% 
@@ -84,8 +90,9 @@
 			<TD><%=plist.getInfo()%></TD>
 			<TD><%=plist.getCommand()%></TD>
 			<TD><%=plist.getState()%>&nbsp;</TD>
+			<TD><A HREF="killConnectionProcessAction.do?ConnectionID=<%=plist.getId()%>">Kill(杀) </A></TD>
 			</TR>
-		
+		 
 		<% 
 			} // for 
 		}  // try 
