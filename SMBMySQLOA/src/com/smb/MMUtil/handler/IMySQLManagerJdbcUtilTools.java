@@ -56,6 +56,8 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public String CollectionMySQLogData () throws Exception;
 	
-//	public  void killConnectionProcess (String ConnectionID)    throws Exception;
+ 	public  void killConnectionProcess (String ConnectionID)    throws Exception;
+ 	
+ 	public void  flushTable() throws Exception;
 	
 }

@@ -15,19 +15,20 @@ public class MySQLQueryAnalyzerTest {
 //	private String SQL1="Select * from customer_businesshistory";
 //	private String SQL="Select password,username,id ,email,ROLE from crm_users";
 	
-	@Test
+	//@Test
 	  public void bin2hex( ) {
 			String bin="c:\\boot.ini";
 			
 	        System.out.println  (UtilTools.getBASE64(bin) );
 	    } 
  
-	//@Test
+	@Test
 	public void runCase () throws  Exception{
 		
-		UtilBaseTools  orm= new UtilBaseTools("192.168.12.78", "smbcrm", "root", "123456");
+		UtilBaseTools  orm= new UtilBaseTools("192.168.1.2", null, "root", "123456");
 		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
-		String list=mmu.showCreateTable("crm_users") ;
+		String list=null;
+			mmu.killConnectionProcess("1489");
 		System.out.println  (list);
 		
 		
