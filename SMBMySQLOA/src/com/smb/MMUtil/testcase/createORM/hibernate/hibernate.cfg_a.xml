@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.smb.opensoft.crm.common.pojo.Contact" table="contact"
+		dynamic-insert="true" dynamic-update="true" lazy="false">
+
+		<meta attribute="implement-equals">true</meta>
+		<!--  <cache usage="read-only"/> -->
+
+		<cache usage="read-write" />
+
+		<id name="id" column="id" type="java.lang.Integer" unsaved-value="-1">
+			<generator class="identity" />
+		</id>
+
+		<property name="createtime" column="createtime" type="java.util.Date" />
+		<property name="name" column="name" />
+
+	</class>
+</hibernate-mapping>

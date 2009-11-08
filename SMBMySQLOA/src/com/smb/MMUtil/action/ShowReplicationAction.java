@@ -44,7 +44,7 @@ public class ShowReplicationAction   implements ControllerAction  {
 			 request.setAttribute("status","您查看的这台机器配置数据同步，这台机器为从(Salve)。");
 		 }
 		 else if( masterStatus!=null ){
-			 request.setAttribute("slaveStatus",slaveStatus);  
+			 request.setAttribute("masterStatus",masterStatus);  
 			 request.setAttribute("status","您查看的这台机器配置数据同步，这台机器为主(Master)。");
 		 }
 		 

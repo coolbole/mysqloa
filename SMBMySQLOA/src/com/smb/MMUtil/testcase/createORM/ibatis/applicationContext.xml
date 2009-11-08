@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://127.0.0.1:3306/ibatis?characterEncoding=utf-8</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+	</bean>
+
+	<!-- Spring iBatis Template -->
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="sql-map-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!--
+		DAO方案一 <bean id="DAOName" class="net.samples.ibatis.dao.UserDAOImpl">
+		<property name="sqlMapClient"> <ref bean="sqlMapClient"/> </property>
+		</bean>
+	-->
+
+</beans> 

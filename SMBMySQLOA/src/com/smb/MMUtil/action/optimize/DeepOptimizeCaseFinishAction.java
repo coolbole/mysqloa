@@ -2,7 +2,6 @@ package com.smb.MMUtil.action.optimize;
  
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +20,7 @@ public class DeepOptimizeCaseFinishAction implements ControllerAction  {
 	private static Log logger = LogFactory.getLog(DeepOptimizeCaseFinishAction.class);
 	private static ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
 	
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
