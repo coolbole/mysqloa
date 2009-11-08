@@ -6,21 +6,39 @@
 	<stepName>1</stepName>
 	<questionID>1</questionID>
 	<questionTitle>您的业务环境查询大于插入？</questionTitle>
-	<executeCommand>query_cache_size，query_cache_type,low_priority_updates</executeCommand>
+	<executeCommand>
+		key_buffer_size=402649088,
+		query_cache_size=,
+		query_cache_type=,
+		low_priority_updates=,
+		record_buffer=16773120
+	</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>1</stepName>
 	<questionID>2</questionID>
 	<questionTitle>您的系统是否使用InnoDB引擎?</questionTitle>
-	<executeCommand>innodb_doublewrite,innodb_fast_shutdown,innodb_flush_log_at_trx_commit,innodb_lock_wait_timeout</executeCommand>
+	<executeCommand>
+		innodb_doublewrite=,
+		innodb_fast_shutdown=,
+		innodb_flush_log_at_trx_commit=,
+		innodb_lock_wait_timeout=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>1</stepName>
 	<questionID>3</questionID>
 	<questionTitle>您的系统是否还使用MyISAM引擎?</questionTitle>
-	<executeCommand>myisam_data_pointer_size,myisam_max_sort_file_size,myisam_recover_options,myisam_repair_threads,myisam_sort_buffer_size,myisam_stats_method</executeCommand>
+	<executeCommand>
+		myisam_data_pointer_size=,
+		myisam_max_sort_file_size=,
+		myisam_recover_options=,
+		myisam_repair_threads=,
+		myisam_sort_buffer_size=,
+		myisam_stats_method=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 
@@ -28,7 +46,11 @@
 	<stepName>1</stepName>
 	<questionID>5</questionID>
 	<questionTitle>您的客户端连接数一分钟超过500次以上的连接?</questionTitle>
-	<executeCommand>wait_timeout,max_connections</executeCommand>
+	<executeCommand>
+		wait_timeout=,
+		max_connections=,
+		back_log=500,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 <!-- 
@@ -45,7 +67,10 @@
 	<stepName>1</stepName>
 	<questionID>7</questionID>
 	<questionTitle>您系统的应用层(App Server)和这台数据库服务器是分开的吗?</questionTitle>
-	<executeCommand>flush_time,net_buffer_length</executeCommand>
+	<executeCommand>
+		flush_time=,
+		net_buffer_length=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 
@@ -53,63 +78,71 @@
 	<stepName>1</stepName>
 	<questionID>8</questionID>
 	<questionTitle>您的业务逻辑中是否采用了全文查询(FULLTEXT)?</questionTitle>
-	<executeCommand>ft_max_word_len,ft_query_expansion_limit</executeCommand>
+	<executeCommand>
+		ft_max_word_len=,
+		ft_query_expansion_limit=,
+		</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>9</questionID>
 	<questionTitle>您的业务逻辑中是否多次使用临时表?</questionTitle>
-	<executeCommand>max_tmp_tables</executeCommand>
+	<executeCommand>max_tmp_tables=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>10</questionID>
 	<questionTitle>您的业务逻辑中是否需要对大数据量进行排序,比如 order by 或者 group by?</questionTitle>
-	<executeCommand>sort_buffer_size,read_rnd_buffer_size,optimizer_search_depth=12,group_concat_max_len </executeCommand>
+	<executeCommand>
+		sort_buffer_size=16777208,
+		read_rnd_buffer_size,
+		optimizer_search_depth=12,
+		group_concat_max_len=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>11</questionID>
 	<questionTitle>您的业务逻辑中是否需要对BLOB或TEXT ?</questionTitle>
-	<executeCommand>max_sort_length</executeCommand>
+	<executeCommand>max_sort_length=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>12</questionID>
 	<questionTitle>您是否需要优化查询缓冲区中的碎片?</questionTitle>
-	<executeCommand>query_cache_min_res_unit</executeCommand>
+	<executeCommand>query_cache_min_res_unit=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>13</questionID>
 	<questionTitle>您是否需要启用索引块的缓存?</questionTitle>
-	<executeCommand>key_cache_block_size</executeCommand>
+	<executeCommand>key_cache_block_size=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>14</questionID>
 	<questionTitle>您一周内是否需要对二进制日志文件进行清除?</questionTitle>
-	<executeCommand>expire_logs_days</executeCommand>
+	<executeCommand>expire_logs_days=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>15</questionID>
 	<questionTitle>您是否需要启用二进制日志的二级缓存?</questionTitle>
-	<executeCommand>binlog_cache_size</executeCommand>
+	<executeCommand>binlog_cache_size=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>2</stepName>
 	<questionID>16</questionID>
 	<questionTitle>您是否需要将数据库 表高速缓存 进行优化?</questionTitle>
-	<executeCommand>table_cache</executeCommand>
+	<executeCommand>table_cache=,</executeCommand>
 </MySQLDeepOptimize>
 
 
@@ -117,7 +150,10 @@
 	<stepName>3</stepName>
 	<questionID>17</questionID>
 	<questionTitle>您的系统中是否存在联合查询操作和视图表?</questionTitle>
-	<executeCommand>join_buffer_size,updatable_views_with_limit</executeCommand>
+	<executeCommand>
+		join_buffer_size=,
+		updatable_views_with_limit=,
+		</executeCommand>
 </MySQLDeepOptimize>
 
 
@@ -125,21 +161,21 @@
 	<stepName>3</stepName>
 	<questionID>18</questionID>
 	<questionTitle>您的系统中是否采用数据库同步,并且需要使用数据同步压缩?</questionTitle>
-	<executeCommand>slave_compressed_protocol</executeCommand>
+	<executeCommand>slave_compressed_protocol=,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>3</stepName>
 	<questionID>19</questionID>
 	<questionTitle>您的系统中是否采用数据库同步,并且需要忽略同步过程中发生的错误?</questionTitle>
-	<executeCommand>slave_skip_errors=all</executeCommand>
+	<executeCommand>slave_skip_errors=all,</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>3</stepName>
 	<questionID>20</questionID>
 	<questionTitle>您的系统中是否有文件上传功能?</questionTitle>
-	<executeCommand>max_allowed_packet=16777216</executeCommand>
+	<executeCommand>max_allowed_packet=16777216,</executeCommand>
 </MySQLDeepOptimize>
 
 
@@ -147,21 +183,31 @@
 	<stepName>3</stepName>
 	<questionID>21</questionID>
 	<questionTitle>您的系统中的业务逻辑是否有很多个事务,至少20个具有事务性的业务逻辑?</questionTitle>
-	<executeCommand>max_binlog_cache_size,completion_type,max_binlog_size</executeCommand>
+	<executeCommand>
+		max_binlog_cache_size=,
+		completion_type=,
+		max_binlog_size=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>3</stepName>
 	<questionID>22</questionID>
 	<questionTitle>您的系统中每日是否存在千万级的数据插入操作?</questionTitle>
-	<executeCommand>max_insert_delayed_threads,max_write_lock_count,max_delayed_threads,transaction_alloc_block_size,transaction_prealloc_size</executeCommand>
+	<executeCommand>
+		max_insert_delayed_threads=,
+		max_write_lock_count=,
+		max_delayed_threads=,
+		transaction_alloc_block_size=,
+		transaction_prealloc_size=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 <MySQLDeepOptimize>
 	<stepName>3</stepName>
 	<questionID>23</questionID>
 	<questionTitle>您是否需要是否记录慢查询?</questionTitle>
-	<executeCommand>log_slow_queries</executeCommand>
+	<executeCommand>log_slow_queries=,</executeCommand>
 </MySQLDeepOptimize>
 
 
@@ -169,7 +215,10 @@
 	<stepName>3</stepName>
 	<questionID>24</questionID>
 	<questionTitle>您的系统中是否需要对查询字段忽略大小写?</questionTitle>
-	<executeCommand>lower_case_table_names,lower_case_file_system</executeCommand>
+	<executeCommand>
+		lower_case_table_names=,
+		lower_case_file_system=,
+	</executeCommand>
 </MySQLDeepOptimize>
 
 </list>

@@ -17,7 +17,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -67,8 +66,6 @@ public class ReadMySQLConfigXMLFile {
 	private static  MySQLDeepOptimize  deepOptimize=new MySQLDeepOptimize();
 	
 	
-//	@SuppressWarnings("unused")
-//	private static  Email  email=new Email();
 	@SuppressWarnings("unchecked")
 	private static  Map cache= new HashMap ();
 	private static String CacheVariableDescription="cacheVariableDescription";
@@ -386,26 +383,6 @@ public class ReadMySQLConfigXMLFile {
 		return list;
 	}
 	
-	
-	
-	@Test
-	public void runCase() throws  Exception{
-		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
-//		MySQLMonitorHost host= new MySQLMonitorHost();
-//		host.setHost("23213213123");
-//		host.setPort("3306");
-//		host.setUser("rooe");
-//		host.setPswd("pswdwddddddwwwwwwwww");
-//		host.setId("123455");
-		List list=read.getMySQLDeepOptimizeCase();
-		System.out.println (  list );
-		
-		
-		
-//		Email info=read.getMailHostConfigXMLFile();
-//		
-//		logger.info("\n"+ info.getEmailAccount() );
-		
-	}
+	 
 
 }

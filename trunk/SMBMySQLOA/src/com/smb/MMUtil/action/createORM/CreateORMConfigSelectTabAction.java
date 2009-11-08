@@ -20,6 +20,7 @@ public class CreateORMConfigSelectTabAction implements ControllerAction {
 		
 		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		 
+		 if(request.getParameter("createORMID")!=null){
 			 String createORMID=request.getParameter("createORMID").toString();
 			 String packageName=request.getParameter("packageName").toString();
 			 String DBName=request.getParameter("DBName").toString();
@@ -36,8 +37,14 @@ public class CreateORMConfigSelectTabAction implements ControllerAction {
 			 request.setAttribute("createORMID", createORMID);
 			 request.setAttribute("packageName", packageName);
 		 
-		
 			 return new ModelAndPage( "/WEB-INF/page/orm/createORMConfigSelectTab.jsp" );
+		 }
+		 
+		 else{
+			 request.setAttribute("warn", "选择表操作失败,请重新操作");
+			 return new ModelAndPage("/WEB-INF/page/orm/createORMConfigList.jsp");
+		 }
+			
 	}
 
 }

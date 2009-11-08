@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="BuyerCustomer">
+
+  <typeAlias alias="BuyerCustomerPojo" type="com.smb.opensoft.crm.common.pojo.BuyerCustomer"/>
+
+
+	<cacheModel id="userCache" type="LRU" serialize="false">
+		<flushInterval hours="24" />
+		<property name="size" value="1000" />
+	</cacheModel>
+	
+
+	<!-- id=getUserbyUsername 表示什么意思？resultMap="BuyerCustomerPojo" 表示什么意思？ -->
+	<select id="getUserbyUsername" resultMap="BuyerCustomerPojo">  
+		<![CDATA[   
+				Query SQL
+		]]>
+	</select>
+
+
+	<!-- id=saveBuyerCustomers 表示什么意思？parameterClass="BuyerCustomerPojo" 表示什么意思？ -->
+	<insert id="saveBuyerCustomers"  parameterClass="BuyerCustomerPojo">
+		<![CDATA[   
+				Insert SQL
+		]]>
+	</insert>
+
+
+</sqlMap>
