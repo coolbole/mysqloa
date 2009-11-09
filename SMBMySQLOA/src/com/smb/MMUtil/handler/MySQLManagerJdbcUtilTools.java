@@ -322,7 +322,10 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				 variable=variable+ uptime/60 +" 小时  " ;
 				 
 				 if (uptime/60>24 ){
-					 variable=variable+ "("+uptime/60/24 +"天)" ;
+					 long day=uptime/60/24;
+					 long timeduo=(uptime/60)-(24*day);
+					 
+					 variable=variable+ "(  "+day +"天多 " +timeduo +" 个小时 )";
 				 }
 			 }
 			 

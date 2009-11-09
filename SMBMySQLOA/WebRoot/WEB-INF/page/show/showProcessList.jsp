@@ -33,7 +33,7 @@
    		<span style='color:#FF0000;'><b>自动生成(Hibernate/iBATIS/Spring)配置文件</b></span>
    </A> <br> <br> <br>
    
-   <A HREF="#">
+   <A HREF="drangTestList.do">
    		<span style='color:#336600;'><b>压力测试</b></span>
    </A> <br> <br> <br>
    
