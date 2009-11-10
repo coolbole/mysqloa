@@ -5,6 +5,7 @@ package com.smb.MMUtil.handler;
 
 import java.util.List;
 
+import com.smb.MMUtil.pojo.MySQLShowColumns;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
 
@@ -59,5 +60,9 @@ public interface IMySQLManagerJdbcUtilTools {
  	public  void killConnectionProcess (String ConnectionID)    throws Exception;
  	
  	public void  flushTable() throws Exception;
-	
+ 	
+ 	public void setVariblesByCommands(String command) throws Exception;
+ 	
+ 	public List<MySQLShowColumns> showTableColumns(String tablename) throws Exception;
+ 	
 }

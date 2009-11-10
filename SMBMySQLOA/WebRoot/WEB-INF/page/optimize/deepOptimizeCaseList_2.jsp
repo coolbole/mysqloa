@@ -23,7 +23,7 @@
     		for (int i=0;i<list.size();i++)  
     	{%>
     	
-    <INPUT TYPE='checkbox' NAME='optimizeName' value='<%=list.get(i).getQuestionID()%>'>
+    <INPUT checked TYPE='checkbox' NAME='optimizeName' value='<%=list.get(i).getQuestionID()%>'>
     <%=list.get(i).getQuestionTitle()%><br> <br> 
      <%}%>
     

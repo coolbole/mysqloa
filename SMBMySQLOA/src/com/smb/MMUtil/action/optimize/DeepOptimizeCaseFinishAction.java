@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
+import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.framework.web.action.ControllerAction;
@@ -49,18 +51,31 @@ public class DeepOptimizeCaseFinishAction implements ControllerAction  {
 	 
 			 List  deepOptimizeCommand= new ArrayList ();
 			 
+			 StringBuffer sBuffer = new StringBuffer();
 			 
 			 for (int i=0;i<Optimizelist.size() ;i++){
 				 for (int h=0;h<list.size() ;h++){
 					 if ( list.get(h).equals(  Optimizelist.get(i).getQuestionID()  )  ){
 						 deepOptimizeCommand.add(  Optimizelist.get(i)  );
+						 sBuffer.append(Optimizelist.get(i).getExecuteCommand() );
 					 }
 				 }
 			 }
+			  
+			 String host=request.getSession().getAttribute("host").toString() ;
+			 String username=request.getSession().getAttribute("username").toString();
+			 String password=request.getSession().getAttribute("password").toString();
 			 
+			 UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
+			 MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
+				
+				String stringsBuffer=sBuffer.toString().replaceAll("\n", "").replaceAll("\t", "") ;
+				stringsBuffer=stringsBuffer.substring(0, stringsBuffer.length()-1); 
+				System.out.println ( stringsBuffer );
+				
+				mmu.setVariblesByCommands(stringsBuffer);
 			 
-			 
-			 logger.info("\n 根据XML配置选项，调用MySQLManagerJdbcUtilTools 业务逻辑的方法，你选择的  选项"+deepOptimizeCommand);
+//			 logger.info("\n 根据XML配置选项，调用MySQLManagerJdbcUtilTools 业务逻辑的方法，你选择的  选项"+deepOptimizeCommand);
 			 
 			 request.setAttribute("deepOptimizeCommand", deepOptimizeCommand);
 			 
