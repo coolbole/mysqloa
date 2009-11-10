@@ -18,6 +18,4 @@
 		<property name="#pojoname#" column="#columnname#" type="#java.Type.name#" />
 
 	</class>
-	
-	
 </hibernate-mapping>
