@@ -1,18 +1,19 @@
 package com.smb.MMUtil.testcase.createORM;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.pojo.CreateORMPojo;
 import com.smb.MMUtil.pojo.MySQLShowColumns;
 
 public class TestCaseCreateORMFile {
 	
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void runCase ( ) throws Exception{
 		String host="127.0.0.1";
@@ -27,13 +28,17 @@ public class TestCaseCreateORMFile {
 		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
 		
 		//1. 得到一张表的完整信息
-		List<MySQLShowColumns> list=mmu.showTableColumns(tabNames[0]);
-		System.out.println ( list  );
+		List tables= new ArrayList ();
+		 for (int i=0;i <tabNames.length;i++){
+			 List<MySQLShowColumns> list=mmu.showTableColumns(tabNames[i]);
+				tables.add(  list );
+		 }
+		
 		
 		
 		CreateORMFileFactory  Factory=new CreateORMFileFactory ();
-		Factory.Factory(host, dbName, user, pswd, tabNames, packName,createORMID,list );
-		
+		CreateORMPojo   ORMPojo=Factory.factoryCreateORMPojo(host, dbName, user, pswd, tabNames, packName,createORMID,tables );
+		System.out.println ( ORMPojo  );
 		//2. 组装(assembly) hibernate.cfg.xml 文件
 	   /*String hibernate_cfg_xml_Path = TestCaseCreateORMFile.class.getResource ("hibernate/hibernate.cfg.xml").getFile();
 	   BufferedReader   reader=new BufferedReader(new FileReader(hibernate_cfg_xml_Path));
