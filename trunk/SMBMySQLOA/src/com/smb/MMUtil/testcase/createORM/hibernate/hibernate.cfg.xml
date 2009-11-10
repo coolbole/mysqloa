@@ -26,17 +26,18 @@
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
 		<!-- JDBC URL -->
-		<property name="connection.url">jdbc:mysql://localhost/dbname?characterEncoding=utf-8</property>
+		<property name="connection.url">jdbc:mysql://#dbhost#/#dbname#?characterEncoding=utf-8</property>
 
 		<!-- 数据库用户名-->
-		<property name="connection.username">root</property>
+		<property name="connection.username">#username#</property>
 
 		<!-- 数据库密码-->
-		<property name="connection.password">root</property>
+		<property name="connection.password">#password#</property>
 
 		<!--映射文件 -->
-		<mapping resource="com/amigo/pojo/User.hbm.xml" />
-		<mapping resource="com/amigo/pojo/Org.hbm.xml" />
+		
+		<mapping resource=""/>
+		
 	</session-factory>
 </hibernate-configuration>
 

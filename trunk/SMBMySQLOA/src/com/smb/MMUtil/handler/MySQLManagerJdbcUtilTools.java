@@ -26,6 +26,7 @@ import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOpenTables;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
+import com.smb.MMUtil.pojo.MySQLShowColumns;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLTableIndex;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
@@ -187,6 +188,43 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				connection.close();
 				}
 		}
+	
+	
+	public void setVariblesByCommands(String commands) throws Exception {
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		
+		try {
+			String command[]=commands.split(",");
+			
+ 			 connection.setAutoCommit(false);
+			 for (int i=0;i<command.length;i++){
+				 String SQL= "SET  GLOBAL "+command[i] ;  SQL=SQL.toLowerCase(); 
+				logger.info("[ Command :"+SQL  + " ]  ");
+					
+				if (SQL.indexOf("table_cache")!=-1 ){
+ 						if (showDetailVaribles(SQL.split("=")[0].split(" ")[3] )==null){
+ 							 connection.prepareStatement(SQL .replaceAll("table_cache", "table_open_cache") ).execute();
+ 						}
+ 							else{   connection.prepareStatement(SQL).execute();  }
+					}
+				else{
+				 connection.prepareStatement(SQL).execute();
+					}
+			 }
+				
+ 		 connection.commit();
+		} 
+		catch ( Exception e) {
+ 			connection.rollback();
+			logger.error(e);
+			 throw new Exception(e);
+		}
+		finally {
+			connection.close();
+			}
+	}
+	
 
 	public MySQLVariableObject showDetailVaribles(String variable_name)  throws Exception {
 		logger.info( "showDetailVaribles ......................." );
@@ -505,6 +543,38 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return configFile;
 	}
 
+	
+	
+	
+	public List<MySQLShowColumns> showTableColumns(String tablename) throws Exception {
+		logger.info( "showTableColumns ... ....tablename :[ "+  tablename +" ]");
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List<MySQLShowColumns> list = new ArrayList<MySQLShowColumns> ();
+		try{
+			ResultSet rs=connection.prepareStatement("show columns from  "+tablename  ).executeQuery();
+			while (rs.next() ){ 
+				MySQLShowColumns  showColumns=new  MySQLShowColumns();
+				
+				showColumns.setField( rs.getString("field") );
+				showColumns.setType( rs.getString("type") );
+				showColumns.setIsnull( rs.getString("null") );
+				showColumns.setKey( rs.getString("key") );
+				showColumns.setDefaults( rs.getString("default") );
+				showColumns.setExtra( rs.getString("extra") );
+				list.add( showColumns  );
+				
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return list;
+	}
+	
 	public String showCreateTable(String tablename) throws Exception {
 		logger.info( "showCreateTable ......................." );
 		Connection connection=null;

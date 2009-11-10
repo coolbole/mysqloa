@@ -1,12 +1,16 @@
 package com.smb.MMUtil.testcase;
 
 
+import java.util.List;
+
 import org.junit.Test;
 
 
+import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.MMUtil.tools.UtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 
 public class MySQLQueryAnalyzerTest {
 	
@@ -22,16 +26,28 @@ public class MySQLQueryAnalyzerTest {
 	        System.out.println  (UtilTools.getBASE64(bin) );
 	    } 
  
+	@SuppressWarnings("unchecked")
 	@Test
 	public void runCase () throws  Exception{
 		
-		UtilBaseTools  orm= new UtilBaseTools("192.168.1.2", null, "root", "123456");
+		UtilBaseTools  orm= new UtilBaseTools("127.0.0.1", null, "root", "123456");
 		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
-		String list=null;
-			mmu.killConnectionProcess("1489");
-		System.out.println  (list);
+		 
+		ReadMySQLConfigXMLFile  xml = new ReadMySQLConfigXMLFile();
+		List <MySQLDeepOptimize> list=xml.getMySQLDeepOptimizeCase();
 		
+		/**     ==============================================      **/
+		StringBuffer sBuffer = new StringBuffer();
+			for (int i=0;i<list.size();i++){
+				sBuffer.append( list.get(i).getExecuteCommand()  );
+			}
 		
+			String stringsBuffer=sBuffer.toString().replaceAll("\n", "").replaceAll("\t", "") ;
+			stringsBuffer=stringsBuffer.substring(0, stringsBuffer.length()-1); 
+			System.out.println ( stringsBuffer );
+			
+			mmu.setVariblesByCommands(stringsBuffer);
+			
 	}
 
 }
