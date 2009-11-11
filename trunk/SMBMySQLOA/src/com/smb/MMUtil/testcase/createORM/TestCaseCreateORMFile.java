@@ -1,14 +1,13 @@
 package com.smb.MMUtil.testcase.createORM;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.createORM.CreateORMFileFactory;
 import com.smb.MMUtil.pojo.CreateORMPojo;
-import com.smb.MMUtil.pojo.MySQLShowColumns;
 
 public class TestCaseCreateORMFile {
 	
@@ -17,28 +16,32 @@ public class TestCaseCreateORMFile {
 	@Test
 	public void runCase ( ) throws Exception{
 		String host="127.0.0.1";
-		String dbName="smbcrm";
+		String dbName="srvphone";
 		String user="root";
 		String pswd="123456";
-		String tabNames[]={"crm_users","customer_contact","customer_contact_status"};
-		String createORMID="hibernate";
+		String tabNames[]={"firewall","firewallrecord"};
+		String createORMID="hibernateSpring";
 		String packName="com.you.packeage.name";
 		
 		UtilBaseTools  orm= new UtilBaseTools(host, dbName ,user, pswd);
 		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
 		
 		//1. 得到一张表的完整信息
-		List tables= new ArrayList ();
-		 for (int i=0;i <tabNames.length;i++){
-			 List<MySQLShowColumns> list=mmu.showTableColumns(tabNames[i]);
-				tables.add(  list );
-		 }
+//		List tables= new ArrayList ();
+//		 for (int i=0;i <tabNames.length;i++){
+//			 List<MySQLShowColumns> list=mmu.showTableColumns(tabNames[i]);
+//				tables.add(  list );
+//		 }
 		
-		
-		
+		List tables= mmu.showTABLESColumns(tabNames);
 		CreateORMFileFactory  Factory=new CreateORMFileFactory ();
 		CreateORMPojo   ORMPojo=Factory.factoryCreateORMPojo(host, dbName, user, pswd, tabNames, packName,createORMID,tables );
-		System.out.println ( ORMPojo  );
+		
+		System.out.println ( ORMPojo.getCreateType()  );
+		System.out.println ( ORMPojo.getSpringFile() );
+		System.out.println ( ORMPojo.getOrmMappingFiles() );
+		System.out.println ( ORMPojo.getOrmCFGFile() );
+		
 		//2. 组装(assembly) hibernate.cfg.xml 文件
 	   /*String hibernate_cfg_xml_Path = TestCaseCreateORMFile.class.getResource ("hibernate/hibernate.cfg.xml").getFile();
 	   BufferedReader   reader=new BufferedReader(new FileReader(hibernate_cfg_xml_Path));

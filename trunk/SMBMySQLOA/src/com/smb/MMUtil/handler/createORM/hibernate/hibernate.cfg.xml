@@ -36,7 +36,7 @@
 
 		<!--映射文件 -->
 		
-		<mapping resource=""/>
+		<mapping resource="#PojoMapping.xml#"/>
 		
 	</session-factory>
 </hibernate-configuration>

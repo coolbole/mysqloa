@@ -8,13 +8,13 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://127.0.0.1:3306/ibatis?characterEncoding=utf-8</value>
+			<value>jdbc:mysql://#dbhost#:3306/#dbname#?characterEncoding=utf-8</value>
 		</property>
 		<property name="username">
-			<value>root</value>
+			<value>#username#</value>
 		</property>
 		<property name="password">
-			<value></value>
+			<value>#password#</value>
 		</property>
 	</bean>
 
@@ -25,8 +25,9 @@
 	</bean>
 
 	<!--
-		DAO方案一 <bean id="DAOName" class="net.samples.ibatis.dao.UserDAOImpl">
-		<property name="sqlMapClient"> <ref bean="sqlMapClient"/> </property>
+		DAO方案一 
+		<bean id="DAOName" class="net.samples.ibatis.dao.UserDAOImpl">
+			<property name="sqlMapClient"> <ref bean="sqlMapClient"/> </property>
 		</bean>
 	-->
 

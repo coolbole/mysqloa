@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "sql-map-config-2.dtd">
+ 
+<sqlMapConfig>
+		<settings 
+		cacheModelsEnabled="true" 
+		lazyLoadingEnabled="true" 
+		errorTracingEnabled="true" 
+		
+		maxSessions="1024"  
+		maxTransactions="512" 
+		maxRequests="2048"
+		useStatementNamespaces="true"
+		enhancementEnabled="false"
+		 />
+		
+	<transactionManager type="JDBC">
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver" />
+			<property name="JDBC.ConnectionURL" value="jdbc:mysql://#dbhost#:3306/#dbname#?characterEncoding=utf-8" />
+			<property name="JDBC.Username" value="#username#" />
+			<property name="JDBC.Password" value="#password#" />
+		</dataSource>
+	</transactionManager>
+	
+		
+				<sqlMap resource="#PojoMapping.xml#"/>
+			
+	  
+</sqlMapConfig>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE sqlMapConfig PUBLIC
+ "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+ "sql-map-config-2.dtd">
+ 
+<sqlMapConfig>
+	<settings 
+		cacheModelsEnabled="true" 
+		lazyLoadingEnabled="true" 
+		errorTracingEnabled="true" 
+		
+		maxSessions="1024"  
+		maxTransactions="512" 
+		maxRequests="2048"
+		useStatementNamespaces="true"
+		enhancementEnabled="false"
+		 />
+		
+	<sqlMap resource="#PojoMapping.xml#"/>
+	
+</sqlMapConfig>
