@@ -65,4 +65,7 @@ public interface IMySQLManagerJdbcUtilTools {
  	
  	public List<MySQLShowColumns> showTableColumns(String tablename) throws Exception;
  	
+ 	public List<?>  showTABLESColumns(String tablename[]) throws Exception;
+ 	
+ 	
 }

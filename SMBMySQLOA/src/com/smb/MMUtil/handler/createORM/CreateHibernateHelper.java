@@ -1,4 +1,4 @@
-package com.smb.MMUtil.testcase.createORM;
+package com.smb.MMUtil.handler.createORM;
  
 import java.util.List;
 
@@ -8,19 +8,40 @@ import com.smb.MMUtil.pojo.MySQLShowColumns;
 
 public class CreateHibernateHelper {
 	
-	 private static String hibernate_cfg_xml_Path = TestCaseCreateORMFile.class.getResource ("hibernate/hibernate.cfg.xml").getFile();
-	 private static String hibernate_hbm_xml_Path = TestCaseCreateORMFile.class.getResource ("hibernate/hibernate.hbm.xml").getFile();
+	 private static String hibernate_cfg_xml_Path = CreateHibernateHelper.class.getResource ("hibernate/hibernate.cfg.xml").getFile();
+	 private static String spring_hbernate_Path = CreateHibernateHelper.class.getResource ("hibernate/Spring_Hibernate.xml").getFile();
+	 private static String hibernate_hbm_xml_Path = CreateHibernateHelper.class.getResource ("hibernate/hibernate.hbm.xml").getFile();
 	 private static CreateBaseHandler  baseHandler= new CreateBaseHandler();
 	 
-	 private static String mapping_resource="<mapping resource=\"\"/>";
+	 private static String mapping_resource="<mapping resource=\"#PojoMapping.xml#\"/>";
 //	 private static String column_property_name="<property name=\"#pojoname#\" column=\"#columnname#\" type=\"#java.Type.name#\" />";
 	 
 	 private static  String hibernate_hbm_xml_content=baseHandler.getFiletoString(hibernate_hbm_xml_Path) ;
 	 private static  String hibernate_cfg_xml_content=baseHandler.getFiletoString(hibernate_cfg_xml_Path) ;
+	 private static  String spring_hbernate_xml=baseHandler.getFiletoString(spring_hbernate_Path) ;
 	 
-	 
-	 public String HibernateSpringFile ( ){
-		 		 return "";
+	 public String HibernateSpringFile ( String host,  String dbName,  String user, 
+			 			  String pswd, String tabNames[] ,String packName  ) throws Exception{
+		 	
+		 StringBuffer SpringHibernateFile=new StringBuffer(); 
+		 spring_hbernate_xml=spring_hbernate_xml 
+		 .replaceAll(CreateBaseHandler.username, user)
+		 .replaceAll(CreateBaseHandler.password, pswd)
+		 .replaceAll(CreateBaseHandler.dbhost, host)
+		 .replaceAll(CreateBaseHandler.dbname, dbName);
+		 
+		 String getFMTpackName=baseHandler.getFMTpackName(packName);
+		 StringBuffer valueBuffer =new StringBuffer();
+		 valueBuffer.append("<list>\n");
+		 for (int i=0;i<tabNames.length;i++){
+			 valueBuffer.append("			     <value>").append(getFMTpackName+"/"+tabNames[i]).append("</value>\n");
+		 }
+		 valueBuffer.append("			</list>");
+		 
+		 SpringHibernateFile.append(spring_hbernate_xml.split("<list>")[0]    ).
+		 append(  valueBuffer ).append(  spring_hbernate_xml.split("</list>")[1]  );
+		 
+		 return SpringHibernateFile.toString();
 	 }
 	 
 	 
@@ -30,10 +51,11 @@ public class CreateHibernateHelper {
 		 StringBuffer HibernateCFGFile=new StringBuffer(); 
 		 try{
 					  
-			 		 hibernate_cfg_xml_content.replaceAll("#dbhost#", host) 	
-					 .replaceAll("#dbname#", dbName)  
-					 .replaceAll("#username#", user)   
-					 .replaceAll("#password#", pswd) ;
+			 		 hibernate_cfg_xml_content
+			 		 .replaceAll(CreateBaseHandler.username, user)
+					 .replaceAll(CreateBaseHandler.password, pswd)
+					 .replaceAll(CreateBaseHandler.dbhost, host)
+					 .replaceAll(CreateBaseHandler.dbname, dbName);
 					 
 					 HibernateCFGFile.append(  hibernate_cfg_xml_content.split(mapping_resource)[0] );
 					 
@@ -55,8 +77,7 @@ public class CreateHibernateHelper {
 	 }
 		
 	 public String HibernateHBMFile ( String tabName ,String packName , List <MySQLShowColumns> list) throws Exception{
-		 System.out.println (tabName);
-		 
+
 		 StringBuffer HibernateHBMFile=new StringBuffer(); 
 		 HibernateHBMFile.append(hibernate_hbm_xml_content.split("<class name=")[0]);
 		 

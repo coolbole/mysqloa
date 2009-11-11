@@ -545,6 +545,43 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 
 	
 	
+	@SuppressWarnings("unchecked")
+	public List<?>  showTABLESColumns(String tablename[]) throws Exception {
+		logger.info( "showTableColumns ... ....tablename :[ "+  tablename +" ]");
+		Connection connection=null;
+		connection=UtilBaseTools.getConnection();
+		List<MySQLShowColumns> list = new ArrayList<MySQLShowColumns> ();
+		List tables= new ArrayList ();
+		try{
+			
+			for (int i=0;i<tablename.length;i++){
+				ResultSet rs=connection.prepareStatement("show columns from  "+tablename[i]  ).executeQuery();
+				while (rs.next() ){ 
+					MySQLShowColumns  showColumns=new  MySQLShowColumns();
+					
+					showColumns.setField( rs.getString("field") );
+					showColumns.setType( rs.getString("type") );
+					showColumns.setIsnull( rs.getString("null") );
+					showColumns.setKey( rs.getString("key") );
+					showColumns.setDefaults( rs.getString("default") );
+					showColumns.setExtra( rs.getString("extra") );
+					list.add( showColumns  );
+					}    // while
+			
+				tables.add(list);
+			}     //for
+			
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return tables;
+	}
+	
+	
 	
 	public List<MySQLShowColumns> showTableColumns(String tablename) throws Exception {
 		logger.info( "showTableColumns ... ....tablename :[ "+  tablename +" ]");
