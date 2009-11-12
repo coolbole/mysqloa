@@ -209,7 +209,7 @@
 
  <MySQLVariableDescription>
 	<variable_name>Innodb_rows_read</variable_name>
-	<description>从InnoDB表读取的行数。</description>
+	<description>从InnoDB表读取的行数。当sql没有加合适索引时候，是会进行全表扫描，从而会使rows_read 这个值会变的特别大。</description>
 </MySQLVariableDescription>
 
  <MySQLVariableDescription>

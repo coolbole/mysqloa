@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <list>
 
 <MySQLDeepOptimize>
@@ -15,6 +14,7 @@
 		query_prealloc_size=65536,
 		read_buffer_size=4677312, 
 		bulk_insert_buffer_size=16773120,
+		query_cache_limit=10485760,
 		<!-- record_buffer=16773120, -->
 	</executeCommand>
 </MySQLDeepOptimize>
@@ -31,8 +31,9 @@
 		innodb_support_xa=0,
 		innodb_commit_concurrency=16,
 		innodb_fast_shutdown=1,
-		innodb_flush_log_at_trx_commit=0,
+		innodb_flush_log_at_trx_commit=2,
 		thread_cache_size=32,
+		innodb_thread_concurrency=16,
 	</executeCommand>
 </MySQLDeepOptimize>
 
@@ -164,7 +165,7 @@
 	<questionID>16</questionID>
 	<questionTitle>您是否需要将数据库 表高速缓存 进行优化?</questionTitle>
 	<executeCommand>
-		table_cache=1024,
+		table_cache=2048,
 	</executeCommand>
 </MySQLDeepOptimize>
 
@@ -199,6 +200,23 @@
 		   slave_skip_errors=all,
 	</executeCommand>
 </MySQLDeepOptimize>
+
+#这对innodb表来说非常重要
+innodb_buffer_pool_size = 256M
+
+#这取决于你需要的回复速度.128M这个数值是适当的恢复时间和良好性能之间的一个好的平衡.
+innodb_log_file_size = 128M
+
+#大多数情况4M足够,除非正将很大的blob数据导入到Innodb中可以增加一点.
+innodb_log_buffer_size=4M
+
+#这个值取决于你的程序,可能高或者低.8是代表起始值.
+innodb_thread_concurrency=8
+
+innodb_additional_mem_pool_size=100M
+
+#如果你不是很关心ACID,可以容许在系统完全crash的情况下丢失最后一两秒的事务,那么可以设置这个值.它可以极大的提高”短”的写事务的效率.
+innodb_flush_log_at_trx_commit=2
 
 <MySQLDeepOptimize>
 	<stepName>3</stepName>

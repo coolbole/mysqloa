@@ -20,7 +20,7 @@
 			
 			<BR><BR>
 			
-			<INPUT  TYPE="radio" NAME="createORMID" value="Hibernate" checked> Hibernate
+			<INPUT  TYPE="radio" NAME="createORMID" value="Hibernate" checked>Hibernate
 			<BR>
 		
 			<INPUT TYPE="radio" NAME="createORMID" value="Hibernate+Spring">Hibernate+Spring

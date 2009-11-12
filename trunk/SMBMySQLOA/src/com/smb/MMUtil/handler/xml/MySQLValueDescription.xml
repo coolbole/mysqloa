@@ -581,8 +581,8 @@ tbl_name.frm文件照旧依然被创建。 如果你从my.cnf文件删除innodb_
 
 <MySQLVariableDescription>
 	<variable_name>innodb_flush_method</variable_name>
-	<description> 这个参数仅仅与 Unix 相关。这个参数默认值为 fdatasync。 另一个设置项为 O_DSYNC。这仅仅影响日志文件的转储，在 Unix 下以 fsync 转储数据。InnoDB 版本从 3.23.40b 开始，
-	在 Unix 下指定 fdatasync 为使用 fsync 方式、指定 O_DSYNC 为使用 O_SYNC 方式。由于这在某些 Unix 环境下还有些问题所以在 'data' versions 并没有被使用。</description>
+	<description> 一般的文件I/O操作的三个过程open、write、fdatasync，分别是打开文件、写文件、flush操作（将文件缓存刷到磁盘上）。这个参数仅仅与 Unix 相关。这个参数默认值为 fdatasync。 另一个设置项为 O_DSYNC。这仅仅影响日志文件的转储，在 Unix 下以 fsync 转储数据。InnoDB 版本从 3.23.40b 开始，
+	在 Unix 下指定 fdatasync 为使用 fsync 方式、指定 O_DSYNC 为使用 O_SYNC 方式。由于这在某些 Unix 环境下还有些问题所以在 'data' versions 并没有被使用。它们控制了InnoDB刷新日志和数据的模式。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1685,17 +1685,17 @@ key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好�
 
 <MySQLVariableDescription>
 	<variable_name>ssl_cert</variable_name>
-	<description></description>
+	<description>在SSL证书文件的名称用于建立一个安全连接。</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ssl_cipher</variable_name>
-	<description></description>
+	<description>密码的清单允许使用SSL加密</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
 	<variable_name>ssl_key</variable_name>
-	<description></description>
+	<description>SSL密钥文件名用于建立安全连接</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1737,7 +1737,22 @@ key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好�
 
 <MySQLVariableDescription>
 	<variable_name>table_open_cache</variable_name>
-	<description>表缓存 缓存已打开的表 1024 64 ,table_cache (新版本改成了table_open_cache)</description>
+	<description>这个参数在mysql中相当重要，table_cache指示表高速缓存的大小。当Mysql访问一个表时，如果在Mysql表缓冲区中还有空间，
+	那么这个表就被打开并放入表缓冲区，这样做的好处是可以更快速地访问表中的内容。
+	一般来说，可以通过查看数据库运行峰值时间的状态值Open_tables和Opened_tables，用以判断是否需要增加table_cache的值，
+	即如果open_tables接近table_cache的时候，并且Opened_tables这个值在逐步增加，那就要考虑增加这个值的大小了。
+	  在mysql默认安装情况下，table_cache的值在2G内存以下的机器中的值默认时256到512，
+	  如果机器有4G内存,则默认这个值是2048，但这决意味着机器内存越大，
+	  这个值应该越大，因为table_cache加大后，使得mysql对SQL响应的速度更快了，不可避免的会产生更多的死锁（dead lock），
+	  这样反而使得数据库整个一套操作慢了下来，严重影响性能。
+	  所以平时维护中还是要根据库的实际情况去作出判断，找到最适合你维护的库的table_cache值，有人说：“性能优化是一门艺术”，这话一点没错。
+	  大凡艺术品，大都是经过千锤百炼，精雕细琢而成。   这里还要说明一个问题，就是table_cache加大后碰到文件描述符不够用的问题，
+	  在mysql的配置文件中有这么一段提示：Quotation “The number of open tables for all threads. Increasing this value increases the number of file 
+	  descriptors that mysqld requires.Therefore you have to make sure to set the amount of open files allowed to at 
+	  least 4096 in the variable "open-files-limit" in” section [mysqld_safe]” 说的就是要注意这个问题，一想到这里，部分兄弟可能会用ulimit -n 作出调整，
+	  但是这个调整实际是不对的，换个终端后，这个值又会回到原始值，所以最好用sysctl或者修改/etc/sysctl.conf文件，同时还要在配置文件中把open_files_limit这个参数增大，
+	  对于4G内存服务器，相信现在购买的服务器都差不多用4G的了，那这个这个open_files_limit至少要增大到4096，
+	如果没有什么特殊情况，设置成8192就可以了。（table_cache设大的副作用 http://blog.chinaunix.net/u/25477/showart_246745.html ）</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1776,7 +1791,12 @@ key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好�
 
 <MySQLVariableDescription>
 	<variable_name>thread_handling</variable_name>
-	<description></description>
+	<description>
+	线程处理模式,这个参数有2种模式，no-threads  和  one-thread-per-connection可以选择。 
+		no-threads :整个服务器使用一个线程(the server uses one thread),
+		one-thread-per-connection:每个线程对应每个连接(the server uses one thread to handle each client connection)。
+	这个参数在Linux下调试生效 ; 这个变量是在MySQL 5.1.17 中加入
+	</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1844,7 +1864,8 @@ key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好�
 
 <MySQLVariableDescription>
 	<variable_name>unique_checks</variable_name>
-	<description></description>
+	<description>设置为1（默认值），在InnoDB表辅助索引唯一性检查中。
+	如果设置为0，存储引擎允许假设重复键输入数据不存在将不在会去检查。如果你相信你的业务数据中不会包含的非独特性的数据，你可以设置为0，以加快写入时表的效率</description>
 </MySQLVariableDescription>
 
 <MySQLVariableDescription>
@@ -1882,6 +1903,11 @@ key_buffer_size是用于索引块的缓冲区大小，	增加它可得到更好�
 
 <MySQLVariableDescription>
 	<variable_name>warning_count</variable_name>
-	<description></description>
+	<description>
+	表示错误、警告、提示信息的总记录数。也可以通过取得变量 warning_count 的值来获得总错误记录数：
+		SHOW COUNT(*) WARNINGS;
+			或者
+		SELECT @@warning_count;
+	warning_count 的值可能会比 SHOW WARNINGS 显示的结果记录数大，因为系统变量 max_error_count 被设置的比较小，</description>
 </MySQLVariableDescription>
 </list>
