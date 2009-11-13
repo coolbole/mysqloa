@@ -76,7 +76,6 @@ public class ReadMySQLConfigXMLFile {
 	
 	@SuppressWarnings("unchecked")
 	public List getMySQLVariableDescription()  throws  Exception {
-		logger.info( "get MySQLVariableDescription ....................." );
 		FileInputStream input; 
 		List <MySQLVariableDescription> list=null;
 		try {

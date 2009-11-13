@@ -57,11 +57,11 @@ import org.apache.commons.logging.LogFactory;
  *
  */
 
-public class  UtilBaseTools  {
+public class  JDBCUtilBaseTools  {
 	
-	private static Log logger = LogFactory.getLog(UtilBaseTools.class);
+	private static Log logger = LogFactory.getLog(JDBCUtilBaseTools.class);
 	
-	public UtilBaseTools(String Host, String Db,String User, String Passwd ){
+	public JDBCUtilBaseTools(String Host, String Db,String User, String Passwd ){
 		 		host=Host;	user=User;	passwd=Passwd;  db=Db;
 	}
 	

@@ -10,17 +10,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.pojo.TableStatusPojo;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class ShowEveryTableStatusAction implements ControllerAction {
+public class ShowEveryTableStatusAction  extends ActionBase implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(ShowEveryTableStatusAction.class);
 	
-	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
@@ -28,19 +25,14 @@ public class ShowEveryTableStatusAction implements ControllerAction {
 			
 			String DBName=request.getParameter("DBName");
 	     
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-			    String host=session.getAttribute("host").toString() ;
-			    String username=session.getAttribute("username").toString();
-			    String password=session.getAttribute("password").toString();
-			    
-			    UtilBaseTools orm= new UtilBaseTools(host,DBName,username,password);
-				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-				List <TableStatusPojo> proList=(List<TableStatusPojo>) mmu.showTableStatus();
-				
-//				request.setAttribute("actionType", request.getParameter("actionType")  );
+			 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+ 
+			 	IMySQLManagerJdbcUtilTools   mmu= getMMU(session,DBName );
+			 
+				List <TableStatusPojo> proList=  mmu.showTableStatus();
 				
 			 	request.setAttribute("proList",proList);      
-			 	request.setAttribute("host",host);  
+			 	request.setAttribute("host",session.getAttribute("host") );  
 			 	request.setAttribute("uptime",mmu.showUptime() );  
 			 	return new ModelAndPage( request ,"/WEB-INF/page/show/showEveryTableStatus.jsp" );
 		}

@@ -8,13 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.smb.MMUtil.action.ActionBase;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class OptimizeCaseAction implements ControllerAction {
+public class OptimizeCaseAction   extends ActionBase  implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(OptimizeCaseAction.class);
 
@@ -24,18 +23,13 @@ public class OptimizeCaseAction implements ControllerAction {
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
 			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-		    String host=session.getAttribute("host").toString() ;
-		    String username=session.getAttribute("username").toString();
-		    String password=session.getAttribute("password").toString();
-		    
-		    
+			 
 		    String optimizeCase=request.getParameter("OptimizeCaseAlias");
-		    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+			IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 			List listS=mmu.MySQLOptimize( optimizeCase);
 			
 			 	request.setAttribute("listS",listS);      
-			 	request.setAttribute("host",host);  
+			 	request.setAttribute("host",session.getAttribute("host"));  
 			    return new ModelAndPage( request ,"/WEB-INF/page/optimize/optimizeCase.jsp" );
 			
 			

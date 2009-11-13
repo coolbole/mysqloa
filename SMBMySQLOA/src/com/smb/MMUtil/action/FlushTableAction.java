@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
@@ -27,7 +27,7 @@ public class FlushTableAction  implements ControllerAction {
 			   String password= session.getAttribute("password").toString();
 			   
 			    
-			    UtilBaseTools orm= new UtilBaseTools(host,"information_schema",username,password);
+			   JDBCUtilBaseTools orm= new JDBCUtilBaseTools(host,"information_schema",username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 				
 				mmu.flushTable();

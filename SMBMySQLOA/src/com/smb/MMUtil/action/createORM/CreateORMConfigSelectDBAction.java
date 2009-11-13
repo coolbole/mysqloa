@@ -2,24 +2,24 @@ package com.smb.MMUtil.action.createORM;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.smb.MMUtil.action.ActionBase;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class CreateORMConfigSelectDBAction implements ControllerAction {
+public class CreateORMConfigSelectDBAction  extends ActionBase  implements ControllerAction {
 	 
 	private static Log logger = LogFactory.getLog(CreateORMConfigSelectDBAction.class);
 	
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		HttpSession session=  request.getSession();
 		
-		
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		 
 		 String createORMID= request.getParameter("createORMID");
 		 String packageName= request.getParameter("packageName");
@@ -32,13 +32,7 @@ public class CreateORMConfigSelectDBAction implements ControllerAction {
 		 
 		 else{
 			 logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-		 	String host=request.getSession().getAttribute("host").toString() ;
-		    String username=request.getSession().getAttribute("username").toString();
-		    String password=request.getSession().getAttribute("password").toString();
-		
-		    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-		    IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
-		 
+			 IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		     request.setAttribute("showDataBases", mmu.showDataBases() );
 			 request.setAttribute("createORMID", createORMID);
 			 request.setAttribute("packageName", packageName);

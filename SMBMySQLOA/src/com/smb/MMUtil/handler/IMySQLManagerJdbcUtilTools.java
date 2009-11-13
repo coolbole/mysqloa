@@ -6,17 +6,19 @@ package com.smb.MMUtil.handler;
 import java.util.List;
 
 import com.smb.MMUtil.pojo.MySQLShowColumns;
+import com.smb.MMUtil.pojo.MySQLShowProcessList;
+import com.smb.MMUtil.pojo.MySQLTableIndex;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
+import com.smb.MMUtil.pojo.TableStatusPojo;
 
 /**
  * @author huangyi
- *
  */
+
 public interface IMySQLManagerJdbcUtilTools {
 	
-	@SuppressWarnings("unchecked")
-	public List  showProcesslistCommand( ) throws  Exception;
+	public List  <MySQLShowProcessList> showProcesslistCommand( ) throws  Exception;
 	
 	public List<MySQLVariableObject>  showVariblesCommand ( ) throws  Exception;
 	
@@ -40,7 +42,7 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public List<?>  showDataBases(  ) throws  Exception;
 	
-	public List<?>  showTableStatus(  ) throws  Exception;
+	public List<TableStatusPojo>   showTableStatus(  ) throws  Exception;
 	
 	public List<?>  MySQLOptimize (String Optimize) throws Exception ;
 	
@@ -52,8 +54,7 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public  List<?>   showOpentables (   ) throws  Exception; 
 	
-	@SuppressWarnings("unchecked")
-	public List showTableIndexs(String DBName) throws Exception;
+	public List <MySQLTableIndex> showTableIndexs(String DBName) throws Exception;
 	
 	public String CollectionMySQLogData () throws Exception;
 	

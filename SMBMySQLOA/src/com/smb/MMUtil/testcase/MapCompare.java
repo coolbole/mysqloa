@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
@@ -56,7 +56,7 @@ public class MapCompare {
 	
 //	@Test
 	public void showMasterReplicationStatus () throws Exception{
-		UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
+		JDBCUtilBaseTools orm= new JDBCUtilBaseTools("192.168.12.212",null,"root","123456");
 		
 		IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 		ReplicationStatusPojo list= mmu.showMasterReplicationStatus();
@@ -68,7 +68,7 @@ public class MapCompare {
 //		@Test
 		@SuppressWarnings("unchecked")
 		public void fileAndshowTestCase () throws Exception{
-			UtilBaseTools orm= new UtilBaseTools("192.168.12.212",null,"root","123456");
+			JDBCUtilBaseTools orm= new JDBCUtilBaseTools("192.168.12.212",null,"root","123456");
 			
 			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 			List <MySQLVariableObject> listS=(List<MySQLVariableObject>) mmu.showVariblesCommand();

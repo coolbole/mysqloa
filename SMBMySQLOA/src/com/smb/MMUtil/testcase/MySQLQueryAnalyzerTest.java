@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.MMUtil.tools.UtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 
 public class MySQLQueryAnalyzerTest {
@@ -30,7 +30,7 @@ public class MySQLQueryAnalyzerTest {
 	@Test
 	public void runCase () throws  Exception{
 		
-		UtilBaseTools  orm= new UtilBaseTools("127.0.0.1", null, "root", "123456");
+		JDBCUtilBaseTools  orm= new JDBCUtilBaseTools("127.0.0.1", null, "root", "123456");
 		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
 		 
 		ReadMySQLConfigXMLFile  xml = new ReadMySQLConfigXMLFile();

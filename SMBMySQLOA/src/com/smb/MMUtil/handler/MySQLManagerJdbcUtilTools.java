@@ -21,7 +21,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOpenTables;
@@ -44,17 +44,17 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 	private static Log logger = LogFactory.getLog(MySQLManagerJdbcUtilTools.class);
 	
-	public  MySQLManagerJdbcUtilTools(UtilBaseTools utilBaseTools){
-		UtilBaseTools=utilBaseTools;
+	public  MySQLManagerJdbcUtilTools(JDBCUtilBaseTools JDBCUtilBaseTools){
+		this.JDBCUtilBaseTools=JDBCUtilBaseTools;
 	}
 	
-	private UtilBaseTools  UtilBaseTools;
+	private JDBCUtilBaseTools  JDBCUtilBaseTools;
 	
 	@SuppressWarnings("unchecked")
 	public List  showProcesslistCommand( ) throws  Exception {
 		logger.info( "showProcesslist ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLShowProcessList> result =  new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "Show full processlist"  ).executeQuery();
@@ -85,7 +85,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showStatusCommand() throws Exception {
 		logger.info( "showStatusCommand ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLVariableObject>  result = new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show status"  ).executeQuery();
@@ -108,7 +108,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showVariblesCommand() throws Exception {
 		logger.info( "showVariblesCommand ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLVariableObject>  result = new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show variables"  ).executeQuery();
@@ -131,7 +131,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showStatusCommandByCategory(String category) throws Exception {
 		logger.info( "showStatusCommandByCategory ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLVariableObject>  result =  new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show status like '%"+category+"%' "  ).executeQuery();
@@ -154,7 +154,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showVariblesCommandByCategory(String category) throws Exception {
 		logger.info( "showVariblesCommandByCategory ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLVariableObject>  result =  new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show variables like '%"+category+"%' "  ).executeQuery();
@@ -175,7 +175,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 	public void setVariblesCommandByCategory(String category,String value) throws Exception {
 			Connection connection=null;
-			connection=UtilBaseTools.getConnection();
+			connection=JDBCUtilBaseTools.getConnection();
 			String SQL= "set  GLOBAL "+category+"="+value;
 			try {
 				logger.info(SQL+"  setVariblesCommandByCategory. [ category :"+ category+ " ]  [ value : "+value+" ]");
@@ -192,7 +192,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 	public void setVariblesByCommands(String commands) throws Exception {
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		
 		try {
 			String command[]=commands.split(",");
@@ -227,9 +227,8 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 
 	public MySQLVariableObject showDetailVaribles(String variable_name)  throws Exception {
-		logger.info( "showDetailVaribles ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		String SQL= "show variables where Variable_name='"+variable_name+"'  " ;
 		MySQLVariableObject  variable=null;
 		logger.info( "showDetailVaribles ......................." +SQL);
@@ -254,7 +253,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showVariblesCommandByLetter(String letter) throws Exception {
 		logger.info( "showVariblesCommandByLetter ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLVariableObject>  result = new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show variables like '"+letter+"%' "  ).executeQuery();
@@ -276,7 +275,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public ReplicationStatusPojo showSlaveReplicationStatus() throws Exception {
 		logger.info( "showSlaveReplicationStatus ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		ReplicationStatusPojo  variable=null;
 		try{
 			ResultSet rs=connection.prepareStatement("show slave status" ).executeQuery();
@@ -318,7 +317,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public ReplicationStatusPojo showMasterReplicationStatus() throws Exception {
 		logger.info( "showMasterReplicationStatus ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		ReplicationStatusPojo  variable=null;
 		try{
 			ResultSet rs=connection.prepareStatement("show master status" ).executeQuery();
@@ -343,7 +342,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public String showUptime() throws Exception {
 		logger.info( "showUptime ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		String  variable="这台MySQL运行了 ";
 		try{
 			long uptime=0;
@@ -384,7 +383,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showDataBases() throws Exception {
 		logger.info( "showDataBases ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List   result = new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show  databases"  ).executeQuery();
@@ -405,7 +404,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showTableStatus() throws Exception {
 		logger.info( "showDataBases ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List    result = new ArrayList();
 		try{
 			ResultSet rs=connection.prepareStatement( "show table status"  ).executeQuery();
@@ -448,7 +447,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		List optimizedList= new ArrayList();
 		
 		try{
-			connection=UtilBaseTools.getConnection();
+			connection=JDBCUtilBaseTools.getConnection();
 			List list=readXMLFile.getMySQLOptimizeCase();
 			for (int i=0;i<list.size();i++){
 				MySQLOptimizeCase optimizeCase=(MySQLOptimizeCase) list.get(i);
@@ -463,12 +462,21 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 						if (commands[h].length()>4){
 							String SQL="set global " +commands[h].replaceAll("\t", "");
 							
-							MySQLVariableObject table_cache= showDetailVaribles(value)  ;
-							if (table_cache !=null  ){
-								logger.info(SQL);
+							if (SQL.indexOf("table_open_cache")!=-1 ){
+								MySQLVariableObject table_cache= showDetailVaribles(value)  ;
+								if (table_cache !=null  ){
+									logger.info(SQL);
+									optimizedList.add(commands[h].replaceAll("\t", ""));
+									connection.prepareStatement( SQL  ).execute();
+									}   // if table_cache
+								
+							}
+							else{
 								connection.prepareStatement( SQL  ).execute();
 								optimizedList.add(commands[h].replaceAll("\t", ""));
-								}   // if table_cache
+							}
+							
+						
 						}  //if 
 						}  // for
 						 
@@ -477,6 +485,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			}
 			}
 		catch(Exception e) {
+			logger.error(e);
 			e.printStackTrace();
 			}
 		finally {
@@ -488,7 +497,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public String showVersion() throws Exception {
 		logger.info( "showProcesslist ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		String  version=  null;
 		try{
 			ResultSet rs=connection.prepareStatement( "SELECT VERSION()"  ).executeQuery();
@@ -549,7 +558,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List<?>  showTABLESColumns(String tablename[]) throws Exception {
 		logger.info( "showTableColumns ... ....tablename :[ "+  tablename +" ]");
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List<MySQLShowColumns> list = new ArrayList<MySQLShowColumns> ();
 		List tables= new ArrayList ();
 		try{
@@ -586,7 +595,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List<MySQLShowColumns> showTableColumns(String tablename) throws Exception {
 		logger.info( "showTableColumns ... ....tablename :[ "+  tablename +" ]");
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List<MySQLShowColumns> list = new ArrayList<MySQLShowColumns> ();
 		try{
 			ResultSet rs=connection.prepareStatement("show columns from  "+tablename  ).executeQuery();
@@ -615,7 +624,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public String showCreateTable(String tablename) throws Exception {
 		logger.info( "showCreateTable ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		String  version=  null;
 		try{
 			ResultSet rs=connection.prepareStatement("SHOW CREATE TABLE  "+tablename  ).executeQuery();
@@ -636,7 +645,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public void  flushTable() throws Exception {
 		logger.info( "flushTable ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		try{
 			connection.prepareStatement("flush  table"  ).execute();
 			}
@@ -655,7 +664,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	public List showOpentables() throws Exception {
 		logger.info( "showOpentables ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		List  opentablesList=  new ArrayList();
 		
 		try{
@@ -680,12 +689,11 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	public List showTableIndexs(String DBName) throws Exception {
+	public List <MySQLTableIndex> showTableIndexs(String DBName) throws Exception {
 		logger.info( "showTableIndexs ......................." );
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
-		List  opentablesList=  new ArrayList();
+		connection=JDBCUtilBaseTools.getConnection();
+		List<MySQLTableIndex>  opentablesList=  new ArrayList<MySQLTableIndex>();
 		String SQL="SELECT information_schema.KEY_COLUMN_USAGE.CONSTRAINT_SCHEMA,information_schema.KEY_COLUMN_USAGE.CONSTRAINT_NAME,information_schema.KEY_COLUMN_USAGE.TABLE_NAME,information_schema.KEY_COLUMN_USAGE.COLUMN_NAME from information_schema.KEY_COLUMN_USAGE where   information_schema.KEY_COLUMN_USAGE.CONSTRAINT_SCHEMA ='"+DBName+"'";
 		try{
 			ResultSet rs=connection.prepareStatement(SQL).executeQuery();
@@ -716,7 +724,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		String srt="";
 		StringBuffer sBuffer= new StringBuffer();
 		try{
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 	    Statement statement =connection.createStatement();
 	   
 	    
@@ -752,7 +760,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
  
 	public void killConnectionProcess(String ConnectionID) throws Exception {
 		Connection connection=null;
-		connection=UtilBaseTools.getConnection();
+		connection=JDBCUtilBaseTools.getConnection();
 		try{
 			connection.prepareStatement( "kill "+ConnectionID).execute();
 		}

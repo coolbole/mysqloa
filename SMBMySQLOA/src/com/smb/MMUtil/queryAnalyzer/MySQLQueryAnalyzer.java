@@ -16,7 +16,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 
 /**
  * @author huangyi
@@ -24,11 +24,11 @@ import com.smb.MMUtil.handler.base.UtilBaseTools;
  */
 public class MySQLQueryAnalyzer implements IMySQLQueryAnalyzer {
 	
-	private UtilBaseTools  UtilBaseTools;
+	private JDBCUtilBaseTools  UtilBaseTools;
 	
 	private static Log logger = LogFactory.getLog(MySQLQueryAnalyzer.class);
 	
-	public MySQLQueryAnalyzer(UtilBaseTools utilBaseTools){UtilBaseTools=utilBaseTools;}
+	public MySQLQueryAnalyzer(JDBCUtilBaseTools utilBaseTools){UtilBaseTools=utilBaseTools;}
 	
 	@SuppressWarnings("unchecked")
 	public Map CUDSQLWildcard( String SQL ) throws SQLException{

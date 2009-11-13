@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.handler.createORM.CreateORMFileFactory;
 import com.smb.MMUtil.pojo.CreateORMPojo;
 
@@ -23,7 +23,7 @@ public class TestCaseCreateORMFile {
 		String createORMID="hibernateSpring";
 		String packName="com.you.packeage.name";
 		
-		UtilBaseTools  orm= new UtilBaseTools(host, dbName ,user, pswd);
+		JDBCUtilBaseTools  orm= new JDBCUtilBaseTools(host, dbName ,user, pswd);
 		MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
 		
 		//1. 得到一张表的完整信息

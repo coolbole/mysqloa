@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
@@ -31,11 +31,10 @@ public class KillConnectionProcessAction implements ControllerAction {
 			    String  ConnectionID=request.getParameter("ConnectionID");
 			    if(ConnectionID.equals("")|| ConnectionID==null ){ return new ModelAndPage("showProcessListAction.do",true); }
 			    
-			    UtilBaseTools orm= new UtilBaseTools(host,"information_schema",username,password);
+			    JDBCUtilBaseTools orm= new JDBCUtilBaseTools(host,"information_schema",username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 				
 				mmu.killConnectionProcess(ConnectionID);
-				
 			 	
 			 	return new ModelAndPage( request ,"showProcessListAction.do",true );
 			  
