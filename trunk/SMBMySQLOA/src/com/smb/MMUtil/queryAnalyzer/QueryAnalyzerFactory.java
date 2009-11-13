@@ -5,7 +5,7 @@ package com.smb.MMUtil.queryAnalyzer;
 
 import java.sql.SQLException;
 import java.util.Map;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 
 /**
  * @author huangyi
@@ -13,9 +13,9 @@ import com.smb.MMUtil.handler.base.UtilBaseTools;
  */
 public class QueryAnalyzerFactory {
 	
-	public  QueryAnalyzerFactory(UtilBaseTools utilBaseTools){ UtilBaseTools=utilBaseTools; }
+	public  QueryAnalyzerFactory(JDBCUtilBaseTools utilBaseTools){ UtilBaseTools=utilBaseTools; }
 		
-	private UtilBaseTools  UtilBaseTools;
+	private JDBCUtilBaseTools  UtilBaseTools;
 	
 	@SuppressWarnings("unchecked")
 	public Map execResult (String SQL ) throws SQLException{

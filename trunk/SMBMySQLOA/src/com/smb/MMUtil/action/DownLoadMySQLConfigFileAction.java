@@ -9,14 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class DownLoadMySQLConfigFileAction    implements ControllerAction {
+public class DownLoadMySQLConfigFileAction extends ActionBase   implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(DownLoadMySQLConfigFileAction.class);
 
@@ -26,14 +23,9 @@ public class DownLoadMySQLConfigFileAction    implements ControllerAction {
 			HttpSession session=  request.getSession();
 			
 			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-		    String host=session.getAttribute("host").toString() ;
-		    String username=session.getAttribute("username").toString();
-		    String password=session.getAttribute("password").toString();
-		    
-		     String configs=request.getParameter("config");
-		     UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-			 IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 			 
+			 String configs=request.getParameter("config");
+			 IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 			 String myConfig=mmu.CreateAutoCreateConfig(configs);
  
 			 response.setHeader("Content-Disposition", "attachment; charset=utf-8;filename=my.ini"); 
@@ -50,14 +42,7 @@ public class DownLoadMySQLConfigFileAction    implements ControllerAction {
 			 outputStream.close();
 			 inputStream.close();
 			 return  new ModelAndPage( request ,"autoCreateConfigAction.do" ); 
-			 
-//			  
-//			 
-//			 
-//			 request.setAttribute("myConfig",myConfig);  
-//			 request.setAttribute("host",host);  
-			    
-//			return new ModelAndPage( request ,"/WEB-INF/page/autoConfig/autoCreateConfig.jsp" );
+		 
 		}
 	}
 

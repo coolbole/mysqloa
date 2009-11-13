@@ -8,12 +8,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class UpdateDetailVariblesAction  implements ControllerAction {
+public class UpdateDetailVariblesAction extends ActionBase  implements ControllerAction {
 	
 	private static Log logger = LogFactory.getLog(UpdateDetailVariblesAction.class);
 	
@@ -25,11 +23,9 @@ public class UpdateDetailVariblesAction  implements ControllerAction {
 			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 				String value=request.getParameter("value");
 			    String variable_name=request.getParameter("variable_name");
-			    String host=session.getAttribute("host").toString() ;
-			    String username=session.getAttribute("username").toString();
-			    String password=session.getAttribute("password").toString();
-			    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+ 
+			    IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
+			    
 				mmu.setVariblesCommandByCategory( variable_name , value );
 				String url="showVariblesByCategoryAction.do?category="+request.getParameter("category");
 		         return new ModelAndPage(url,true);

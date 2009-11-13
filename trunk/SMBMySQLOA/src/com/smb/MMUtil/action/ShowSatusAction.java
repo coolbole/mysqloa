@@ -7,37 +7,31 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
-import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
 
-public class ShowSatusAction   implements ControllerAction  {
+public class ShowSatusAction  extends ActionBase   implements ControllerAction  {
 	
 	private static Log logger = LogFactory.getLog(ShowSatusAction.class);
-	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
+
 	
 	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-		
-			if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-		    
-		    String host= request.getSession().getAttribute("host").toString() ;
-		    String username= request.getSession().getAttribute("username").toString();
-		    String password= request.getSession().getAttribute("password").toString();
-		    
-		    UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-			IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+			HttpSession session=  request.getSession();
+			
+			if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			
+			IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
+			
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLStatusDescription();
 			
 			List<?> listS=null;

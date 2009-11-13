@@ -11,7 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.framework.web.action.ControllerAction;
@@ -27,13 +27,10 @@ public class DeepOptimizeCaseFinishAction implements ControllerAction  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
 		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-		 
-		 
 		
 		 if(request.getParameter("back") !=null) {
-				 return new ModelAndPage( request , 
-						 "deepOptimizeCaseListAction.do?step=1" ,true);
-			 }
+				 return new ModelAndPage( request,"deepOptimizeCaseListAction.do?step=1" ,true);
+		 	}
  		
  		 
 		 else if(request.getParameter("yes") !=null) {
@@ -66,7 +63,7 @@ public class DeepOptimizeCaseFinishAction implements ControllerAction  {
 			 String username=request.getSession().getAttribute("username").toString();
 			 String password=request.getSession().getAttribute("password").toString();
 			 
-			 UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
+			 JDBCUtilBaseTools orm= new JDBCUtilBaseTools(host,null,username,password);
 			 MySQLManagerJdbcUtilTools  mmu= new MySQLManagerJdbcUtilTools(orm);
 				
 				String stringsBuffer=sBuffer.toString().replaceAll("\n", "").replaceAll("\t", "") ;
@@ -75,16 +72,13 @@ public class DeepOptimizeCaseFinishAction implements ControllerAction  {
 				
 				mmu.setVariblesByCommands(stringsBuffer);
 			 
-//			 logger.info("\n 根据XML配置选项，调用MySQLManagerJdbcUtilTools 业务逻辑的方法，你选择的  选项"+deepOptimizeCommand);
-			 
-			 request.setAttribute("deepOptimizeCommand", deepOptimizeCommand);
+				request.setAttribute("deepOptimizeCommand", deepOptimizeCommand);
 			 
 			 return new ModelAndPage( request , "/WEB-INF/page/optimize/deepOptimizeCaseFinish.jsp" );
 		 }
 		 
 		 else{
-			 return new ModelAndPage( request , 
-					 "deepOptimizeCaseListAction.do?step=1" ,true);
+			 return new ModelAndPage( request,"deepOptimizeCaseListAction.do?step=1" ,true);
 		 }
 		
 	}

@@ -1,9 +1,12 @@
 package com.smb.MMUtil.handler.createORM;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 
 public class CreateIbatisHelper {
-	
+	 private static Log logger = LogFactory.getLog(CreateIbatisHelper.class);
 	 private static CreateBaseHandler  baseHandler= new CreateBaseHandler();
 	 private static String Spring_SQL_MAP_Path = CreateIbatisHelper.class.getResource ("ibatis/Spring-sql-map-config.xml").getFile();
 	 private static String Spring_ApplicationContext_Path = CreateIbatisHelper.class.getResource ("ibatis/applicationContext.xml").getFile();
@@ -19,7 +22,7 @@ public class CreateIbatisHelper {
 	 
 	 public String getSpringApplicationContextFile   ( String host,  String dbName,  String user, 
 			  String pswd   ) throws Exception{
-		 
+		    logger.info("getSpringApplicationContextFile ...................");
 		 	SpringApplicationContextFile=SpringApplicationContextFile .
 		 	replaceAll(CreateBaseHandler.username, user).
 		 	replaceAll(CreateBaseHandler.password, pswd).
@@ -31,7 +34,7 @@ public class CreateIbatisHelper {
 	 
 	 public String getSpringSQLMAPFile   ( String host,  String dbName,  String user, 
 			  String pswd, String tabNames[] ,String packName    ) throws Exception{
-		 	
+		 logger.info("getSpringSQLMAPFile ...................");
 		 	 StringBuffer sqlmapconfigxml= new StringBuffer();
 		 	 sqlmapconfigxml.append(  SpringSQLMAPFile.split(sqlMap_resource)[0]  );
 		 
@@ -55,7 +58,7 @@ public class CreateIbatisHelper {
 	 
 	 public String getiBATISMapFile   ( String host,  String dbName,  String user, 
 			  String pswd, String tabNames[] ,String packName    ) throws Exception{
-		 
+		 logger.info("getiBATISMapFile ...................");
 		 StringBuffer sqlmapconfigxml= new StringBuffer();
 		 
 		 	iBATISMAPFile=iBATISMAPFile .
@@ -84,6 +87,7 @@ public class CreateIbatisHelper {
 	  
 	 public String iBATISPojoMAPXMLFile ( String tabName ,String packName ) throws Exception{
 		 StringBuffer HibernateHBMFile=new StringBuffer(); 
+		 logger.info("iBATISPojoMAPXMLFile ...................");
 		 
 		 String  UpperTable=tabName.substring(0,1).toUpperCase() +tabName.substring(1);
 		 

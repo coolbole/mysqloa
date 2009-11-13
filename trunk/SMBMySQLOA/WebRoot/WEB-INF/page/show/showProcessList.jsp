@@ -1,5 +1,4 @@
 <%@page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.smb.MMUtil.handler.base.UtilBaseTools"%>
 <%@page import="com.smb.MMUtil.handler.*"%>
 <%@page import="com.smb.MMUtil.pojo.*"%>
 
@@ -10,7 +9,7 @@
   </head>
 
   <body>
-  <A HREF="index.jsp">退出</A> <br><br>
+  <A HREF="logoutAction.do">退出</A> <br><br>
   <A HREF="showVariblesAction.do"><span style='color: blue;'>查看系统当前所有配置参数</span></A>    <br>
   <A HREF="showVariblesByCategoryAction.do?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
   <A HREF="showVariblesByCategoryAction.do?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
@@ -29,14 +28,16 @@
    <A HREF="showSatusAction.do?category=log"><span style='color:green;'>查看系统当前日志 使用的状态</span></A> <br>
    <br><br>
    
-   <A HREF="createORMConfigListAction.do">
-   		<span style='color:#FF0000;'><b>自动生成(Hibernate/iBATIS/Spring)配置文件</b></span>
-   </A> <br> <br> <br>
+    <!-- 
+	   <A HREF="createORMConfigListAction.do">
+	   		<span style='color:#FF0000;'><b>自动生成(Hibernate/iBATIS/Spring)配置文件</b></span>
+	   </A> <br> <br> <br>
    
-   <A HREF="drangTestList.do">
-   		<span style='color:#336600;'><b>压力测试</b></span>
-   </A> <br> <br> <br>
-   
+  
+	   <A HREF="drangTestList.do">
+	   		<span style='color:#336600;'><b>压力测试</b></span>
+	   </A> <br> <br> <br>
+    -->
    
    <b><A HREF="showDataBaseAction.do?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
    <A HREF="showDataBaseAction.do?type=everytable">查看系统每个表使用的状况</A><br><br>
@@ -102,7 +103,7 @@
     
     
     <br><br>
-      <A HREF="index.jsp">退出</A> <br><br>
+      <A HREF="logoutAction.do">退出</A> <br><br>
      <br>
   </body>
 </html>

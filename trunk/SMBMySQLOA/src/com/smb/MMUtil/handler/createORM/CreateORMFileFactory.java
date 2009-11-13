@@ -3,13 +3,17 @@ package com.smb.MMUtil.handler.createORM;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.smb.MMUtil.pojo.CreateORMMappingFiles;
 import com.smb.MMUtil.pojo.CreateORMPojo;
 import com.smb.MMUtil.pojo.MySQLShowColumns;
 
  
 
 public class CreateORMFileFactory {
-	
+	 private static Log logger = LogFactory.getLog(CreateORMFileFactory.class);
 	 private static CreateHibernateHelper ceateHibernateHelper= new CreateHibernateHelper();
 	 private static CreateIbatisHelper  createIbatisHelper  =new CreateIbatisHelper();
 	  
@@ -20,6 +24,7 @@ public class CreateORMFileFactory {
 		 CreateORMPojo   ORMPojo=null;
 		 
 		 if (createORMID.equals("hibernate")){
+			 		logger.info(createORMID);
 					 ORMPojo= new CreateORMPojo();
 					 ORMPojo.setCreateType(createORMID);
 					 ORMPojo.setSpringFile("");
@@ -28,7 +33,7 @@ public class CreateORMFileFactory {
 					
 					 List ormMappingFiles= new ArrayList ();
 					 for (int i=0;i<tables.size();i++){
-						 String ormMappingFile=ceateHibernateHelper.HibernateHBMFile(tabNames[i], packName, 
+						 CreateORMMappingFiles ormMappingFile=ceateHibernateHelper.HibernateHBMFile(tabNames[i], packName, 
 								 (List<MySQLShowColumns>) tables.get(i) );
 						 ormMappingFiles.add( ormMappingFile  );
 					 }
@@ -37,6 +42,7 @@ public class CreateORMFileFactory {
 		 
 		 
 		 else if (createORMID.equals("ibatis")){
+			 logger.info(createORMID);
 			 ORMPojo= new CreateORMPojo();
 			 String ormCFGFile=createIbatisHelper.getiBATISMapFile(host, dbName, user, pswd, tabNames, packName);
 			 ORMPojo.setOrmCFGFile( ormCFGFile );
@@ -53,6 +59,7 @@ public class CreateORMFileFactory {
 		 }
 		 
 		 else if (createORMID.equals("hibernateSpring")){
+			 logger.info(createORMID);
 			  ORMPojo= new CreateORMPojo();
 			  String springFile=ceateHibernateHelper.HibernateSpringFile(host, dbName, user, pswd, tabNames, packName);
 			  ORMPojo.setSpringFile(springFile);
@@ -61,7 +68,7 @@ public class CreateORMFileFactory {
 			  
 			  List ormMappingFiles= new ArrayList ();
 				 for (int i=0;i<tables.size();i++){
-					 String ormMappingFile=ceateHibernateHelper.HibernateHBMFile(tabNames[i], packName, 
+					 CreateORMMappingFiles ormMappingFile=ceateHibernateHelper.HibernateHBMFile(tabNames[i], packName, 
 							 (List<MySQLShowColumns>) tables.get(i) );
 					 ormMappingFiles.add( ormMappingFile  );
 				 }
@@ -71,8 +78,8 @@ public class CreateORMFileFactory {
 		 
 		 
 		 else if (createORMID.equals("ibatisSpring")){
+			 logger.info(createORMID);
 			 ORMPojo= new CreateORMPojo();
-			 
  			 ORMPojo.setCreateType(createORMID);
  			String ormCFGFile=createIbatisHelper.getSpringSQLMAPFile(host, dbName, user, pswd, tabNames, packName);
  			ORMPojo.setOrmCFGFile(ormCFGFile);

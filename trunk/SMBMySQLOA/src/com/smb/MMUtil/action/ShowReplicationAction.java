@@ -8,28 +8,22 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.handler.base.UtilBaseTools;
 import com.smb.MMUtil.pojo.ReplicationStatusPojo;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class ShowReplicationAction   implements ControllerAction  {
+public class ShowReplicationAction  extends ActionBase implements ControllerAction  {
 	
 	private static Log logger = LogFactory.getLog(ShowReplicationAction.class);
 	
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-		HttpSession session=  request.getSession();
+		 HttpSession session=  request.getSession();
 	
 		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-	    String host=session.getAttribute("host").toString() ;
-	    String username=session.getAttribute("username").toString();
-	    String password=session.getAttribute("password").toString();
-	    
-	     UtilBaseTools orm= new UtilBaseTools(host,null,username,password);
-		 IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
+		 
+		 IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		 
 		 ReplicationStatusPojo masterStatus=mmu.showMasterReplicationStatus();
 		 ReplicationStatusPojo slaveStatus=mmu.showSlaveReplicationStatus();

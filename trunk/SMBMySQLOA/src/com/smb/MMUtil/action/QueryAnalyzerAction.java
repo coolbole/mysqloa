@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.smb.MMUtil.handler.base.UtilBaseTools;
+import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.queryAnalyzer.QueryAnalyzerFactory;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
@@ -39,7 +39,7 @@ public class QueryAnalyzerAction implements ControllerAction {
 		    	  response.sendRedirect("showDataBaseAction.do?type=queryAnalyzer");
 		      }
 		     
-		     UtilBaseTools orm= new UtilBaseTools(host,DBName,username,password);
+		      JDBCUtilBaseTools orm= new JDBCUtilBaseTools(host,DBName,username,password);
 		     QueryAnalyzerFactory  MQA= new QueryAnalyzerFactory(orm);
 		     map=MQA.execResult(SQL);
 		     
