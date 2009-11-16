@@ -28,7 +28,6 @@ public class LogoutAction implements ControllerAction  {
 		HttpSession session=  request.getSession();
 	
 		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-			 session.setMaxInactiveInterval(0);
 			 
 			 Enumeration<?>  enumeration=session.getAttributeNames();
 			   while (enumeration.hasMoreElements()){
