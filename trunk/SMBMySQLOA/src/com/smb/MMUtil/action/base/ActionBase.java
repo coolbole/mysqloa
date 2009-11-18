@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.base;
 
 import javax.servlet.http.HttpSession;
 

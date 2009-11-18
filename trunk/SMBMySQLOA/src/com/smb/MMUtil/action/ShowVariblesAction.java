@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.smb.MMUtil.action.base.ActionBase;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
 import com.smb.MMUtil.pojo.MySQLVariableObject;
@@ -26,7 +27,7 @@ public class ShowVariblesAction extends ActionBase  implements ControllerAction 
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		HttpSession session=  request.getSession();
 		
-		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+		
 		
 		IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		

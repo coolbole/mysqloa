@@ -7,23 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- 
 
 public class SMBServletDispatcher extends HttpServlet   {
  
 	private static final long serialVersionUID = 1L;
 
+	private static  DispatcherUtils  dspatcherUtils= new DispatcherUtils();
+	
 	public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
     }
 	
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException {
     	try {
+
     		request.setCharacterEncoding("utf-8");
         	response.setCharacterEncoding("utf-8");
-        	String requestURL = request .getRequestURI() ;  // 对应配置文件里面的 url路径
- 
-        	ControllerAction action=DispatcherUtils.getControllerAction(requestURL);
+        	ControllerAction action=dspatcherUtils.getControllerAction(request);   // 放入 request 对象，进行Action  Mapping 映射
         	
         	////
 //        		request.getParameterMap();   //获取页面上传体过来的值.
