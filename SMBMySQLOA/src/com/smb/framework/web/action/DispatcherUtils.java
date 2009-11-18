@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
  
@@ -20,12 +19,13 @@ public class DispatcherUtils {
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	public static ControllerAction getControllerAction(String requestURL ) throws  Exception{
+	
+	public   synchronized   ControllerAction getControllerAction(HttpServletRequest request ) throws  Exception{
 		try{
-			String urlstie=requestURL.split("/")[1];
-			requestURL=requestURL.split(urlstie)[1].substring(1).split("\\.")[0] ;
-			 
+			
+			int endPoint=request.getServletPath().lastIndexOf(".");
+			String requestURL=request.getServletPath().substring(1,  endPoint);
+			
 			if (actionMap.get(  requestURL ) ==null){
 				 throw  new ControllerActionException(
 					 "\n\n没有找到对应action，请检查您输入的url或者系统配置的ActionsMapping.properties文件.请注意当您修改了ActionsMapping.properties文件需要重启web容器才能生效 \n" +
@@ -33,7 +33,7 @@ public class DispatcherUtils {
 					}
 		 
 			requestURL=actionMap.get(  requestURL ).toString() ;
-			Class clazz= Class.forName( requestURL );  // 配置文件和url对应的类名
+			Class<?> clazz= Class.forName( requestURL );  // 配置文件和url对应的类名
 			
 			Object object =clazz.newInstance();
  			action=(ControllerAction) object;
