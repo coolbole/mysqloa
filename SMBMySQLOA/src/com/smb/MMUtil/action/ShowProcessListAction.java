@@ -40,7 +40,7 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 		    
 		 	request.setAttribute("proList",proList);      
 			request.setAttribute("uptime",mmu.showUptime());      
-		    request.setAttribute("host",Rhost);   
+		    request.setAttribute("host",session.getAttribute("host"));   
 		    request.setAttribute("version",mmu.showVersion() );   
 			}
 		
