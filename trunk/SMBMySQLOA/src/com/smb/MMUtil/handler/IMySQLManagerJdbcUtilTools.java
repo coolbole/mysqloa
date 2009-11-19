@@ -26,6 +26,8 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public List<?>  showStatusCommand ( ) throws  Exception;
 
+	public List<?>  showTablesCommand (String DBName ) throws  Exception;
+	
 	public List<?>  showStatusCommandByCategory (String category) throws  Exception;
 	
 	public void setVariblesCommandByCategory(String category,String value) throws Exception;
