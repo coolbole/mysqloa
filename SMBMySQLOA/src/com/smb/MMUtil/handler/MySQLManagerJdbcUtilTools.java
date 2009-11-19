@@ -772,6 +772,26 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		}
 		 
 	}
+
+	public List<?> showTablesCommand(String DBName) throws Exception {
+		Connection connection=null;
+		connection=JDBCUtilBaseTools.getConnection();
+		List<String> tables= new ArrayList<String> ();
+		try{
+			 ResultSet rs=connection.prepareStatement("show tables").executeQuery();
+			 while (rs.next()){
+				 tables.add(   rs.getString(1));
+			 }
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return tables;
+		 
+	}
 	 
 	
 }

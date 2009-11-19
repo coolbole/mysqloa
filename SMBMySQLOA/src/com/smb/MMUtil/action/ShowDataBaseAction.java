@@ -35,6 +35,11 @@ public class ShowDataBaseAction extends ActionBase implements ControllerAction {
 			 		return new ModelAndPage( request ,"/WEB-INF/page/queryAnaly/queryAnalyzer.jsp" );
 			 	}
 			 	
+				if (actionType.equals("queryTables")){
+			 		logger.info(actionType+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
+			 		return new ModelAndPage( request ,"/WEB-INF/page/queryTables/queryTables.jsp" );
+			 	}
+			 	
 			 	else if (actionType.equals("index")){
 			 		logger.info(actionType+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			 		request.setAttribute("actionType", actionType);
