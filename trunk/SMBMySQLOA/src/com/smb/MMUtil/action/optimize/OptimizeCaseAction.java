@@ -22,7 +22,8 @@ public class OptimizeCaseAction   extends ActionBase  implements ControllerActio
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			 
 		    String optimizeCase=request.getParameter("OptimizeCaseAlias");
 			IMySQLManagerJdbcUtilTools   mmu= getMMU(session);

@@ -27,7 +27,6 @@ public class LogoutAction implements ControllerAction  {
 		
 		HttpSession session=  request.getSession();
 	
-		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			 
 			 Enumeration<?>  enumeration=session.getAttributeNames();
 			   while (enumeration.hasMoreElements()){
@@ -35,9 +34,8 @@ public class LogoutAction implements ControllerAction  {
 				 logger.info(  "Remove session list :"+SessionList  );
 				 session.removeAttribute(SessionList );
 			 }
- 
 		 
-		return new ModelAndPage( request ,"index.jsp" );
+		return new ModelAndPage( request ,"loginAction.do",true );
 	}
 }
 

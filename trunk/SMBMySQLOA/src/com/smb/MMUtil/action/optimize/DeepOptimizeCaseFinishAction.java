@@ -26,7 +26,7 @@ public class DeepOptimizeCaseFinishAction implements ControllerAction  {
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		
 		 if(request.getParameter("back") !=null) {
 				 return new ModelAndPage( request,"deepOptimizeCaseListAction.do?step=1" ,true);

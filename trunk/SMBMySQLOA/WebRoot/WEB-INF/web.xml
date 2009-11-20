@@ -14,7 +14,7 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
-	<!--
+	<!-- -->
 	<filter>
 		<filter-name>checkLoginFilter</filter-name>
 		<filter-class>
@@ -26,10 +26,10 @@
 		<filter-name>checkLoginFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
-	-->
+	
 	
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	 
 </web-app>

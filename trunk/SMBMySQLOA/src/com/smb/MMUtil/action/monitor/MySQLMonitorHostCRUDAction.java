@@ -27,7 +27,7 @@ public class MySQLMonitorHostCRUDAction  implements ControllerAction {
 		try{
 			MySQLMonitorHost MonitorHost= new MySQLMonitorHost();
 			
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			
 			if (reqType.equals("delete") ){
 				logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );

@@ -1,26 +1,23 @@
 package com.smb.MMUtil.action;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class AutoCreateConfigListAction implements ControllerAction  {
+public class PrivacyAction  implements ControllerAction  {
 	
-	private static Log logger = LogFactory.getLog(AutoCreateConfigListAction.class);
+	private static Log logger = LogFactory.getLog(LogoutAction.class);
 	
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-	 
-		 if(request.getSession().getAttribute("host")==null ){ 
-			 return new ModelAndPage("index.jsp",true); }
-	  
-		 return new ModelAndPage( request ,
-				 "/WEB-INF/page/autoConfig/autoCreateConfigList.jsp" );
+		
+		return new ModelAndPage( request ,"/WEB-INF/page/common/privacy.jsp" );
 	}
 }
 
+ 

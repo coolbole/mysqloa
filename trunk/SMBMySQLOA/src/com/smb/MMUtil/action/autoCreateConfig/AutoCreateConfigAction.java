@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.autoCreateConfig;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +23,7 @@ public class AutoCreateConfigAction extends ActionBase   implements ControllerAc
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
 		HttpSession session=  request.getSession();
-	
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-
+//		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 	    
 	     String configs=request.getParameter("config");
 		 

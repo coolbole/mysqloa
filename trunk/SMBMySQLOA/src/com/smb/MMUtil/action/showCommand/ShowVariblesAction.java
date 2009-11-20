@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
  
 import java.util.List;
@@ -26,8 +26,6 @@ public class ShowVariblesAction extends ActionBase  implements ControllerAction 
 
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		HttpSession session=  request.getSession();
-		
-		
 		
 		IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		

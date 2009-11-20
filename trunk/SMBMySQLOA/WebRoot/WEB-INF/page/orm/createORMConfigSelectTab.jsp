@@ -45,5 +45,7 @@
      <INPUT TYPE="submit" name="生成配置文件" value="下一步">
      
    </FORM>
+   
+   <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>
 </html>

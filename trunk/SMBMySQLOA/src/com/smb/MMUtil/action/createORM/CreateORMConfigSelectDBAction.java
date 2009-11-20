@@ -19,7 +19,7 @@ public class CreateORMConfigSelectDBAction  extends ActionBase  implements Contr
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		HttpSession session=  request.getSession();
 		
-		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		 
 		 String createORMID= request.getParameter("createORMID");
 		 String packageName= request.getParameter("packageName");

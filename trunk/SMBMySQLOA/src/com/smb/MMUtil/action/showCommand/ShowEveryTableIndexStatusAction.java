@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class ShowEveryTableIndexStatusAction extends ActionBase implements Contr
 			
 			String DBName=request.getParameter("DBName");
 	     
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			   
 			 	IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 				List <MySQLTableIndex> proList=  mmu.showTableIndexs(DBName);

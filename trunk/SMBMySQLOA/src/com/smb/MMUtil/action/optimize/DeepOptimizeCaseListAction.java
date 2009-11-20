@@ -25,7 +25,9 @@ public class DeepOptimizeCaseListAction implements ControllerAction  {
 			
 		try{
 			 ModelAndPage  modelAndPage=null;
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			 
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			 
 			 String step= request.getParameter("step");
 			
 		 if (step.equals(step )){

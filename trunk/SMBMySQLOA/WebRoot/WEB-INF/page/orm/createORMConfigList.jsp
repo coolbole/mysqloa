@@ -35,6 +35,6 @@
 
 			<INPUT TYPE="submit" name="" value="下一步">
 		</FORM>
-
+<jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
 	</body>
 </html>

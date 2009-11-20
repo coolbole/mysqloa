@@ -1,5 +1,5 @@
   
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +33,7 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 			    	session.setAttribute("username",Rusername); 
 			    	session.setAttribute("password",Rpassword); 
 	    }
+	    
 		  if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		    
 		    IMySQLManagerJdbcUtilTools   mmu= getMMU(session);

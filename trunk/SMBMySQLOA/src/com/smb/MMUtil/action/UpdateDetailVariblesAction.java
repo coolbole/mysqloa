@@ -21,7 +21,8 @@ public class UpdateDetailVariblesAction extends ActionBase  implements Controlle
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
 			
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+				
 				String value=request.getParameter("value");
 			    String variable_name=request.getParameter("variable_name");
  

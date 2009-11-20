@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +22,7 @@ public class ShowReplicationAction  extends ActionBase implements ControllerActi
 		
 		 HttpSession session=  request.getSession();
 	
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		 
 		 IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		 
