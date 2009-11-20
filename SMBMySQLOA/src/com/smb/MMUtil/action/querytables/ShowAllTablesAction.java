@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.smb.MMUtil.action.AutoCreateConfigAction;
 import com.smb.MMUtil.action.base.ActionBase;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.framework.web.action.ControllerAction;
@@ -17,7 +16,7 @@ import com.smb.framework.web.action.ModelAndPage;
 
 public class ShowAllTablesAction extends ActionBase  implements ControllerAction  {
 	
-	private static Log logger = LogFactory.getLog(AutoCreateConfigAction.class);
+	private static Log logger = LogFactory.getLog(ShowAllTablesAction.class);
 	
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );

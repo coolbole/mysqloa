@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ShowDetailVariblesAction  extends ActionBase  implements Controller
 		 String variable_name=request.getParameter("variable_name");
 		 HttpSession session=  request.getSession();
 		 
-		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
 		

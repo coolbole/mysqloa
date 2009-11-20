@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ShowDataBaseAction extends ActionBase implements ControllerAction {
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			HttpSession session=  request.getSession();
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			 	String actionType=request.getParameter("type");
 			 
 			 	IMySQLManagerJdbcUtilTools   mmu= getMMU(session);

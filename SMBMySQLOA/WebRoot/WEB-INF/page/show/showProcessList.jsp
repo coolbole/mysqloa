@@ -104,10 +104,9 @@
 		catch (Exception e){e.printStackTrace(); }
     %>
     </TABLE>
+    <br>
+      <A HREF="logoutAction.do">退出</A>  
     
-    
-    <br><br>
-      <A HREF="logoutAction.do">退出</A> <br><br>
-     <br>
+     <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>
 </html>

@@ -1,4 +1,4 @@
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
 
@@ -11,39 +11,36 @@ import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.action.base.ActionBase;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
-import com.smb.MMUtil.pojo.TableStatusPojo;
+import com.smb.MMUtil.pojo.MySQLOpenTables;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
 
-public class ShowEveryTableStatusAction  extends ActionBase implements ControllerAction {
+public class ShowOpenTablesAction extends ActionBase implements ControllerAction {
 	
-	private static Log logger = LogFactory.getLog(ShowEveryTableStatusAction.class);
-	
+	private static Log logger = LogFactory.getLog(ShowOpenTablesAction.class);
+
+	@SuppressWarnings("unchecked")
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
 			
-			String DBName=request.getParameter("DBName");
-	     
-			 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
- 
-			 	IMySQLManagerJdbcUtilTools   mmu= getMMU(session,DBName );
+			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+
+			 IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 			 
-				List <TableStatusPojo> proList=  mmu.showTableStatus();
-				
+			 
+				List <MySQLOpenTables> proList=(List<MySQLOpenTables>) mmu.showOpentables();
 			 	request.setAttribute("proList",proList);      
 			 	request.setAttribute("host",session.getAttribute("host") );  
 			 	request.setAttribute("uptime",mmu.showUptime() );  
-			 	return new ModelAndPage( request ,"/WEB-INF/page/show/showEveryTableStatus.jsp" );
+			 
+			    return new ModelAndPage( request ,"/WEB-INF/page/show/showOpenTables.jsp" );
 		}
 		
 		catch(Exception e ) {
-			 logger.error(e);
-			 return null;
+			 logger.error(e); return null;
 		}
-		
 	}
-	
 }
  

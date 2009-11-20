@@ -18,7 +18,7 @@ public class CreateORMConfigSelectTabAction  extends ActionBase implements Contr
 	
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		HttpSession session=  request.getSession();
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		 
 		 if(request.getParameter("createORMID")!=null){
 			 String createORMID=request.getParameter("createORMID").toString();

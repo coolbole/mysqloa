@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.smb.MMUtil.action;
+package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class ShowSatusAction  extends ActionBase   implements ControllerAction  
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
 			
-			if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//			if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			
 			IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 			

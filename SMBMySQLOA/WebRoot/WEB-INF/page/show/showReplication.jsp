@@ -53,4 +53,5 @@
   
   
     <A HREF="showProcessListAction.do">返回</A> <br><br>
+    <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>

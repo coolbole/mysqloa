@@ -28,5 +28,6 @@
     <br><br>
  <a href="showProcessListAction.do">返回首页</a> <br>
  <br>
+ <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>
 </html>

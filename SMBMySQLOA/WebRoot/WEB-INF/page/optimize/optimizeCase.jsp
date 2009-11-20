@@ -23,5 +23,7 @@
 	  <br>
 	
  <br><a href="optimizeCaseListAction.do">返回上一页</a>
+ 
+ <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>
 </html>

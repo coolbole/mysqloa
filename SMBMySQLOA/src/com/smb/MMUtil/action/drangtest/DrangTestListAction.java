@@ -18,7 +18,7 @@ public class DrangTestListAction    implements ControllerAction {
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		
 		return new ModelAndPage( "/WEB-INF/page/drangTest/drangTestList.jsp" );
 	}

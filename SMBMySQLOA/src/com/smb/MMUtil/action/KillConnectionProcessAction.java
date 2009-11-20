@@ -22,7 +22,9 @@ public class KillConnectionProcessAction implements ControllerAction {
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		try{
 			HttpSession session=  request.getSession();
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			  
 			   String host= session.getAttribute("host").toString() ;
 			   String username= session.getAttribute("username").toString();
 			   String password= session.getAttribute("password").toString();

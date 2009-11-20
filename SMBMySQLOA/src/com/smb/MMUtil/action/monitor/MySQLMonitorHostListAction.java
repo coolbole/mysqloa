@@ -24,7 +24,7 @@ public class MySQLMonitorHostListAction implements ControllerAction {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		  if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		    
 			List <MySQLMonitorHost> listF=setUpMySQLMonitorHost.getMySQLMonitorHostList ();
 			

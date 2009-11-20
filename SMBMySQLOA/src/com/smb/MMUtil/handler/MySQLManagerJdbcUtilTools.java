@@ -4,6 +4,7 @@
 package com.smb.MMUtil.handler;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -11,7 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 //import org.apache.commons.dbutils.DbUtils;
@@ -759,6 +762,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 
  
 	public void killConnectionProcess(String ConnectionID) throws Exception {
+		logger.info( "killConnectionProcess ......................." );
 		Connection connection=null;
 		connection=JDBCUtilBaseTools.getConnection();
 		try{
@@ -774,6 +778,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	}
 
 	public List<?> showTablesCommand(String DBName) throws Exception {
+		logger.info( "showTablesCommand ......................." );
 		Connection connection=null;
 		connection=JDBCUtilBaseTools.getConnection();
 		List<String> tables= new ArrayList<String> ();
@@ -790,6 +795,68 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			connection.close();
 		}
 		return tables;
+		 
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map  showTableDataInfo(String tableName,int startPaged, int endPaged) throws Exception {
+		logger.info( "showTableDataInfo ......................." );
+		Map map = new HashMap  ();
+		StringBuffer sBuffer = new StringBuffer();
+		Connection connection=null;
+		connection=JDBCUtilBaseTools.getConnection();
+		List<String> tableFields= new ArrayList<String> ();
+		List<String>  pageOutPut= new ArrayList<String> ();
+		try{
+			 ResultSet rs=connection.prepareStatement("desc "+ tableName).executeQuery();
+			 while (rs.next()){
+				 tableFields.add(rs.getString(1));
+			 }
+			 
+			pageOutPut.add( "<tr>"  );
+				for (int i=0;i<tableFields.size() ;i++){
+					pageOutPut.add("<td> <b>"+tableFields.get(i) +"</b></td>") ;
+			} 
+			 
+			 
+			 sBuffer.append("select ");
+			 for ( int i=0;i<tableFields.size();i++){	 sBuffer.append(tableFields.get(i)).append(",");	 }
+			 sBuffer.append( "from ").append( tableName).append(" limit ?,?");String SQL= sBuffer.toString().replaceAll(",from ", " from ") ;
+ 			 
+ 			PreparedStatement pstmt=connection.prepareStatement(SQL);
+  			pstmt.setInt(1,startPaged);pstmt.setInt(2,endPaged);  rs=pstmt.executeQuery();
+  		
+  		
+			pageOutPut.add( "</tr>"  );
+  			
+  			pageOutPut.add( "<tr>"  );
+  			 while (rs.next()){
+  				for ( int i=0;i<tableFields.size();i++){
+  					pageOutPut.add("<td>"+rs.getString(i+1)+"&nbsp;</td>"  );
+  				 }
+  				pageOutPut.add( "</tr>"  );
+  			}
+  			
+  			StringBuffer SQLcounts= new  StringBuffer();
+  			SQLcounts.append("select count(*) from ").append(tableName );
+  			rs=connection.prepareStatement(SQLcounts.toString() ).executeQuery();
+			int counts=0;
+  			while (rs.next()){
+  				counts=rs.getInt(1);
+			 }
+  			
+  			 
+  			map.put("pageOutPut", pageOutPut);
+  			map.put("counts", counts);
+  			 
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return map;
 		 
 	}
 	 

@@ -32,5 +32,7 @@
 
  <a href="deepOptimizeCaseListAction.do?step=1">返回上一页</a> <br>
  <br>
+ 
+ <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>
 </html>

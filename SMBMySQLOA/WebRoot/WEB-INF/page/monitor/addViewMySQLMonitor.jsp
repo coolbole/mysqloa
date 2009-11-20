@@ -26,5 +26,6 @@
 		<br>
 		
 		</FORM>
+		<jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
 	</body>
 </html>

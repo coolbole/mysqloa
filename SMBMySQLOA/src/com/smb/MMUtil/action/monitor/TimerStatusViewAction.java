@@ -17,9 +17,9 @@ public class TimerStatusViewAction  implements ControllerAction {
 		try{
 			logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			
-			 if(request.getSession().getAttribute("host")==null ){ 
-				 return new ModelAndPage("index.jsp",true); 
-				 }
+//			 if(request.getSession().getAttribute("host")==null ){ 
+//				 return new ModelAndPage("index.jsp",true); 
+//				 }
 			 
 			return new ModelAndPage( request ,"/WEB-INF/page/timer/timerstatus.jsp" );
 		}

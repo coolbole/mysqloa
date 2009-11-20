@@ -24,7 +24,7 @@ public class DownLoadMySQLConfigFileAction extends ActionBase   implements Contr
 			  
 			HttpSession session=  request.getSession();
 			
-			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 			 
 			 String configs=request.getParameter("config");
 			 IMySQLManagerJdbcUtilTools   mmu= getMMU(session);

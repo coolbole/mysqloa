@@ -20,7 +20,7 @@ public class MailHostConfigViewAction  implements ControllerAction {
 		
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+//		 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
 		 
 		Email  mailnfo= read.getMailHostConfigXMLFile();
 		request.setAttribute("mailnfo", mailnfo);
