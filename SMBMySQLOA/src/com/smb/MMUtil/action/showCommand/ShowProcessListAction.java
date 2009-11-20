@@ -34,7 +34,7 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 			    	session.setAttribute("password",Rpassword); 
 	    }
 	    
-		  if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+		  if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("loginAction.do",true); }
 		    
 		    IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		    List<MySQLShowProcessList> proList = mmu.showProcesslistCommand();
@@ -48,10 +48,10 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 		catch(Exception e) {
 			String ems=e.getMessage();
 			if (ems.indexOf("Access denied for user")!=-1){
-				return new ModelAndPage("index.jsp?err=用户名或者密码不正确，请您重新输入");
+				return new ModelAndPage("loginAction.do?err=用户名或者密码不正确，请您重新输入");
 			}
 			else if(ems.indexOf("Communications link failure")!=-1){
-				return new ModelAndPage("index.jsp?err=连接的主机没有开启MySQL服务器");
+				return new ModelAndPage("loginAction.do?err=连接的主机没有开启MySQL服务器");
 			}
 		}
 		return new ModelAndPage( request ,"/WEB-INF/page/show/showProcessList.jsp" );
