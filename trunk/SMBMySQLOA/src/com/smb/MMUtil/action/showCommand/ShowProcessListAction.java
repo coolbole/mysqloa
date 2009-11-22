@@ -12,8 +12,10 @@ import org.apache.commons.logging.LogFactory;
 import com.smb.MMUtil.action.base.ActionBase;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
+import com.smb.MMUtil.pojo.RecentHost;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
+import com.smb.framework.web.action.ObjectFactory;
 
 public class ShowProcessListAction extends ActionBase implements ControllerAction  {
 	
@@ -33,9 +35,8 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 			    	session.setAttribute("username",Rusername); 
 			    	session.setAttribute("password",Rpassword); 
 	    }
-	    
 		  if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("loginAction.do",true); }
-		    
+		  
 		    IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		    List<MySQLShowProcessList> proList = mmu.showProcesslistCommand();
 		    
@@ -43,7 +44,21 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 			request.setAttribute("uptime",mmu.showUptime());      
 		    request.setAttribute("host",session.getAttribute("host"));   
 		    request.setAttribute("version",mmu.showVersion() );   
-			}
+			
+		
+		
+		    int xmlNodes=DescriptionXMLFile.getMySQLRecentHost().size();
+			  if (xmlNodes==0){
+				  System.out.println (  xmlNodes );
+				   RecentHost RecentHostInfo= new RecentHost();
+				   RecentHostInfo.setAlias("ServerAlias");
+				   RecentHostInfo.setServerIP( Rhost);
+				   RecentHostInfo.setPort("3306");
+				   RecentHostInfo=(RecentHost) ObjectFactory.getObjectFactory(RecentHostInfo, request);
+				   DescriptionXMLFile.AddMySQLRecentHost(RecentHostInfo);
+			  }
+		
+		}
 		
 		catch(Exception e) {
 			String ems=e.getMessage();

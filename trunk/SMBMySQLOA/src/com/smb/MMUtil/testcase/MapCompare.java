@@ -4,7 +4,6 @@
 package com.smb.MMUtil.testcase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
@@ -26,6 +25,14 @@ public class MapCompare {
 	private static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
 	@Test
+	 public void ReadMySQLConfigXMLFile() throws Exception{
+		
+		DescriptionXMLFile.getMySQLRecentHost();
+	}
+	
+	
+//	@Test
+	@SuppressWarnings("unchecked")
 	public void DeepOptimizeCaseFinishAction () throws Exception{
 		ReadMySQLConfigXMLFile  read= new ReadMySQLConfigXMLFile();
 		 String optimizeIDs="1,,2,24";
