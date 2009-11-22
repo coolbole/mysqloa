@@ -29,6 +29,8 @@ public class CheckLoginFilter     implements Filter {
     //判断如果没有取到用户信息,就跳转到登陆页面
     if (host == null   && req.getRequestURI().indexOf("showProcessListAction")==-1 
     		&& req.getRequestURI().indexOf("loginAction")==-1		
+    		&& req.getRequestURI().indexOf("recentHost")==-1		
+    		
     ) {
     	res.sendRedirect("http://"+req.getHeader("Host")+req.getContextPath()+"/loginAction.do");
     }

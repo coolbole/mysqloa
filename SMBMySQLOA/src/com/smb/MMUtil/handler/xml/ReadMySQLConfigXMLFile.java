@@ -25,6 +25,7 @@ import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLDeepOptimize;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
 import com.smb.MMUtil.pojo.MySQLVariableDescription;
+import com.smb.MMUtil.pojo.RecentHost;
 import com.smb.MMUtil.pojo.email.Email;
 import com.smb.MMUtil.pojo.monitor.MySQLMonitorHost;
 import com.thoughtworks.xstream.XStream;
@@ -57,13 +58,17 @@ public class ReadMySQLConfigXMLFile {
 							getResource ("MailHost.xml").getFile();
 	
 	private static String mySQLDeepOptimizeCaseXMLFile = ReadMySQLConfigXMLFile.class.
-	getResource ("MySQLDeepOptimizeCase.xml").getFile();
+							getResource ("MySQLDeepOptimizeCase.xml").getFile();
+	
+	private static String recentLoginHostCaseXMLFile = ReadMySQLConfigXMLFile.class.
+							getResource ("RecentLoginHost.xml").getFile();
 	
 	
 	private static  XStream xstream = new XStream(new DomDriver());
 	private static  MySQLVariableDescription   description= new MySQLVariableDescription();
 	private static  MySQLMonitorHost  monitorHost=new MySQLMonitorHost();
 	private static  MySQLDeepOptimize  deepOptimize=new MySQLDeepOptimize();
+	private static  RecentHost  recentHost=new RecentHost();
 	
 	
 	@SuppressWarnings("unchecked")
@@ -73,6 +78,136 @@ public class ReadMySQLConfigXMLFile {
 	private static String CacheOptimizeCase="cacheOptimizeCase";
 	private static String CacheAutoConfigCase="cacheAutoConfigCase";
 	private static String CachedeepOptimize="cachedeepOptimize";
+	private static String CacherecentHost="CacherecentHost";
+	
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public void upDateMySQLRecentHost(RecentHost  recentHost)  throws  Exception {
+		List <RecentHost> list=null;
+		logger.info(" update recent  LoginHostCase  XML  File       ....................");
+		try {
+				list=getMySQLRecentHost();
+				for (int i=0;i<list.size();i++){
+					if (list.get(i).getId().equals(recentHost.getId() )){
+						list.remove(i);
+						list.add(recentHost);
+					}
+				}
+				xstream.alias("RecentHost",  RecentHost.class);
+				String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(list);
+ 				System.out.println ( xml );
+				FileWriter resultFile = new FileWriter(recentLoginHostCaseXMLFile);
+				PrintWriter myFile = new PrintWriter(resultFile);
+				myFile.println(xml);
+				resultFile.close(); 
+ 			   cache.remove(CacherecentHost);
+				 
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public void deleteMySQLRecentHost(String id)  throws  Exception {
+		List <RecentHost> list=null;
+		logger.info(" Add recent  LoginHostCase  XML  File       ....................");
+		try {
+				list=getMySQLRecentHost();
+				for (int i=0;i<list.size();i++){
+					if (list.get(i).getId().equals(id)){
+						list.remove(i);
+					}
+				}
+				xstream.alias("RecentHost",  RecentHost.class);
+				String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(list);
+//				System.out.println ( xml );
+				FileWriter resultFile = new FileWriter(recentLoginHostCaseXMLFile);
+				PrintWriter myFile = new PrintWriter(resultFile);
+				myFile.println(xml);
+				resultFile.close(); 
+ 			   cache.remove(CacherecentHost);
+				 
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public void AddMySQLRecentHost(RecentHost RecentHostInfo)  throws  Exception {
+		List <RecentHost> list=null;
+		logger.info(" Add recent  LoginHostCase  XML  File       ....................");
+		try {
+				RecentHostInfo.setId( System.currentTimeMillis()+"");
+				getMySQLRecentHost().add( RecentHostInfo  );
+				list=getMySQLRecentHost();
+				xstream.alias("RecentHost",  RecentHost.class);
+				String xml="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+xstream.toXML(list);
+				 
+				FileWriter resultFile = new FileWriter(recentLoginHostCaseXMLFile);
+				PrintWriter myFile = new PrintWriter(resultFile);
+				myFile.println(xml);
+				resultFile.close(); 
+			   cache.remove(CacherecentHost);
+				 
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List getMySQLRecentHost()  throws  Exception {
+		FileInputStream input; 
+		List <RecentHost> list=null;
+		try {
+			if (cache.get(CacherecentHost)!=null){
+				logger.info("Cache  Recent Host XML File  ....................");
+				 list=(List<RecentHost>) cache.get(CacherecentHost);
+			}
+			else{
+				logger.info(" Read recent  LoginHostCase  XML  File       ....................");
+				input = new FileInputStream(recentLoginHostCaseXMLFile);
+				xstream.alias("RecentHost",  RecentHost.class);
+				list=(List<RecentHost>) xstream.fromXML(input,recentHost) ;
+				cache.put(CacherecentHost, list);
+				}
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return list;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public RecentHost getMySQLRecentHostInfo(String id)  throws  Exception {
+		List <RecentHost> list=null;
+		RecentHost recentHostInfo=null;
+		try {
+				list=(List<RecentHost>) cache.get(CacherecentHost);
+				for (int i=0;i<list.size();i++){
+					if (list.get(i).getId().equals(  id  ) ){
+						recentHostInfo=list.get(i);
+					}
+				}
+		
+			} 
+		catch ( Exception e) {
+			logger.error(e);
+		}
+		return recentHostInfo;
+	}
+	
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public List getMySQLVariableDescription()  throws  Exception {
@@ -344,6 +479,7 @@ public class ReadMySQLConfigXMLFile {
 		try{
 			List <MySQLMonitorHost> hostList=this.getMySQLMonitorHost();
 			for (int i=0;i<hostList.size();i++){
+				System.out.println ( hostList.get(i).getId() );
 				if (hostList.get(i).getId().equals(ID) 	){
 					monitorHost=hostList.get(i);
 				}
