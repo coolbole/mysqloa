@@ -393,6 +393,8 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			while (rs.next() ){
 				result.add( rs.getString(1)  );
 			}
+			result.remove("information_schema");
+			
 		}
 		catch ( Exception e){
 			logger.error(e);
@@ -403,6 +405,32 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		return result;
 	}
 
+	
+	public Map<Object, Object> showTableRows() throws Exception {
+		logger.info( "showDataBases ......................." );
+		Connection connection=null;
+		connection=JDBCUtilBaseTools.getConnection();
+		Map<Object, Object>    result = new HashMap <Object, Object> ();
+		try{
+			ResultSet rs=connection.prepareStatement("show table status").executeQuery();
+			while (rs.next() ){
+				result.put(rs.getString("Name") , "   ("+rs.getString("Rows") +")" ) ; 
+			}
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List showTableStatus() throws Exception {
 		logger.info( "showDataBases ......................." );
@@ -777,6 +805,32 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		 
 	}
 
+	public Map<Object, Object>  showTablesCount ( ) throws Exception {
+		logger.info( "showTablesCount ......................." );
+		Connection connection=null;
+		connection=JDBCUtilBaseTools.getConnection();
+		Map<Object, Object> map = new HashMap<Object, Object> ();
+		try{
+			 ResultSet rs=connection.
+			 prepareStatement("SELECT  TABLE_SCHEMA, count(distinct(TABLE_NAME) ) from TABLES where TABLE_SCHEMA !='information_schema'  group by TABLE_SCHEMA ").
+			 executeQuery();
+			 while (rs.next()){
+					 map.put(   rs.getString(1), "   ("+rs.getInt(2)+" Tabs)");
+			 }
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
+		return map;
+		 
+	}
+	
+	
+	
+	
 	public List<?> showTablesCommand(String DBName) throws Exception {
 		logger.info( "showTablesCommand ......................." );
 		Connection connection=null;

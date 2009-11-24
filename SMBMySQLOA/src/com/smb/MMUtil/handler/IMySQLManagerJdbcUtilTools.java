@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.smb.MMUtil.handler;
 
 import java.util.List;
@@ -20,6 +18,10 @@ import com.smb.MMUtil.pojo.TableStatusPojo;
 public interface IMySQLManagerJdbcUtilTools {
 	
 	public List  <MySQLShowProcessList> showProcesslistCommand( ) throws  Exception;
+	
+	public Map<Object, Object>  showTablesCount() throws Exception;
+	
+	public Map<Object, Object>  showTableRows() throws Exception;
 	
 	public List<MySQLVariableObject>  showVariblesCommand ( ) throws  Exception;
 	

@@ -21,10 +21,20 @@
 		<%
 			String DBName=request.getAttribute("DBName").toString();
 			List proList = (List) request.getAttribute("tables");
+			Map map = (Map) request.getAttribute("tablesRows");
 			int size = proList.size();
 			for (int i = 0; i < size; i++) {
+			 	 
+				//if (map.get(proList.get(i) ).toString().indexOf("(0)")==-1 ){
 				out.println("<A HREF='showTableDataInfoAction.do?DBName="+DBName+"&TabName="  
-				+ proList.get(i)+  "'>" + proList.get(i) + "</A><br>");
+				+ proList.get(i)+  "'>" + proList.get(i) + "</A>"+map.get(proList.get(i) )+"<br>");
+				// }
+				// else{
+				// out.println("<b>"+ proList.get(i)+""+map.get(proList.get(i) )+"<br>");
+				// }
+				  
+				 
+				 
 				}
 		%>
 		

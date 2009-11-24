@@ -20,10 +20,15 @@
 		请选择一个数据库:<br><hr>
 		<%
 			List proList = (List) request.getAttribute("dataBasesList");
+			Map map = (Map) request.getAttribute("DBTableCounts");
 			int size = proList.size();
 			for (int i = 0; i < size; i++) {
-				out.println("<br><A HREF='showAllTablesAction.do?DBName="  + proList.get(i)+  "'>" + proList.get(i) + "</A>");
-				}
+				
+				out.println("<br><A HREF='showAllTablesAction.do?DBName="  
+				+ proList.get(i)+  "'>" + proList.get(i) + "</A>"+map.get(proList.get(i)));
+					}
+				 
+				
 		%>
 <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
 	</body>
