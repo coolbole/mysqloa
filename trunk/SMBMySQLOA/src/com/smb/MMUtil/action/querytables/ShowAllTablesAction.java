@@ -1,6 +1,7 @@
 package com.smb.MMUtil.action.querytables;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,9 +29,12 @@ public class ShowAllTablesAction extends ActionBase  implements ControllerAction
 	    IMySQLManagerJdbcUtilTools   mmu= getMMU(session,DBName);
 	    List<?> tables=mmu.showTablesCommand(DBName);
 	    
+	    Map<Object,Object> tablesRows=mmu.showTableRows();
+	    
 	    request.setAttribute("DBName", DBName);  
 		request.setAttribute("host",session.getAttribute("host"));  
 		request.setAttribute("tables", tables);  
+		request.setAttribute("tablesRows", tablesRows);  
 		 
 		return new ModelAndPage( request ,"/WEB-INF/page/queryTables/showAllTables.jsp" );
 	}

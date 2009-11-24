@@ -1,6 +1,7 @@
 package com.smb.MMUtil.action.showCommand;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,9 @@ public class ShowDataBaseAction extends ActionBase implements ControllerAction {
 			 	
 				if (actionType.equals("queryTables")){
 			 		logger.info(actionType+"\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
+			 		
+			 		Map<Object, Object> map= getMMU(session,"information_schema").showTablesCount() ;
+			 		request.setAttribute("DBTableCounts", map);
 			 		return new ModelAndPage( request ,"/WEB-INF/page/queryTables/queryTables.jsp" );
 			 	}
 			 	

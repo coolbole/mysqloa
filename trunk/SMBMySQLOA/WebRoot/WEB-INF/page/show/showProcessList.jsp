@@ -28,6 +28,12 @@
    <A HREF="showSatusAction.do?category=log"><span style='color:green;'>查看系统当前日志 使用的状态</span></A> <br>
    <br><br>
    
+   
+   <A HREF="showTableDataInfoAction.do?DBName=mysql&TabName=help_topic">
+	   		<span style='color:#FF0000;'><b>MySQLHelp</b></span>
+   </A><br> <br>
+   
+   
     <!-- 
 	   <A HREF="createORMConfigListAction.do">
 	   		<span style='color:#FF0000;'><b>自动生成(Hibernate/iBATIS/Spring)配置文件</b></span>
