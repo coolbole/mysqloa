@@ -19,13 +19,20 @@
 
 		请选择一个数据库:<br><hr>
 		<%
-			List proList = (List) request.getAttribute("dataBasesList");
-			Map map = (Map) request.getAttribute("DBTableCounts");
+			String host=session.getAttribute("host").toString() ;
+			out.println("您当前查看的是: "+host+"主机上的 <b>表</b> 使用情况  <br><br>");
+			out.println(request.getAttribute("xml"));
+		
+		
+			List<DiskInfoPojo> proList = (List) request.getAttribute("DBTableCounts");
 			int size = proList.size();
+			
+			
 			for (int i = 0; i < size; i++) {
 				
 				out.println("<br><A HREF='showAllTablesAction.do?DBName="  
-				+ proList.get(i)+  "'>" + proList.get(i) + "</A>"+map.get(proList.get(i)));
+				+ proList.get(i).getDatabase_Name()+  "'>" + proList.get(i) .getDatabase_Name()+ "</A>"
+				+"  ("+ proList.get(i).getTotal_Size()+")"  );
 					}
 				 
 				

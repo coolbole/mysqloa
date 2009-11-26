@@ -5,12 +5,14 @@ import javax.servlet.http.HttpSession;
 import com.smb.MMUtil.handler.IMySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.MySQLManagerJdbcUtilTools;
 import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
+import com.smb.MMUtil.handler.flashchart.FlashChartTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
 
 public class ActionBase {
 	
 	protected static ReadMySQLConfigXMLFile  DescriptionXMLFile= new ReadMySQLConfigXMLFile();
 	
+	protected static FlashChartTools  fashChartTools= new FlashChartTools();
 	
 	protected  IMySQLManagerJdbcUtilTools getMMU ( String host, String Db,String username, String password ){
 	 
