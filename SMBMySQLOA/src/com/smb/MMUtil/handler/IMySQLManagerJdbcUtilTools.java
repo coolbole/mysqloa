@@ -4,6 +4,7 @@ package com.smb.MMUtil.handler;
 import java.util.List;
 import java.util.Map;
 
+import com.smb.MMUtil.pojo.DiskInfoPojo;
 import com.smb.MMUtil.pojo.MySQLShowColumns;
 import com.smb.MMUtil.pojo.MySQLShowProcessList;
 import com.smb.MMUtil.pojo.MySQLTableIndex;
@@ -19,7 +20,7 @@ public interface IMySQLManagerJdbcUtilTools {
 	
 	public List  <MySQLShowProcessList> showProcesslistCommand( ) throws  Exception;
 	
-	public Map<Object, Object>  showTablesCount() throws Exception;
+	public List  <DiskInfoPojo> showTablesCount() throws Exception;
 	
 	public Map<Object, Object>  showTableRows() throws Exception;
 	
@@ -75,5 +76,5 @@ public interface IMySQLManagerJdbcUtilTools {
  	
  	public List<?>  showTABLESColumns(String tablename[]) throws Exception;
  	
- 	
+ 	public List<DiskInfoPojo> getDataBaseDiskInfo (  ) throws  Exception;
 }

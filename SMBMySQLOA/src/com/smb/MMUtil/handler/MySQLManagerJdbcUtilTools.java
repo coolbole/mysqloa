@@ -26,6 +26,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.smb.MMUtil.handler.base.JDBCUtilBaseTools;
 import com.smb.MMUtil.handler.xml.ReadMySQLConfigXMLFile;
+import com.smb.MMUtil.pojo.DiskInfoPojo;
 import com.smb.MMUtil.pojo.MySQLAutoConfigCase;
 import com.smb.MMUtil.pojo.MySQLOpenTables;
 import com.smb.MMUtil.pojo.MySQLOptimizeCase;
@@ -805,17 +806,20 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		 
 	}
 
-	public Map<Object, Object>  showTablesCount ( ) throws Exception {
+	public List <DiskInfoPojo>  showTablesCount ( ) throws Exception {
 		logger.info( "showTablesCount ......................." );
 		Connection connection=null;
 		connection=JDBCUtilBaseTools.getConnection();
-		Map<Object, Object> map = new HashMap<Object, Object> ();
+		List<DiskInfoPojo> map = new ArrayList<DiskInfoPojo> ();
 		try{
 			 ResultSet rs=connection.
 			 prepareStatement("SELECT  TABLE_SCHEMA, count(distinct(TABLE_NAME) ) from TABLES where TABLE_SCHEMA !='information_schema'  group by TABLE_SCHEMA ").
 			 executeQuery();
 			 while (rs.next()){
-					 map.put(   rs.getString(1), "   ("+rs.getInt(2)+" Tabs)");
+				 DiskInfoPojo  info = new DiskInfoPojo();
+				 info.setDatabase_Name(  rs.getString(1) );
+				 info.setTotal_Size(  rs.getInt(2) );
+				 map.add( info);
 			 }
 		}
 		catch ( Exception e){
@@ -914,5 +918,40 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		 
 	}
 	 
-	
+	public List<DiskInfoPojo> getDataBaseDiskInfo (  ) throws  Exception{
+		logger.info( "getDataBaseDiskInfo ......................." );
+		Connection conn=JDBCUtilBaseTools.getConnection();
+		List<String> databaseslist = new ArrayList<String> ();
+		List<DiskInfoPojo> diskInfos= new  ArrayList<DiskInfoPojo> ();
+		ResultSet databasesResult=conn.prepareStatement("show databases").executeQuery();
+		while (databasesResult.next()){
+			databaseslist.add( databasesResult.getString(1)  );
+		}
+		
+		for (int i=0;i<databaseslist.size();i++){
+		ResultSet tableResult=conn.prepareStatement("show table status from "+databaseslist.get(i)).executeQuery();
+			long data_length=0;
+			long index_size=0;
+			int rows=0;
+			while (tableResult.next()){
+						rows+=tableResult.getInt("Rows");
+						data_length+=tableResult.getLong("data_length");
+						index_size+=tableResult.getLong("index_length");
+			}
+			DiskInfoPojo  diskInfoPojo= new DiskInfoPojo();
+			diskInfoPojo.setDatabase_Name( databaseslist.get(i).toString() );
+			diskInfoPojo.setRows(rows);
+			diskInfoPojo.setData_Size(  data_length );
+			diskInfoPojo.setTotal_Size( data_length+index_size);
+			diskInfoPojo.setIndex_Size( index_size );
+			
+			diskInfos.add(diskInfoPojo);
+		}
+		
+		return diskInfos;
+	}
+
 }
+	
+	
+ 

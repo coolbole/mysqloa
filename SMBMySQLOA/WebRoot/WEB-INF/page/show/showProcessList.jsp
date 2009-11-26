@@ -44,14 +44,18 @@
 	   		<span style='color:#336600;'><b>压力测试</b></span>
 	   </A> <br> <br> <br>
     -->
-     <A HREF="showDataBaseAction.do?type=queryTables">
-	   		<span style='color:#669900;'><b>查看数据库表数据</b></span>
-	 </A> <br> <br>
-	   
-	   
    <b><A HREF="showDataBaseAction.do?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
-   <A HREF="showDataBaseAction.do?type=everytable">查看系统每个表使用的状况</A><br><br>
-   <A HREF="showDataBaseAction.do?type=index">查看每个数据库的索引状态</A><br><br>
+    
+   <A HREF="showDataBaseAction.do?type=queryTables">
+	   		<span style='color:#669900;'><b>查看数据库表数据</b></span>
+   </A> <br> <br>
+  
+   <A HREF="showDataBaseAction.do?type=everytable">
+    		<span style='color:#669900;'><b>查看系统每个表使用的状况</b></span>
+   </A><br><br>
+   <A HREF="showDataBaseAction.do?type=index">
+ 			<span style='color:#669900;'><b>查看每个数据库的索引状态</b></span>
+   </A><br><br>
    <b><A HREF="showOpenTablesAction.do">最近被使用过的表</A></b><br><br>
   
    <A HREF="deepOptimizeCaseListAction.do?step=1"><span style='color: blue;'><b>根据您的业务深度快速优化</b> </span></A>&nbsp;&nbsp;
