@@ -11,7 +11,7 @@
   
   <body>
   
-   <a href="showProcessListAction.do">返回</A><br><br>
+   <a href="MMUPortletAction.do">返回</A><br><br>
    
 		<FORM METHOD="post" ACTION="queryAnalyzerAction.do">
 		 <SELECT NAME="DBName">
@@ -29,8 +29,8 @@
 		<INPUT TYPE="submit">
 		</FORM>
 
-
-
+<br><br>
+<a href="MMUPortletAction.do">返回</A><br><br>
  <br>
  <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>

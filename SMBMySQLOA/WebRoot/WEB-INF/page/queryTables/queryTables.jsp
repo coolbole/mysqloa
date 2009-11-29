@@ -13,7 +13,7 @@
 
 	<body>
 
-		<a href="showProcessListAction.do">返回</A>
+		<a href="MMUPortletAction.do">返回</A>
 		<br><br>
 		
 
@@ -37,6 +37,9 @@
 				 
 				
 		%>
+		<br><br>
+		<a href="MMUPortletAction.do">返回</A>
+		
 <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
 	</body>
 

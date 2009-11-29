@@ -27,7 +27,7 @@ public class CheckLoginFilter     implements Filter {
     String host = (String) session.getAttribute("host");
    
     //判断如果没有取到用户信息,就跳转到登陆页面
-    if (host == null   && req.getRequestURI().indexOf("showProcessListAction")==-1 
+    if (host == null   && req.getRequestURI().indexOf("MMUPortletAction")==-1 
     		&& req.getRequestURI().indexOf("loginAction")==-1		
     		&& req.getRequestURI().indexOf("recentHost")==-1		
     		

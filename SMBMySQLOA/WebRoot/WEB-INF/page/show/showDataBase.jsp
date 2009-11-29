@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <A HREF="showProcessListAction.do">返回</A> <br><br>
+  <A HREF="MMUPortletAction.do">返回</A> <br><br>
   
    
     <% 
@@ -44,7 +44,7 @@
     
     
     <br><br>
-      <A HREF="showProcessListAction.do">返回</A> <br><br>
+      <A HREF="MMUPortletAction.do">返回</A> <br><br>
      <br>
      <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>

@@ -26,10 +26,9 @@ public class ShowDetailVariblesAction  extends ActionBase  implements Controller
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-		 String variable_name=request.getParameter("variable_name");
-		 HttpSession session=  request.getSession();
-		 
-//		 if(session.getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
+			String variable_name=request.getParameter("variable_name");
+			HttpSession session=  request.getSession();
+ 
 			IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 			List <MySQLVariableDescription> listF=DescriptionXMLFile.getMySQLVariableDescription();
 		

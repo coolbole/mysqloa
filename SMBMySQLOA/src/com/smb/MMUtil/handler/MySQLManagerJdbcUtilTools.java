@@ -61,7 +61,7 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 		connection=JDBCUtilBaseTools.getConnection();
 		List <MySQLShowProcessList> result =  new ArrayList();
 		try{
-			ResultSet rs=connection.prepareStatement( "Show full processlist"  ).executeQuery();
+			ResultSet rs=connection.prepareStatement( "show full processlist"  ).executeQuery();
 			while (rs.next() ){
 				MySQLShowProcessList  variable= new MySQLShowProcessList();	
 				variable.setId( rs.getInt(1)   );
@@ -370,7 +370,6 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 				 }
 			 }
 			 
-			 System.out.println(    );
 		
 		}
 		catch ( Exception e){
@@ -920,16 +919,17 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	 
 	public List<DiskInfoPojo> getDataBaseDiskInfo (  ) throws  Exception{
 		logger.info( "getDataBaseDiskInfo ......................." );
-		Connection conn=JDBCUtilBaseTools.getConnection();
+		Connection connection=JDBCUtilBaseTools.getConnection();
 		List<String> databaseslist = new ArrayList<String> ();
 		List<DiskInfoPojo> diskInfos= new  ArrayList<DiskInfoPojo> ();
-		ResultSet databasesResult=conn.prepareStatement("show databases").executeQuery();
+		try{
+		ResultSet databasesResult=connection.prepareStatement("show databases").executeQuery();
 		while (databasesResult.next()){
 			databaseslist.add( databasesResult.getString(1)  );
 		}
-		
+		 
 		for (int i=0;i<databaseslist.size();i++){
-		ResultSet tableResult=conn.prepareStatement("show table status from "+databaseslist.get(i)).executeQuery();
+		ResultSet tableResult=connection.prepareStatement("show table status from "+databaseslist.get(i)).executeQuery();
 			long data_length=0;
 			long index_size=0;
 			int rows=0;
@@ -947,7 +947,13 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 			
 			diskInfos.add(diskInfoPojo);
 		}
-		
+		}
+		catch ( Exception e){
+			logger.error(e);
+		}
+		finally {
+			connection.close();
+		}
 		return diskInfos;
 	}
 

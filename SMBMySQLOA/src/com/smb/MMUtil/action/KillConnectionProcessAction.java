@@ -20,25 +20,29 @@ public class KillConnectionProcessAction implements ControllerAction {
 
  
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		logger.info("KillConnectionProcessAction .................................");
 		try{
-			HttpSession session=  request.getSession();
-			
-//			 if(request.getSession().getAttribute("host")==null ){ return new ModelAndPage("index.jsp",true); }
-			  
+			   HttpSession session=  request.getSession();
+
 			   String host= session.getAttribute("host").toString() ;
 			   String username= session.getAttribute("username").toString();
 			   String password= session.getAttribute("password").toString();
 			   
-			   
-			    String  ConnectionID=request.getParameter("ConnectionID");
+			   String  type=request.getParameter("type");
+			   String  ConnectionID=request.getParameter("ConnectionID");
 			    if(ConnectionID.equals("")|| ConnectionID==null ){ return new ModelAndPage("showProcessListAction.do",true); }
 			    
 			    JDBCUtilBaseTools orm= new JDBCUtilBaseTools(host,"information_schema",username,password);
 				IMySQLManagerJdbcUtilTools   mmu= new MySQLManagerJdbcUtilTools(orm);
 				
 				mmu.killConnectionProcess(ConnectionID);
+				if (type.equals("proceeslist")){
+					return new ModelAndPage( request ,"showProcessListAction.do",true );
+				}
+				else{
+					return new ModelAndPage( request ,"MMUPortletAction.do",true );
+				}
 			 	
-			 	return new ModelAndPage( request ,"showProcessListAction.do",true );
 			  
 			 	 
 		}

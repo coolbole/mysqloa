@@ -33,7 +33,7 @@
 		
 		<br><br>
 		
-		<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/showProcessListAction.do">
+		<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/MMUPortletAction.do">
 			
 			<% 
 			if (recently==0){%>

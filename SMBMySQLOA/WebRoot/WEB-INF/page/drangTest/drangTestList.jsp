@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-		<br> <A HREF="showProcessListAction.do">返回</A><br>
+		<br> <A HREF="MMUPortletAction.do">返回</A><br>
 		<br>
 		查询压力测试
 		<br><br><br>
