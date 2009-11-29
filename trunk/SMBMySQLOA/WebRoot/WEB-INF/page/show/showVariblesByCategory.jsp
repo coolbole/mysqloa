@@ -20,7 +20,7 @@
     <b><FONT SIZE="6" COLOR="#993333">查看 MySQL数据库 当前<%=category%>配置参数  </FONT></b>
     </CENTER>
     <br>
-    <a href="showProcessListAction.do">返回上一页</a> <br>
+    <a href="MMUPortletAction.do">返回上一页</a> <br>
     <%
 	
 	List <MySQLVariableObject> listS=(List)request.getAttribute("listS");
@@ -44,7 +44,7 @@
 				 
 			}
     %>
-     <a href="showProcessListAction.do">返回上一页</a> <br>
+     <a href="MMUPortletAction.do">返回上一页</a> <br>
      <br>
      <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>

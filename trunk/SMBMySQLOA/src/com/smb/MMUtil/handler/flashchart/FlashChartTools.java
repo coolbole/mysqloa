@@ -1,6 +1,7 @@
 package com.smb.MMUtil.handler.flashchart;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,8 +17,51 @@ public class FlashChartTools {
 	private static String colorD="FFFF00";
 	
 	
+	
+	public String getPortletAllStatusInfo (Map<?, ?> map){
+		logger.info( "getPortletAllStatusInfo .......................\n" );
+		
+		StringBuffer sBuffer= new StringBuffer( );
+		sBuffer.append("<chart palette='1' caption='' shownames='1' "   ).
+		append("showvalues='1'  numberPrefix='' showSum='1' decimals='1' overlapColumns='0'  formatNumber='1'>").
+		append(" <categories> "   ).
+//		append(" <category label='Table Cache Size' /> "   ).
+		append(" <category label='InnoDB MemPool' /> "   ).
+		append(" <category label='Query Cache Size ' /> "   ).
+		append(" <category label='Binlog Cache Size' /> "   ).
+//		append(" <category label='InnoDB Log Buffer' /> "   ).
+		append(" <category label='Sort Buffer Size' /> "   ).
+//		append(" <category label='Key Buffer' />"   ).
+		append(" <category label='Key Cache Block' />"   ).
+		append(" <category label='Allowed Packet' />"   ).
+		append(" </categories>"   ).
+		
+		
+//		"innodb_additional_mem_pool_size","query_cache_limit",
+//		"binlog_cache_size","innodb_buffer_pool_size",
+//		"sort_buffer_size","key_cache_block_size",
+//		"max_allowed_packet","table_cache",
+		
+		append(" <dataset seriesName=''  showValues='0'> "   ).
+//		append("<set value='"+map.get("table_cache")+"' color='66CCFF'  />"   ).
+		append("<set value='"+map.get("innodb_additional_mem_pool_size")+"'  link='compareVariablesAction.do'  color='CC0099'/>"   ).
+		append("<set value='"+map.get("query_cache_limit")+"' color='33CC00' />"   ).
+		append("<set value='"+map.get("binlog_cache_size")+"' color='FF0033'/>"   ).
+//		append("<set value='"+map.get("innodb_buffer_pool_size")+"' color='66CCFF'/>"   ).
+		append("<set value='"+map.get("sort_buffer_size")+"' color='009933'/>"   ).
+		append("<set value='"+map.get("key_cache_block_size")+"' color='66CCFF' />"   ).
+		append("<set value='"+map.get("max_allowed_packet")+"'   link='compareVariablesAction.do' color='0099CC' />"   ).
+//		append("<set value='"+map.get("table_cache")+"' color='0099CC'/>"   ).
+//		append("<set value='"+map.get("innodb_additional_mem_pool_size")+"' color='0099CC'/>"   ).
+		
+		append(" </dataset>  </chart>"   );
+		
+		return sBuffer.toString();
+	}
+	
+	
 	public String getDataBaseTablesInfoXML (List<DiskInfoPojo> list){
-		logger.info( "getDataBaseOnDiskSizeInfoXML .......................\n" );
+		logger.info( "getDataBaseTablesInfoXML .......................\n" );
 		
 		StringBuffer sBuffer= new StringBuffer( );
 		sBuffer.append("<chart caption=' ' bgColor='FFFFFF,CCCCCC' showPercentageValues='1' " );

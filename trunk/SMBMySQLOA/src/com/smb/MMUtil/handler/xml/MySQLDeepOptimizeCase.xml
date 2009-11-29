@@ -10,7 +10,7 @@
 		query_cache_size=32773120,
 		query_cache_type=1,
 		low_priority_updates=1,
-		max_prepared_stmt_count=16773120, 
+		max_prepared_stmt_count=1677312, 
 		query_prealloc_size=65536,
 		read_buffer_size=4677312, 
 		bulk_insert_buffer_size=16773120,

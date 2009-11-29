@@ -11,7 +11,7 @@
   </head>
   
   <body>  
-  <a href="showProcessListAction.do">返回上一页</a> <br> <br>
+  <a href="MMUPortletAction.do">返回上一页</a> <br> <br>
   
   	第<b>一</b></>步
   <FORM METHOD="POST" ACTION="deepOptimizeCaseListAction.do?step=2">
@@ -31,7 +31,7 @@
     <INPUT TYPE="submit" value="下一步" name="下一步" >
 </FORM>
 
- <a href="showProcessListAction.do">返回上一页</a> <br>
+ <a href="MMUPortletAction.do">返回上一页</a> <br>
  <br>
  <jsp:include page="/WEB-INF/page/common/bottom.jsp" flush="true"/>
   </body>
