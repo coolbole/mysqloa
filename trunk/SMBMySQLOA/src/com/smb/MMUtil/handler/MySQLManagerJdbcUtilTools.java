@@ -54,27 +54,28 @@ public class MySQLManagerJdbcUtilTools  implements IMySQLManagerJdbcUtilTools {
 	
 	private JDBCUtilBaseTools  JDBCUtilBaseTools;
 	
-	@SuppressWarnings("unchecked")
-	public List  showProcesslistCommand( ) throws  Exception {
+ 
+	public List<MySQLShowProcessList>  showProcesslistCommand( ) throws  Exception {
 		logger.info( "showProcesslist ......................." );
 		Connection connection=null;
 		connection=JDBCUtilBaseTools.getConnection();
-		List <MySQLShowProcessList> result =  new ArrayList();
+		List <MySQLShowProcessList> result =  new ArrayList<MySQLShowProcessList>();
 		try{
-			ResultSet rs=connection.prepareStatement( "show full processlist"  ).executeQuery();
-			while (rs.next() ){
-				MySQLShowProcessList  variable= new MySQLShowProcessList();	
-				variable.setId( rs.getInt(1)   );
-				variable.setUser(rs.getString(2));
-				variable.setHost(rs.getString(3));
-				variable.setDb(rs.getString(4));
-				variable.setCommand(rs.getString(5));
-				variable.setTime( rs.getString(6)  );
-				variable.setState( rs.getString(7)  );
-				variable.setInfo( rs.getString(8)  );
-				
-				result.add( variable  );
+				ResultSet rs=connection.prepareStatement( "show full processlist"  ).executeQuery();
+				while (rs.next() ){
+						MySQLShowProcessList  variable= new MySQLShowProcessList();	
+						variable.setId( rs.getInt(1)   );
+						variable.setUser(rs.getString(2));
+						variable.setHost(rs.getString(3));
+						variable.setDb(rs.getString(4));
+						variable.setCommand(rs.getString(5));
+						variable.setTime( rs.getString(6)  );
+						variable.setState( rs.getString(7)  );
+						variable.setInfo( rs.getString(8)  );
+						
+						result.add( variable  );
 			}
+				
 		}
 		catch ( Exception e){
 			logger.error(e);

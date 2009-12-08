@@ -18,8 +18,7 @@ public class RecentHostAddAction extends ActionBase  implements ControllerAction
 			HttpServletResponse response) throws Exception {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
  
-		RecentHost hostInfo= new RecentHost();
-		hostInfo=(RecentHost) ObjectFactory.getObjectFactory(hostInfo, request);
+		RecentHost hostInfo=(RecentHost) ObjectFactory.getObjectFactory(RecentHost.class, request);
 		
 	    DescriptionXMLFile.AddMySQLRecentHost(hostInfo);
 		

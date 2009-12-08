@@ -19,7 +19,7 @@
 	for (int i=0; i<list.size();i++){
  %>
  
- 	  <A HREF="RecentHost?id=<%=list.get(i).getId()%>"><%=list.get(i).getServerIP()%></A> 
+ 	  <A HREF="recentHostDetailview.do?id=<%=list.get(i).getId()%>"><%=list.get(i).getServerIP()%></A> 
  	    &nbsp;&nbsp;&nbsp;&nbsp;   
  	  (<A HREF="recentHostEditview.do?id=<%=list.get(i).getId()%>">修改</A>  |
  	   <A HREF="recentHostDeleteAction.do?id=<%=list.get(i).getId()%>">删除</A> )
