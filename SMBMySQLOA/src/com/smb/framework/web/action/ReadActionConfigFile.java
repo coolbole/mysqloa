@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
- 
 
 public class ReadActionConfigFile {
 	
@@ -16,8 +15,10 @@ public class ReadActionConfigFile {
 	public static Properties getControllerConfigFile() {
 		Properties prop = new Properties();
 		try {
-			logger.info("getControllerConfigFile ............ ");
-			prop.load(new FileInputStream(controllerConfigFile));
+				if (logger.isDebugEnabled()){
+					logger.info("getControllerConfigFile ............ ");
+				}
+				prop.load(new FileInputStream(controllerConfigFile));
 		   } 
 		catch ( Exception e) {
 			logger.error(e);

@@ -25,12 +25,6 @@ public class SMBServletDispatcher extends HttpServlet   {
         	response.setCharacterEncoding("utf-8");
         	ControllerAction action=dspatcherUtils.getControllerAction(request);   // 放入 request 对象，进行Action  Mapping 映射
         	
-        	////
-//        		request.getParameterMap();   //获取页面上传体过来的值.
-//        		Object  OOWM=DispatcherUtils.getModelDriven(action ,request );
-//        		request.setAttribute("modelValue", OOWM);
-        	////
-        	
         	ModelAndPage modelAndPage=action.handleModelAndPage(request,response); 
         	
         	if (modelAndPage.getRedirect()==true){

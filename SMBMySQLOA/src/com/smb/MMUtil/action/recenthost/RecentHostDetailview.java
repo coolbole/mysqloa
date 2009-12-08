@@ -10,24 +10,21 @@ import com.smb.MMUtil.action.base.ActionBase;
 import com.smb.MMUtil.pojo.RecentHost;
 import com.smb.framework.web.action.ControllerAction;
 import com.smb.framework.web.action.ModelAndPage;
-import com.smb.framework.web.action.ObjectFactory;
 
-public class RecentHostEditAction extends ActionBase  implements ControllerAction  {
+public class RecentHostDetailview extends ActionBase  implements ControllerAction  {
 	
-	private static Log logger = LogFactory.getLog(RecentHostEditAction.class);
+	private static Log logger = LogFactory.getLog(RecentHostDetailview.class);
 	
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 		
-		RecentHost recentHostInfo=(RecentHost) 
-		ObjectFactory.getObjectFactory(RecentHost.class, request);
+		String id=request.getParameter("id");
+		RecentHost   recentHostInfo=DescriptionXMLFile.getMySQLRecentHostInfo(id);
 		
-		DescriptionXMLFile.upDateMySQLRecentHost(recentHostInfo);
-		logger.info(recentHostInfo);
+		request.setAttribute("recentHostInfo", recentHostInfo);
 		
-		return  new ModelAndPage("recentHostListAction.do",true);
+		return  new ModelAndPage("/WEB-INF/page/recentHost/RecentHostDetail.jsp");
 	}
 	
-
 }

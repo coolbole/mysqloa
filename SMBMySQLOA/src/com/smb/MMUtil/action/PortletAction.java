@@ -67,11 +67,12 @@ public class PortletAction extends ActionBase   implements ControllerAction  {
 		    int xmlNodes=DescriptionXMLFile.getMySQLRecentHost().size();
 			  if (xmlNodes==0){
 				  System.out.println (  xmlNodes );
-				   RecentHost RecentHostInfo= new RecentHost();
+				
+				   RecentHost RecentHostInfo=(RecentHost) ObjectFactory.getObjectFactory(RecentHost.class, request);
 				   RecentHostInfo.setAlias("ServerAlias");
 				   RecentHostInfo.setServerIP( Rhost);
 				   RecentHostInfo.setPort("3306");
-				   RecentHostInfo=(RecentHost) ObjectFactory.getObjectFactory(RecentHostInfo, request);
+				   
 				   DescriptionXMLFile.AddMySQLRecentHost(RecentHostInfo);
 			  }
 		

@@ -22,7 +22,6 @@ public class ShowProcessListAction extends ActionBase implements ControllerActio
 	public ModelAndPage handleModelAndPage(HttpServletRequest request,  HttpServletResponse response)  throws Exception  {
 		logger.info("\nClient Side Request RemoteAddr : [ "+request.getRemoteAddr() +" ]" );
 			HttpSession session=  request.getSession();
-			 
 			
 		    IMySQLManagerJdbcUtilTools   mmu= getMMU(session);
 		    List<MySQLShowProcessList> proList = mmu.showProcesslistCommand();

@@ -2,7 +2,7 @@ package com.smb.MMUtil.testcase.framework;
 
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
+//import org.apache.commons.beanutils.BeanUtils;
 
  
 
@@ -20,7 +20,7 @@ public class ObjectFactory {
 		BeanUtils.populate(newobj, map); 
 		*/
 		
-		BeanUtils.copyProperties(newobj, request); 
+//		BeanUtils.copyProperties(newobj, request); 
 		
 		return newobj;
 	}
