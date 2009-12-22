@@ -19,29 +19,63 @@
   
   
   %><br>
-  <A HREF="showVariblesAction.do"><span style='color: blue;'>查看系统当前所有配置参数</span></A>    <br>
-  <A HREF="showVariblesByCategoryAction.do?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.do?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.do?category=cache"><span style='color: blue;'>查看系统当前  缓存 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.do?category=log"><span style='color: blue;'>查看系统当前  日志 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.do?category=buffer"><span style='color: blue;'>查看系统当前  缓冲 属性的所有配置参数</span></A><br>
-  <A HREF="showVariblesByCategoryAction.do?category=max"><span style='color: blue;'>查看系统  Max状态 属性的所有配置参数</span></A><br>
-   
-   <br><br><br>
-   <A HREF="showSatusAction.do"><span style='color:green;'>查看系统当前所有状态</span></A>  <br> 
+  
+  <TABLE width="1051" height="200">
+<TR>
+	<!-- 1 -->
+	<TD>
+	<A HREF="showVariblesAction.do"><span style='color: blue;'>查看系统当前所有配置参数</span></A>    <br>
+  	<A HREF="showVariblesByCategoryAction.do?category=innodb"><span style='color: blue;'>查看系统当前 Innodb 属性的所有配置参数</span></A><br>
+  	<A HREF="showVariblesByCategoryAction.do?category=time"><span style='color: blue;'>查看系统当前 Time 属性的所有配置参数</span></A><br>
+  	<A HREF="showVariblesByCategoryAction.do?category=cache"><span style='color: blue;'>查看系统当前  缓存 属性的所有配置参数</span></A><br>
+  	<A HREF="showVariblesByCategoryAction.do?category=log"><span style='color: blue;'>查看系统当前  日志 属性的所有配置参数</span></A><br>
+  	<A HREF="showVariblesByCategoryAction.do?category=buffer"><span style='color: blue;'>查看系统当前  缓冲 属性的所有配置参数</span></A><br>
+  	<A HREF="showVariblesByCategoryAction.do?category=max"><span style='color: blue;'>查看系统  Max状态 属性的所有配置参数</span></A><br>
+  	</TD>
+  	<!-- 1 -->
+  	
+  	<!-- 2 -->
+	<TD>
+	<A HREF="showSatusAction.do"><span style='color:green;'>查看系统当前所有状态</span></A>  <br> 
    <A HREF="showSatusAction.do?category=innodb"><span style='color:green;'>查看系统当前 Innodb 状态</span></A> <br>
-   <A HREF="showSatusAction.do?category=select"><span style='color:green;'>查看系统当前 select查询语句使用的状态</span></A> <br>
-   <A HREF="showSatusAction.do?category=sort"><span style='color:green;'>查看系统当前sort排序语句使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=select"><span style='color:green;'>查看系统当前 SELECT查询语句使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=sort"><span style='color:green;'>查看系统当前Sort排序语句使用的状态</span></A> <br>
    <A HREF="showSatusAction.do?category=cache"><span style='color:green;'>查看系统当前 缓存 使用的状态</span></A> <br>
-   <A HREF="showSatusAction.do?category=buffer"><span style='color:green;'>查看系统当前buffer 使用的状态</span></A> <br>
+   <A HREF="showSatusAction.do?category=buffer"><span style='color:green;'>查看系统当前Buffer 使用的状态</span></A> <br>
    <A HREF="showSatusAction.do?category=log"><span style='color:green;'>查看系统当前日志 使用的状态</span></A> <br>
-   <br><br>
+	</TD>
+	<!-- 2 -->
+	
+ 
+<!-- 3 -->
+	<TD>
+	<br><A HREF="showProcessListAction.do"><span style='color:#669900;'><b>查看连接状态</b></span></A> <br> 
+   	<b><A HREF="showDataBaseAction.do?type=queryAnalyzer"><span style='color:#669900;'>执行SQL分析器</span></A></b><br>
+   	<A HREF="showDataBaseAction.do?type=queryTables"><span style='color:#669900;'><b>查看数据库表数据</b></span></A> <br>
+  	<A HREF="showDataBaseAction.do?type=everytable"><span style='color:#669900;'><b>查看系统每个表使用的状况</b></span></A><br>
+   	<A HREF="showDataBaseAction.do?type=index"><span style='color:#669900;'><b>查看每个数据库的索引状态</b></span></A><br><A HREF="showReplicationAction.do"></A><br><br>
+   	</TD>
+   	<!-- 3 -->
+	<TD><b><a href="showOpenTablesAction.do"><span style='color:blue;'>最近被使用过的表</span></a></b><br>
+   	<a href="deepOptimizeCaseListAction.do?step=1"><span style="color: blue;"><b>根据您的业务深度快速优化</b>&nbsp; </span></a><br>
+   	<a href="optimizeCaseListAction.do"><span style="color: blue;"><b>快速一键优化</b> </span></a>
+   	<br><a href="autoCreateConfigListAction.do"><span style="color: blue;"><b>根据机器配置生成配置文件</b>&nbsp; </span></a>
+   	<br><strong><a href="showReplicationAction.do"><span style="color: blue;">查看同步数据状态</span></a></strong>
+   	</TD>
+   	
+</TR>
+</TABLE>
+  
+  
+  
    
    
+   
+   <!-- 
    <A HREF="showTableDataInfoAction.do?DBName=mysql&TabName=help_topic">
 	   		<span style='color:#FF0000;'><b>MySQLHelp</b></span>
    </A><br> <br>
-   
+    -->
    
    
     <!-- 
@@ -55,28 +89,7 @@
 	   </A> <br> <br> <br>
     -->
     
-    <A HREF="showProcessListAction.do">
-	   		<span style='color:#336600;'><b>查看连接状态</b></span>
-	</A> <br> <br> 
-    
-   <b><A HREF="showDataBaseAction.do?type=queryAnalyzer">执行SQL分析器</A></b><br><br>
-    
-   <A HREF="showDataBaseAction.do?type=queryTables">
-	   		<span style='color:#669900;'><b>查看数据库表数据</b></span>
-   </A> <br> <br>
-  
-   <A HREF="showDataBaseAction.do?type=everytable">
-    		<span style='color:#669900;'><b>查看系统每个表使用的状况</b></span>
-   </A><br><br>
-   <A HREF="showDataBaseAction.do?type=index">
- 			<span style='color:#669900;'><b>查看每个数据库的索引状态</b></span>
-   </A><br><br>
-   <b><A HREF="showOpenTablesAction.do">最近被使用过的表</A></b><br><br>
-  
-   <A HREF="deepOptimizeCaseListAction.do?step=1"><span style='color: blue;'><b>根据您的业务深度快速优化</b> </span></A>&nbsp;&nbsp;
-   <A HREF="optimizeCaseListAction.do"><span style='color: blue;'><b>快速一键优化</b> </span></A>&nbsp;&nbsp;
-   <A HREF="autoCreateConfigListAction.do"><span style='color: blue;'><b>根据机器配置生成配置文件</b> </span></A>&nbsp;&nbsp;
-   <A HREF="showReplicationAction.do">查看同步数据状态 </A><br><br>
+
    
    <!-- 
    <A HREF="mailHostConfigViewAction.do">配置发送报告的邮件服务器</A>&nbsp;&nbsp;&nbsp;&nbsp;
