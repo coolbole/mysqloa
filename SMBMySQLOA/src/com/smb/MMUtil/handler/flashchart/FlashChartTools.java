@@ -44,13 +44,15 @@ public class FlashChartTools {
 		
 		append(" <dataset seriesName=''  showValues='0'> "   ).
 //		append("<set value='"+map.get("table_cache")+"' color='66CCFF'  />"   ).
-		append("<set value='"+map.get("innodb_additional_mem_pool_size")+"'  link='compareVariablesAction.do'  color='CC0099'/>"   ).
+//		append("<set value='"+map.get("innodb_additional_mem_pool_size")+"'  link='compareVariablesAction.do'  color='CC0099'/>"   ).
+		append("<set value='"+map.get("innodb_additional_mem_pool_size")+"'    color='CC0099'/>"   ).
 		append("<set value='"+map.get("query_cache_limit")+"' color='33CC00' />"   ).
 		append("<set value='"+map.get("binlog_cache_size")+"' color='FF0033'/>"   ).
 //		append("<set value='"+map.get("innodb_buffer_pool_size")+"' color='66CCFF'/>"   ).
 		append("<set value='"+map.get("sort_buffer_size")+"' color='009933'/>"   ).
 		append("<set value='"+map.get("key_cache_block_size")+"' color='66CCFF' />"   ).
-		append("<set value='"+map.get("max_allowed_packet")+"'   link='compareVariablesAction.do' color='0099CC' />"   ).
+		append("<set value='"+map.get("max_allowed_packet")+"'  color='0099CC' />"   ).
+//		append("<set value='"+map.get("max_allowed_packet")+"'   link='compareVariablesAction.do' color='0099CC' />"   ).
 //		append("<set value='"+map.get("table_cache")+"' color='0099CC'/>"   ).
 //		append("<set value='"+map.get("innodb_additional_mem_pool_size")+"' color='0099CC'/>"   ).
 		

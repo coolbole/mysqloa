@@ -6,14 +6,16 @@
 <html>
   <head>
      <title>Mysql Optimize Analysis</title>
-     <meta http-equiv="refresh" content="3;url=showProcessListAction.do">
+     <meta http-equiv="refresh" content="5;url=showProcessListAction.do">
   </head>
 
   <body>
   <A HREF="MMUPortletAction.do">返回</A> <br><br>
    
     
-    <% 		for (int k=0;k<2;k++){%>
+    <% 		
+    	// for (int k=0;k<1;k++){
+    %>
     
 		
 		<table width="85%" border="1" cellpadding="0" bordercolorlight="#999999" bordercolordark="#FFFFFF" cellspacing="0"  > 
@@ -31,14 +33,14 @@
 		</TR>
 <br><br> 
 		<% 
-			if (k!=0){
-			out.println("<hr>");
-			}
-			out.println("这台机器的MySQL版本是: "+request.getAttribute("version")+" <br>");
-		    out.println("您当前查看的主机是: "+request.getAttribute("host")+" ");
+			//if (k!=0){
+			//out.println("<hr>");
+			//}
+			//out.println("这台机器的MySQL版本是: "+request.getAttribute("version")+" <br>");
+		   // out.println("您当前查看的主机是: "+request.getAttribute("host")+" ");
 			List proList=(List)request.getAttribute("proList");
 			int size=proList.size();
-			out.println(request.getAttribute("uptime")+"<br> 当前一共有: "+size+"  个连接 <br><br> ");
+			//out.println(request.getAttribute("uptime")+"<br> 当前一共有: "+size+"  个连接 <br><br> ");
 			
 			
 			for (int i=0;i<size;i++){
@@ -57,8 +59,8 @@
 			</TR>
 		
 		<% 
-			} // for 
-		}  // try 
+			 } // for 
+		//}  // try 
 		 
     %>
     </TABLE>
