@@ -13,7 +13,7 @@ public class DispatcherUtils {
 	
 	private  static ControllerAction action=null;
 	
-	public   synchronized   ControllerAction getControllerAction(HttpServletRequest request ) throws  Exception{
+	public   ControllerAction getControllerAction(HttpServletRequest request ) throws  Exception{
 		try{
 			
 			int endPoint=request.getServletPath().lastIndexOf(".");
